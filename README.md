@@ -26,7 +26,7 @@
 - [신재영](https://github.com/tsd02150) - 메인페이지, 핫딜, FaQ, 회원가입, 로그인
 
 ## 발표자료
-[발표자료 다운로드](https://github.com/hjchoi0207/tourism/files/6890820/modulproject.pptx)
+[발표자료 다운로드]
 
 <br/>
 <br/>
