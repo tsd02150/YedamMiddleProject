@@ -23,7 +23,7 @@ public class FrontControl extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		encoding = config.getInitParameter("enc");
 		
-//		map.put("/main.do", new MainControl());
+		map.put("/main.do", new MainControl());
 
 	}
 	
