@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.member.control.SignInControl;
+import com.yedam.member.control.SignUpControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
 
@@ -28,11 +30,15 @@ public class FrontControl extends HttpServlet{
 		
 		map.put("/main.do", new MainControl());
 		
+		// 로그인 페이지
+		map.put("/signIn.do", new SignInControl());
+		// 회원가입 페이지
+		map.put("/signUp.do", new SignUpControl());
 		//상품 페이지
 		map.put("/prodList.do", new ProductListControl());
 		//상품 상세페이지
 		map.put("/getProduct.do", new GetProductControl());
-
+		
 	}
 	
 	@Override

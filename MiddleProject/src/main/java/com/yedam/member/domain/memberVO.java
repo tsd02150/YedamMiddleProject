@@ -3,9 +3,7 @@ package com.yedam.member.domain;
 import lombok.Data;
 
 @Data
-
 public class memberVO {
-	
 	private int memberNo;
 	private String id;
 	private String pw;
