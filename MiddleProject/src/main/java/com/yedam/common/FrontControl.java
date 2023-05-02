@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.product.control.GetProductControl;
+import com.yedam.product.control.ProductListControl;
+
 
 public class FrontControl extends HttpServlet{
 	private Map<String, Control> map;
@@ -24,6 +27,11 @@ public class FrontControl extends HttpServlet{
 		encoding = config.getInitParameter("enc");
 		
 		map.put("/main.do", new MainControl());
+		
+		//상품 페이지
+		map.put("/prodList.do", new ProductListControl());
+		//상품 상세페이지
+		map.put("/getProduct.do", new GetProductControl());
 
 	}
 	
