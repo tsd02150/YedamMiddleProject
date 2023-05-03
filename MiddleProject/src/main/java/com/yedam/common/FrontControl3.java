@@ -11,8 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.member.control.CSListControl;
+import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.member.control.MyPageControl;
+import com.yedam.member.control.OrderControl;
 import com.yedam.member.control.SignInControl;
+import com.yedam.member.control.SignOutControl;
+import com.yedam.member.control.SignUpCheckControl;
+import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
@@ -33,14 +39,28 @@ public class FrontControl3 extends HttpServlet{
 		
 		// 로그인 페이지
 		map.put("/signIn.do", new SignInControl());
+		//회원가입 회원종류 체크
+		map.put("/signUpCheck.do", new SignUpCheckControl());
 		// 회원가입 페이지
 		map.put("/signUp.do", new SignUpControl());
+		// 업체 회원일 경우 업체정보 입력
+		map.put("/signUpCompany.do", new SignUpCompanyControl());
+		// 로그아웃 페이지
+		map.put("/signOut.do", new SignOutControl());
 		//상품 페이지
 		map.put("/prodList.do", new ProductListControl());
 		//상품 상세페이지
 		map.put("/getProduct.do", new GetProductControl());
-		//마이페이지 기본정보
+		//마이페이지
 		map.put("/myPage.do", new MyPageControl());
+		map.put("/modifyMember.do", new ModifyMemberControl());
+		map.put("/order.do", new OrderControl());
+		
+		
+		map.put("/CSList.do", new CSListControl());
+		
+		
+		
 		
 		
 	}

@@ -19,4 +19,10 @@
 		where id=#{id} and pw=#{pw}
 	</select>
 
+	<select id="memberInfo" resultType="member" parameterType="member">
+		select * from member where member_id = #{id}
+	</select>
+
+
+
 </mapper>

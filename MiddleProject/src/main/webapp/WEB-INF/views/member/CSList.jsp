@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <style>
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
@@ -70,55 +71,36 @@ height:
 </style>
 <div class="mycontainer">
 
-<c:if ${memberGrade == C }>
+<!--<c:if>-->
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">장바구니</a></li>
+		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
+		<li class="sidebar-nav-item"><a href="order.do">장바구니</a></li>
 		<li class="sidebar-nav-item"><a href="#about">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="#services">배송현황</a></li>
 		<li class="sidebar-nav-item"><a href="#portfolio">관심상품</a></li>
 		<li class="sidebar-nav-item"><a href="CSList.do">문의내역</a></li>
 	</ul>
 </nav>
-</c:if>
-<form action="modifyMember.do" method="get">
-	<!-- 첨부파일이 있기 때문에 method는 post로 -->
-	<table class="table" align="center">
+<!--</c:if> -->
+	<table class="table">
+	<thead>
 		<tr>
-			<th>이름</th>
-			<td><input type="text" name="nNo" value="${name }" readonly></td>
+			<th>문의번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>답변상황</th>
 		</tr>
+	</thead>
+	<c:forEach var="qna" items="${list}">
 		<tr>
-			<th>아이디</th>
-			<td><input type="text" name="title" value="${id }" readonly></td>
+			<td><a href="getqna.do?page=${pageInfo.pageNum }&nNo=${qna.qnaNo}">${qna.qnaNo}</a></td>
+			<td>${qna.qnaTitle}</td>
+			<td>${qna.qnaWriter}</td>
+			<td>${qna.qnaDate}</td>
 		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td><input type="text" name="title" value="${pw }" ></td>
-		</tr>
-		<tr>
-			<th>연락처</th>
-			<td><input type="text" name="title" value="${phone }" ></td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td><input type="text" name="title" value="${email }" ></td>
-		</tr>
-		<tr>
-			<th>주소</th>
-			<td><input type="text" name="title" value="${adress}" ></td>
-		</tr>
-		<tr>
-			<th>쿠폰</th>
-			<td><input type="text" name="title" value="#" ></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<button type="submit">수정</button>
-			<button type="button" onClick="location.href='noticeList.do?page=${pageNum}'">목록으로</button>
-		</tr>
-	</table>
-</form>
+	</c:forEach>
+</table>
 </div>
 
