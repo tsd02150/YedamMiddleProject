@@ -22,7 +22,12 @@
 	<select id="memberInfo" resultType="member" parameterType="member">
 		select * from member where member_id = #{id}
 	</select>
-
+	<select id="searchId" resultType="String" parameterType="member">
+		select id from member where name=#{name} and rrn=#{rrn}
+	</select>
+	<select id="searchPw" resultType="String" parameterType="member">
+		select pw from member where id=#{id} and name=#{name} and rrn=#{rrn}
+	</select>
 
 
 </mapper>

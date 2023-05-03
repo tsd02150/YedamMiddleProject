@@ -27,5 +27,13 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mapper.memberInfo(vo);
 	}
+	@Override
+	public String searchId(MemberVO vo) {
+		return mapper.searchId(vo);
+	}
+	@Override
+	public String searchPw(MemberVO vo) {
+		return mapper.searchPw(vo);
+	}
 	
 }

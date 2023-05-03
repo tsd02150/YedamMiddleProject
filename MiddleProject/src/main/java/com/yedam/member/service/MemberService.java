@@ -7,6 +7,7 @@ public interface MemberService {
 	public boolean modifyMember(MemberVO vo);
 	public MemberVO loginCheck(MemberVO vo);
 	public MemberVO memberInfo(MemberVO vo);
-	
+	public String searchId(MemberVO vo);
+	public String searchPw(MemberVO vo);
 	
 }

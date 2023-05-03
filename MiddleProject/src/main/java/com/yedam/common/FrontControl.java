@@ -17,6 +17,8 @@ import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpCheckControl;
 import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
+import com.yedam.member.control.searchIdControl;
+import com.yedam.member.control.searchPwControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
 
@@ -44,6 +46,9 @@ public class FrontControl extends HttpServlet{
 		map.put("/signUpCompany.do", new SignUpCompanyControl());
 		// 로그아웃 페이지
 		map.put("/signOut.do", new SignOutControl());
+		// id,pw찾기
+		map.put("/searchId.do", new searchIdControl());
+		map.put("/searchPw.do", new searchPwControl());
 		
 		//상품 페이지
 		map.put("/prodList.do", new ProductListControl());
