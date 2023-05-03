@@ -16,6 +16,8 @@ public class CustomerCenterControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//customerCenter.jsp에서 넘어오기
 
 		NoticeService service = new NoticeServiceImpl();
 		List<NoticeVO> list = service.CustomerCenter();

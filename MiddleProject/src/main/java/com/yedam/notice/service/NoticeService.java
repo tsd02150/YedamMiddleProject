@@ -9,6 +9,8 @@ public interface NoticeService {
 	public List<NoticeVO> CustomerCenter();
 	
 	public boolean CustomerAdd(NoticeVO vo);
+
+	public NoticeVO getCustomer(int memberNo);
 	
 	
 	

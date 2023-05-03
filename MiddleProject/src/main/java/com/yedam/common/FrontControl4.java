@@ -17,8 +17,12 @@ import com.yedam.member.control.SignUpControl;
 import com.yedam.notice.control.CustomerAddControl;
 import com.yedam.notice.control.CustomerAddFormControl;
 import com.yedam.notice.control.CustomerCenterControl;
+import com.yedam.notice.control.GetCustomerControl;
+import com.yedam.notice.control.ModifyCustomerControl;
+import com.yedam.notice.control.ModifyCustomerFormControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
+import com.yedam.product.control.ThemeControl;
 
 
 public class FrontControl4 extends HttpServlet{
@@ -43,12 +47,21 @@ public class FrontControl4 extends HttpServlet{
 		//상품 상세페이지
 		map.put("/getProduct.do", new GetProductControl());
 		
+		
+		
 		//고객센터 목록
 		map.put("/customerCenter.do",new CustomerCenterControl());
 		//고객센터 글쓰기
 		map.put("/customerAddForm.do", new CustomerAddFormControl());
 		map.put("/customerAdd.do", new CustomerAddControl());
 		
+		//고객센터 글조회
+		map.put("/getCustomer.do", new GetCustomerControl());
+		//고객센터 글수정
+		map.put("/modifyCustomerForm.do", new ModifyCustomerFormControl());
+		map.put("/modifyCustomer.do", new ModifyCustomerControl());
+		
+		map.put("/theme.do",new ThemeControl());
 		
 	}
 	

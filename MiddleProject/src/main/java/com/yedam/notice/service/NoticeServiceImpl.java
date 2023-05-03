@@ -25,5 +25,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.CustomerAdd()==1;
 	}
 	
+	@Override
+	public NoticeVO getCustomer(int memberNo) {
+		// TODO Auto-generated method stub
+		return mapper.GetCustomer(memberNo);
+	}
+	
 	
 }
