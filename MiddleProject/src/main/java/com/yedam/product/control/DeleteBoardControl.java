@@ -7,23 +7,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.product.domain.ProductVO;
 import com.yedam.product.service.ProductService;
 import com.yedam.product.service.ProductServiceImpl;
 
-public class GetProductControl implements Control {
+public class DeleteBoardControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String pno = req.getParameter("pno");
-		String page = req.getParameter("page");
+		String bno = req.getParameter("bno");
 		
 		ProductService ps = new ProductServiceImpl();
-		ProductVO vo = ps.getProduct(Integer.parseInt(pno));
-		req.setAttribute("productInfo", vo);
-		req.setAttribute("pageNum", page);
+		boolean result = ps.removeBoard(Integer.parseInt(bno));
 		
-		return "product/productGet.tiles";
+		if(result) {
+			System.out.println("삭제 성공");
+			return "board/boardList.do";
+		}else {
+			System.out.println("삭제 실패");
+			return "board/modifyBoard.do";
+		}
+		
 	}
 
 }

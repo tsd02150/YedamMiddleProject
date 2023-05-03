@@ -8,28 +8,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.product.domain.PageDTO;
+import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.ProductVO;
 import com.yedam.product.service.ProductService;
 import com.yedam.product.service.ProductServiceImpl;
 
-public class ProductListControl implements Control {
+public class getBoardControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String pageStr = req.getParameter("page");
-		pageStr = pageStr ==null ? "1" : pageStr;
-		int page = Integer.parseInt(pageStr);
+		// TODO 상품게시판 상세보기
+		
+		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
 		
 		ProductService ps = new ProductServiceImpl();
-		int total = ps.totalCount();
-		List<ProductVO> list = ps.prodcutList(page);
+		BoardVO vo = ps.getBoard(Integer.parseInt(bno));
+		List<ProductVO> productList = ps.prodcutList(Integer.parseInt(page));
 		
-		PageDTO dto = new PageDTO(page, total);
-		req.setAttribute("prodlist", list);
-		req.setAttribute("pageInfo", dto);
+		req.setAttribute("boardInfo", vo);
+		req.setAttribute("prodList", productList);
+		req.setAttribute("pageNum", page);
 		
-		return "product/productList.tiles";
+		
+		return "product/getBoard.tiles";
 	}
 
 }
