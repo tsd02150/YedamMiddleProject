@@ -1,5 +1,9 @@
 package com.yedam.member.mapper;
 
-public interface MemberMapper {
+import com.yedam.member.domain.MemberVO;
 
+public interface MemberMapper {
+	public int insertMember(MemberVO vo);
+	public int updateMember(MemberVO vo);
+	public MemberVO loginCheck(MemberVO vo);
 }

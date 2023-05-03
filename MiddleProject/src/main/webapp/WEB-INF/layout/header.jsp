@@ -16,14 +16,32 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarsFurni">
-			<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-				<li class="nav-item active"><a class="nav-link" href="main.do">Home</a>
+			<ul id="menu" class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+				<li class="nav-item"><a class="nav-link" href="main.do">Home</a>
 				</li>
-				<li><a class="nav-link" href="shop.html">sign in</a></li>
-				<li><a class="nav-link" href="about.html">sign up</a></li>
-				<li><a class="nav-link" href="services.html">Customer Center</a></li>
+				<c:choose>
+					<c:when test="${id == null }">
+						<li class="nav-item"><a class="nav-link" href="signIn.do">sign in</a></li>
+						<li class="nav-item"><a class="nav-link" href="signUpCheck.do">sign up</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="nav-item"><a class="nav-link" href="signOut.do">sign out</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">MyPage</a></li>
+					</c:otherwise>
+				</c:choose>
+				<li class="nav-item"><a class="nav-link" href="#">Customer Center</a></li>
 			</ul>
 		</div>
 	</div>
 
 </nav>
+
+<script>
+	document.querySelectorAll(".nav-link").forEach(function(a){
+		let url = location.href;
+		if(url==a.href){			
+			a.parentElement.classList.add('active');
+		}
+
+	});
+</script>

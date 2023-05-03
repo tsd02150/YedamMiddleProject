@@ -11,9 +11,10 @@ public class MemberVO {
 	private String adress;
 	private String phone;
 	private String grade;
-	private String rnn;
+	private String rrn;
 	private String gender;
 	private String email;
 	private int companyNo;
 	
+	private String crn;
 }
