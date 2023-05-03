@@ -8,28 +8,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.product.domain.PageDTO;
 import com.yedam.product.domain.ProductVO;
+import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.service.ProductService;
 import com.yedam.product.service.ProductServiceImpl;
 
-public class ProductListControl implements Control {
+public class ReviewListControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String pageStr = req.getParameter("page");
-		pageStr = pageStr ==null ? "1" : pageStr;
-		int page = Integer.parseInt(pageStr);
+		String bno = req.getParameter("bno");
+		String pno = req.getParameter("pno");
 		
 		ProductService ps = new ProductServiceImpl();
-		int total = ps.totalCount();
-		List<ProductVO> list = ps.prodcutList(page);
+		List<ReviewVO> reviewList = ps.reviewList(Integer.parseInt(bno));
+	
+		List<ProductVO> prodList = ps.prodcutList(Integer.parseInt(pno));
 		
-		PageDTO dto = new PageDTO(page, total);
-		req.setAttribute("prodlist", list);
-		req.setAttribute("pageInfo", dto);
+		req.setAttribute("reviewList", reviewList);
+		req.setAttribute("prodList", prodList);
 		
-		return "product/productList.tiles";
+		return null;
 	}
-
 }
