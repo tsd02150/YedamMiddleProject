@@ -39,7 +39,12 @@
 <script>
 	document.querySelectorAll(".nav-link").forEach(function(a){
 		let url = location.href;
+		console.log(location.href);
+		console.log(a.href);
 		if(url==a.href){			
+			a.parentElement.classList.add('active');
+		}
+		if(a.innerText=="Home"&&url.substring(url.lastIndexOf("/"))=="/" ){
 			a.parentElement.classList.add('active');
 		}
 

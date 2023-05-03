@@ -22,6 +22,17 @@
 			</tr>
 		</table>
 	</form>
-	<p>회원가입</p><p>ID/PW 찾기</p>
+	<a id="signUp">회원가입</a><a id="searchIdPw">ID/PW 찾기</a>
 </body>
+<script>
+	document.getElementById("signUp").addEventListener('click',function(){
+		location.href = "signUp.do";
+		return;
+	})
+	document.getElementById("searchIdPw").addEventListener('click',function(){
+		location.href = "#";
+		return;
+	})
+	
+</script>
 </html>
