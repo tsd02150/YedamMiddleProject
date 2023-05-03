@@ -6,12 +6,10 @@ import lombok.Data;
 
 
 @Data
-public class ordersVO {
-	private int orderNo;
-	private Date orderDate;
-	private int memberNo;
+public class DeliveryVO {
 	private int deliveryNo;
-	
-	
+	private int fee;
+	private Date daliDate;
+	private String deliveryState;
 	
 }
