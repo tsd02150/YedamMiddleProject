@@ -26,7 +26,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item"><a class="nav-link" href="signOut.do">sign out</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">MyPage</a></li>
+						<li class="nav-item"><a class="nav-link" href="myPage.do">MyPage</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li class="nav-item"><a class="nav-link" href="#">Customer Center</a></li>
@@ -39,7 +39,12 @@
 <script>
 	document.querySelectorAll(".nav-link").forEach(function(a){
 		let url = location.href;
+		console.log(location.href);
+		console.log(a.href);
 		if(url==a.href){			
+			a.parentElement.classList.add('active');
+		}
+		if(a.innerText=="Home"&&url.substring(url.lastIndexOf("/"))=="/" ){
 			a.parentElement.classList.add('active');
 		}
 
