@@ -13,7 +13,6 @@
 		<typeAlias type="com.yedam.notice.domain.NoticeVO" alias="notice"/>
 		<typeAlias type="com.yedam.member.domain.MemberVO" alias="member"/>
 		<typeAlias type="com.yedam.member.domain.CompanyVO" alias="company"/>
-
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

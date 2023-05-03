@@ -12,5 +12,8 @@ public interface NoticeMapper {
 	//고객센터 문의등록
 	public int CustomerAdd();
 	
+	//고객센터 글조회
+	public NoticeVO GetCustomer(int memberNo);
+	
 
 }

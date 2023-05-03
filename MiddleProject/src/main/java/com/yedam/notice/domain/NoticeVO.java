@@ -20,10 +20,13 @@ public class NoticeVO {
 	
 	private int noticeNo;
 	private String noticeTitle;
-	private String notiveContent;
+	private String noticeContent;
 	private Date noticeDate;
 	private String noticeAttach;
 	private String noticeResponse;
 	private int selector;	
+	private int memberNo;
+	
+	private String name;
 
 }

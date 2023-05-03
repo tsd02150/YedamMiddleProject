@@ -1,7 +1,6 @@
 package com.yedam.notice.control;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,20 +11,21 @@ import com.yedam.notice.domain.NoticeVO;
 import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.service.NoticeServiceImpl;
 
-public class CustomerCenterControl implements Control {
+public class GetCustomerControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//customerCenter.jsp에서 넘어오기
+		//customerCenter.jsp 에서 넘어오는 "no"파라미터
+		String no= req.getParameter("no");
+		System.out.println(no);
 
-		NoticeService service = new NoticeServiceImpl();
-		List<NoticeVO> list = service.CustomerCenter();
+		NoticeService service= new NoticeServiceImpl();
+		NoticeVO vo = service.getCustomer(Integer.parseInt(no));
 		
-		req.setAttribute("list", list);
-		
-		
-		return "notice/customerCenter.tiles";
+		req.setAttribute("vo", vo); //getCustomer.jsp로 넘겨주는 파라미터 "vo"
+		System.out.println(vo);
+		return "notice/getCustomer.tiles";
 	}
 
 }
