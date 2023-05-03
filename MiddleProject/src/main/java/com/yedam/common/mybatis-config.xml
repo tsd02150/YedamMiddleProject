@@ -10,6 +10,7 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.yedam.product.domain.ProductVO" alias="prod"/>
+		<typeAlias type="com.yedam.member.domain.MemberVO" alias="member"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -24,5 +25,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/yedam/product/mapper/ProductMapper.xml"/>
+		<mapper resource="com/yedam/member/mapper/MemberMapper.xml"/>
 	</mappers>
 </configuration>

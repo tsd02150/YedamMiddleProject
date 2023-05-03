@@ -6,7 +6,7 @@ import lombok.Data;
 
 
 @Data
-public class qnaVO {
+public class QnaVO {
 	private int qnaNo;
 	private String qnaCategory;
 	private String qnaTitle;
