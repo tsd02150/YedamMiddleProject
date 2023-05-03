@@ -6,7 +6,10 @@ import com.yedam.notice.domain.NoticeVO;
 
 public interface NoticeService {
 	
-	public List<NoticeVO> CustomerCenterList(int selector);
+	public List<NoticeVO> CustomerCenter();
+	
+	public boolean CustomerAdd(NoticeVO vo);
+	
 	
 	
 }

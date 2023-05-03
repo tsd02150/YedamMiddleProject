@@ -6,6 +6,11 @@ import com.yedam.notice.domain.NoticeVO;
 
 public interface NoticeMapper {
 	
-	public List<NoticeVO> CustomerCenterList();
+	//고객센터 목록조회
+	public List<NoticeVO> CustomerCenter();
+	
+	//고객센터 문의등록
+	public int CustomerAdd();
+	
 
 }

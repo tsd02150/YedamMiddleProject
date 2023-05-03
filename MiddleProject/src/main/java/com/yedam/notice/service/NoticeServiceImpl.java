@@ -14,9 +14,15 @@ public class NoticeServiceImpl implements NoticeService {
 	NoticeMapper mapper = session.getMapper(NoticeMapper.class);
 	
 	@Override
-	public List<NoticeVO> CustomerCenterList(int selector) {
+	public List<NoticeVO> CustomerCenter() {
 		// TODO Auto-generated method stub
-		return mapper.CustomerCenterList();
+		return mapper.CustomerCenter();	
+	}
+	
+	@Override
+	public boolean CustomerAdd(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.CustomerAdd()==1;
 	}
 	
 	

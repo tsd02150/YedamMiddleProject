@@ -5,12 +5,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.notice.mapper.NoticeMapper">
 	
-	<select id="customerCenter">
-		select notice_tile, notice_contect, notice_date
+	<select id="CustomerCenter" resultType="notice">
+		select notice_no, notice_title, notice_content, notice_date
 		from notice
-		where selector=3;
+		where selector=3
 	</select>
-	
+	<insert id="CustomerAdd" parameterType="notice">
+	</insert>
 	
 
 </mapper>

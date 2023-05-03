@@ -21,7 +21,7 @@
 				</li>
 				<li><a class="nav-link" href="shop.html">sign in</a></li>
 				<li><a class="nav-link" href="about.html">sign up</a></li>
-				<li><a class="nav-link" href="services.html">Customer Center</a></li>
+				<li><a class="nav-link" href="customerCenter.do">Customer Center</a></li>
 			</ul>
 		</div>
 	</div>
