@@ -7,9 +7,10 @@
 
 	<select id="CustomerCenter" resultType="notice">
 		SELECT *
-		FROM notice INNER JOIN member
+		FROM notice INNER
+		JOIN member
 		ON notice.member_no = member.member_no
-		WHERE notice.selector = 3
+		WHERE notice.selector= 3
 	</select>
 	<insert id="CustomerAdd" parameterType="notice">
 		insert into
@@ -21,8 +22,16 @@
 		SELECT *
 		FROM notice INNER JOIN member
 		ON notice.member_no = member.member_no
-		WHERE notice.selector=3 and notice.notice_no= #{memberNo}	
+		WHERE notice.selector=3 and notice.notice_no= #{noticeNo}
 	</select>
+	<update id="ModifyCustomer" parameterType="notice">
+		UPDATE notice
+		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}
+		WHERE notice_no=#{noticeNo}
+	</update>
+	<delete id="DelCustomer" parameterType="int">
+	delete from notice where notice_no=#{noticeNo}
+	</delete>
 
 
 </mapper>

@@ -20,7 +20,9 @@
 	<!-- 서블릿 정보 등록 -->
 	<servlet>
 		<servlet-name>frontControl</servlet-name>
+
 		<servlet-class>com.yedam.common.FrontControl2</servlet-class>
+
 		<init-param>
 			<param-name>enc</param-name>
 			<param-value>UTF-8</param-value>
