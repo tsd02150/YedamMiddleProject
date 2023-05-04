@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
+import com.yedam.member.domain.MemberVO;
+import com.yedam.member.service.MemberService;
+import com.yedam.member.service.MemberServiceImpl;
 
 public class MyPageControl implements Control {
 
@@ -15,10 +18,11 @@ public class MyPageControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		session.getAttribute("id");
-		
-		
-		
+		String id = "";
+		id = (String)session.getAttribute("id");
+		MemberService service = new MemberServiceImpl();
+		MemberVO vo = service.memberInfo(id);
+		req.setAttribute("memberInfo", vo);
 		
 		
 		

@@ -23,9 +23,8 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.loginCheck(vo);
 	}
 	@Override
-	public MemberVO memberInfo(MemberVO vo) {
-		
-		return mapper.memberInfo(vo);
+	public MemberVO memberInfo(String id) {
+		return mapper.memberInfo(id);
 	}
 	@Override
 	public String searchId(MemberVO vo) {
@@ -34,6 +33,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String searchPw(MemberVO vo) {
 		return mapper.searchPw(vo);
+	}
+	@Override
+	public boolean updateMemberM(MemberVO vo) {
+		return mapper.updateMemberM(vo)>0;
 	}
 	
 }
