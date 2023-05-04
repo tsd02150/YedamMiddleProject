@@ -10,7 +10,11 @@ public interface NoticeService {
 	
 	public boolean CustomerAdd(NoticeVO vo);
 
-	public NoticeVO getCustomer(int memberNo);
+	public NoticeVO getCustomer(int noticeNo);
+	
+	public boolean ModifyCustomer(NoticeVO vo);
+	
+	public boolean DelCustomer(int noticeNo);
 	
 	
 	

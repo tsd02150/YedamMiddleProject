@@ -1,4 +1,3 @@
-
 package com.yedam.common;
 
 import java.io.IOException;
@@ -17,6 +16,7 @@ import com.yedam.member.control.SignUpControl;
 import com.yedam.notice.control.CustomerAddControl;
 import com.yedam.notice.control.CustomerAddFormControl;
 import com.yedam.notice.control.CustomerCenterControl;
+import com.yedam.notice.control.DelCustomerControl;
 import com.yedam.notice.control.GetCustomerControl;
 import com.yedam.notice.control.ModifyCustomerControl;
 import com.yedam.notice.control.ModifyCustomerFormControl;
@@ -58,9 +58,11 @@ public class FrontControl4 extends HttpServlet{
 		//고객센터 글조회
 		map.put("/getCustomer.do", new GetCustomerControl());
 		//고객센터 글수정
-		map.put("/modifyCustomerForm.do", new ModifyCustomerFormControl());
 		map.put("/modifyCustomer.do", new ModifyCustomerControl());
+		//고객센터 글삭제
+		map.put("/delCustomer.do", new DelCustomerControl());
 		
+		//테마
 		map.put("/theme.do",new ThemeControl());
 		
 	}
