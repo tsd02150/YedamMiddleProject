@@ -30,8 +30,9 @@ public class SignInControl implements Control {
 			if(vo!=null) {
 				HttpSession session = req.getSession();
 				
-				session.setAttribute("id", vo.getEmail());
-				session.setAttribute("name", vo.getName());
+				session.setAttribute("id", vo.getId());
+				session.setAttribute("pw", vo.getPw());
+				
 				return "main.do";
 			}else {				
 				return "member/signForm.tiles";
