@@ -12,4 +12,15 @@ public class BoardVO {
 	private int memberNo;
 	private int productNo;
 	private int price;
+	private int score;
+	private String productName;
+	private int productCount;
+	private int subCategoryNo;
+	private String subCategoryName;
+	private int themeNo;
+	private int companyNo;
+	private String crn;
+	private String companyName;
+	private String companyPhone;
+	private String companyAddr;
 }

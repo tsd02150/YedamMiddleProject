@@ -100,8 +100,8 @@ height:
 </c:choose>
 </td>
 <td>
-<form action="modifyMember.do" method="get">
-
+<form action="modifyMember.do" method="post">
+	<!-- 첨부파일이 있기 때문에 method는 post로 -->
 	<table class="table" align="center">
 		<tr>
 			<th>이름</th>
@@ -109,35 +109,35 @@ height:
 		</tr>
 		<tr>
 			<th>아이디</th>
-			<td>${id }</td>
+			<td><input type="text" name="id" value="${id }" readonly style=display:none>${id }</td>
 		</tr>
 		<tr>
 			<th>비밀번호</th>
-			<td>●●●●●●●●</td>
+			<td><input type="password" name="pw" value=""></td>
 		</tr>
 		<tr>
 			<th>연락처</th>
-			<td>${memberInfo.phone }</td>
+			<td><input type="text" name="phone" value="${memberInfo.phone }" readonly></td>
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td>${memberInfo.email }</td>
+			<td><input type="text" name="email" value="${memberInfo.email }"></td>
 		</tr>
 		<tr>
 			<th>주소</th>
-			<td>${memberInfo.adress}</td>
+			<td><input type="text" name="adress" value="${memberInfo.adress }"></td>
 		</tr>
 		<tr>
 			<th>쿠폰</th>
-			<td>1개</td>
+			<td><input type="text" name="coupon" value="#" readonly></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<button type="submit">수정</button>
+				<button type="submit" onClick="location.href='myPage.do'">저장</button>
+				<button type="button" onClick="location.href='myPage.do'">취소</button>
 		</tr>
 	</table>
 </form>
 </td>
 </tr>
 </table>
-

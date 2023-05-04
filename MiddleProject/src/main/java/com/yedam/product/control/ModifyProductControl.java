@@ -21,14 +21,11 @@ public class ModifyProductControl implements Control {
 			
 			ProductVO vo = ps.getProduct(Integer.parseInt(pno));
 			req.setAttribute("productInfo", vo);
+			System.out.println("productInfo: "+vo);
 			
 			return "product/productModify.tiles";
 			
 		}else if(req.getMethod().equals("POST")) {
-//			set product_name=#{productName},
-//					product_price#{price},
-//					product_count=#{productCount}
-//				where product_no=#{productNo}
 			String pno = req.getParameter("pno");
 			String pname = req.getParameter("pname");
 			String price = req.getParameter("price");
@@ -41,9 +38,11 @@ public class ModifyProductControl implements Control {
 			vo.setProductCount(Integer.parseInt(pcount));
 			
 			if(ps.modifyProduct(vo)) {
-				return "product/productList.do";
+				System.out.println("수정 성공");
+				return "boardList.do";
 			} else {
-				return "product/modifyProduct.do";
+				System.out.println("수정 실패");
+				return "modifyProduct.do";
 			}
 		}
 		return null;

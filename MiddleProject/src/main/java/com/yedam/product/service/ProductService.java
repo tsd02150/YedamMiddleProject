@@ -10,6 +10,7 @@ public interface ProductService {
 	//product
 	public List<ProductVO> prodcutList(int page);
 	public ProductVO getProduct(int productNo);
+	public List<ProductVO> myProductList(int companyNo);
 	public boolean addProduct(ProductVO vo);
 	public boolean modifyProduct(ProductVO vo);
 	public boolean removeProduct(int productNo);

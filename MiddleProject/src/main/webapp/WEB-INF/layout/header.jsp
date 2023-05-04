@@ -23,13 +23,15 @@
 					<c:when test="${id == null }">
 						<li class="nav-item"><a class="nav-link" href="signIn.do">sign in</a></li>
 						<li class="nav-item"><a class="nav-link" href="signUpCheck.do">sign up</a></li>
+						<li class="nav-item"><a class="nav-link" href="boardList.do">shop</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item"><a class="nav-link" href="signOut.do">sign out</a></li>
 						<li class="nav-item"><a class="nav-link" href="myPage.do">MyPage</a></li>
+						<li class="nav-item"><a class="nav-link" href="boardList.do">shop</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li class="nav-item"><a class="nav-link" href="#">Customer Center</a></li>
+				<li class="nav-item"><a class="nav-link" href="customerCenter.do">Customer Center</a></li>
 			</ul>
 		</div>
 	</div>

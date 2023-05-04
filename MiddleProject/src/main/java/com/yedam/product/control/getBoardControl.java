@@ -18,18 +18,19 @@ public class getBoardControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO 상품게시판 상세보기
-		
+
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
-		
+		System.out.println(bno);
 		ProductService ps = new ProductServiceImpl();
 		BoardVO vo = ps.getBoard(Integer.parseInt(bno));
-		List<ProductVO> productList = ps.prodcutList(Integer.parseInt(page));
+		
 		
 		req.setAttribute("boardInfo", vo);
-		req.setAttribute("prodList", productList);
 		req.setAttribute("pageNum", page);
 		
+		System.out.println("boardInfo : "+vo);
+		System.out.println("page : "+page);
 		
 		return "product/getBoard.tiles";
 	}

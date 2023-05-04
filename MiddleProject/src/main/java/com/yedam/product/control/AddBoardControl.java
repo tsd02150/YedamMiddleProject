@@ -44,9 +44,11 @@ public class AddBoardControl implements Control {
 		ProductService ps = new ProductServiceImpl();
 		
 		if(ps.addBoard(vo)) {
+			System.out.println("등록 성공");
 			return "boardList.do";
 		}else {
-			return "main.do";
+			System.out.println("등록 실패");
+			return "addBoardForm.do";
 		}
 		
 	}

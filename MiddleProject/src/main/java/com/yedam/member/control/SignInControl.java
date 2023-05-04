@@ -32,6 +32,8 @@ public class SignInControl implements Control {
 				
 				session.setAttribute("id", vo.getEmail());
 				session.setAttribute("name", vo.getName());
+				session.setAttribute("companyNo", vo.getCompanyNo());
+
 				return "main.do";
 			}else {				
 				return "member/signForm.tiles";
