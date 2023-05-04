@@ -29,7 +29,7 @@
 						<li class="nav-item"><a class="nav-link" href="myPage.do">MyPage</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li class="nav-item"><a class="nav-link" href="#">Customer Center</a></li>
+				<li class="nav-item"><a class="nav-link" href="customerCenter.do">Customer Center</a></li>
 			</ul>
 		</div>
 	</div>
