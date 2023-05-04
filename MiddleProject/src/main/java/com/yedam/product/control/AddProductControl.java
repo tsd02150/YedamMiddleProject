@@ -15,16 +15,12 @@ public class AddProductControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		 product_name=#{productName}
-//			price=#{price}
-//			product_count=#{productCount}
-//			sub_category_no=#{subCategoryNo}
-//			theme_no=#{themeNo}
 		String pname = req.getParameter("pname");
 		String price = req.getParameter("price");
 		String pcount = req.getParameter("pcount");
 		String subNo = req.getParameter("subNo");
 		String tno = req.getParameter("tno");
+		String companyNo = req.getParameter("companyNo");
 		
 		ProductVO vo = new ProductVO();
 		vo.setProductName(pname);
@@ -32,17 +28,18 @@ public class AddProductControl implements Control {
 		vo.setProductCount(Integer.parseInt(pcount));
 		vo.setSubCategoryNo(Integer.parseInt(subNo));
 		vo.setThemeNo(Integer.parseInt(tno));
-		
-		
+		vo.setCompanyNo(Integer.parseInt(companyNo));
 		
 		ProductService ps = new ProductServiceImpl();
 		System.out.println(vo);
 		boolean result = ps.addProduct(vo);
 		
 		if(result) {
-			return "product/productList.do";
+			System.out.println("등록 성공");
+			return "boardList.do";
 		} else {
-			return "product/addProduct.do";
+			System.out.println("등록 실패");
+			return "addProductForm.do";
 		}
 	}
 

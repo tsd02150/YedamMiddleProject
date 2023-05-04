@@ -11,8 +11,10 @@ public interface ProductMapper {
 	public List<ProductVO> productList();
 	//페이징 리스트
 	public List<ProductVO> prodWithPage(int page);
+	//판매자 상품 조회
+	public List<ProductVO> myProductList(int companyNo);
 	//상품개별조회
-	public ProductVO searchprod(int noticeId);
+	public ProductVO searchprod(int productNo);
 	//상품 등록, 수정, 삭제
 	public int insertProduct(ProductVO vo);
 	public int updateProduct(ProductVO vo);
