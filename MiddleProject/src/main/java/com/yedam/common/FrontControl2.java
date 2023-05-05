@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.member.control.SignInControl;
+import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpControl;
 import com.yedam.product.control.AddBoardControl;
 import com.yedam.product.control.AddBoardFormControl;
 import com.yedam.product.control.AddProductControl;
+import com.yedam.product.control.AddProductFormControl;
 import com.yedam.product.control.AddReviewControl;
 import com.yedam.product.control.BoardListControl;
 import com.yedam.product.control.DeleteBoardControl;
@@ -47,13 +49,15 @@ public class FrontControl2 extends HttpServlet{
 		map.put("/signIn.do", new SignInControl());
 		// 회원가입 페이지
 		map.put("/signUp.do", new SignUpControl());
-		
+		// 로그아웃 페이지
+		map.put("/signOut.do", new SignOutControl());
 		
 		//상품 리스트
 		map.put("/productList.do", new ProductListControl());
 		//상품 상세리스트
 		map.put("/getProduct.do", new GetProductControl());
 		//상품 등록, 수정, 삭제(판매자)
+		map.put("/addProductForm.do", new AddProductFormControl());
 		map.put("/addProduct.do", new AddProductControl());
 		map.put("/modifyProduct.do", new ModifyProductControl());
 		map.put("/deleteProduct.do", new DeleteProductControl());

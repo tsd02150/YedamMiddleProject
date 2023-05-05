@@ -3,10 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.product.mapper.ProductMapper">
-<!-- PRODUCT -->
+	<!-- PRODUCT -->
 	<select id="productList" resultType="product">
-		select * from product order
-		by 1
+		select * from product order by 1 
+	</select>
+	<select id="myProductList" resultType="product">
+		select * from product join member
+		using(company_no)
+		where company_no=#{companyNo}
 	</select>
 	<select id="prodWithPage" resultType="product">
  	<![CDATA[
@@ -23,94 +27,108 @@
 		product_no=#{productNo}
 	</select>
 	<insert id="insertProduct" parameterType="product">
-		insert into product
-		(product_no, product_name, price, product_count, sub_category_no,theme_no)
-		values(products_req.nextval, product_name=#{productName}, price=#{price},	
-				product_count=#{productCount},sub_category_no=#{subCategoryNo},
-				theme_no=#{themeNo})
+		insert into product (product_no, product_name, price, product_count, sub_category_no,theme_no, company_no)
+		values(products_seq.nextval, #{productName}, #{price}, #{productCount},#{subCategoryNo}, #{themeNo}, #{companyNo})
 	</insert>
 	<update id="updateProduct" parameterType="product">
-		update product
-		set product_name=#{productName},
-			product_price#{price},
-			product_count=#{productCount}
+		update product set
+		product_name=#{productName},
+		product_price#{price},
+		product_count=#{productCount}
 		where product_no=#{productNo}
 	</update>
 	<delete id="deleteProduct" parameterType="int">
-		delete from product where product_no = #{productNo}
+		delete from product
+		where product_no = #{productNo}
 	</delete>
-	
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- BOARD -->
 	<select id="boardList" resultType="board">
-		select b.board_no, b.board_thumbnail, b.board_title, p.price as "price" from board b 
-        join product p
-        on b.product_no = p.product_no
-        order by 1
+		select b.board_no,
+		b.board_thumbnail, b.board_title, p.price as "price" from board b
+		join product p
+		on b.product_no = p.product_no
+		order by 1
 	</select>
 	<select id="boardWithPage" resultType="board">
  	<![CDATA[
     select b.*
     from (select rownum rn, a.*
-          from (select * from board join product
-          		using(product_no)
-                order by 1 desc) a
+          from (select * from(
+				select * from board join product
+				using(product_no)) join subcategory
+				using(sub_category_no)
+				order by board_no) a
           where rownum <= #{page} * 10 ) b
     where b.rn > (#{page} - 1) * 10  
     ]]>
 	</select>
 	<select id="searchboard" resultType="board">
-		select * from board join product
-		using(#{productNo})
-		where board_no=#{boardNo}
-		order by 1
+		select*from(select * from(
+		select * from board join product using(product_no))
+		join subcategory
+		using(sub_category_no)
+		where board_no=#{boardNo})join
+		company
+		using(company_no)
 	</select>
 	<select id="getCount" resultType="int">
 		select count(*) from product
 	</select>
-	
+
 	<select id="insertBoard" parameterType="board">
-		insert into board(board_no, board_title, board_thumbnail, board_content, board_attach)
-		values(board_req.nextval, #{boardTitle}, #{boardThumbnail}, #{boardContent},#{boardAttach})
+		insert into
+		board(board_no, board_title, board_thumbnail, board_content,
+		board_attach, member_no, product_no)
+		values(board_req.nextval, #{boardTitle},
+		#{boardThumbnail}, #{boardContent},#{boardAttach}, #{memberNo}, #{productNo})
 	</select>
 	<update id="updateBoard" parameterType="board">
 		update board
-		set board_title=#{boardTitle},
-			board_content=#{boardContent}
+		set
+		board_title=#{boardTitle},
+		board_content=#{boardContent}
 		where board_no = #{boardNo}
 	</update>
 	<delete id="deleteBoard" parameterType="int">
-		delete from board where board_no=#{boardNo}
+		delete from board where
+		board_no=#{boardNo}
 	</delete>
-	
-	
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+
+
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- REVIEW -->
 	<select id="reviewList" parameterType="int">
-		select * from review join member
+		select * from review join
+		member
 		using(member_no)
 		where board_no=#{boardNo}
 		order by 1
 	</select>
 	<select id="searchReview" parameterType="int">
-		select * from review join member
+		select * from review
+		join member
 		using(member_no)
 		where review_no=#{reviewNo}
 	</select>
 	<insert id="insertReview" parameterType="review">
 		insert into review
-		(review_no, review_content, score, review_attach, member_no, board_no, review_date)
+		(review_no, review_content, score, review_attach, member_no, board_no,
+		review_date)
 		values(review_req.nextval,#{reviewContent},#{score},#{reviewAttach},#{memberNo},#{boardNo},sysdate)
 	</insert>
 	<update id="updateReview" parameterType="review">
 		update review
-		set review_content=#{reviewContent},
-			score=#{score},
-			reviewAttach=#{reviewAttach}
+		set
+		review_content=#{reviewContent},
+		score=#{score},
+		reviewAttach=#{reviewAttach}
 		where review_no=#{reviewNo}
 	</update>
 	<delete id="deleteReview" parameterType="int">
-		delete review where review_no=#{reviewNo}
+		delete review where
+		review_no=#{reviewNo}
 	</delete>
 
 </mapper>

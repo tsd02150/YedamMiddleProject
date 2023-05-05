@@ -94,5 +94,10 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.deleteReview(vo)==1;
 	}
 
+	@Override
+	public List<ProductVO> myProductList(int companyNo) {
+		return mapper.myProductList(companyNo);
+	}
+
 
 }
