@@ -11,4 +11,12 @@ public class ProductVO {
 	private int companyNO;
 	private int subCategoryNo;
 	private int themeNo;
+	
+	
+	
 }
+
+
+
+
+
