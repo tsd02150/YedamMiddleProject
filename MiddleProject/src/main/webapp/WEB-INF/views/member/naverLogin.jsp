@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	callback 처리중입니다. 이 페이지에서는 callback을 처리하고 바로 main으로 redirect하기때문에 이 메시지가 보이면 안됩니다.
 
 	<!-- (1) LoginWithNaverId Javscript SDK -->
@@ -44,8 +42,8 @@
 						naverLogin.reprompt();
 						return;
 					}
-
-					//window.location.replace("main.do");
+                    //location.href="otherLogin.do?name="+naverLogin.user.name+"&id="+naverLogin.user.id+"&email="+naverLogin.user.email+"&gender="+naverLogin.user.gender;
+					window.location.replace('otherLogin.do?name="+naverLogin.user.name+"&id="+naverLogin.user.id+"&email="+naverLogin.user.email+"&gender="+naverLogin.user.gender');
 				} else {
 					console.log("callback 처리에 실패하였습니다.");
 				}

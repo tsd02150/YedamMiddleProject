@@ -20,10 +20,7 @@ public class SignUpCompanyControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (req.getMethod().equals("GET")) {
-			req.setAttribute("id", req.getParameter("id"));
-			return "member/signUpCompany.tiles";
-		}else if(req.getMethod().equals("POST")) {	
+		
 			CompanyService cService = new CompanyServiceImpl();
 			MemberService mService = new MemberServiceImpl();
 			String id = req.getParameter("id");
@@ -42,13 +39,13 @@ public class SignUpCompanyControl implements Control {
 				memInfo.setCrn(crn);
 				if(mService.modifyMember(memInfo)) {
 					return "main.do";
+				}else {
+					return null;
 				}
 			}else {
-				return "signUpCompany.do";
+				return null;
 			}			
-		}
-		
-		return null;
+
 	}
 
 }
