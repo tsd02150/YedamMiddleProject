@@ -51,7 +51,7 @@
 
 </style>
 
-<form action="getBoard.do" method="GET">
+<form action="modifyBoard.do" method="GET">
 
 	<div class="md-prod-page">
 		<div class="md-prod-page-in">
@@ -61,6 +61,7 @@
 					<div class="container px-4 px-lg-5 my-5">
 						<div class="row gx-4 gx-lg-5 align-items-center">
 							<div class="col-md-6">
+							<table><tr><td><input type="text" name="bno" value="${boardInfo.boardNo }"  style="display:none;"></td></tr></table>
 								<h4 class="mb-1">${boardInfo.boardTitle } </h4>
 								${boardInfo.subCategoryName}
 								<img class="card-img-top" src="images/${boardInfo.boardAttach }" alt="..." />
@@ -71,6 +72,13 @@
 									<span><fmt:formatNumber value="${boardInfo.price}" pattern="#,###" /></span>
 								</div>
 							</div>
+							<table>
+							<tr>
+								<td><button type="submit">저장(수정)</button>
+									<button type="button" onclick="deleteBoard()">삭제 </button>
+								</td>
+							</tr>
+							</table>
 							<a href="#"><i class="fa fa-star" aria-hidden="true"></i>장바구니</a>
 							<div class="col-md-6">
 								게시글 내용 : ${boardInfo.boardContent}
@@ -100,5 +108,9 @@
 </div> <!-- /#sidebar-wrapper -->
 </form>
 <script>
-	
+function deleteBoard() {
+	let frm = document.querySelector('form');
+	frm.action = "deleteBoard.do";
+	frm.submit(); //form 태그 안에 있는 submit 실행됨
+}
 </script>

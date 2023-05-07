@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> prodcutList(int page) {
+	public List<ProductVO> productList(int page) {
 		return mapper.prodWithPage(page);
 	}
 

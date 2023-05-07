@@ -105,7 +105,8 @@ height:
 <div class="terms-conditions product-page">
 	  <c:if test="${memberGrade == S }">
 		 <p><a href="addProductForm.do">상품 등록 </a></p>
-		 <p><a href="addBoardForm.do">판매 등록</a></p>
+		 <p><a href="productList.do">상품 리스트 </a></p>
+		 <p><a href="addBoardForm.do?cno=${companyNo}">판매 등록</a></p>
 	 </c:if>
 </div>
 

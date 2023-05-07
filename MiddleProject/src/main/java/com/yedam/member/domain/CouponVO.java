@@ -6,4 +6,6 @@ import lombok.Data;
 public class CouponVO {
 	private int couponNo;
 	private int memberNo;
+	
+	
 }
