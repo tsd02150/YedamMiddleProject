@@ -66,25 +66,23 @@
 		isPopup : false,
 		callbackHandle : true
 	});
-
+/* 
 	window.addEventListener('load', function() {
 		naverLogin.getLoginStatus(function(status) {
 			console.log(status);
 			if (status) {
 				var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
-
-				console.log(naverLogin.user);
-
 				if (email == undefined || email == null) {
 					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
 					naverLogin.reprompt();
 					return;
 				}
+				
 			} else {
 				console.log("callback 처리에 실패하였습니다.");
 			}
 		});
-	});
+	}); */
 
 	/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
 	naverLogin.init();
@@ -123,7 +121,7 @@ function kakaoLogin() {
           success: function (response) {
         	  console.log(response);
         	  console.log(response.kakao_account.profile.nickname);
-        	  //location.href="kakaoLogin.do";
+        	  location.href="otherLogin.do?name="+response.kakao_account.profile.nickname+"&id="+response.id+"&email="+response.kakao_account.email+"&gender="+response.kakao_account.gender;
           },
           fail: function (error) {
             console.log(error)

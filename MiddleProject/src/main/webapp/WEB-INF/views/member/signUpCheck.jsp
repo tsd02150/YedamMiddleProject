@@ -29,10 +29,20 @@
 	document.querySelectorAll('.check').forEach(function(member){
 		member.addEventListener('click',function(){
 			if(member.getAttribute('id')=='customer'){
+				if('${memberInfo.id}'!=""){
+					location.href='otherLoginInfo.do?grade=c';
+					return;
+				}
 				location.href='signUp.do?grade=c';
 				return;		
 			}
 			if(member.getAttribute('id')=='seller'){
+				if('${memberInfo.id}'!=""){
+					console.log('${memberInfo.id}');
+					alert('${memberInfo.id}');
+					location.href='otherLoginInfo.do?grade=r';
+					return;
+				}
 				location.href='signUp.do?grade=r';
 				return;		
 			}	
