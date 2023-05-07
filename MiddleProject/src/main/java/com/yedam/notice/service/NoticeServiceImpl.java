@@ -42,6 +42,11 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return mapper.DelCustomer(noticeNo)==1;
 	}
+
+	@Override
+	public List<NoticeVO> searchFaq() {
+		return mapper.selectFaq();
+	}
 	
 	
 	

@@ -31,6 +31,20 @@
 	margin-top: 50px;
 	width: 1200px;
 }
+
+#searchItemList{
+	position : absolute;
+	border: solid 1px black;
+	background-color: white;	
+	z-index: 100;
+	color:black;
+	display: none; 
+}
+#searchItemList ul{
+	list-style: none;
+	width: 500px;
+	text-align: left;
+}
 </style>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
@@ -43,9 +57,23 @@
 	<div id="search">
 		<div id="searchDetail">
 			<table>
-				<td><p style="margin-right: 20px;">Category</p></td>
-				<td><input type="text"></td>
-				<td><button type="submit">검색</button></td>
+				<tr>
+					<td><p style="margin-right: 20px;">Category</p></td>
+					<td><input type="text" id="searchItem"></td>
+					<td><button type="submit">검색</button></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<div id="searchItemList">
+							<ul>
+								<li>test1</li>
+								<li>test2</li>
+							</ul>
+						</div>
+					</td>
+					<td></td>
+				</tr>
 			</table>
 		</div>
 	</div>
@@ -146,7 +174,7 @@
 			</div>
 			<div class="col-lg-4">
 				<div class="mb-4 footer-logo-wrap">
-					<a href="#" class="footer-logo">자주보는 질문</a>
+					<a href="faq.do" class="footer-logo">자주묻는 질문</a>
 				</div>
 				<ul class="list-unstyled">
 					<li><a href="#">test1</a></li>
@@ -161,4 +189,29 @@
 	</div>
 	</div>
 </body>
+<script>
+	let itemList = document.querySelector('#searchItemList').children[0];
+	console.log(itemList)
+	document.querySelector('#searchItem').addEventListener('keyup',function(){
+		document.querySelector('#searchItemList').style = "display:block;";
+		if(this.value==""){
+			document.querySelector('#searchItemList').style = "display:none;";
+		}
+		while(itemList.firstChild) {
+			itemList.removeChild(itemList.firstChild);
+		}
+		let search = this.value;
+		fetch('searchProductName.do?search='+search)
+		.then(resolve=>resolve.json())
+		.then(result=>{
+			result.forEach(data=>{
+				let li = document.createElement('li');
+				console.log(data);
+				li.innerText = data;
+				itemList.append(li);
+			})
+		})
+		.catch(err=>console.log(err));
+	});
+</script>
 </html>

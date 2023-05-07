@@ -12,7 +12,7 @@ import com.yedam.member.domain.MemberVO;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceImpl;
 
-public class otherLoginControl implements Control {
+public class OtherLoginControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,6 +33,7 @@ public class otherLoginControl implements Control {
 				gender="f";
 			}
 			vo.setId(id);
+			vo.setPw(id);
 			vo.setName(name);
 			vo.setEmail(email);
 			vo.setGender(gender);

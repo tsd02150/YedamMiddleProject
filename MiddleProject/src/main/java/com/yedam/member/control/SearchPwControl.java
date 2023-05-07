@@ -15,7 +15,7 @@ import com.yedam.member.domain.MemberVO;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceImpl;
 
-public class searchPwControl implements Control {
+public class SearchPwControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
