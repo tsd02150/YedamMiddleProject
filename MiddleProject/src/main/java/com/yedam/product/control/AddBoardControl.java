@@ -18,7 +18,7 @@ public class AddBoardControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String saveDir = req.getServletContext().getRealPath("images");
+		String saveDir = req.getServletContext().getRealPath("upload");
 		int maxSize = 5*1024*1024;
 		String encoding = "UTF-8";
 		DefaultFileRenamePolicy rn = new DefaultFileRenamePolicy();

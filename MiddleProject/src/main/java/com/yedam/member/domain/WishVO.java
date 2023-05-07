@@ -7,4 +7,5 @@ public class WishVO {
 	private int wishNo;
 	private int productNo;
 	private int memberNo;
+	
 }

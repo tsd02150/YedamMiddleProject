@@ -8,16 +8,21 @@
 		select * from product order by 1 
 	</select>
 	<select id="myProductList" resultType="product">
-		select * from product join member
+		select * from (
+		select * from product join (
+		select * from subcategory join maincategory using(main_category_no))
+		using(sub_category_no)) join member
 		using(company_no)
 		where company_no=#{companyNo}
+		order by product_name
 	</select>
+	
 	<select id="prodWithPage" resultType="product">
  	<![CDATA[
     select b.*
     from (select rownum rn, a.*
           from (select * from product
-                order by 1 desc) a
+                order by 1 ) a
           where rownum <= #{page} * 10 ) b
     where b.rn > (#{page} - 1) * 10  
     ]]>
@@ -81,7 +86,7 @@
 		insert into
 		board(board_no, board_title, board_thumbnail, board_content,
 		board_attach, member_no, product_no)
-		values(board_req.nextval, #{boardTitle},
+		values(board_seq.nextval, #{boardTitle},
 		#{boardThumbnail}, #{boardContent},#{boardAttach}, #{memberNo}, #{productNo})
 	</select>
 	<update id="updateBoard" parameterType="board">
@@ -92,8 +97,8 @@
 		where board_no = #{boardNo}
 	</update>
 	<delete id="deleteBoard" parameterType="int">
-		delete from board where
-		board_no=#{boardNo}
+		delete from board 
+		where board_no=#{boardNo}
 	</delete>
 
 

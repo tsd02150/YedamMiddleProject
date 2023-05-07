@@ -21,10 +21,10 @@ public class DeleteProductControl implements Control {
 		
 		if(result) {
 			System.out.println("삭제 성공");
-			return "product/productList.do";
+			return "product/boardList.do";
 		}else {
 			System.out.println("삭제 실패");
-			return "product/modifyProduct.do";
+			return "product/boardList.do";
 		}
 	}
 }

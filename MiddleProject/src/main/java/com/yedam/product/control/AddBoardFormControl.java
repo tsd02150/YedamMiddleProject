@@ -18,21 +18,23 @@ public class AddBoardFormControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ProductService ps = new ProductServiceImpl();
 		String pageStr = req.getParameter("page");
+		String cno = req.getParameter("cno");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
-		
-		ProductService ps = new ProductServiceImpl();
 		int total = ps.totalCount();
+		
 		List<BoardVO> boardList = ps.boardList(page);
-		List<ProductVO> productList = ps.prodcutList(page);
+		List<ProductVO> myProductList = ps.myProductList(Integer.parseInt(cno));
 		
 		PageDTO dto = new PageDTO(page, total);
 		req.setAttribute("boardList", boardList);
-		req.setAttribute("productList", productList);
 		req.setAttribute("pageInfo", dto);
+		req.setAttribute("myProductList", myProductList);
 		
-		System.out.println(boardList);
+		System.out.println("boardList"+boardList);
+		System.out.println("myProductList"+myProductList);
 		
 		return "product/addBoardForm.tiles";
 	}
