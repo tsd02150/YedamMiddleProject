@@ -29,7 +29,7 @@
     <div class="w3-row-padding">
       <div class="w3-col s4">
       <select id="searchProduct">
-		<c:forEach var="list" items="${mylist }">
+		<c:forEach var="list" items="${baordList }">
 			<option value="${list.productName}">${list.productName}</option>
 		</c:forEach>
 		</select>
