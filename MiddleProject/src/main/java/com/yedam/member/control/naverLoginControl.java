@@ -12,7 +12,7 @@ public class naverLoginControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(req.getMethod());
+		// TODO Auto-generated method stub
 		return "member/naverLogin.tiles";
 	}
 

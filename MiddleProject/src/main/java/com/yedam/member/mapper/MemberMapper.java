@@ -10,5 +10,5 @@ public interface MemberMapper {
 	public String searchId(MemberVO vo);
 	public String searchPw(MemberVO vo);
 	public int updateMemberM(MemberVO vo);
-	
+
 }

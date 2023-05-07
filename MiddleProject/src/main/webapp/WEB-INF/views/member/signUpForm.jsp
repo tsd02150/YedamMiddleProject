@@ -52,7 +52,6 @@
 </body>
 
 <script>
-console.log('${grade}');
 	let pass = document.querySelector('#pass');
 	let passCheck = document.querySelector('#passCheck');
 	document.querySelector('#id').addEventListener('change',function(){
