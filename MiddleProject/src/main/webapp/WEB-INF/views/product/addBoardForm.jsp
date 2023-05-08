@@ -32,29 +32,17 @@
     <div class="w3-row-padding">
       <div class="w3-col s4">
         ${id}<br>
-        ${companyNo}
-        <br>
-             <select id="mainCategoryName">
-			<option value="">대분류</option>
-		<c:forEach var="list" items="${myProductList }">
-			<option value="${list.mainCategoryNo}">${list.mainCategoryName}</option>
-		</c:forEach>
-		</select>
-      <select id="subCategoryName">
-			<option value="">소분류</option>
-		<c:forEach var="list" items="${myProductList }">
-			<option value="${list.subCategoryNo}">${list.subCategoryName}</option>
-		</c:forEach>
-		</select>
+        ${companyNo}<br>
         
-<hr>
- 
-      <select id="searchProduct">
-		<option value="">상품 이름</option>
-		<c:forEach var="list" items="${myProductList }">
-			<option value="${list.productNo}">${list.productName}</option>
-		</c:forEach>
-	  </select>
+             <select id="mainCategoryName">
+                 <option value="">대분류</option>
+             </select>
+             <select id="subCategoryName">
+                 <option value="">소분류</option>
+             </select>
+             <select id="productName" name="pno">
+                 <option value="">상품 이름</option>
+             </select>
 
 		<br>
         
@@ -77,6 +65,10 @@
 	        	<td><input class="w3-input w3-border" type="file" placeholder="attach" name="attach" required></td>
 	        </tr>
 	        <tr>
+	        	<th>MemberNo</th>
+	        	<td><c:forEach var="list" items="${myProductList }"><input class="w3-input w3-border" type="text" name="mno" value="${list.memberNo}" style="display: none;"></c:forEach></td>
+	        </tr>
+	        <tr>
 	        	<td>
 		          <button type="submit" class="button button1">등록</button>
 		          <button type="reset" class="button button2">취소</button>
@@ -91,49 +83,66 @@
 
 
 <script>
-    
+
 var mainCategoryNameSelect = document.getElementById("mainCategoryName");
 var mainCategoryNames = [];
+let url1 = 'ctgMain.do';
+let url2 = 'ctgSub.do';
+let url3 = 'ctgProd.do';
+let mainName = document.getElementById('mainCategoryName');
+let subName = document.getElementById('subCategoryName');
+let prodName = document.getElementById('productName');
 
-// 중복 제거된 값
-function showUniqueMainCategoryNames() {
-    for (var i = 0; i < mainCategoryNameSelect.options.length; i++) {
-        var mainCategoryName = mainCategoryNameSelect.options[i].value;
-        if (mainCategoryNames.indexOf(mainCategoryName) === -1) {
-            mainCategoryNames.push(mainCategoryName);
-            var option = document.createElement("option");
-            option.value = mainCategoryName;
-            option.text = mainCategoryName || "대분류";
-            mainCategoryNameSelect.add(option);
-        } else {
-            mainCategoryNameSelect.remove(i);
-            i--;
-        }
-    }
-}
+fetch(url1)
+.then(mresolve=>mresolve.json())
+.then(mresult=>{
+	mresult.forEach(main=>{
+		let opt = document.createElement('option');
+		opt.value = main.mainCategoryNo;
+		opt.innerText = main.mainCategoryName;
+		mainName.append(opt);
+	})	
+})
+.catch(error=>console.log(error));
 
-showUniqueMainCategoryNames();
-	//select 중복 제거
-    var subCategoryNameSelect = document.getElementById("subCategoryName");
-    var subCategoryNames = [];
+mainName.addEventListener('change',function(){
+	let mainNo = mainName.children[mainName.selectedIndex].value;
+	console.log(mainNo);
 
-    // 중복 제거된 값
-    function showUniqueSubCategoryNames() {
-        for (var i = 0; i < subCategoryNameSelect.options.length; i++) {
-            var subCategoryName = subCategoryNameSelect.options[i].value;
-            if (subCategoryNames.indexOf(subCategoryName) === -1) {
-                subCategoryNames.push(subCategoryName);
-                var option = document.createElement("option");
-                option.value = subCategoryName;
-                option.text = subCategoryName;
-                subCategoryNameSelect.add(option);
-            } else {
-                subCategoryNameSelect.remove(i);
-                i--;
-            }
-        }
-    }
-    showUniqueSubCategoryNames();
+	fetch(url2+"?mctgNo="+mainNo , {
+		method : "GET",
+	})
+	.then(sresolve=>sresolve.json())
+	.then(sresult=>{
+		subName.innerHTML="";
+		sresult.forEach(sub=>{
+			let opt = document.createElement('option');
+			opt.value = sub.subCategoryNo;
+			opt.innerText = sub.subCategoryName;
+			subName.append(opt);
+		})
+	})
+})
 
+subName.addEventListener('change', function(){
+	let mainNo = mainName.children[mainName.selectedIndex].value;
+    let subNo = subName.children[subName.selectedIndex].value;
+    console.log(mainNo);
+    console.log(subNo);
     
+    fetch(url3+"?mctgNo="+mainNo+"&sctgNo="+subNo , {
+    	method : "GET",
+    })
+    .then(response=>response.json())
+    .then(presult=>{
+    	prodName.innerHTML="";
+    	presult.forEach(prod=>{
+    		let opt = document.createElement('option');
+    		opt.value = prod.productNo;
+    		opt.innerText = prod.productName;
+    		prodName.append(opt);
+    	})
+    })
+})
+
 </script>

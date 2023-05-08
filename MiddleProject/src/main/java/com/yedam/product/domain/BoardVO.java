@@ -16,7 +16,9 @@ public class BoardVO {
 	private String productName;
 	private int productCount;
 	private int subCategoryNo;
+	private int mainCategoryNo;
 	private String subCategoryName;
+	private String mainCategoryName;
 	private int themeNo;
 	private int companyNo;
 	private String crn;

@@ -2,9 +2,13 @@ package com.yedam.product.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yedam.product.domain.BoardVO;
+import com.yedam.product.domain.MainCategoryVO;
 import com.yedam.product.domain.ProductVO;
 import com.yedam.product.domain.ReviewVO;
+import com.yedam.product.domain.SubCategoryVO;
 
 public interface ProductMapper {
 	//상품검색
@@ -21,6 +25,10 @@ public interface ProductMapper {
 	public int insertProduct(ProductVO vo);
 	public int updateProduct(ProductVO vo);
 	public int deleteProduct(int productNo);
+	public List<MainCategoryVO> ctgMain();
+	public List<SubCategoryVO> ctgSub(int mainCategoryNo);
+	public List<ProductVO> ctgProd(@Param("mainCategoryNo")int mainCategoryNo, @Param("subCategoryNo")int subCategoryNo);
+	public List<BoardVO> ctgJoin();
 	
 	//상품 게시판 페이지
 	public List<BoardVO> boardList();
@@ -28,6 +36,9 @@ public interface ProductMapper {
 	public List<BoardVO> boardWithPage(int page);
 	//게시판 상세보기
 	public BoardVO searchboard(int boardNo);
+	//카테고리별
+	public List<BoardVO> categoryList(int subCategoryNo);
+	
 	//게시판 등록, 수정, 삭제
 	public int insertBoard(BoardVO vo);
 	public int updateBoard(BoardVO vo);
