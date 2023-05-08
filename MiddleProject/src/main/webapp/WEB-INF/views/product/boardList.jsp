@@ -17,14 +17,11 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 	<link href="css/tiny-slider.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
-	<title>Furni Free Bootstrap 5 Template for Furniture and
-		Interior Design Websites by Untree.co</title>
 </head>
 <style>
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
-body
-{
+body{
 width
 :
 100%
@@ -89,12 +86,11 @@ height:
 }
 </style>
 
-<form action="categoryBoard.do" method="get">
 <div style="display:block;">
 <nav id="sidebar-wrapper" class="active" style="display:inline-block;">
 	<ul id="ul" class="sidebar-nav">
 	<c:forEach var="ctgList" items="${ctgList }">
-		<li class="sidebar-nav-item"><a href="categoryBoard.do?page=${pageInfo.pageNum}&sname=${ctgList.subCategoryName}">${ctgList.subCategoryName }</a></li>
+		<li class="sidebar-nav-item"><a href="categoryBoard.do?page=${pageInfo.pageNum}&sno=${ctgList.subCategoryNo}">${ctgList.subCategoryName }</a></li>
 	</c:forEach>
 	</ul>
 </nav>
@@ -131,7 +127,6 @@ height:
 	</div>
 </div>
 </div>
-</form>
 
 <script>
 </script>

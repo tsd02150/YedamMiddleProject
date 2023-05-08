@@ -20,18 +20,18 @@ public class CategoryBoardControl implements Control {
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
-		String sname = req.getParameter("sname");
+		String sno = req.getParameter("sno");
 		
 		ProductService ps = new ProductServiceImpl();
 		int total = ps.totalCount();
-		List<BoardVO> list = ps.categoryList(sname, page);
+		List<BoardVO> ctgrlist = ps.categoryList(Integer.parseInt(sno), page);
 		List<BoardVO> boardList = ps.boardList(page);
 		PageDTO dto = new PageDTO(page,total);
-		req.setAttribute("categoryList", list);
+		req.setAttribute("ctgrlist", ctgrlist);
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("pageInfo", dto);
 		
-		System.out.println("categoryList : "+list);
+		System.out.println("==>ctgrlist : "+ctgrlist);
 		System.out.println("boardList : "+boardList);
 		
 		return "product/categoryBoardList.tiles";

@@ -3,23 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="Untree.co">
-	<link rel="shortcut icon" href="favicon.png">
-
-	<meta name="description" content="" />
-	<meta name="keywords" content="bootstrap, bootstrap4" />
-
-	<!-- Bootstrap CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-	<link href="css/tiny-slider.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<title>Furni Free Bootstrap 5 Template for Furniture and
-		Interior Design Websites by Untree.co</title>
-</head>
 <style>
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
@@ -87,45 +70,18 @@ height:
 	color: #fff;
 	background: none;
 }
-
-  .center {
-    text-align: center;
-  }
-
-  .pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-  }
-
-  .pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #ddd;
-  }
 </style>
 
-<form action="categoryBoard.do" method="get">
 <div style="display:block;">
+<form action="categoryBoard.do" method="get">
 <nav id="sidebar-wrapper" class="active" style="display:inline-block;">
 	<ul id="ul" class="sidebar-nav">
 	<c:forEach var="ctgList" items="${ctgList }">
-		<li class="sidebar-nav-item"><a href="categoryBoard.do?page=${pageInfo.pageNum}&sname=${ctgList.subCategoryName}">${ctgList.subCategoryName }</a></li>
+		<li class="sidebar-nav-item"><a href="categoryBoard.do?page=${pageInfo.pageNum}&sno=${ctgList.subCategoryNo}">${ctgList.subCategoryName }</a></li>
 	</c:forEach>
 	</ul>
 </nav>
+</form>
 <div class="untree_co-section product-section before-footer-section" style="width:1200px;display:inline-block">
 	<div class="container">
 		<div class="row">
@@ -142,7 +98,7 @@ height:
 </c:when></c:choose>
 
 <!-- Start Column 1 -->
-<c:forEach var="board" items="${categoryList }">
+<c:forEach var="board" items="${ctgrlist }">
 
 	<div class="col-12 col-md-4 col-lg-3 mb-5">
 		<a class="product-item" href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}"><img src="images/${board.boardThumbnail}"
@@ -160,6 +116,7 @@ height:
 	</div>
 </div>
 </div>
-</form>
+
+
 <script>
 </script>

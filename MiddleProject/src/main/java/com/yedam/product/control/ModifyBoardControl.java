@@ -28,11 +28,15 @@ public class ModifyBoardControl implements Control {
 			String bno = req.getParameter("bno");
 			String title = req.getParameter("title");
 			String content = req.getParameter("content");
+			String attach = req.getParameter("attach");
+			String thumbnail = req.getParameter("thumbnail");
 			
 			BoardVO vo = new BoardVO();
 			vo.setBoardNo(Integer.parseInt(bno));
 			vo.setBoardTitle(title);
 			vo.setBoardContent(content);
+			vo.setBoardAttach(attach);
+			vo.setBoardThumbnail(thumbnail);
 			
 			if(ps.modifyBoard(vo)) {
 				System.out.println("수정 성공");

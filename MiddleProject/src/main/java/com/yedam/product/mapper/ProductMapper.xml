@@ -109,7 +109,7 @@
 				select * from (board join product
 				using(product_no)) join subcategory
 				using(sub_category_no)
-				where sub_category_name=#{subCategoryName}
+				where sub_category_no=#{subCategoryNo}
 				order by board_no) a
  	       where rownum <= #{page}*20) b 
  	       where b.rn > (#{page}-1)*20
@@ -140,7 +140,9 @@
 		update board
 		set
 		board_title=#{boardTitle},
-		board_content=#{boardContent}
+		board_content=#{boardContent},
+		board_attach=#{boardAttach},
+		board_thumbnail=#{boardThumbnail}
 		where board_no = #{boardNo}
 	</update>
 	<delete id="deleteBoard" parameterType="int">

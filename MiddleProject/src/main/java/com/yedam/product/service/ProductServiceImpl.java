@@ -118,7 +118,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> ctgProd(@Param("mainCategoryNo")int mainCategoryNo, @Param("subCategoryNo")int subCategoryNo) {
+	public List<ProductVO> ctgProd(@Param("mainCategoryNo") int mainCategoryNo, @Param("subCategoryNo")int subCategoryNo) {
 		return mapper.ctgProd(mainCategoryNo, subCategoryNo);
 	}
 
@@ -130,8 +130,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<BoardVO> categoryList(String subCategoryName, int page) {
-		return mapper.categoryList(subCategoryName, page);
+	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page) {
+		return mapper.categoryList(subCategoryNo, page);
 	}
 
 

@@ -15,7 +15,6 @@
 							
 							<table><tr><td><input type="text" name="bno" value="${boardInfo.boardNo }"  style="display:none;"></td></tr></table>
 								<h4 class="mb-1">${boardInfo.boardTitle } </h4>
-								${boardInfo.subCategoryName}
 								<img class="card-img-top" src="images/${boardInfo.boardAttach }" alt="..." />
 							</div>
 							<div class="col-md-6">
