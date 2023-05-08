@@ -67,8 +67,6 @@
 					<td>
 						<div id="searchItemList">
 							<ul>
-								<li>test1</li>
-								<li>test2</li>
 							</ul>
 						</div>
 					</td>
@@ -197,17 +195,20 @@
 		if(this.value==""){
 			document.querySelector('#searchItemList').style = "display:none;";
 		}
-		while(itemList.firstChild) {
-			itemList.removeChild(itemList.firstChild);
-		}
 		let search = this.value;
 		fetch('searchProductName.do?search='+search)
 		.then(resolve=>resolve.json())
 		.then(result=>{
+			while(itemList.firstChild) {
+				itemList.removeChild(itemList.firstChild);
+			}
 			result.forEach(data=>{
 				let li = document.createElement('li');
 				console.log(data);
 				li.innerText = data;
+				li.addEventListener('click',function(){
+					location.href="#";
+				});
 				itemList.append(li);
 			})
 		})

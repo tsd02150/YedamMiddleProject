@@ -6,9 +6,13 @@
 
 <form action="modifyCustomer.do" method="post">
 	<table class="table">
-		<tr>
+		<tr style="display:none">
 			<th>글번호</th>
 			<td><input name="no" value="${vo.noticeNo }" readonly></td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td><input name="title" value="${vo.noticeTitle }"></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
@@ -20,16 +24,12 @@
 					value="${vo.noticeDate }" /></td>
 		</tr>
 		<tr>
-			<th>제목</th>
-			<td><input name="title" value="${vo.noticeTitle }"></td>
-		</tr>
-		<tr>
 			<th>내용</th>
 			<td><textarea name="content" cols="50" rows="5"> ${vo.noticeContent } </textarea></td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td><input name="attach" value="${vo.noticeAttach }" readonly></td>
+			<td><input name="attach" value="${vo.noticeAttach }"></td>
 		</tr>
 
 		<tr>

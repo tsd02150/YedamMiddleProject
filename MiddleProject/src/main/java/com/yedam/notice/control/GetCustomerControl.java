@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
 import com.yedam.notice.domain.NoticeVO;
@@ -16,16 +17,28 @@ public class GetCustomerControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		HttpSession session = req.getSession();
+		String memId= (String) session.getAttribute("id");
+
 		//customerCenter.jsp 에서 넘어오는 "no"파라미터
 		String no= req.getParameter("no");
-		System.out.println(no);
-
+		String noticePw= req.getParameter("pw");//원래입력된 pw
+		/*
+		 * String pw= req.getParameter("pass");//팝업창에 입력한 pw
+		 */		System.out.println(no);
+		System.out.println(noticePw);
+		
+		
 		NoticeService service= new NoticeServiceImpl();
 		NoticeVO vo = service.getCustomer(Integer.parseInt(no));
-		
 		req.setAttribute("vo", vo); //getCustomer.jsp로 넘겨주는 파라미터 "vo"
 		System.out.println(vo);
-		return "notice/getCustomer.tiles";
+		
+		/*if(pw.equals(noticePw)) {*/
+			return "notice/getCustomer.tiles";			
+			/*
+			 * }else { return "notice/customerCenter.tiles"; }
+			 */
 	}
 
 }

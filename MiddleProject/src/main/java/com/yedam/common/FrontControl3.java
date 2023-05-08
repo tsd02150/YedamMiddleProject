@@ -11,15 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.member.control.CSListControl;
+import com.yedam.member.control.QnaListControl;
 import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.member.control.MyPageControl;
-import com.yedam.member.control.OrderControl;
+import com.yedam.member.control.OrderListControl;
 import com.yedam.member.control.SignInControl;
 import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpCheckControl;
 import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
+import com.yedam.member.control.WishListControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
 
@@ -54,10 +55,10 @@ public class FrontControl3 extends HttpServlet{
 		//마이페이지
 		map.put("/myPage.do", new MyPageControl());
 		map.put("/modifyMember.do", new ModifyMemberControl());
-		map.put("/order.do", new OrderControl());
+		map.put("/orderList.do", new OrderListControl());
+		map.put("/wishList.do", new WishListControl());
 		
-		
-		map.put("/CSList.do", new CSListControl());
+		map.put("/qnaList.do", new QnaListControl());
 		
 		
 		

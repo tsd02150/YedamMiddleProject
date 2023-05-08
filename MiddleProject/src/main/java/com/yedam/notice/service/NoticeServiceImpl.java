@@ -49,5 +49,22 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	
+	@Override
+	public List<NoticeVO> notiList() {
+		// TODO Auto-generated method stub
+		return mapper.notiList();
+	}
+	
+	@Override
+	public boolean addNoti(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.addNoti(vo)==1;
+	}
+	
+	@Override
+	public NoticeVO getNoti(int noticeNo) {
+		// TODO Auto-generated method stub
+		return mapper.getNoti(noticeNo);
+	}
 	
 }

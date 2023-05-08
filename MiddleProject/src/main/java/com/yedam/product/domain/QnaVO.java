@@ -15,6 +15,7 @@ public class QnaVO {
 	private int qnaHide;
 	private int memberNo;
 	private int boardNo;
+	private String qnaAnswer;
 	public int getQnaNo() {
 		return qnaNo;
 	}
