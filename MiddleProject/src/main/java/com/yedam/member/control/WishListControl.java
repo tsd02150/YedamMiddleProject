@@ -6,35 +6,39 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
+import com.yedam.member.domain.WishVO;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.product.domain.PageDTO;
-import com.yedam.product.domain.QnaVO;
 
-public class CSListControl implements Control {
+public class WishListControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		HttpSession session = req.getSession();
 		
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
 		
+		String id = "";
+		id = (String)session.getAttribute("id");
+		
 		MemberService service = new MemberServiceImpl();
 		int total = service.totalCount();
-		List<QnaVO>list = service.qnaList(page);
+		List<WishVO>list = service.wishList(id);
 		
 		PageDTO dto = new PageDTO(page,total);
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", dto);
 		
+		//System.out.println(list);
 		
 		
-		
-		return "member/csList.tiles";
+		return "member/wishList.tiles";
 	}
 
 }

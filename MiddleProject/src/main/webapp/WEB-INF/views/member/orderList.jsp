@@ -68,6 +68,38 @@ height:
 	color: #fff;
 	background: none;
 }
+.center {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+
+
+
+
 </style>
 <table class="mycontainer">
 <tr>
@@ -100,44 +132,34 @@ height:
 </c:choose>
 </td>
 <td>
-<form action="modifyMember.do" method="get">
+<table class="table">
+	
+	<c:forEach var="order" items="${list}">
+		<tr>
+			<td><c:out value="${no=no+1 }"></c:out></td>
+			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>${order.productNo}</a></td>
+			<td>${order.productName}</td>
+			<td><img width="200px" src="images/${wish.boardThumbnail}"></td>
+			<td>${order.price}</td>
+			<td>${order.productCount}</td>
+		</tr>
+	</c:forEach>
+</table>
+<hr>
+<div class="center">
+	<div class="pagination">
+		<c:if test="${pageInfo.prev }">
+			<a href="wishList.do?page=${pageInfo.startPage-1 }">Previous</a>
+		</c:if>
+		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+			<a class="${i == pageInfo.pageNum ? 'active' : '' }" href="wishList.do?page=${i}">${i } </a>
+		</c:forEach>
+		<c:if test="${pageInfo.next }">
+			<a href="wishList.do?page=${pageInfo.endPage+1 }">Next</a>
+		</c:if>
+	</div>
+</div>
 
-	<table class="table" align="center">
-		<tr>
-			<th>이름</th>
-			<td>${name }</td>
-		</tr>
-		<tr>
-			<th>아이디</th>
-			<td>${id }</td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td>●●●●●●●●</td>
-		</tr>
-		<tr>
-			<th>연락처</th>
-			<td>${memberInfo.phone }</td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td>${memberInfo.email }</td>
-		</tr>
-		<tr>
-			<th>주소</th>
-			<td>${memberInfo.adress}</td>
-		</tr>
-		<tr>
-			<th>쿠폰</th>
-			<td>1개</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<button type="submit">수정</button>
-		</tr>
-	</table>
-</form>
 </td>
 </tr>
 </table>
-

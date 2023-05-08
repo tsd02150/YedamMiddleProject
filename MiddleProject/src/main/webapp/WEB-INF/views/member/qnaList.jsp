@@ -76,7 +76,7 @@ height:
 <c:when test="${grade=='s'}">
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
+		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
 		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
 		<li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
@@ -88,12 +88,12 @@ height:
 <c:otherwise>
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
+		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
 		<li class="sidebar-nav-item"><a href="#page-top">장바구니</a></li>
 		<li class="sidebar-nav-item"><a href="#about">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="#services">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#portfolio">관심상품</a></li>
-		<li class="sidebar-nav-item"><a href="CSList.do">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
+		<li class="sidebar-nav-item"><a href="qnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:otherwise>

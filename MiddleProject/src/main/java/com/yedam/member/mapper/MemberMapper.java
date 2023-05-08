@@ -3,6 +3,8 @@ package com.yedam.member.mapper;
 import java.util.List;
 
 import com.yedam.member.domain.MemberVO;
+import com.yedam.member.domain.OrdersVO;
+import com.yedam.member.domain.WishVO;
 import com.yedam.product.domain.QnaVO;
 
 public interface MemberMapper {
@@ -16,4 +18,9 @@ public interface MemberMapper {
 	public List<QnaVO> qnaList(String id);
 	public List<QnaVO> qnaWithPage(int page);
 	public int getCount();
+	public List<WishVO> wishList(String id);
+	public List<OrdersVO> orderList(String id);
+	
+	
+	
 }

@@ -49,8 +49,34 @@
  	<select id="getCount" resultType="int">
 		select count(*) from qna
 	</select>
+ 	<select id="wishList" resultType="wish" parameterType="String">
+ 		select * from
+		(select b.board_thumbnail,p.product_no,p.product_name,b.board_content,p.price,p.product_count,
+		s.sub_category_name,m.id,w.wish_no
+		from wish w, product p, member m,board b,subcategory s
+		where w.product_no = p.product_no
+		and w.member_no = m.member_no
+		and b.product_no = p.product_no
+		and s.sub_category_no = p.sub_category_no)
+		where id = #{id}
+ 	</select>
  	
- 	
+ 	<select id="orderList" resultType="order" parameterType="String">
+ 		select * from (
+    select * from (
+        select * from product p join board b 
+        on(p.product_no = b.product_no)
+    )z
+    join(
+    select * from (
+        member m join
+        (select * from orders o join order_detail od 
+        on(o.order_no = od.order_no)
+        )a  
+        using(member_no)))q 
+    on(q.member_no = z.member_no))
+    where id = #{id}
+ 	</select>
  	
  	
  	

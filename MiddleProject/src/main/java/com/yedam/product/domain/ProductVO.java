@@ -14,6 +14,9 @@ public class ProductVO {
 	private int themeNo;
 	private String subCategoryName;
 	private String mainCategoryName;
+	
+	
+	
 }
 
 

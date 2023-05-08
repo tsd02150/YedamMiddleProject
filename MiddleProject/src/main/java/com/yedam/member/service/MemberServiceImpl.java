@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
 import com.yedam.member.domain.MemberVO;
+import com.yedam.member.domain.OrdersVO;
+import com.yedam.member.domain.WishVO;
 import com.yedam.member.mapper.MemberMapper;
 import com.yedam.product.domain.QnaVO;
 
@@ -52,6 +54,14 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<QnaVO> qnaList(int page) {
 		return mapper.qnaWithPage(page);
+	}
+	@Override
+	public List<WishVO> wishList(String id) {
+		return mapper.wishList(id);
+	}
+	@Override
+	public List<OrdersVO> orderList(String id) {
+		return mapper.orderList(id);
 	}
 	
 }
