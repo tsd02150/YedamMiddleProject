@@ -91,24 +91,26 @@ height:
 <div style="display:block;">
 <nav id="sidebar-wrapper" class="active" style="display:inline-block;">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">장바구니</a></li>
-		<li class="sidebar-nav-item"><a href="#about">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#portfolio">관심상품</a></li>
-		<li class="sidebar-nav-item"><a href="CSList.do">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href=#>가구</a></li>
+	</ul>
+	<ul class="sidebar-nav">
+		<li class="sidebar-nav-item"><a href=#>데코</a></li>
 	</ul>
 </nav>
 <div class="untree_co-section product-section before-footer-section" style="width:1200px;display:inline-block">
 	<div class="container">
 		<div class="row">
+<c:choose><c:when test="${id !=null }">
 <div class="terms-conditions product-page">
+	${id }
+	${memberGrade }
 	  <c:if test="${memberGrade == S }">
 		 <p><a href="addProductForm.do">상품 등록 </a></p>
 		 <p><a href="productList.do">상품 리스트 </a></p>
 		 <p><a href="addBoardForm.do?cno=${companyNo}">판매 등록</a></p>
 	 </c:if>
 </div>
+</c:when></c:choose>
 
 <!-- Start Column 1 -->
 <c:forEach var="board" items="${boardList }">
@@ -128,3 +130,7 @@ height:
 	</div>
 </div>
 </div>
+
+<script>
+
+</script>

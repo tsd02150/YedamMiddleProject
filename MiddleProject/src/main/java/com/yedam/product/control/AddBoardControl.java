@@ -18,7 +18,7 @@ public class AddBoardControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String saveDir = req.getServletContext().getRealPath("upload");
+		String saveDir = req.getServletContext().getRealPath("images");
 		int maxSize = 5*1024*1024;
 		String encoding = "UTF-8";
 		DefaultFileRenamePolicy rn = new DefaultFileRenamePolicy();
@@ -31,15 +31,19 @@ public class AddBoardControl implements Control {
 		}
 		
 		String title = multi.getParameter("title");
-		String thumbnail = multi.getParameter("thumbnail");
+		String thumbnail = multi.getFilesystemName("thumbnail");
 		String content = multi.getParameter("content");
-		String attach = multi.getParameter("attach");
+		String attach = multi.getFilesystemName("attach");
+		String pno = multi.getParameter("pno");
+		String mno = multi.getParameter("mno");
 		
 		BoardVO vo = new BoardVO();
 		vo.setBoardTitle(title);
 		vo.setBoardContent(content);
 		vo.setBoardThumbnail(thumbnail);
 		vo.setBoardAttach(attach);
+		vo.setProductNo(Integer.parseInt(pno));
+		vo.setMemberNo(Integer.parseInt(mno));
 		
 		ProductService ps = new ProductServiceImpl();
 		

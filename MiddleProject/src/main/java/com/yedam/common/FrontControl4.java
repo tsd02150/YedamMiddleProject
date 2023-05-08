@@ -12,14 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.member.control.SignInControl;
+import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpControl;
+import com.yedam.notice.control.AddNotiControl;
+import com.yedam.notice.control.AddNotiFormControl;
 import com.yedam.notice.control.CustomerAddControl;
 import com.yedam.notice.control.CustomerAddFormControl;
 import com.yedam.notice.control.CustomerCenterControl;
 import com.yedam.notice.control.DelCustomerControl;
+import com.yedam.notice.control.DelNotiControl;
 import com.yedam.notice.control.GetCustomerControl;
+import com.yedam.notice.control.GetNotiControl;
 import com.yedam.notice.control.ModifyCustomerControl;
 import com.yedam.notice.control.ModifyCustomerFormControl;
+import com.yedam.notice.control.ModifyNotiControl;
+import com.yedam.notice.control.NotiControl;
+import com.yedam.notice.control.replyAddCenterControl;
+import com.yedam.notice.control.replyListCenterControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
 import com.yedam.product.control.ThemeControl;
@@ -42,6 +51,8 @@ public class FrontControl4 extends HttpServlet{
 		map.put("/signIn.do", new SignInControl());
 		// 회원가입 페이지
 		map.put("/signUp.do", new SignUpControl());
+		// 로그아웃 페이지
+		map.put("/signOut.do", new SignOutControl());
 		//상품 페이지
 		map.put("/prodList.do", new ProductListControl());
 		//상품 상세페이지
@@ -51,16 +62,34 @@ public class FrontControl4 extends HttpServlet{
 		
 		//고객센터 목록
 		map.put("/customerCenter.do",new CustomerCenterControl());
-		//고객센터 글쓰기
+		//고객센터 글등록
 		map.put("/customerAddForm.do", new CustomerAddFormControl());
 		map.put("/customerAdd.do", new CustomerAddControl());
-		
 		//고객센터 글조회
 		map.put("/getCustomer.do", new GetCustomerControl());
 		//고객센터 글수정
 		map.put("/modifyCustomer.do", new ModifyCustomerControl());
 		//고객센터 글삭제
 		map.put("/delCustomer.do", new DelCustomerControl());
+		
+		//고객센터 댓글조회
+		map.put("/replyListCenter.do", new replyListCenterControl());
+		//고객센터 댓글등록
+		map.put("/replyAddCenter.do",new replyAddCenterControl());
+		
+		
+		//공지사항 목록
+		map.put("/noti.do", new NotiControl()); 
+		//공지사항 등록
+		map.put("/addNotiForm.do", new AddNotiFormControl());
+		map.put("/addNoti.do", new AddNotiControl());
+		//공지사항 글조회
+		map.put("/getNoti.do", new GetNotiControl());
+		//공지사항 수정
+		map.put("/modifyNoti.do", new ModifyNotiControl());
+		//공지사항 삭제
+		map.put("/delNoti.do", new DelNotiControl());
+				
 		
 		//테마
 		map.put("/theme.do",new ThemeControl());

@@ -26,7 +26,10 @@ public class NoticeVO {
 	private String noticeResponse;
 	private int selector;	
 	private int memberNo;
+	private String noticePw;
+	
+	private String id;
 	private String name;
-		
+	private String pw;
 
 }

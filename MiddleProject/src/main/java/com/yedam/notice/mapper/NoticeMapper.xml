@@ -4,19 +4,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.notice.mapper.NoticeMapper">
-
+	<!-- 고객센터 selector=3 -->
 	<select id="CustomerCenter" resultType="notice">
 		SELECT *
 		FROM notice INNER
 		JOIN member
 		ON notice.member_no = member.member_no
-		WHERE notice.selector= 3
+		WHERE
+		notice.selector= 3
+		ORDER BY notice.notice_date desc
 	</select>
 	<insert id="CustomerAdd" parameterType="notice">
-		insert into
-		notice(notice_NO, NOTICE_TITLE, NOTICE_CONTENT,SELECTOR)
-		values
-		(notice_sequence.nextval,#{noticeTitle},#{noticeContent},3)
+		INSERT INTO notice
+		(notice_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_ATTACH,
+		notice_pw,
+		SELECTOR, member_No)
+		VALUES (notice_sequence.nextval, #{noticeTitle},
+		#{noticeContent},
+		#{noticeAttach}, #{noticePw}, 3, (SELECT member_no
+		FROM member WHERE id=#{id}))
 	</insert>
 	<select id="GetCustomer" parameterType="int" resultType="notice">
 		SELECT *
@@ -26,18 +32,42 @@
 	</select>
 	<update id="ModifyCustomer" parameterType="notice">
 		UPDATE notice
-		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}
-		WHERE notice_no=#{noticeNo}
+		SET
+		notice_title=#{noticeTitle}, notice_content=#{noticeContent}
+		WHERE
+		notice_no=#{noticeNo}
 	</update>
 	<delete id="DelCustomer" parameterType="int">
-	delete from notice where notice_no=#{noticeNo}
+		delete from notice where
+		notice_no=#{noticeNo}
 	</delete>
+
 	<select id="selectFaq" parameterType="notice">
 		select notice_no,notice_title,notice_content,notice_date,selector,name
 		from notice join member
 		using(member_no)
 		where selector=2
 	</select>
+
+	<!-- 공지사항 selector=1 -->
+	<select id="notiList" resultType="notice">
+		SELECT * FROM notice
+		WHERE
+		selector= 1
+		ORDER BY notice_no
+
+	</select>
+	<insert id="addNoti" parameterType="notice">
+		insert into notice(NOTICE_NO,NOTICE_TITLE,NOTICE_CONTENT,MEMBER_NO,SELECTOR)
+		values
+		(notice_sequence.nextval,#{noticeTitle},#{noticeContent},0,1)
+	</insert>
+	<select id="getNoti" parameterType="int" resultType="notice">
+		SELECT *
+		FROM notice
+		WHERE selector=1 and notice_no=#{noticeNo}
+	</select>
+
 
 </mapper>
 	

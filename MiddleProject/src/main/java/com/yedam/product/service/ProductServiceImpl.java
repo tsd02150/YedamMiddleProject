@@ -2,12 +2,15 @@ package com.yedam.product.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
 import com.yedam.product.domain.BoardVO;
+import com.yedam.product.domain.MainCategoryVO;
 import com.yedam.product.domain.ProductVO;
 import com.yedam.product.domain.ReviewVO;
+import com.yedam.product.domain.SubCategoryVO;
 import com.yedam.product.mapper.ProductMapper;
 
 public class ProductServiceImpl implements ProductService{
@@ -103,6 +106,34 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> myProductList(int companyNo) {
 		return mapper.myProductList(companyNo);
 	}
+
+	@Override
+	public List<MainCategoryVO> ctgMain() {
+		return mapper.ctgMain();
+	}
+
+	@Override
+	public List<SubCategoryVO> ctgSub(int mainCategoryNo) {
+		return mapper.ctgSub(mainCategoryNo);
+	}
+
+	@Override
+	public List<ProductVO> ctgProd(@Param("mainCategoryNo")int mainCategoryNo, @Param("subCategoryNo")int subCategoryNo) {
+		return mapper.ctgProd(mainCategoryNo, subCategoryNo);
+	}
+
+	@Override
+	public List<BoardVO> categoryList(int subCategoryNo) {
+		return mapper.categoryList(subCategoryNo);
+	}
+
+
+	@Override
+	public List<BoardVO> ctgJoin() {
+		return mapper.ctgJoin();
+	}
+
+
 
 
 }

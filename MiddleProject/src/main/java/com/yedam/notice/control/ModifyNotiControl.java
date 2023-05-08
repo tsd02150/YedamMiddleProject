@@ -1,4 +1,4 @@
-package com.yedam.member.control;
+package com.yedam.notice.control;
 
 import java.io.IOException;
 
@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class OrderControl implements Control {
+public class ModifyNotiControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		return "member/OrderList.tiles";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

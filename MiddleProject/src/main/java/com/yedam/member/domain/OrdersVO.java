@@ -11,5 +11,11 @@ public class OrdersVO {
 	private Date orderDate;
 	private int memberNo;
 	private int deliveryNo;
-		
+	private String productName;
+	private int price;
+	private int productCount;
+	private String subCategoryName;
+	private String boardThumbnail;
+	private String boardContent;
+	
 }

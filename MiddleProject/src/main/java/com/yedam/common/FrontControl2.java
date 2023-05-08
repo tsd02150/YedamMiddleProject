@@ -20,6 +20,11 @@ import com.yedam.product.control.AddProductControl;
 import com.yedam.product.control.AddProductFormControl;
 import com.yedam.product.control.AddReviewControl;
 import com.yedam.product.control.BoardListControl;
+import com.yedam.product.control.CategoryBoardControl;
+import com.yedam.product.control.CtgJoin;
+import com.yedam.product.control.CtgMain;
+import com.yedam.product.control.CtgProd;
+import com.yedam.product.control.CtgSub;
 import com.yedam.product.control.DeleteBoardControl;
 import com.yedam.product.control.DeleteProductControl;
 import com.yedam.product.control.GetProductControl;
@@ -62,11 +67,17 @@ public class FrontControl2 extends HttpServlet{
 		map.put("/modifyProduct.do", new ModifyProductControl());
 		map.put("/deleteProduct.do", new DeleteProductControl());
 		
+		map.put("/ctgMain.do", new CtgMain());
+		map.put("/ctgSub.do", new CtgSub());
+		map.put("/ctgProd.do", new CtgProd());
+		map.put("/ctgJoin.do", new CtgJoin());
 		
 		//상품 게시판 리스트
 		map.put("/boardList.do", new BoardListControl());
 		//상품게시판 상세보기
 		map.put("/getBoard.do", new getBoardControl());
+		//카테고리별 
+		map.put("/categoryBoard.do", new CategoryBoardControl());
 		
 		//게시판 등록, 수정, 삭제 (판매자)
 		map.put("/addBoardForm.do", new AddBoardFormControl());

@@ -16,6 +16,26 @@
 		where rownum <=5
 		]]>
 	</select>
+	<select id="ctgMain" resultType="mctg">
+		select * from maincategory
+	</select>
+	
+	<select id="ctgSub" resultType="sctg">
+		select * from subcategory
+		where main_category_no=#{mainCategoryNo}
+	</select>
+	<select id="ctgJoin" resultType="board">
+		select * from maincategory join subcategory using(main_category_no)
+	</select>
+	
+	<select id="ctgProd" resultType="product">
+		select * from(
+		select * from product join member using(company_no))
+		join (select * from subcategory join maincategory using(main_category_no))
+		using(sub_category_no)
+		where main_category_no=#{mainCategoryNo}
+		and sub_category_no=#{subCategoryNo}
+	</select>
 	<!-- PRODUCT -->
 	<select id="productList" resultType="product">
 		select * from product order by 1 
@@ -94,14 +114,22 @@
 	<select id="getCount" resultType="int">
 		select count(*) from product
 	</select>
+	<select id="categoryList" resultType="board">
+		select * from(
+		select * from board join product
+		using(product_no)) join subcategory
+		using(sub_category_no)
+		where sub_category_no=#{subCategoryNo}
+		order by board_no
+	</select>
 
-	<select id="insertBoard" parameterType="board">
+	<insert id="insertBoard" parameterType="board">
 		insert into
 		board(board_no, board_title, board_thumbnail, board_content,
 		board_attach, member_no, product_no)
 		values(board_seq.nextval, #{boardTitle},
 		#{boardThumbnail}, #{boardContent},#{boardAttach}, #{memberNo}, #{productNo})
-	</select>
+	</insert>
 	<update id="updateBoard" parameterType="board">
 		update board
 		set
