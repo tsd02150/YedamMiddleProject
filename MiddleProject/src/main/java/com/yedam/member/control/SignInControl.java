@@ -32,6 +32,7 @@ public class SignInControl implements Control {
 				
 				session.setAttribute("id", vo.getId());
 				session.setAttribute("name", vo.getName());
+				session.setAttribute("grade", vo.getGrade());
 				if(vo.getCompanyNo()!=0) {
 					session.setAttribute("companyNo", vo.getCompanyNo());
 				}
