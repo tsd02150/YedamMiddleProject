@@ -96,7 +96,7 @@ height:
 	 </c:if>
 </div>
 </c:when></c:choose>
-
+  
 <!-- Start Column 1 -->
 <c:forEach var="board" items="${ctgrlist }">
 
