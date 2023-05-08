@@ -17,6 +17,10 @@
 		<typeAlias type="com.yedam.product.domain.ProductVO" alias="product"/>
 		<typeAlias type="com.yedam.product.domain.BoardVO" alias="board"/>
 		<typeAlias type="com.yedam.product.domain.ReviewVO" alias="review"/>
+		<typeAlias type="com.yedam.product.domain.QnaVO" alias="qna"/>
+		<typeAlias type="com.yedam.member.domain.WishVO" alias="wish"/>
+		<typeAlias type="com.yedam.member.domain.OrdersVO" alias="order"/>
+		
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
