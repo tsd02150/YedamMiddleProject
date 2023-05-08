@@ -1,52 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- 반복문태그 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <style>
-.all {
-	margin: 0 auto;
-	padding: 50px;
-}
-
-/* 팝업창 */
-.modal {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	padding-top: 100px;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-	background-color: #fefefe;
-	margin: auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
-	max-width: 600px;
-}
-
-.close {
-	color: #aaaaaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
 body
@@ -118,7 +75,8 @@ height:
 
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터 문의</a></li>
+		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터
+				문의</a></li>
 		<li class="sidebar-nav-item"><a href="noti.do">공지사항</a></li>
 		<li class="sidebar-nav-item"><a href="#">자주하는 질문</a></li>
 	</ul>
@@ -126,21 +84,20 @@ height:
 
 <br>
 <br>
-<h3>고객센터</h3>
 
+<h3>공지사항</h3>
 <c:set var="no" value="0"></c:set>
-<form id="all" action="getCustomer.do" method="post">
+<form action="getNoti.do" method="post">
 	<table class="table">
 		<c:choose>
-			<c:when test="${id!=null && !id.equals('admin') }">
+			<c:when test="${id.equals('admin')}">
 				<tr>
 					<td colspan="4" align="right">
-						<button type="button" onclick="location.href='customerAddForm.do'">문의하기</button>
+						<button type="button" onclick="location.href='addNotiForm.do'">공지등록</button>
 					</td>
 				</tr>
 			</c:when>
 		</c:choose>
-
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -150,41 +107,13 @@ height:
 		<c:forEach var="notice" items="${list }">
 			<tr>
 				<td><c:out value="${no=no+1}"></c:out></td>
-				<!-- 팝업창 -->
-				<div id="modal" class="modal" style="display: none">
-					<div class="modal-content">
-						<span class="close">&times;</span>
-						<p>비밀번호를 입력하세요.</p>
-						<input type="password" name="pass">
-						<button type="submit">확인</button>
-					</div>
-				</div>
-				<td><a id="viewContent" href="getCustomer.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></td>
-				<td>${notice.name }</td>
+				<td><a id="view" href="getNoti.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></td>
+				<td>관리자</td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd"
 						value="${notice.noticeDate }" /></td>
 			</tr>
 		</c:forEach>
+
+
 	</table>
 </form>
-<!-- 
-<script>
-	const modal = document.getElementById("modal");
-	const open = document.getElementById("viewContent");
-	const closeBtn = document.getElementsByClassName("close")[0];
-
-	open.addEventListener('click',function(){
-		modal.style.display = "block"; /*팝업 보이기 */
-	});
-
-	closeBtn.onclick = function() {
-		modal.style.display = "none"; // x클릭시-모달 팝업 숨기기
-	}
-
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none"; //팝업 숨기기
-		}
-	}
-	
-</script> -->

@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.yedam.product.domain.ProductVO" alias="prod"/>
 		<typeAlias type="com.yedam.notice.domain.NoticeVO" alias="notice"/>
+		<typeAlias type="com.yedam.notice.domain.ReplyVO" alias="reply"/>
 		<typeAlias type="com.yedam.member.domain.MemberVO" alias="member"/>
 		<typeAlias type="com.yedam.member.domain.CompanyVO" alias="company"/>
 		<typeAlias type="com.yedam.product.domain.ProductVO" alias="product"/>
@@ -31,6 +32,7 @@
 	<mappers>
 		<mapper resource="com/yedam/product/mapper/ProductMapper.xml"/>
 		<mapper resource="com/yedam/notice/mapper/NoticeMapper.xml"/>
+		<mapper resource="com/yedam/notice/mapper/ReplyMapper.xml"/>
 		<mapper resource="com/yedam/member/mapper/MemberMapper.xml"/>
 		<mapper resource="com/yedam/member/mapper/CompanyMapper.xml"/>
 	</mappers>

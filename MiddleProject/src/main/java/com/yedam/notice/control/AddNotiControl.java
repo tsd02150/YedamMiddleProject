@@ -14,13 +14,14 @@ import com.yedam.notice.domain.NoticeVO;
 import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.service.NoticeServiceImpl;
 
-public class CustomerAddControl implements Control {
+public class AddNotiControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
 		String id= (String) session.getAttribute("id");
+
 
 		String saveDir=req.getServletContext().getRealPath("images");
 		int maxSize= 5*1024*1024;
@@ -31,7 +32,6 @@ public class CustomerAddControl implements Control {
 		String title= multi.getParameter("title");
 		String content= multi.getParameter("content");
 		String attach= multi.getParameter("attach");
-		String noticePw= multi.getParameter("noticePw");
 		
 		NoticeService service = new NoticeServiceImpl();
 		NoticeVO vo= new NoticeVO();
@@ -39,17 +39,15 @@ public class CustomerAddControl implements Control {
 		vo.setNoticeTitle(title);
 		vo.setNoticeContent(content);
 		vo.setNoticeAttach(attach);
-		vo.setNoticePw(noticePw);
-		System.out.println(id);
-		System.out.println(vo);
 
-		if(service.CustomerAdd(vo)) {
+		if(service.addNoti(vo)) {
 			
-			return"customerCenter.do";
+			return "noti.do";
 		}else {
-			return "custmerAddForm.do";
+			return "addNotiForm.do";
 			
 		}
+
 	}
 
 }

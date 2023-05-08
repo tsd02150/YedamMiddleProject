@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.notice.mapper.ReplyMapper">
+
+	<select id="replyList">
+		select notice.notice_no, reply_no, reply_content, reply_writer
+		from notice join cc_reply
+		on notice.notice_no = cc_reply.notice_no
+		where notice.notice_id=${replyNo}
+		
+	</select>
+
+	<insert id="insertReply">
+		insert into
+		cc_reply(reply_no,reply_content,notice_no)
+		values(cc_reply_seq.nextval, '답변입니다~~~',${noticeNo})
+	</insert>
+
+</mapper>
