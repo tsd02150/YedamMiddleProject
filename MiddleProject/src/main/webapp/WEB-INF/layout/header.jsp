@@ -8,7 +8,11 @@
 
 	<div class="container">
 		<a class="navbar-brand" href="main.do">내일의 집<span>.</span></a>
-
+		<c:choose>
+		<c:when test="${id!=null }">
+		<p style="color:white;">[${name }]님 환영합니다.</p>
+		</c:when>
+		</c:choose>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarsFurni" aria-controls="navbarsFurni"
 			aria-expanded="false" aria-label="Toggle navigation">

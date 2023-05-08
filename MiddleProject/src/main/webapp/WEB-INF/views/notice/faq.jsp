@@ -10,39 +10,37 @@ article {
 	padding: 50px;
 }
 </style>
+<h3>자주묻는 질문</h3>
+<c:set var="no" value="0"></c:set>
 
-<!-- 	<aside>
-		<nav id="sidebar-wrapper" class="active">
-			<ul class="sidebar-nav">
-				<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
-				<li class="sidebar-nav-item"><a href="#page-top">장바구니</a></li>
-				<li class="sidebar-nav-item"><a href="#about">주문현황</a></li>
-				<li class="sidebar-nav-item"><a href="#services">배송현황</a></li>
-				<li class="sidebar-nav-item"><a href="#portfolio">관심상품</a></li>
-				<li class="sidebar-nav-item"><a href="CSList.do">문의내역</a></li>
-			</ul>
-		</nav>
+<table class="table">
+	<tr>
+		<th>번호</th>
+		<th style="width:600px;">제목</th>
+		<th>작성자</th>
+		<th>작성날짜</th>
+	</tr>
+	<c:forEach var="notice" items="${faqList }">
+		<tr class=item>
+			<td><c:out value="${no=no+1}"></c:out></td>
+			<td>${notice.noticeTitle }</td>
+			<td>${notice.name }</td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd"
+					value="${notice.noticeDate }" /></td>
+		</tr>
+		<tr style="display:none;"><td></td><td>${notice.noticeContent }</td><td></td><td></td></tr>
+	</c:forEach>
+</table>
 
-	</aside> -->
-	
-
-		<h3>자주묻는 질문</h3>
-		<c:set var="no" value="0"></c:set>
-
-			<table class="table">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성날짜</th>
-				</tr>
-				<c:forEach var="notice" items="${faqList }">
-					<tr>
-						<td><c:out value="${no=no+1}"></c:out></td>
-						<td>${notice.noticeTitle }</td>
-						<td>${notice.name }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${notice.noticeDate }" /></td>
-					</tr>
-				</c:forEach>
-			</table>
+<script>
+	let items = document.querySelectorAll('.item');
+	items.forEach(function(item){
+		item.addEventListener('click',function(){
+			if(document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style.display=="none"){
+				document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style.removeProperty( 'display' );
+			}else{
+				document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style="display:none";
+			}
+		})
+	});
+</script>

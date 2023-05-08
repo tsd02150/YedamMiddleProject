@@ -33,9 +33,10 @@
 	delete from notice where notice_no=#{noticeNo}
 	</delete>
 	<select id="selectFaq" parameterType="notice">
-		select * 
-		from notice
-		where selector=1
+		select notice_no,notice_title,notice_content,notice_date,selector,name
+		from notice join member
+		using(member_no)
+		where selector=2
 	</select>
 
 </mapper>
