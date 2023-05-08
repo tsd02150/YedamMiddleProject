@@ -12,4 +12,5 @@ public class DeliveryVO {
 	private Date daliDate;
 	private String deliveryState;
 	
+	
 }

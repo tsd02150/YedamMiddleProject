@@ -12,7 +12,7 @@ import com.yedam.member.domain.MemberVO;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceImpl;
 
-public class otherLoginInfoControl implements Control {
+public class OtherLoginInfoControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,15 +36,16 @@ public class otherLoginInfoControl implements Control {
 			vo.setRrn(rrn);
 			System.out.println(vo);
 			if(service.addMember(vo)) {
+				session.removeAttribute("memberInfo");
 				if(grade.equals("c")) {		
-					session.removeAttribute("memberInfo");
 					return "main.do";				
 				}else if(grade.equals("r")) {
-					
+					req.setAttribute("id", vo.getId());
 					return "member/signUpCompany.tiles";
 				}
 			}else {
-				
+				System.out.println("err");
+				return "otherLoginInfo.do";
 			}
 			
 		}

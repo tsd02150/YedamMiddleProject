@@ -10,5 +10,4 @@ public class CouponDetailVO {
 	private int couponSale;
 	private int couponNo;
 	
-	
 }

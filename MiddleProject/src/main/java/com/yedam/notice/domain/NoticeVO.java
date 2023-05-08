@@ -26,7 +26,7 @@ public class NoticeVO {
 	private String noticeResponse;
 	private int selector;	
 	private int memberNo;
-	
 	private String name;
+		
 
 }

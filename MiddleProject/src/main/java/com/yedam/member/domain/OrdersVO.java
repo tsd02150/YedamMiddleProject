@@ -11,7 +11,5 @@ public class OrdersVO {
 	private Date orderDate;
 	private int memberNo;
 	private int deliveryNo;
-	
-	
-	
+		
 }

@@ -32,5 +32,26 @@
 		set pw=#{pw}, phone=#{phone}, adress=#{adress}, email=#{email}
 		where id=#{id}
 	</update>
-
+ 	<select id="qnaList" parameterType="String" resultType="qna">
+ 		select * from qna join member using (member_no)
+		where id = #{id};
+ 	</select>
+ 	<select id="qnaWithPage" resultType="qna">
+  <![CDATA[
+  	select b.* 
+  		from (select rownum rn, a.*
+         	 from( select * from qna
+           	   order by 1 desc) a
+           	 where rownum <=${page}*10 ) b
+		where b.rn >(${page}-1)*10
+	]]>
+ 	</select>
+ 	<select id="getCount" resultType="int">
+		select count(*) from qna
+	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
 </mapper>

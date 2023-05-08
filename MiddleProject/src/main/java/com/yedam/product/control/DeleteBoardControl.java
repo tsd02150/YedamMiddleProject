@@ -15,16 +15,17 @@ public class DeleteBoardControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String bno = req.getParameter("bno");
+		System.out.println("bno : "+bno);
 		
 		ProductService ps = new ProductServiceImpl();
 		boolean result = ps.removeBoard(Integer.parseInt(bno));
 		
 		if(result) {
 			System.out.println("삭제 성공");
-			return "board/boardList.do";
+			return "boardList.do";
 		}else {
 			System.out.println("삭제 실패");
-			return "board/modifyBoard.do";
+			return "boardList.do";
 		}
 		
 	}

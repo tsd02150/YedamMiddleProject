@@ -52,7 +52,7 @@ public class FrontControl2 extends HttpServlet{
 		// 로그아웃 페이지
 		map.put("/signOut.do", new SignOutControl());
 		
-		//상품 리스트
+		//상품 전체 리스트
 		map.put("/productList.do", new ProductListControl());
 		//상품 상세리스트
 		map.put("/getProduct.do", new GetProductControl());
@@ -79,7 +79,6 @@ public class FrontControl2 extends HttpServlet{
 		map.put("/addReview.do", new AddReviewControl());
 		map.put("/modifyReview.do", new ModifyReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
-		
 	}
 	
 	@Override

@@ -26,14 +26,14 @@ public class BoardListControl implements Control {
 		ProductService ps = new ProductServiceImpl();
 		int total = ps.totalCount();
 		List<BoardVO> boardList = ps.boardList(page);
-		System.out.println(boardList);
-		List<ProductVO> productList = ps.prodcutList(page);
+		List<ProductVO> productList = ps.productList(page);
 		
 		PageDTO dto = new PageDTO(page, total);
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("productList", productList);
 		req.setAttribute("pageInfo", dto);
 		
+		System.out.println(boardList);
 		return "product/boardList.tiles";
 	}
 

@@ -1,10 +1,13 @@
 package com.yedam.member.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
 import com.yedam.member.domain.MemberVO;
 import com.yedam.member.mapper.MemberMapper;
+import com.yedam.product.domain.QnaVO;
 
 public class MemberServiceImpl implements MemberService{
 	
@@ -37,6 +40,18 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean updateMemberM(MemberVO vo) {
 		return mapper.updateMemberM(vo)>0;
+	}
+	@Override
+	public List<QnaVO> qnaList(String id) {
+		return mapper.qnaList(id);
+	}
+	@Override
+	public int totalCount() {
+		return mapper.getCount();
+	}
+	@Override
+	public List<QnaVO> qnaList(int page) {
+		return mapper.qnaWithPage(page);
 	}
 	
 }

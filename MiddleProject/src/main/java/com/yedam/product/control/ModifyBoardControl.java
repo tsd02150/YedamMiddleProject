@@ -21,8 +21,9 @@ public class ModifyBoardControl implements Control {
 			
 			BoardVO vo = ps.getBoard(Integer.parseInt(bno));
 			req.setAttribute("boardInfo", vo);
+			System.out.println("boardInfo : "+vo);
 			
-			return "product/boardModify.tiles";
+			return "product/modifyBoard.tiles";
 		} else if(req.getMethod().equals("POST")) {
 			String bno = req.getParameter("bno");
 			String title = req.getParameter("title");
@@ -34,9 +35,11 @@ public class ModifyBoardControl implements Control {
 			vo.setBoardContent(content);
 			
 			if(ps.modifyBoard(vo)) {
-				return "board/boardList.do";
+				System.out.println("수정 성공");
+				return "boardList.do";
 			}else {
-				return "product/modifyBoard.do";
+				System.out.println("수정 실패");
+				return "boardList.do";
 			}
 		}
 		return null;

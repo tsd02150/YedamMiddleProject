@@ -21,5 +21,6 @@ public interface NoticeMapper {
 	//고객센터 글삭제
 	public int DelCustomer(int noticeNo);
 	
-
+	//자주묻는질문 목록조회
+	public List<NoticeVO> selectFaq();
 }

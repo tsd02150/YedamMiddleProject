@@ -23,10 +23,12 @@ public class ReviewListControl implements Control {
 		ProductService ps = new ProductServiceImpl();
 		List<ReviewVO> reviewList = ps.reviewList(Integer.parseInt(bno));
 	
-		List<ProductVO> prodList = ps.prodcutList(Integer.parseInt(pno));
+		List<ProductVO> prodList = ps.productList(Integer.parseInt(pno));
 		
 		req.setAttribute("reviewList", reviewList);
 		req.setAttribute("prodList", prodList);
+		
+		
 		
 		return null;
 	}

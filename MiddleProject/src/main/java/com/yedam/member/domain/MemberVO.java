@@ -17,4 +17,6 @@ public class MemberVO {
 	private int companyNo;
 	
 	private String crn;
+
+	
 }

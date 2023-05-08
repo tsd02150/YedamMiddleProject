@@ -32,7 +32,11 @@
 	<delete id="DelCustomer" parameterType="int">
 	delete from notice where notice_no=#{noticeNo}
 	</delete>
-
+	<select id="selectFaq" parameterType="notice">
+		select * 
+		from notice
+		where selector=1
+	</select>
 
 </mapper>
 	

@@ -57,7 +57,7 @@ public class FrontControl3 extends HttpServlet{
 		map.put("/order.do", new OrderControl());
 		
 		
-		map.put("/CSList.do", new CSListControl());
+		map.put("/csList.do", new CSListControl());
 		
 		
 		

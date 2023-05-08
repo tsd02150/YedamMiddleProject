@@ -16,6 +16,6 @@ public interface NoticeService {
 	
 	public boolean DelCustomer(int noticeNo);
 	
-	
+	public List<NoticeVO> searchFaq();
 	
 }

@@ -10,10 +10,10 @@ public class ProductVO {
 	private int productCount;
 	private int companyNo;
 	private int subCategoryNo;
+	private int mainCategoryNo;
 	private int themeNo;
-	
-	
-	
+	private String subCategoryName;
+	private String mainCategoryName;
 }
 
 

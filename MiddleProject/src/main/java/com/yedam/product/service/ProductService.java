@@ -7,8 +7,10 @@ import com.yedam.product.domain.ProductVO;
 import com.yedam.product.domain.ReviewVO;
 
 public interface ProductService {
+	//검색기능
+	public List<String> searchProductName(String search);
 	//product
-	public List<ProductVO> prodcutList(int page);
+	public List<ProductVO> productList(int page);
 	public ProductVO getProduct(int productNo);
 	public List<ProductVO> myProductList(int companyNo);
 	public boolean addProduct(ProductVO vo);

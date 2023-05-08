@@ -20,14 +20,20 @@ public class ProductListControl implements Control {
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr ==null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
+		String cno = req.getParameter("cno");
 		
 		ProductService ps = new ProductServiceImpl();
 		int total = ps.totalCount();
-		List<ProductVO> list = ps.prodcutList(page);
+		List<ProductVO> list = ps.productList(page);
+//		List<ProductVO> myProductList = ps.myProductList(Integer.parseInt(cno));
 		
 		PageDTO dto = new PageDTO(page, total);
-		req.setAttribute("prodlist", list);
+		req.setAttribute("productList", list);
 		req.setAttribute("pageInfo", dto);
+//		req.setAttribute("myProductList", myProductList);
+		
+		System.out.println(list);
+//		System.out.println(myProductList);
 		
 		return "product/productList.tiles";
 	}

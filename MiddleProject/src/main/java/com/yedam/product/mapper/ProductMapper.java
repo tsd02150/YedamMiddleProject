@@ -7,6 +7,8 @@ import com.yedam.product.domain.ProductVO;
 import com.yedam.product.domain.ReviewVO;
 
 public interface ProductMapper {
+	//상품검색
+	public List<String> searchProductName(String search);
 	//상품리스트
 	public List<ProductVO> productList();
 	//페이징 리스트

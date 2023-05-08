@@ -17,13 +17,15 @@ import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpCheckControl;
 import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
-import com.yedam.member.control.naverLoginControl;
-import com.yedam.member.control.otherLoginControl;
-import com.yedam.member.control.otherLoginInfoControl;
-import com.yedam.member.control.searchIdControl;
-import com.yedam.member.control.searchPwControl;
+import com.yedam.notice.control.FaqControl;
+import com.yedam.member.control.NaverLoginControl;
+import com.yedam.member.control.OtherLoginControl;
+import com.yedam.member.control.OtherLoginInfoControl;
+import com.yedam.member.control.SearchIdControl;
+import com.yedam.member.control.SearchPwControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
+import com.yedam.product.control.SearchProductNameControl;
 
 
 public class FrontControl extends HttpServlet{
@@ -36,8 +38,10 @@ public class FrontControl extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		encoding = config.getInitParameter("enc");
-		
+		//메인페이지
 		map.put("/main.do", new MainControl());
+		//검색기능
+		map.put("/searchProductName.do", new SearchProductNameControl());
 		
 		// 로그인 페이지
 		map.put("/signIn.do", new SignInControl());
@@ -50,17 +54,20 @@ public class FrontControl extends HttpServlet{
 		// 로그아웃 페이지
 		map.put("/signOut.do", new SignOutControl());
 		// id,pw찾기
-		map.put("/searchId.do", new searchIdControl());
-		map.put("/searchPw.do", new searchPwControl());
+		map.put("/searchId.do", new SearchIdControl());
+		map.put("/searchPw.do", new SearchPwControl());
 		// kakao,naver 로그인
-		map.put("/otherLogin.do", new otherLoginControl());
-		map.put("/otherLoginInfo.do", new otherLoginInfoControl());
-		map.put("/naverLogin.do", new naverLoginControl());
+		map.put("/otherLogin.do", new OtherLoginControl());
+		map.put("/naverLogin.do", new NaverLoginControl());
+		map.put("/otherLoginInfo.do", new OtherLoginInfoControl());
 		
 		//상품 페이지
 		map.put("/prodList.do", new ProductListControl());
 		//상품 상세페이지
 		map.put("/getProduct.do", new GetProductControl());
+		
+		//자주묻는 질문
+		map.put("/faq.do", new FaqControl());
 		
 		//마이페이지 기본정보
 		map.put("/myPage.do", new MyPageControl());
