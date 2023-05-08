@@ -87,6 +87,34 @@ height:
 	color: #fff;
 	background: none;
 }
+
+  .center {
+    text-align: center;
+  }
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+  }
+
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
 </style>
 
 <form action="categoryBoard.do" method="get">
@@ -114,7 +142,8 @@ height:
 </c:when></c:choose>
 
 <!-- Start Column 1 -->
-<c:forEach var="board" items="${boardList }">
+<c:forEach var="board" items="${categoryList }">
+
 	<div class="col-12 col-md-4 col-lg-3 mb-5">
 		<a class="product-item" href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}"><img src="images/${board.boardThumbnail}"
 				class="img-fluid product-thumbnail">
@@ -132,6 +161,5 @@ height:
 </div>
 </div>
 </form>
-
 <script>
 </script>

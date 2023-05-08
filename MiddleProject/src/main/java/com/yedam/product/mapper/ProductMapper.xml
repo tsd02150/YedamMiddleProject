@@ -102,6 +102,19 @@
     where b.rn > (#{page} - 1) * 10  
     ]]>
 	</select>
+	<select id="categoryList" resultType="board">
+ 	<![CDATA[
+		select * from(
+				select rownum rn, a.* from(
+				select * from (board join product
+				using(product_no)) join subcategory
+				using(sub_category_no)
+				where sub_category_name=#{subCategoryName}
+				order by board_no) a
+ 	       where rownum <= #{page}*20) b 
+ 	       where b.rn > (#{page}-1)*20
+    ]]>
+	</select>
 	<select id="searchboard" resultType="board">
 		select*from(select * from(
 		select * from board join product using(product_no))
@@ -114,14 +127,7 @@
 	<select id="getCount" resultType="int">
 		select count(*) from product
 	</select>
-	<select id="categoryList" resultType="board">
-		select * from(
-		select * from board join product
-		using(product_no)) join subcategory
-		using(sub_category_no)
-		where sub_category_no=#{subCategoryNo}
-		order by board_no
-	</select>
+	
 
 	<insert id="insertBoard" parameterType="board">
 		insert into

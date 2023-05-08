@@ -37,7 +37,7 @@ public interface ProductMapper {
 	//게시판 상세보기
 	public BoardVO searchboard(int boardNo);
 	//카테고리별
-	public List<BoardVO> categoryList(int subCategoryNo);
+	public List<BoardVO> categoryList(@Param("subCategoryName") String subCategoryName, @Param("page") int page);
 	
 	//게시판 등록, 수정, 삭제
 	public int insertBoard(BoardVO vo);

@@ -122,15 +122,16 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.ctgProd(mainCategoryNo, subCategoryNo);
 	}
 
-	@Override
-	public List<BoardVO> categoryList(int subCategoryNo) {
-		return mapper.categoryList(subCategoryNo);
-	}
 
 
 	@Override
 	public List<BoardVO> ctgJoin() {
 		return mapper.ctgJoin();
+	}
+
+	@Override
+	public List<BoardVO> categoryList(String subCategoryName, int page) {
+		return mapper.categoryList(subCategoryName, page);
 	}
 
 

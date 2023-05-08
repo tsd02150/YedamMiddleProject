@@ -27,7 +27,7 @@ public interface ProductService {
 	//board
 	public List<BoardVO> boardList(int page);
 	public BoardVO getBoard(int boardNo);
-	public List<BoardVO> categoryList(int subCategoryNo);
+	public List<BoardVO> categoryList(@Param("subCategoryName") String subCategoryName, @Param("page") int page);
 	public boolean addBoard(BoardVO vo);
 	public boolean modifyBoard(BoardVO vo);
 	public boolean removeBoard(int boardNo);

@@ -4,19 +4,6 @@
 
 
 <form action="modifyBoard.do" method="GET">
-
-<!-- sidebar -->
-<div style="display:block;">
-<nav id="sidebar-wrapper" class="active" style="display:inline-block;">
-	<ul id="subul1" class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href=#>가구</a></li>
-	</ul>
-	<ul id="subul2" class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href=#>데코</a></li>
-	</ul>
-</nav>
-</div>
-
 	<div class="md-prod-page">
 		<div class="md-prod-page-in">
 			<div class="page-preview">
@@ -56,47 +43,18 @@
 			
 		</div>
 	</div>
-	
 </form>
+
+<table class="table" width="960px">
+<tr>
+<th><div id="review">상품후기</div></th>
+<th><div id="qna">문의내역</div></th>
+<th><div id="company">업체정보</div></th>
+</tr>
+</table>
+
+
+</table>
 <script>
-let ul = document.getElementById('subul1');
-
-fetch('ctgJoin1.do')
-.then(resolve=>resolve.json())
-.then(result=>{
-	result.forEach(sub=>{
-		let li = document.createElement('li');
-		li.value = sub.subCategoryNo;
-		li.innerText = sub.subCategoryName;
-		ul.append(li);
-	})
-})
-.catch(error=>console.log(error));
-let ul2 = document.getElementById('subul2');
-
-fetch('ctgJoin2.do')
-.then(resolve=>resolve.json())
-.then(result=>{
-	result.forEach(sub=>{
-		let li = document.createElement('li');
-		li.value = sub.subCategoryNo;
-		li.innerText = sub.subCategoryName;
-		ul2.append(li);
-	})
-})
-.catch(error=>console.log(error));
-
-ul.addEventListender('click', function(){
-	
-})
-
-function deleteBoard() {
-	let frm = document.querySelector('form');
-	frm.action = "deleteBoard.do";
-	frm.submit(); //form 태그 안에 있는 submit 실행됨
-}
-
-
-
 
 </script>
