@@ -22,7 +22,7 @@ public class DelCustomerControl implements Control {
 		System.out.println(no);
 
 		if(result) {
-			return "notice/customerCenter.tiles";
+			return "customerCenter.do";
 			
 		}else {
 			return "main.do";

@@ -67,4 +67,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.getNoti(noticeNo);
 	}
 	
+	@Override
+	public boolean modifyNoti(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.modifyNoti(vo)==1;
+	}
+	
+	@Override
+	public boolean delNoti(int noticeNo) {
+		// TODO Auto-generated method stub
+		return mapper.delNoti(noticeNo)==1;
+	}
+	
 }

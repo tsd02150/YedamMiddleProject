@@ -13,7 +13,7 @@ public class AddNotiFormControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		return "addNoti.do";
+		return "notice/addNoti.tiles";
 	}
 
 }

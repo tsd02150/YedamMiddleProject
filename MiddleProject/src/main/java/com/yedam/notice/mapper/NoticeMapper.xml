@@ -48,17 +48,16 @@
 		using(member_no)
 		where selector=2
 	</select>
-
 	<!-- 공지사항 selector=1 -->
 	<select id="notiList" resultType="notice">
 		SELECT * FROM notice
 		WHERE
 		selector= 1
 		ORDER BY notice_no
-
 	</select>
 	<insert id="addNoti" parameterType="notice">
-		insert into notice(NOTICE_NO,NOTICE_TITLE,NOTICE_CONTENT,MEMBER_NO,SELECTOR)
+		insert into
+		notice(NOTICE_NO,NOTICE_TITLE,NOTICE_CONTENT,MEMBER_NO,SELECTOR)
 		values
 		(notice_sequence.nextval,#{noticeTitle},#{noticeContent},0,1)
 	</insert>
@@ -67,6 +66,17 @@
 		FROM notice
 		WHERE selector=1 and notice_no=#{noticeNo}
 	</select>
+	<update id="modifyNoti" parameterType="notice">
+		UPDATE notice
+		SET
+		notice_title=#{noticeTitle}, notice_content=#{noticeContent}
+		WHERE
+		notice_no=#{noticeNo}
+	</update>
+	<delete id="delNoti" parameterType="int">
+		delete from notice
+		where notice_no=#{noticeNo}
+	</delete>
 
 
 </mapper>

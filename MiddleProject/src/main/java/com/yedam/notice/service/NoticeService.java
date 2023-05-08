@@ -20,6 +20,9 @@ public interface NoticeService {
 	public List<NoticeVO> notiList(); //목록
 	public boolean addNoti(NoticeVO vo); //등록
 	public NoticeVO getNoti(int noticeNo);//조회
+	public boolean modifyNoti(NoticeVO vo);//수정
+	public boolean delNoti(int noticeNo);//삭제
+	
 	
 	
 }

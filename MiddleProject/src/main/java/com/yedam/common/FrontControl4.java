@@ -60,6 +60,7 @@ public class FrontControl4 extends HttpServlet{
 		
 		
 		
+		
 		//고객센터 목록
 		map.put("/customerCenter.do",new CustomerCenterControl());
 		//고객센터 글등록
