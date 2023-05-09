@@ -2,6 +2,7 @@ package com.yedam.member.service;
 
 import java.util.List;
 
+import com.yedam.member.domain.DeliveryVO;
 import com.yedam.member.domain.MemberVO;
 import com.yedam.member.domain.OrdersVO;
 import com.yedam.member.domain.WishVO;
@@ -20,5 +21,8 @@ public interface MemberService {
 	public List<QnaVO> qnaList(int page);
 	public List<WishVO> wishList(String id);
 	public List<OrdersVO> orderList(String id);
+	public boolean deleteOrder(int orderNo);
+	public List<DeliveryVO> orderDetail(String id);
+	
 	
 }

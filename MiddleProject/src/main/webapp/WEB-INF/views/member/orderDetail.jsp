@@ -68,6 +68,38 @@ height:
 	color: #fff;
 	background: none;
 }
+.center {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+
+
+
+
 </style>
 <table class="mycontainer">
 <tr>
@@ -76,7 +108,7 @@ height:
 <c:when test="${grade=='s'}">
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
+		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
 		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
 		<li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
@@ -99,44 +131,37 @@ height:
 </c:choose>
 </td>
 <td>
-<form action="modifyMember.do" method="post">
-	<!-- 첨부파일이 있기 때문에 method는 post로 -->
-	<table class="table" align="center">
+<table class="table">
+	<c:set var = "totalPrice" value = "0"/>
+	<c:forEach var="delivery" items="${list}">
 		<tr>
-			<th>이름</th>
-			<td>${name }</td>
+			<td><c:out value="${no=no+1 }"></c:out></td>
+			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>품번 : ${delivery.productNo}</a></td>
+			<td><img width="70px" src="images/${delivery.boardThumbnail}"></td>
+			<td>제품명 : ${delivery.productName}</td>
+			<td>주문 수량 : ${delivery.orderCount}</td>
+			<td>배송상태 : <c:choose>
+				<c:when test ="${delivery.deliveryState == 'r'}">
+					상품 준비중
+				</c:when>
+				<c:when test ="${delivery.deliveryState == 'd'}">
+					배송중
+				</c:when>
+				<c:otherwise test="${delivery.deliveryState == 's'}">
+					배송완료
+				</c:otherwise>
+			</c:choose>
+			</td>
 		</tr>
-		<tr>
-			<th>아이디</th>
-			<td><input type="text" name="id" value="${id }" readonly style=display:none>${id }</td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td><input type="password" name="pw" value=""></td>
-		</tr>
-		<tr>
-			<th>연락처</th>
-			<td><input type="text" name="phone" value="${memberInfo.phone }" readonly></td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td><input type="text" name="email" value="${memberInfo.email }"></td>
-		</tr>
-		<tr>
-			<th>주소</th>
-			<td><input type="text" name="adress" value="${memberInfo.adress }"></td>
-		</tr>
-		<tr>
-			<th>쿠폰</th>
-			<td><input type="text" name="coupon" value="#" readonly></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<button type="submit" onClick="location.href='myPage.do'">저장</button>
-				<button type="button" onClick="location.href='myPage.do'">취소</button>
-		</tr>
-	</table>
-</form>
+			<c:set var = "totalPrice" value="${totalPrice + (delivery.price * delivery.orderCount)}"/>
+	</c:forEach>
+</table>
 </td>
 </tr>
 </table>
+
+<script>
+
+</script>
+
+

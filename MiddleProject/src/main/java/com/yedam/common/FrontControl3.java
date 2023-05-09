@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.member.control.QnaListControl;
+import com.yedam.member.control.MyQnaListControl;
+import com.yedam.member.control.OrderDetailControl;
+import com.yedam.member.control.DeleteOrderControl;
 import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.member.control.MyPageControl;
 import com.yedam.member.control.OrderListControl;
@@ -57,10 +59,9 @@ public class FrontControl3 extends HttpServlet{
 		map.put("/modifyMember.do", new ModifyMemberControl());
 		map.put("/orderList.do", new OrderListControl());
 		map.put("/wishList.do", new WishListControl());
-		
-		map.put("/qnaList.do", new QnaListControl());
-		
-		
+		map.put("/myQnaList.do", new MyQnaListControl());
+		map.put("/deleteOrder.do", new DeleteOrderControl());
+		map.put("/orderDetail.do", new OrderDetailControl());
 		
 		
 		

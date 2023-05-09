@@ -17,5 +17,11 @@ public class OrdersVO {
 	private String subCategoryName;
 	private String boardThumbnail;
 	private String boardContent;
+	private int productNo;
+	private int orderCount;
+	private String deliveryState;
+	
+	
+	
 	
 }

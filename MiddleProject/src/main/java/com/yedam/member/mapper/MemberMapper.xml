@@ -62,21 +62,35 @@
  	</select>
  	
  	<select id="orderList" resultType="order" parameterType="String">
- 		select * from (
-    select * from (
-        select * from product p join board b 
-        on(p.product_no = b.product_no)
-    )z
-    join(
-    select * from (
-        member m join
-        (select * from orders o join order_detail od 
-        on(o.order_no = od.order_no)
-        )a  
-        using(member_no)))q 
-    on(q.member_no = z.member_no))
-    where id = #{id}
+ 		select * from(
+		select * from(
+		select * from(
+		select * from orders join order_detail using(order_no))
+		join product using(product_no))
+		join member using(member_no))
+		join board using(product_no)
+		where id = #{id}
  	</select>
+ 	<delete id="deleteOrder" parameterType="int">
+ 		delete from orders where order_no = #{orderNo}
+ 	</delete>
+ 	<delete id="deleteOrderDetail" parameterType="int">
+		delete from order_detail where order_no = #{orderNo}
+ 	</delete>
+ 	<select id="orderDetail" resultType="delivery" parameterType="String">
+ 		select * from(
+        select * from(
+		select * from(
+		select * from(
+		select * from orders join order_detail using(order_no))
+		join product using(product_no))
+		join member using(member_no))
+		join board using(product_no))
+        full outer join delivery using(delivery_no)
+		where id = #{id}
+ 	</select>
+ 	
+ 	
  	
  	
  	

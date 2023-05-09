@@ -121,17 +121,17 @@ height:
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">장바구니</a></li>
-		<li class="sidebar-nav-item"><a href="#about">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">배송현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
+		<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
-		<li class="sidebar-nav-item"><a href="CSList.do">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:otherwise>
 </c:choose>
 </td>
 <td>
+<form action="#" method="get">
 <table class="table">
 	
 	<c:forEach var="wish" items="${list}">
@@ -143,10 +143,12 @@ height:
 			<td>${wish.price}</td>
 			<td>${wish.productCount}</td>
 			<td>${wish.subCategoryName}</td>
+			<td colspan="2" align="center"><button type="submit">문의하기</button></td>
 		</tr>
+			
 	</c:forEach>
 </table>
-<hr>
+</form>
 <div class="center">
 	<div class="pagination">
 		<c:if test="${pageInfo.prev }">

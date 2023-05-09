@@ -2,6 +2,7 @@ package com.yedam.member.mapper;
 
 import java.util.List;
 
+import com.yedam.member.domain.DeliveryVO;
 import com.yedam.member.domain.MemberVO;
 import com.yedam.member.domain.OrdersVO;
 import com.yedam.member.domain.WishVO;
@@ -20,7 +21,8 @@ public interface MemberMapper {
 	public int getCount();
 	public List<WishVO> wishList(String id);
 	public List<OrdersVO> orderList(String id);
-	
-	
+	public int deleteOrder(int orderNo);
+	public int deleteOrderDetail(int orderNo);
+	public List<DeliveryVO> orderDetail(String id);
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.member.domain.DeliveryVO;
 import com.yedam.member.domain.MemberVO;
 import com.yedam.member.domain.OrdersVO;
 import com.yedam.member.domain.WishVO;
@@ -62,6 +63,14 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<OrdersVO> orderList(String id) {
 		return mapper.orderList(id);
+	}
+	@Override
+	public boolean deleteOrder(int orderNo) {
+		return (mapper.deleteOrder(orderNo)>0)&&(mapper.deleteOrderDetail(orderNo)>0);
+	}
+	@Override
+	public List<DeliveryVO> orderDetail(String id) {
+		return mapper.orderDetail(id);
 	}
 	
 }
