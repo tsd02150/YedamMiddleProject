@@ -18,18 +18,35 @@ public class ReviewListControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String bno = req.getParameter("bno");
-		String pno = req.getParameter("pno");
 		
 		ProductService ps = new ProductServiceImpl();
-		List<ReviewVO> reviewList = ps.reviewList(Integer.parseInt(bno));
-	
-		List<ProductVO> prodList = ps.productList(Integer.parseInt(pno));
-		
-		req.setAttribute("reviewList", reviewList);
-		req.setAttribute("prodList", prodList);
-		
-		
-		
-		return null;
+		String json = "[";
+		List<ReviewVO> list = ps.reviewList(Integer.parseInt(bno));
+		for(int i=0; i<list.size(); i++) {
+//			memberNo name, gender, email, 
+//			reviewNo, reviewContent, score, 
+//			reviewAttach, boardNo reviewDate, 
+//			productNo productName, orderNo
+			json += "{\"memberNo\":"+list.get(i).getMemberNo()+",";
+			json += "\"id\":\""+list.get(i).getId()+"\",";
+			json += "\"name\":\""+list.get(i).getName()+"\",";
+			json += "\"gender\":\""+list.get(i).getGender()+"\",";
+			json += "\"email\":\""+list.get(i).getEmail()+"\",";
+			json += "\"reviewNo\":"+list.get(i).getReviewNo()+",";
+			json += "\"reviewContent\":\""+list.get(i).getReviewContent()+"\",";
+			json += "\"score\":"+list.get(i).getScore()+",";
+			json += "\"reviewAttach\":\""+list.get(i).getReviewAttach()+"\",";
+			json += "\"reviewDate\":\""+list.get(i).getReviewDate()+"\",";
+			json += "\"boardNo\":"+list.get(i).getBoardNo()+",";
+			json += "\"productNo\":"+list.get(i).getProductNo()+",";
+			json += "\"productName\":\""+list.get(i).getProductName()+"\",";
+			json += "\"orderNo\":"+list.get(i).getOrderNo()+"}";
+			
+			if(i+1 != list.size()) {
+				json += ",";
+			}
+		}
+		json +="]";
+		return json+".json";
 	}
 }

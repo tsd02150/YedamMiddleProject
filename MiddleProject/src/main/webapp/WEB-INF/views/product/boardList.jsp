@@ -100,8 +100,8 @@ height:
 <c:choose><c:when test="${id !=null }">
 <div class="terms-conditions product-page">
 	${id }
-	${memberGrade }
-	  <c:if test="${memberGrade == S }">
+	${grade }
+	  <c:if test="${grade=='s'}">
 		 <p><a href="addProductForm.do">상품 등록 </a></p>
 		 <p><a href="productList.do">상품 리스트 </a></p>
 		 <p><a href="addBoardForm.do?cno=${companyNo}">판매 등록</a></p>

@@ -22,7 +22,6 @@ public class BoardListControl implements Control {
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
-		String sno = req.getParameter("sno");
 		ProductService ps = new ProductServiceImpl();
 		int total = ps.totalCount();
 		List<BoardVO> boardList = ps.boardList(page);
