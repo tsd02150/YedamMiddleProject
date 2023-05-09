@@ -9,6 +9,7 @@ public class ProductVO {
 	private int price;
 	private int productCount;
 	private int companyNo;
+	private int memberNo;
 	private int subCategoryNo;
 	private int mainCategoryNo;
 	private int themeNo;

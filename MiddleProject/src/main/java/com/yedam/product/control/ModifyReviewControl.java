@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
 import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.service.ProductService;
@@ -17,15 +19,9 @@ public class ModifyReviewControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//content score
 		ProductService ps = new ProductServiceImpl();
-		if(req.getMethod().equals("GET")) {
-			String rno = req.getParameter("bno");
-			
-			ReviewVO vo = ps.gerReview(Integer.parseInt(rno));
-			req.setAttribute("reviewInfo", vo);
-			
-			return "product/reviewModify.tiles";
-		} else if(req.getMethod().equals("POST")) {
+		
 			String bno = req.getParameter("bno");
 			
 			ReviewVO vo = new ReviewVO();
@@ -36,19 +32,23 @@ public class ModifyReviewControl implements Control {
 			vo.setBoardNo(Integer.parseInt("bno"));
 			
 			System.out.println("댓글수정vo="+vo);
-			
+						
 			boolean result = ps.modifyReview(vo);
+			String json = "";
+			Map<String, Object> map = new HashMap<>();
 			
 			if(result) {
-				System.out.println("댓글 수정 성공");
-				return "product/getBoard.do?bno="+bno;
+				vo=ps.gerReview(vo.getReviewNo());
+				System.out.println("댓글단건조회=="+vo);
+				
+				map.put("retCode", "Sucess");
+				map.put("data", vo);
 			}else {
-				System.out.println("댓글 수정 실패");
-				return "product/getBoard.do?bno="+bno;
+				map.put("retCode", "Fail");
 			}
-			
-		}
-		return null;
+		Gson gson = new GsonBuilder().create();
+		json = gson.toJson(map);
+		return json+".json";
 	}
 
 }

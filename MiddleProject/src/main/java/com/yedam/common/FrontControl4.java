@@ -21,14 +21,17 @@ import com.yedam.notice.control.CustomerAddFormControl;
 import com.yedam.notice.control.CustomerCenterControl;
 import com.yedam.notice.control.DelCustomerControl;
 import com.yedam.notice.control.DelNotiControl;
+import com.yedam.notice.control.DelReplyCustomerControl;
 import com.yedam.notice.control.GetCustomerControl;
 import com.yedam.notice.control.GetNotiControl;
 import com.yedam.notice.control.ModifyCustomerControl;
 import com.yedam.notice.control.ModifyCustomerFormControl;
 import com.yedam.notice.control.ModifyNotiControl;
+import com.yedam.notice.control.ModifyNotiFormControl;
+import com.yedam.notice.control.ModifyReplyCustomerControl;
 import com.yedam.notice.control.NotiControl;
-import com.yedam.notice.control.replyAddCenterControl;
-import com.yedam.notice.control.replyListCenterControl;
+import com.yedam.notice.control.ReplyListCustomerControl;
+import com.yedam.notice.control.AddReplyCustomerControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProductListControl;
 import com.yedam.product.control.ThemeControl;
@@ -60,6 +63,7 @@ public class FrontControl4 extends HttpServlet{
 		
 		
 		
+		
 		//고객센터 목록
 		map.put("/customerCenter.do",new CustomerCenterControl());
 		//고객센터 글등록
@@ -72,10 +76,15 @@ public class FrontControl4 extends HttpServlet{
 		//고객센터 글삭제
 		map.put("/delCustomer.do", new DelCustomerControl());
 		
-		//고객센터 댓글조회
-		map.put("/replyListCenter.do", new replyListCenterControl());
-		//고객센터 댓글등록
-		map.put("/replyAddCenter.do",new replyAddCenterControl());
+		//댓글목록
+		map.put("/replyListCustomer.do", new ReplyListCustomerControl());
+		//댓글등록
+		map.put("/addReplyCustomer.do",new AddReplyCustomerControl());
+		//댓글수정
+		map.put("/modifyReplyCustomer.do",new ModifyReplyCustomerControl());
+		//댓글삭제
+		map.put("/delReplyCustomer.do",new DelReplyCustomerControl());
+		
 		
 		
 		//공지사항 목록
@@ -86,6 +95,7 @@ public class FrontControl4 extends HttpServlet{
 		//공지사항 글조회
 		map.put("/getNoti.do", new GetNotiControl());
 		//공지사항 수정
+		map.put("/modifyNotiForm.do", new ModifyNotiFormControl());
 		map.put("/modifyNoti.do", new ModifyNotiControl());
 		//공지사항 삭제
 		map.put("/delNoti.do", new DelNotiControl());

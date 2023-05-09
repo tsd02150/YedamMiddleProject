@@ -11,6 +11,17 @@ public class DeliveryVO {
 	private int fee;
 	private Date daliDate;
 	private String deliveryState;
+	private int orderNo;
+	private Date orderDate;
+	private int memberNo;
+	private String productName;
+	private int price;
+	private String boardThumbnail;
+	private String boardContent;
+	private int productNo;
+	private int orderCount;
+	
+	
 	
 	
 }

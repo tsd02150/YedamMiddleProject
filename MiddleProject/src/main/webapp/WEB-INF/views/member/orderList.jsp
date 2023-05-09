@@ -121,31 +121,42 @@ height:
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">장바구니</a></li>
-		<li class="sidebar-nav-item"><a href="#about">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">배송현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
+		<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
-		<li class="sidebar-nav-item"><a href="CSList.do">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:otherwise>
 </c:choose>
 </td>
 <td>
+<form action="orderPage.do" method="get">
 <table class="table">
-	
+	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="order" items="${list}">
 		<tr>
 			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>${order.productNo}</a></td>
-			<td>${order.productName}</td>
-			<td><img width="200px" src="images/${wish.boardThumbnail}"></td>
-			<td>${order.price}</td>
-			<td>${order.productCount}</td>
+			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>품번 : ${order.productNo}</a></td>
+			<td>제품명 : ${order.productName}</td>
+			<td><img width="70px" src="images/${order.boardThumbnail}"></td>
+			<td>가격 : ${order.price}</td>
+			<td>주문 수량 : ${order.orderCount}</td>
+			<td><button id="delbtn" type="button" name="orderNo" onClick="location.href='deleteOrder.do?orderNo=${order.orderNo }'">삭제</button>
 		</tr>
+			<c:set var = "totalPrice" value="${totalPrice + (order.price * order.orderCount)}"/>
 	</c:forEach>
+	<tr>
+		<td>
+			총 가격 : <c:out value="${totalPrice}" />
+		</td>
+	</tr>
+	<tr>
+	<td colspan="2" align="right">
+		<button type="submit">주문</button>
+	</tr>
 </table>
-<hr>
+</form>
 <div class="center">
 	<div class="pagination">
 		<c:if test="${pageInfo.prev }">
@@ -163,3 +174,9 @@ height:
 </td>
 </tr>
 </table>
+
+<script>
+
+</script>
+
+

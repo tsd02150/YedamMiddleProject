@@ -71,13 +71,13 @@
 				</tr>
 				<c:choose>
 					<c:when test="${id.equals('admin')}">
-						<tr>
-							<th>답변등록</th>
-							<td><input type="text" size="50" id="reply">
-								<button type="button" id="addBtn">등록</button></td>
-						</tr>
 					</c:when>
 				</c:choose>
+						<tr>
+							<th>답변등록</th>
+							<td><input type="text" size="50" id="replyInput">
+								<button type="button" id="addBtn">등록</button></td>
+						</tr>
 				<!-- 댓글 정보 -->
 				<tr>
 					<th>작성자</th>
@@ -95,8 +95,7 @@
 			<tbody>
 				<tr id="template">
 					<td>번호</td>
-
-					<td><input type="text" class=""></td>
+					<td><input type="text" class="modi"></td>
 					<td><button>수정</button></td>
 				</tr>
 			</tbody>
@@ -127,21 +126,16 @@
 	document.querySelector('#addBtn').addEventListener('click', addReplyFnc);
 
 	function addReplyFnc(e) {
-/* 		if ("${memberInfo.email}" == "") {
-			alert('로그인후 등록가능');
-			location.href = "loginForm.do";
-			return;
-		} */
 		
 		//console.log('click',e);
-		console.log('reply', document.querySelector('#reply').value)
-		let reply = document.querySelector('#reply').value; //reply값을 가져와서 reply변수에 입력한다.
+		console.log(document.querySelector('#replyInput').value);
+		let reply = document.querySelector('#replyInput').value; //reply값을 가져와서 reply변수에 입력한다.
 
 		//Ajax 호출
 		xhtp = new XMLHttpRequest();
-		xhtp.open('post', 'replyAddCenter.do');//post방식으로 보냄.
-		xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xhtp.send('noticeNo=${vo.noticeNo}&reply=' + reply + '&writer');//파라미터 넘김
+		xhtp.open('post', 'addReplyCustomer.do');//post방식으로 보냄.
+		xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');//post방식일때만 쓰는코드
+		xhtp.send('noticeNo=${vo.noticeNo}&reply=' + reply);//파라미터 넘김
 		xhtp.onload = function () {
 			console.log(xhtp.response);
 			let result = JSON.parse(xhtp.response);
@@ -216,6 +210,8 @@
 			tr.append(td);
 		}
 
+		/* 
+		
 		//삭제버튼
 		let btn = document.createElement('button');
 		btn.addEventListener('click', function (e) {
@@ -251,6 +247,9 @@
 		td.append(btn);
 		tr.append(td)
 		return tr; //생성한 tr을 반환
+		
+		 */
+		
 	}
 	
 </script>

@@ -118,7 +118,7 @@ height:
 
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터 문의</a></li>
+		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터</a></li>
 		<li class="sidebar-nav-item"><a href="noti.do">공지사항</a></li>
 		<li class="sidebar-nav-item"><a href="#">자주하는 질문</a></li>
 	</ul>
