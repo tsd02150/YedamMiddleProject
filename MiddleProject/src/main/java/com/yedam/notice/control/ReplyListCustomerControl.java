@@ -12,7 +12,7 @@ import com.yedam.notice.domain.ReplyVO;
 import com.yedam.notice.service.ReplyService;
 import com.yedam.notice.service.ReplyServiceImpl;
 
-public class replyListCenterControl implements Control {
+public class ReplyListCustomerControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

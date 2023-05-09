@@ -22,17 +22,11 @@ public class GetCustomerControl implements Control {
 
 		//customerCenter.jsp 에서 넘어오는 "no"파라미터
 		String no= req.getParameter("no");
-		String noticePw= req.getParameter("pw");//원래입력된 pw
-		/*
-		 * String pw= req.getParameter("pass");//팝업창에 입력한 pw
-		 */		System.out.println(no);
-		System.out.println(noticePw);
-		
-		
+		System.out.println("no: "+no);		
 		NoticeService service= new NoticeServiceImpl();
 		NoticeVO vo = service.getCustomer(Integer.parseInt(no));
 		req.setAttribute("vo", vo); //getCustomer.jsp로 넘겨주는 파라미터 "vo"
-		System.out.println(vo);
+		System.out.println("vo :"+vo);
 		
 		/*if(pw.equals(noticePw)) {*/
 			return "notice/getCustomer.tiles";			

@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class AddNotiFormControl implements Control {
+public class ModifyReplyCustomerControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		return "notice/addNoti.tiles";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

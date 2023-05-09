@@ -27,7 +27,7 @@
 		<tr>
 			<td colspan="2" align="center">
 				<button type="submit">등록</button>
-				<button type="reset">취소</button>
+				<button type="button" onclick="location.href='noti.do'">취소</button>
 			</td>
 		</tr>
 
