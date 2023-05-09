@@ -154,11 +154,17 @@
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- REVIEW -->
 	<select id="reviewList" parameterType="int">
-		select * from review join
-		member
-		using(member_no)
+		select * from(
+		select * from member join(
+		select rb.*, p.product_name from product p join(
+		select r.*, b.product_no from review r join board b on(b.board_no=r.board_no))rb
+		on(rb.product_no = p.product_no))
+		using(member_no)) a
+		join
+		(select * from orders join order_detail using(order_no)) c
+		on(a.product_no=c.product_no and a.member_no=c.member_no)
 		where board_no=#{boardNo}
-		order by 1
+		order by review_date desc
 	</select>
 	<select id="searchReview" parameterType="int">
 		select * from review
@@ -176,13 +182,12 @@
 		update review
 		set
 		review_content=#{reviewContent},
-		score=#{score},
-		reviewAttach=#{reviewAttach}
+		score=#{score}
 		where review_no=#{reviewNo}
 	</update>
 	<delete id="deleteReview" parameterType="int">
-		delete review where
-		review_no=#{reviewNo}
+		delete review 
+		where review_no=#{reviewNo}
 	</delete>
 
 </mapper>

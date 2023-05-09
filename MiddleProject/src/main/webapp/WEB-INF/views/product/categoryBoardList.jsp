@@ -71,9 +71,10 @@ height:
 	background: none;
 }
 </style>
-
-<div style="display:block;">
-<form action="categoryBoard.do" method="get">
+<table>
+<tr><td>
+<div style="display:block; width: 150px;">
+<form action="categoryBoard.do" method="get" style="width: 150px;">
 <nav id="sidebar-wrapper" class="active" style="display:inline-block;">
 	<ul id="ul" class="sidebar-nav">
 	<c:forEach var="ctgList" items="${ctgList }">
@@ -82,14 +83,16 @@ height:
 	</ul>
 </nav>
 </form>
+</div>
+</td><td>
 <div class="untree_co-section product-section before-footer-section" style="width:1200px;display:inline-block">
 	<div class="container">
 		<div class="row">
 <c:choose><c:when test="${id !=null }">
 <div class="terms-conditions product-page">
 	${id }
-	${memberGrade }
-	  <c:if test="${memberGrade == S }">
+	${grade }
+	  <c:if test="${grade == S }">
 		 <p><a href="addProductForm.do">상품 등록 </a></p>
 		 <p><a href="productList.do">상품 리스트 </a></p>
 		 <p><a href="addBoardForm.do?cno=${companyNo}">판매 등록</a></p>
@@ -98,6 +101,7 @@ height:
 </c:when></c:choose>
   
 <!-- Start Column 1 -->
+<table>
 <c:forEach var="board" items="${ctgrlist }">
 
 	<div class="col-12 col-md-4 col-lg-3 mb-5">
@@ -110,12 +114,14 @@ height:
 		</a>
 	</div>
 </c:forEach>
+</table>
 <!-- End Column 1 -->
 
 		</div>
 	</div>
 </div>
-</div>
+</td></tr>
+</table>
 
 
 <script>

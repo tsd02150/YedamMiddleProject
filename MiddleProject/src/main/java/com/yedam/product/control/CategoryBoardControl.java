@@ -26,10 +26,12 @@ public class CategoryBoardControl implements Control {
 		int total = ps.totalCount();
 		List<BoardVO> ctgrlist = ps.categoryList(Integer.parseInt(sno), page);
 		List<BoardVO> boardList = ps.boardList(page);
+		List<BoardVO> ctgList = ps.ctgJoin();
 		PageDTO dto = new PageDTO(page,total);
 		req.setAttribute("ctgrlist", ctgrlist);
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("pageInfo", dto);
+		req.setAttribute("ctgList", ctgList);
 		
 		System.out.println("==>ctgrlist : "+ctgrlist);
 		System.out.println("boardList : "+boardList);
