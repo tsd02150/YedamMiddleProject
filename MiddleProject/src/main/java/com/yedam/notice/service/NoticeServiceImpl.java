@@ -44,11 +44,16 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> searchFaq() {
-		return mapper.selectFaq();
+	public List<NoticeVO> searchFaq(int page) {
+		return mapper.selectFaq(page);
 	}
 	
 	
+	@Override
+	public int getFaqCount() {
+		return mapper.getFaqCount();
+	}
+
 	@Override
 	public List<NoticeVO> notiList() {
 		// TODO Auto-generated method stub

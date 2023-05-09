@@ -42,10 +42,24 @@
 		notice_no=#{noticeNo}
 	</delete>
 
-	<select id="selectFaq" parameterType="notice">
-		select notice_no,notice_title,notice_content,notice_date,selector,name
-		from notice join member
-		using(member_no)
+	<select id="selectFaq" resultType="notice">
+	<![CDATA[
+		select b.*
+		from(
+			select rownum rn,a.*
+			from(
+				select notice_no,notice_title,notice_content,notice_date,selector,name
+				from notice join member
+				using(member_no)
+				where selector=2
+				) a
+			where rownum <= (#{page}*10)) b
+		where b.rn > (#{page}-1)*10
+	]]>
+	</select>
+	<select id="getFaqCount" resultType="int">
+		select count(*)
+		from notice
 		where selector=2
 	</select>
 

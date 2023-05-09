@@ -13,8 +13,8 @@ public interface NoticeService {
 	public boolean DelCustomer(int noticeNo);//삭제
 	
 	//FAQ
-	public List<NoticeVO> searchFaq();
-	
+	public List<NoticeVO> searchFaq(int page);
+	public int getFaqCount();
 	
 	//공지사항
 	public List<NoticeVO> notiList(); //목록

@@ -18,8 +18,9 @@ public interface NoticeMapper {
 	public int DelCustomer(int noticeNo);
 	
 	//자주묻는질문 목록조회
-	public List<NoticeVO> selectFaq();
-	
+	public List<NoticeVO> selectFaq(int page);
+	//자주묻는질문 개수
+	public int getFaqCount();
 	
 	
 	//공지사항 목록조회
