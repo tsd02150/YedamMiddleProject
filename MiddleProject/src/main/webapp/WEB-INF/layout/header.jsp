@@ -7,7 +7,7 @@
 	arial-label="Furni navigation bar">
 
 	<div class="container">
-		<a class="navbar-brand" href="main.do">내일의 집<span>.</span></a>
+		<a class="navbar-brand" href="main.do"><img src="images/houseIcon.png" width=40px height=40px>내일의 집<span>.</span></a>
 		<c:choose>
 		<c:when test="${id!=null }">
 		<p style="color:white;">[${name }]님 환영합니다.</p>

@@ -5,9 +5,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#signUpForm {
+	text-align: center;
+	margin: 100px auto;
+	position: relative;
+}
+#signUpForm table{
+	top: 200px;
+	border-color: #eff2f1;
+}
+#signUpForm form{
+	width:800px;
+	height : 600px;
+	top : 50%;
+	margin: 100px auto;
+	border: solid 1px gray;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #000;
+}
+#signUpForm button{
+	width:300px;
+	height:60px;
+	background-color: #3b5d50;
+	color:white;
+	border : none;
+	font-size : large;
+	font-weight: bold;
+}
+ 
+</style>
 </head>
 <body>
+<div id="signUpForm">
 <form action="signUp.do" method="post">
+		<h3>회원가입</h3>
 		<table class="table">
 			<tr>
 				<th>id</th>
@@ -39,8 +72,7 @@
 			</tr>
 			<tr>
 				<th>주민등록번호</th>
-				<td><input type="password" id="rrn1" name="rrn1" required></td>
-				<td><input type="password" id="rrn2" name="rrn2" required></td>
+				<td><input type="password" id="rrn1" name="rrn1" required>-<input type="password" id="rrn2" name="rrn2" required></td>
 			</tr>
 			<input type="text" id="grade" name="grade" value=${grade } style="display: none;">
 			<tr>
@@ -49,6 +81,7 @@
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 
 <script>

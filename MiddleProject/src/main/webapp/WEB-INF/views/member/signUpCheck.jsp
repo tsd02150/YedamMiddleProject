@@ -6,22 +6,44 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.check{
-		width: 400px;
-		height: 600px;
-		background-color: white;
-		border:1px solid black;
-		display: inline-block;
-	}
+.check{
+	top : 50%;
+	padding: 30px;
+	padding-top:130px;
+	width: 400px;
+	height: 400px;
+	background-color: #eff2f1;
+	margin:0 auto;
+	display: inline-block;
+	font-size : large;
+	font-weight: bold;
+	position: relative;
+}
+.check:hover{
+	background-color: #3b5d50;
+	color : white;
+	border: solid 1px gray;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #000;
+}
+#signUpCheckForm{
+	text-align: center;
+	margin: 100px auto;
+	position: relative;
+}
+#signUpCheckForm h3{
+	top : 50%;
+}
+
 </style>
 </head>
 <body>
-<div>
+<div id=signUpCheckForm>
 	<div id="customer" class="check">
-		일반회원
+		<h3>일반회원</h3>
 	</div>
 	<div id="seller" class="check">
-		업체회원
+		<h3>업체회원</h3>
 	</div>
 </div>
 </body>

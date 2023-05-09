@@ -66,7 +66,7 @@
 .modal{
 	width:1200px;
 	background-color:white;
-	display:block;
+	display:none;
 	border: solid 1px gray;
 	height:600px;
 	position: fixed;
@@ -285,15 +285,18 @@
 			let productName = itemList.children.innerText;
 		}
 	});
+	let date = new Date();
+	console.log(date);
+	console.log(date.getHours());
 	
-	if('${checked}'=="false"){
+	if('${checked}'=="false" && date.getHours()==9){
 		document.querySelector('.modal').style.display="block";	
 	}
-	if('${checked}'=="true"||'${close}'=="close"){
+	if('${checked}'=="true" || '${close}'=="close"){
 		document.querySelector('.modal').style.display="none";			
 	}
 	
-	//let check ="false";
+
 	document.querySelector('#xCheck').addEventListener('click',function(){
 		console.log(this);
 		console.log(this.checked);
@@ -304,10 +307,5 @@
 		}	
 		document.querySelector('#closeModal').href="main.do?checked="+check+"&close=close";
 	})
-	
-	
-	let date = new Date();
-	console.log(date);
-	console.log(date.getHours());
 </script>
 </html>
