@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.MainCategoryVO;
 import com.yedam.product.domain.ProductVO;
+import com.yedam.product.domain.QnaVO;
 import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.domain.SubCategoryVO;
 
@@ -55,5 +56,13 @@ public interface ProductMapper {
 	public int deleteReview(ReviewVO vo);
 	
 	public List<ReviewVO> myOrderList(String id);
+	
+	//QnA
+	public List<QnaVO> qnaList(int boardNo);
+	public QnaVO searchQna(int qnaNo);
+	public int insertQna(QnaVO vo);
+	public int updateQna(QnaVO vo);
+	public int deleteQna(QnaVO vo);
 
+	public List<QnaVO> myQnaList(int memberNo);
 }

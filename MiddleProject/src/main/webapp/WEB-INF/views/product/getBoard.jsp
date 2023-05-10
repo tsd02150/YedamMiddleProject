@@ -201,12 +201,17 @@
 		</div>
 	</li>
 </ul>
+<ul id="qna-ul"></ul>
+<ul id="comapny-ul"></ul>
 
 <script>
+//Review
 	let review = document.getElementById('review');
-	let rtd = document.getElementById('rtd');
 	let qna = document.getElementById('qna');
 	let company = document.getElementById('company');
+	let rtd = document.getElementById('rtd');
+	let qu = document.getElementById('qna-ul');
+	let cu = document.getElementById('comapny-ul');
 
 	review.addEventListener('click', function () {
 		fetch('reviewList.do?bno=${boardInfo.boardNo}', {
@@ -407,5 +412,48 @@
 		li.append(div);
 		return li;
 	}
+
+//Qna
+qna.addEventListener('click', function(){
+	fetch(`qnaList.do?bno=${boardInfo.boardNo}`,{
+		method:"GET",
+	})
+	.then(qnaResolve=>qnaResolve.json())
+	.then(qnaList=>{
+		rtd.innerHTML="";
+		qu.innerHTML="";
+		div = document.createElement('div');
+		div.id="qna-list";
+			qu.append(div);
+			
+			let addQna=document.createElement('button');
+			addQna.innerText="문의 등록";
+			addQna.type="submit";
+			qu.append(addQna);
+			let br = document.createElement('br');
+			qu.append(br);
+			qu.append(br);
+			
+			//addBtn 클릭 이벤트
+			
+			//qnal
+			qnaList.forEach(qlist=>{
+				console.log(qlist);
+				let listq = makeQli(qlist);
+				
+				qu.append(listq);
+			})//li end
+			
+	})
+})
+
+function makeQli(qlist){
+	let li=document.createElement('li');
+	li.id="qna-category";
+	let div = document.createElement('div');
+	div.innerText = qlist.qnaCategory;
+	li.append(div);
+	return li;
+}
 	
 </script>

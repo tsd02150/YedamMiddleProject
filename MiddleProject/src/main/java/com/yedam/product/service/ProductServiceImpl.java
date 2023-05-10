@@ -9,6 +9,7 @@ import com.yedam.common.DataSource;
 import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.MainCategoryVO;
 import com.yedam.product.domain.ProductVO;
+import com.yedam.product.domain.QnaVO;
 import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.domain.SubCategoryVO;
 import com.yedam.product.mapper.ProductMapper;
@@ -137,6 +138,36 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<ReviewVO> myOrderList(String id) {
 		return mapper.myOrderList(id);
+	}
+
+	@Override
+	public List<QnaVO> qnaList(int boardNo) {
+		return mapper.qnaList(boardNo);
+	}
+
+	@Override
+	public QnaVO getQna(int qnaNo) {
+		return mapper.searchQna(qnaNo);
+	}
+
+	@Override
+	public boolean addQna(QnaVO vo) {
+		return mapper.insertQna(vo)==1;
+	}
+
+	@Override
+	public boolean modifyQna(QnaVO vo) {
+		return mapper.updateQna(vo)==1;
+	}
+
+	@Override
+	public boolean removeQna(QnaVO vo) {
+		return mapper.deleteQna(vo)==1;
+	}
+
+	@Override
+	public List<QnaVO> myQnaList(int memberNo) {
+		return mapper.myQnaList(memberNo);
 	}
 
 
