@@ -93,9 +93,7 @@
         full outer join delivery using(delivery_no)
 		where id = #{id}
  	</select>
- 	
- 	
- 	
- 	
- 	
+ 	<select id="memberList">
+ 	select * from member where grade='c'
+ 	</select>
 </mapper>

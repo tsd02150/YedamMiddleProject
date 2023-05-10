@@ -45,17 +45,15 @@
 		</tr>
 
 		<tr>
-			<td><button type="button"
-					onclick="location.href='customerCenter.do'">목록으로</button></td>
-			<td colspan="2" align="center">
-				<c:choose>
+			<td colspan="2" align="center"><c:choose>
 					<c:when test="${id == vo.id || id.equals('admin')}">
 						<button type="button"
 							onclick="location.href='modifyCustomer.do?no=${vo.noticeNo}'">수정</button>
 						<button type="button"
 							onclick="location.href='delCustomer.do?no=${vo.noticeNo}'">삭제</button>
 					</c:when>
-				</c:choose></td>
+				</c:choose>
+				<button type="button" onclick="location.href='customerCenter.do'">목록으로</button></td>
 		</tr>
 	</table>
 
@@ -73,18 +71,19 @@
 					<c:when test="${id.equals('admin')}">
 					</c:when>
 				</c:choose>
-						<tr>
-							<th>답변등록</th>
-							<td><input type="text" size="50" id="replyInput">
-								<button type="button" id="addBtn">등록</button></td>
-						</tr>
+				<tr>
+					<th>답변등록</th>
+					<td><input type="text" size="50" id="replyInput">
+						<button type="button" id="addBtn">등록</button></td>
+				</tr>
 				<!-- 댓글 정보 -->
 				<tr>
 					<th>작성자</th>
-					<th>답변내용</th>   <!-- 옆에 삭제버튼 만들기 -->
+					<th>답변내용</th>
+					<!-- 옆에 삭제버튼 만들기 -->
 				</tr>
 			</thead>
-			
+
 			<!-- 댓글리스트 -->
 			<tbody id="tlist">
 

@@ -20,11 +20,13 @@ public class ModifyNotiFormControl implements Control {
 		NoticeService service=new NoticeServiceImpl();		
 		
 		String no=req.getParameter("no");
+		System.out.println(no);
 		
 		req.setAttribute("vo", service.getNoti(Integer.parseInt(no)));
+
 		
 		return "notice/modifyNoti.tiles";
-		
+	
 	}
 
 }

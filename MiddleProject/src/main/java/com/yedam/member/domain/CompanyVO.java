@@ -10,6 +10,7 @@ public class CompanyVO {
 	private String companyPhone;
 	private String companyAddr;
 	
-	
+	private String name;
+	private String grade;
 	
 }
