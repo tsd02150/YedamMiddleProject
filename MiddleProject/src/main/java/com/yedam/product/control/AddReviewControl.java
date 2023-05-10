@@ -31,28 +31,37 @@ public class AddReviewControl implements Control {
 		Enumeration<?> enu = multi.getFileNames();
 		while(enu.hasMoreElements()) {
 			String file = (String) enu.nextElement();
-			System.out.println("fiel: "+file);
+			System.out.println("file: "+file);
 		}
 		
-		String mno = req.getParameter("mno");
-		String rcontent = req.getParameter("rcontent");
-		String score = req.getParameter("score");
-		String bno = req.getParameter("bno");
+		String mno = multi.getParameter("mno");
+		String rcontent = multi.getParameter("rcontent");
+		String attach = multi.getParameter("attach");
+		String score = multi.getParameter("score");
+		String bno = multi.getParameter("bno");
+		System.out.println(mno);
+		System.out.println(rcontent);
+		System.out.println(attach);
+		System.out.println(score);
+		System.out.println(bno);
 		
 		ProductService ps = new ProductServiceImpl();
 		ReviewVO vo = new ReviewVO();
 		vo.setMemberNo(Integer.parseInt(mno));
 		vo.setReviewContent(rcontent);
+		vo.setReviewContent(attach);
 		vo.setScore(Integer.parseInt(score));
 		vo.setBoardNo(Integer.parseInt(bno));
+		
+		System.out.println("리뷰등록==>"+vo);
 		
 		
 		if(ps.addReview(vo)) {
 			System.out.println("리뷰등록 성공");
-			return "product/getBoard.do?bno="+bno;
+			return "getBoard.do?bno="+bno;
 		}else {
 			System.out.println("리뷰등록 실패");
-			return "product/getBoard.do?bno="+bno;
+			return "getBoard.do?bno="+bno;
 		}
 		
 	}

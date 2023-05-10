@@ -174,9 +174,8 @@
 	</select>
 	<insert id="insertReview" parameterType="review">
 		insert into review
-		(review_no, review_content, score, review_attach, member_no, board_no,
-		review_date)
-		values(review_req.nextval,#{reviewContent},#{score},#{reviewAttach},#{memberNo},#{boardNo},sysdate)
+		(review_no, review_content, score, review_attach, member_no, board_no,review_date)
+		values(review_seq.nextval,#{reviewContent},#{score},#{reviewAttach},#{memberNo},#{boardNo},sysdate)
 	</insert>
 	<update id="updateReview" parameterType="review">
 		update review
