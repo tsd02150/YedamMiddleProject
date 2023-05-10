@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/style.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+	rel="stylesheet">
 <title>Insert title here</title>
 <style>
 #search {
@@ -20,6 +25,12 @@
 #searchDetail {
 	margin: 0 auto;
 	width: 800px;
+	vertical-align: baseline;
+}
+
+#searchDetail table tbody {
+	position: relative;
+	left: 20px;
 }
 
 #mainBody {
@@ -49,51 +60,117 @@
 }
 
 .animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
 }
 
-@-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
-  to {-webkit-transform: scale(1)}
-}
-  
-@keyframes animatezoom {
-  from {transform: scale(0)} 
-  to {transform: scale(1)}
+@
+-webkit-keyframes animatezoom {
+	from {-webkit-transform: scale(0)
 }
 
-.modal{
-	width:1200px;
-	background-color:white;
-	display:none;
+to {
+	-webkit-transform: scale(1)
+}
+
+}
+@
+keyframes animatezoom {
+	from {transform: scale(0)
+}
+
+to {
+	transform: scale(1)
+}
+
+}
+.modal {
+	width: 1200px;
+	background-color: white;
+	display: none;
 	border: solid 1px gray;
-	height:600px;
+	height: 600px;
 	position: fixed;
-   	margin: 0 auto;
-   	top: 100px;
-  	left: 0;
-   	right: 0;
-	
+	margin: 0 auto;
+	top: 100px;
+	left: 0;
+	right: 0;
 }
-#check{
+
+#check {
 	text-align: right;
 }
-#check p{
+
+#check p {
 	display: inline-block;
 }
+
+#category {
+	margin-right: 10px;
+	font-weight: bold;
+	font-size: large;
+}
+
+#categoryList {
+	position: absolute;
+	z-index: 1000;
+	background-color: #f5f5f5;
+	width: 550px;
+	height: 500px;
+	margin: 0 auto;
+	left: 20%;
+	display: none;
+	align-items: center;
+	border: solid 1px black;
+}
+
+#categoryList ul {
+	list-style: none;
+}
+
+#categoryList>div {
+	height: 90%;
+}
+
+#mainCategory {
+	border-right: solid 1px black;
+	width: 200px;
+}
+
+#mainCategory li{
+	height: 225px;
+	padding : 100px 0px;
+	font-weight: bold;
+	font-size: large;
+}
+#subCategory {
+	display: none;
+	width: 300px;
+	flex-direction: column;
+}
+#subCategory li{
+	height: 50px;
+	font-weight: bold;
+	font-size: larger;
+	vertical-align: middle;
+}
+
+#subCategory li:hover{
+	background-color: #F9BF29;
+	color: black;
+}
+
+
 </style>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-	rel="stylesheet">
 
 </head>
 <body id="mainBody">
 	<div class="modal animate">
-		<img src="" alt="#"/>
+		<img src="" alt="#" />
 		<div id="check">
-				<input type="checkbox" id=xCheck><p>다시 열지 않겠습니다.&nbsp &nbsp</p><a href="main.do?checked=false&close=close" id="closeModal">[닫기]</a>
+			<input type="checkbox" id=xCheck>
+			<p>다시 열지 않겠습니다.&nbsp &nbsp</p>
+			<a href="main.do?checked=false&close=close" id="closeModal">[닫기]</a>
 		</div>
 	</div>
 	<div style="background-color: #3B5D50;">
@@ -101,9 +178,9 @@
 			<div id="searchDetail">
 				<table>
 					<tr>
-						<td><p style="margin-right: 20px;">Category</p></td>
+						<td><div id="category"><span>Category</span></div></td>
 						<td><input type="text" id="searchItem"></td>
-						<td><button type="submit">검색</button></td>
+						<td><button type="button">검색</button></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -118,75 +195,48 @@
 				</table>
 			</div>
 		</div>
-		<div style="width: 1200px; margin: 0 auto;">
-			<div>
-				<div id="carouselExample" class="carousel slide">
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="400" xmlns="http://www.w3.org/2000/svg"
-								role="img" aria-label="Placeholder: First slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"
-								style="border-radius: 10px">
-							<title>Placeholder</title><rect width="100%" height="100%"
-									fill="#777"></rect>
-							<text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
-						</div>
-						<div class="carousel-item">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="400" xmlns="http://www.w3.org/2000/svg"
-								role="img" aria-label="Placeholder: Second slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"
-								style="border-radius: 10px">
-							<title>Placeholder</title><rect width="100%" height="100%"
-									fill="#666"></rect>
-							<text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
-						</div>
-						<div class="carousel-item">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="400" xmlns="http://www.w3.org/2000/svg"
-								role="img" aria-label="Placeholder: Third slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"
-								style="border-radius: 10px">
-							<title>Placeholder</title><rect width="100%" height="100%"
-									fill="#555"></rect>
-							<text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text></svg>
-						</div>
-					</div>
-					<button class="carousel-control-prev" type="button"
-						data-bs-target="#carouselExample" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button"
-						data-bs-target="#carouselExample" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
-				</div>
+		<div id="categoryList">
+
+			<div id="mainCategory">
+				<ul>
+					<c:forEach var="mainCategory" items="${mainCategoryList}">
+						<li class="mainCategory" value="${mainCategory.mainCategoryNo }">${mainCategory.mainCategoryName }</li>
+					</c:forEach>
+				</ul>
 			</div>
+			<div id="subCategory">
+				<ul>
+				</ul>
+			</div>
+	
+		</div>
+		<div>
+			<a href="theme.do"><img src="images/maintheme.png"></a>
 		</div>
 	</div>
 	<div style="width: 1200px; margin: 0 auto;">
-		<div style="height: 500px">
-			<div class="card" style="width: 18rem;">
-				<svg class="bd-placeholder-img card-img-top" width="100%"
-					height="180" xmlns="http://www.w3.org/2000/svg" role="img"
-					aria-label="Placeholder: Image cap"
-					preserveAspectRatio="xMidYMid slice" focusable="false">
-					<title>Placeholder</title><rect width="100%" height="100%"
-						fill="#868e96"></rect>
-					<text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-				<div class="card-body">
-					<p class="card-text">Some quick example text to build on the
-						card title and make up the bulk of the card's content.</p>
+		<div class="untree_co-section product-section before-footer-section"
+			style="width: 1200px; display: inline-block">
+			<div class="container">
+				<div class="row">
+					<c:forEach var="board" items="${boardList }">
+						<div class="col-12 col-md-4 col-lg-3 mb-5">
+							<a class="product-item"
+								href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}">
+								<img src="images/${board.boardThumbnail}"
+								class="img-fluid product-thumbnail">
+								<h3 class="product-title">${board.boardTitle}</h3> <strong
+								class="product-price"> <fmt:formatNumber
+										value="${board.price}" pattern="#,###" />
+							</strong> <span class="icon-cross"> <img src="images/cross.svg"
+									class="img-fluid">
+							</span>
+							</a>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
-
 		<div class="footer-section" style="background-color: #eff2f1">
 			<div class="row g-5 mb-5">
 				<div class="col-lg-4">
@@ -234,6 +284,38 @@
 	</div>
 </body>
 <script>
+	console.log(document.querySelector('#categoryList'));
+	document.querySelector('#category').addEventListener('click',function(){
+		if(document.querySelector('#categoryList').style.display=="none"){
+			document.querySelector('#categoryList').style.display="flex";		
+		}else{
+			document.querySelector('#categoryList').style.display="none";
+		}		
+	})
+
+	let mainList = document.querySelectorAll(".mainCategory");
+	let subList = document.querySelector("#subCategory").children[0];
+	mainList.forEach(main=>{
+		main.addEventListener('click',function(){
+			while(subList.firstChild) {
+				subList.removeChild(subList.firstChild);
+			}
+			fetch('ctgSub.do?mctgNo='+main.value)
+			.then(resolve=>resolve.json())
+			.then(result=>{
+				result.forEach(data=>{
+					let li = document.createElement('li');
+					li.innerText=data.subCategoryName;
+					li.value = data.subVategoryNo;
+					subList.append(li);
+					subList.parentElement.style.display="flex";
+				})	
+			})
+			.catch(err=>console.log(err))
+		})
+	})
+	
+	
 	let itemList = document.querySelector('#searchItemList').children[0];
 	let index;
 	document.querySelector('#searchItem').addEventListener('keyup',function(e){
@@ -272,17 +354,20 @@
 					itemList.children[index-1].style="background-color: white";
 				}
 				itemList.children[index].style="background-color: gray";
+				this.value = itemList.children[index].innerText;
 			}
 		}
 		if(e.keyCode==38){
 			if(index>0){
 				index -= 1;			
 				itemList.children[index].style="background-color: gray";
+				this.value = itemList.children[index].innerText;
 				itemList.children[index+1].style="background-color: white";
 			}
 		}
+
 		if(e.keyCode==13){
-			let productName = itemList.children.innerText;
+			let productName = itemList.children[index].innerText;
 		}
 	});
 	let date = new Date();

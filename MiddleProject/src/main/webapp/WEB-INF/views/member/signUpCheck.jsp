@@ -9,7 +9,7 @@
 .check{
 	top : 50%;
 	padding: 30px;
-	padding-top:130px;
+	padding-top:170px;
 	width: 400px;
 	height: 400px;
 	background-color: #eff2f1;
