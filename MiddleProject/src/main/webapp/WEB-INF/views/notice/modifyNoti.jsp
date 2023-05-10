@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea name="content" type="text" cols="50" rows="5"> ${vo.noticeContent } </textarea></td>
+			<td><textarea name="content" cols="50" rows="5"> ${vo.noticeContent } </textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
