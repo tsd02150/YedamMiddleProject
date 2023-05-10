@@ -24,5 +24,6 @@ public interface MemberService {
 	public boolean deleteOrder(int orderNo);
 	public List<DeliveryVO> orderDetail(String id);
 	
+	public List<MemberVO> memberList();
 	
 }
