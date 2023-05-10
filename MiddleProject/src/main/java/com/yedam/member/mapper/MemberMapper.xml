@@ -63,12 +63,16 @@
  	
  	<select id="orderList" resultType="order" parameterType="String">
  		select * from(
+        select * from(
+        select * from(
 		select * from(
 		select * from(
 		select * from orders join order_detail using(order_no))
 		join product using(product_no))
 		join member using(member_no))
-		join board using(product_no)
+		join board using(product_no))
+        join subcategory using(sub_category_no))
+        join maincategory using(main_category_no)
 		where id = #{id}
  	</select>
  	<delete id="deleteOrder" parameterType="int">
@@ -89,9 +93,7 @@
         full outer join delivery using(delivery_no)
 		where id = #{id}
  	</select>
- 	
- 	
- 	
- 	
- 	
+ 	<select id="memberList">
+ 	select * from member where grade='c'
+ 	</select>
 </mapper>

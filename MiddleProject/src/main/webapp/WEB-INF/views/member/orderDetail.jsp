@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <style>
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
@@ -140,6 +141,7 @@ height:
 			<td><img width="70px" src="images/${delivery.boardThumbnail}"></td>
 			<td>제품명 : ${delivery.productName}</td>
 			<td>주문 수량 : ${delivery.orderCount}</td>
+			<td>주문 날짜 : <fmt:formatDate value="${delivery.orderDate}" pattern="yyyy-MM-dd"/></td>
 			<td>배송상태 : <c:choose>
 				<c:when test ="${delivery.deliveryState == 'r'}">
 					상품 준비중
@@ -147,8 +149,11 @@ height:
 				<c:when test ="${delivery.deliveryState == 'd'}">
 					배송중
 				</c:when>
-				<c:otherwise test="${delivery.deliveryState == 's'}">
-					배송완료
+				<c:when test ="${delivery.deliveryState == 's'}">
+					배송완료 
+				</c:when>
+				<c:otherwise>
+					test
 				</c:otherwise>
 			</c:choose>
 			</td>

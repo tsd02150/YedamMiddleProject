@@ -7,6 +7,25 @@
 		insert into company
 		values(company_seq.nextval,#{crn},#{companyName},#{companyPhone},#{companyAddr})
 	</insert>
-
-
+	<select id="companyList" resultType="company">
+		select company_no,
+		company_name, crn, name, grade,company_phone, company_addr
+		from company
+		join member
+		using (company_no)
+		where grade='s'
+	</select>
+	<select id="newCompany" resultType="company">
+		select
+		company_no,company_name, crn, name, grade,company_phone,company_addr
+		from company
+		join member
+		using (company_no)
+		where grade='r'
+	</select>
+	<update id="updateCompany" parameterType="int">
+		update member
+		set member.grade='s'
+		where member.company_no=#{companyNo}
+	</update>
 </mapper>
