@@ -131,25 +131,38 @@ height:
 </c:choose>
 </td>
 <td>
-<form action="orderPage.do" method="get">
+<form name="order" action="orderPage.do" method="post">
 <table class="table">
 	<c:set var = "totalPrice" value = "0"/>
+		<tr><td><input type="checkbox" id="chkAll" value="selectall" onclick="allCheckboxes('chk', this.checked);calc();" />전체선택</td></tr>
 	<c:forEach var="order" items="${list}">
 		<tr>
-			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>품번 : ${order.productNo}</a></td>
-			<td>제품명 : ${order.productName}</td>
+			<td><input type="checkbox" name = "chk" class="c" onclick="isAllCheck(this.name, 'chkAll');calc();" value="${order.price * order.orderCount}" ></td>
 			<td><img width="70px" src="images/${order.boardThumbnail}"></td>
+			<td>제품명 : ${order.productName}</td>
+			<td>제품 설명 : ${order.boardContent }</td>
 			<td>가격 : ${order.price}</td>
 			<td>주문 수량 : ${order.orderCount}</td>
 			<td><button id="delbtn" type="button" name="orderNo" onClick="location.href='deleteOrder.do?orderNo=${order.orderNo }'">삭제</button>
 		</tr>
 			<c:set var = "totalPrice" value="${totalPrice + (order.price * order.orderCount)}"/>
 	</c:forEach>
+							<!-- <c:if test="c">
+							<c:if test="${order.mainCategoryNo != 2 && order.subCategoryNo != 3}">
+								20000
+							</c:if>
+							</c:if> -->
 	<tr>
 		<td>
-			총 가격 : <c:out value="${totalPrice}" />
+			선택 상품 가격 : <span class="allPrice" ></span>
 		</td>
+		<td>기본 배송비 : <span class="nomalFee">0</span></td>
+		<td>추가 배송비 : <span class="alphaFee">
+							0
+					   </span></td>
+		<td>설치 여부 : <input type="checkbox" name="setting" class="setting" onClick="checkS();calc();"><br>체크시 30,000원 추가</td>
+		<td>총 합계 : <span class="sumPrice"></span></td>
+		
 	</tr>
 	<tr>
 	<td colspan="2" align="right">
@@ -177,6 +190,149 @@ height:
 
 <script>
 
+
+function allCheckboxes(boxNames, chkMode){
+	  const el = document.getElementsByName(boxNames);
+	  for(let i = 0; i < el.length; i++){          
+	   if(!el[i].disabled){
+	     el[i].checked = chkMode;	
+	   }
+	  }
+	  let checkBoxAll = document.querySelectorAll("#chkAll");
+	  console.log(checkBoxAll);
+	  let check = false;
+		checkBoxAll.forEach(box=>{
+			if(box.checked == true){
+				check=true;
+			}
+		})
+		if(check){
+			document.querySelector(".nomalFee").innerText = 3000;
+			<c:if test="${order.mainCategoryNo != 2 && order.subCategoryNo != 3}">
+			document.querySelector(".alphaFee").innerText = 20000;
+			</c:if>
+			
+		}else{
+			document.querySelector(".nomalFee").innerText = 0;
+			document.querySelector(".alphaFee").innerText = 0; 
+		}
+	  
+	  
+	}
+	
+
+
+
+	function isAllCheck(boxNames, allChkName){
+	  const el = document.getElementsByName(boxNames);
+	  let checkboxCnt = 0;
+	  let checkedCnt = 0;
+	  for(let i = 0; i < el.length; i++){
+	    if(!el[i].disabled){
+	      checkboxCnt += 1;
+	      if(el[i].checked){
+	        checkedCnt += 1;
+	      }
+	    }
+	  }
+	  
+	  let chkMode = false;
+	  if(checkboxCnt == checkedCnt){
+	    chkMode = true;
+	  } else {  
+	    chkMode = false;
+	  }  
+	  document.getElementById(allChkName).checked = chkMode;
+	  
+	  
+	  	let checkBox = document.querySelectorAll(".c"); 
+	  	console.log(checkBox);
+		let check = false;
+		checkBox.forEach(box=>{
+			if(box.checked == true){
+				check=true;
+			}
+		})
+		if(check){
+			document.querySelector(".nomalFee").innerText = 3000;
+			<c:if test="${order.mainCategoryNo != 2 && order.subCategoryNo != 3}">
+			document.querySelector(".alphaFee").innerText = 20000;
+			</c:if>
+			
+		}else{
+			document.querySelector(".nomalFee").innerText = 0;
+			document.querySelector(".alphaFee").innerText = 0; 
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+	
+	function checkS() {
+		
+	let checkBox2 = document.querySelectorAll(".setting")
+	let check2 = false;
+	checkBox2.forEach(box=>{
+		if(box.checked == true){
+			check2=true;
+		}
+	})
+	if(check2){
+		document.querySelector(".setting").value = 30000;
+	}else{
+		document.querySelector(".setting").value = 0;
+	}
+    console.log(checkBox2);
+	
+	}
+	
+	var sum = 0;
+    function calc(){ 
+        a = document.getElementsByClassName("c");
+        for(i = 0; i < a.length; i++){
+            if(a[i].checked == true){
+                sum += parseInt(a[i].value);
+            }
+        }
+        
+        document.querySelector(".allPrice").innerText = sum;
+        
+        if(document.querySelector(".setting").value > 0){
+        document.querySelector(".sumPrice").innerText = sum + 
+        	parseInt(document.querySelector(".nomalFee").innerText) +
+        	parseInt(document.querySelector(".alphaFee").innerText) +
+        	parseInt(document.querySelector(".setting").value);
+	        sum=0;
+        }else{
+        	document.querySelector(".sumPrice").innerText = sum + 
+        	parseInt(document.querySelector(".nomalFee").innerText) +
+        	parseInt(document.querySelector(".alphaFee").innerText);
+        	sum=0;
+        }
+        
+        
+        
+    }
+    
+	
+    
+    
+    
+    
+    
+    
+    
+    		    
+    
+    
+	
+	
 </script>
 
 

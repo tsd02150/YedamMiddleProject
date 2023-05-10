@@ -14,13 +14,15 @@ public class OrdersVO {
 	private String productName;
 	private int price;
 	private int productCount;
+	private int mainCategoryNo;
+	private int subCategoryNo;
 	private String subCategoryName;
 	private String boardThumbnail;
 	private String boardContent;
 	private int productNo;
 	private int orderCount;
 	private String deliveryState;
-	
+	private String setting;
 	
 	
 	
