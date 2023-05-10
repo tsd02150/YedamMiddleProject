@@ -19,6 +19,7 @@ import com.yedam.product.control.AddBoardFormControl;
 import com.yedam.product.control.AddProductControl;
 import com.yedam.product.control.AddProductFormControl;
 import com.yedam.product.control.AddReviewControl;
+import com.yedam.product.control.AddReviewFormControl;
 import com.yedam.product.control.BoardListControl;
 import com.yedam.product.control.CategoryBoardControl;
 import com.yedam.product.control.CtgJoin;
@@ -87,7 +88,9 @@ public class FrontControl2 extends HttpServlet{
 		
 		//상품후기
 		map.put("/reviewList.do", new ReviewListControl());
+//		map.put("/searchReview.do", new searchReviewControl());
 		map.put("/addReview.do", new AddReviewControl());
+		map.put("/addReviewForm.do", new AddReviewFormControl());
 		map.put("/modifyReview.do", new ModifyReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
 	}

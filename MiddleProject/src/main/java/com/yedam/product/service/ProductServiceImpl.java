@@ -83,7 +83,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public ReviewVO gerReview(int reviewNo) {
+	public ReviewVO getReview(int reviewNo) {
 		return mapper.searchReview(reviewNo);
 	}
 
@@ -132,6 +132,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page) {
 		return mapper.categoryList(subCategoryNo, page);
+	}
+
+	@Override
+	public List<ReviewVO> myOrderList(String id) {
+		return mapper.myOrderList(id);
 	}
 
 

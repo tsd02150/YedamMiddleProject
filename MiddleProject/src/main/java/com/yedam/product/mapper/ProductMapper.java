@@ -54,5 +54,6 @@ public interface ProductMapper {
 	public int updateReview(ReviewVO vo);
 	public int deleteReview(ReviewVO vo);
 	
+	public List<ReviewVO> myOrderList(String id);
 
 }

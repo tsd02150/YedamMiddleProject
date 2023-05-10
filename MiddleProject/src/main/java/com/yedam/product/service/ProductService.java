@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yedam.notice.domain.ReplyVO;
 import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.MainCategoryVO;
 import com.yedam.product.domain.ProductVO;
@@ -36,9 +37,11 @@ public interface ProductService {
 
 	//review
 	public List<ReviewVO> reviewList(int boardNo);
-	public ReviewVO gerReview(int reviewNo);
+	public ReviewVO getReview(int reviewNo);
 	public boolean addReview(ReviewVO vo);
 	public boolean modifyReview(ReviewVO vo);
 	public boolean removeReview(ReviewVO vo);
+	
+	public List<ReviewVO> myOrderList(String id);
 	
 }

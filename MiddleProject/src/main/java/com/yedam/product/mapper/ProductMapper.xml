@@ -189,5 +189,13 @@
 		delete review 
 		where review_no=#{reviewNo}
 	</delete>
-
+	<select id="myOrderList" parameterType="String">
+		select m.member_no, m.id, o.order_no, o.order_date, p.product_name, b.*
+			from member m 
+			join orders o on(m.member_no=o.member_no)
+			join order_detail d on o.order_no = d.order_no
+			join product p on p.product_no = d.product_no
+			join board b on b.product_no = p.product_no
+		where m.id=#{id}
+	</select>
 </mapper>

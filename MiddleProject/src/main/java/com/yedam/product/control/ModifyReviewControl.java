@@ -19,36 +19,65 @@ public class ModifyReviewControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//content score
+		// content score
 		ProductService ps = new ProductServiceImpl();
-		
+		if (req.getMethod().equals("GET")) {
+			String rno = req.getParameter("rno");
+
+			ReviewVO vo = ps.getReview(Integer.parseInt(rno));
+//			select * from review
+//			join member
+//			using(member_no)
+//			where review_no=#{reviewNo}
+			String json = "";
+			Map<String, Object> map = new HashMap<>();
+			map.put("boardNo", vo.getBoardNo());
+			map.put("reviewNo", vo.getReviewNo());
+			map.put("memberNo", vo.getMemberNo());
+			map.put("name", vo.getName());
+			map.put("reviewContent", vo.getReviewContent());
+			map.put("score", vo.getScore());
+//			map.put("reviewDate", vo.getReviewDate().getYear() + "-" + vo.getReviewDate().getMonth() + "-" + vo.getReviewDate().getDay());
+			map.put("reviewDate", "2023-04-05");
+			map.put("reviewAttach", vo.getReviewAttach());
+
+			Gson gson = new GsonBuilder().create();
+			json = gson.toJson(map);
+			System.out.println(json);
+			return json + ".json";
+
+		} else if (req.getMethod().equals("POST")) {
+
 			String bno = req.getParameter("bno");
-			
+			String rno = req.getParameter("rno");
+
 			ReviewVO vo = new ReviewVO();
 			vo.setReviewContent(req.getParameter("rcontent"));
 			vo.setScore(Integer.parseInt(req.getParameter("score")));
-			vo.setReviewAttach(req.getParameter("rattach"));
-			vo.setReviewNo(Integer.parseInt("rno"));
-			vo.setBoardNo(Integer.parseInt("bno"));
-			
-			System.out.println("댓글수정vo="+vo);
-						
+//			vo.setReviewAttach(req.getParameter(req.getParameter("rattach")));
+			vo.setReviewNo(Integer.parseInt(rno));
+//			vo.setBoardNo(Integer.parseInt(req.getParameter(("bno"))));
+
+			System.out.println("댓글수정vo=" + vo);
+
 			boolean result = ps.modifyReview(vo);
 			String json = "";
 			Map<String, Object> map = new HashMap<>();
-			
-			if(result) {
-				vo=ps.gerReview(vo.getReviewNo());
-				System.out.println("댓글단건조회=="+vo);
-				
-				map.put("retCode", "Sucess");
+
+			if (result) {
+				vo = ps.getReview(vo.getReviewNo());
+				System.out.println("댓글단건조회==" + vo);
+
+				map.put("retCode", "Success");
 				map.put("data", vo);
-			}else {
+
+			} else {
 				map.put("retCode", "Fail");
 			}
-		Gson gson = new GsonBuilder().create();
-		json = gson.toJson(map);
-		return json+".json";
+			Gson gson = new GsonBuilder().create();
+			json = gson.toJson(map);
+			return json + ".json";
+		}
+		return null;
 	}
-
 }

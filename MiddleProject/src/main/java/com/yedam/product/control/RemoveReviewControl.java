@@ -20,21 +20,24 @@ public class RemoveReviewControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String rno = req.getParameter("rno");
-		String bno = req.getParameter("bno");
 		
 		ProductService ps = new ProductServiceImpl();
 		ReviewVO vo = new ReviewVO();
-		vo.setBoardNo(Integer.parseInt(bno));
 		vo.setReviewNo(Integer.parseInt(rno));
 		
 		boolean result = ps.removeReview(vo);
+		String json="";
+		Map<String, Object> map = new HashMap<>();
 		
 		if(result) {
 			System.out.println("댓글 삭제 성공");
-			return "product/getBoard.do?bno="+bno;
+			map.put("retCode", "Success");
 		}else {
 			System.out.println("삭제 실패");
-			return "product/getBoard.do?bno="+bno;
+			map.put("retCode", "Fail");
 		}
+		Gson gson = new GsonBuilder().create();
+		json = gson.toJson(map);
+		return json+".json";
 	}
 }
