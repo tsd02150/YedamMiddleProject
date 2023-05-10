@@ -17,6 +17,7 @@ import com.yedam.member.control.DeleteOrderControl;
 import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.member.control.MyPageControl;
 import com.yedam.member.control.OrderListControl;
+import com.yedam.member.control.OrderPageControl;
 import com.yedam.member.control.SignInControl;
 import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpCheckControl;
@@ -62,7 +63,7 @@ public class FrontControl3 extends HttpServlet{
 		map.put("/myQnaList.do", new MyQnaListControl());
 		map.put("/deleteOrder.do", new DeleteOrderControl());
 		map.put("/orderDetail.do", new OrderDetailControl());
-		
+		map.put("/orderPage.do", new OrderPageControl());
 		
 		
 	}
