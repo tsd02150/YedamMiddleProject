@@ -33,6 +33,7 @@ import com.yedam.product.control.ModifyBoardControl;
 import com.yedam.product.control.ModifyProductControl;
 import com.yedam.product.control.ModifyReviewControl;
 import com.yedam.product.control.ProductListControl;
+import com.yedam.product.control.QnaListControl;
 import com.yedam.product.control.RemoveReviewControl;
 import com.yedam.product.control.ReviewListControl;
 import com.yedam.product.control.getBoardControl;
@@ -93,6 +94,14 @@ public class FrontControl2 extends HttpServlet{
 		map.put("/addReviewForm.do", new AddReviewFormControl());
 		map.put("/modifyReview.do", new ModifyReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
+		
+		map.put("/qnaList.do", new QnaListControl());
+//		map.put("/addQna.do", new AddQnaControl());
+//		map.put("/addQnaForm.do", new AddQnaFormControl());
+//		map.put("/modifyQna.do", new ModifyQnaControl());
+//		map.put("/removeQna.do", new RemoveQnaControl());
+		
+		
 	}
 	
 	@Override
