@@ -22,12 +22,13 @@ public class AddReplyCustomerControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-		String id = (String) session.getAttribute("id");
+		String writer = (String) session.getAttribute("id");
 		String noticeNo = req.getParameter("noticeNo");
 		String reply = req.getParameter("reply");
 
 		ReplyVO vo = new ReplyVO();
 		vo.setNoticeNo(Integer.parseInt(noticeNo));
+		vo.setReplyWriter(writer);
 		vo.setReply(reply);
 		ReplyService service = new ReplyServiceImpl();
 		boolean result = service.addReply(vo);

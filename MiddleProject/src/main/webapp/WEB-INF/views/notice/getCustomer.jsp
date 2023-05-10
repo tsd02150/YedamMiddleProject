@@ -67,19 +67,13 @@
 					<th colspan="3" align="center">-------------------------- 관리자
 						답변 --------------------------</th>
 				</tr>
-				<c:choose>
-					<c:when test="${id.equals('admin')}">
-					</c:when>
-				</c:choose>
-				<tr>
-					<th>답변등록</th>
-					<td><input type="text" size="50" id="replyInput">
-						<button type="button" id="addBtn">등록</button></td>
-				</tr>
+
 				<!-- 댓글 정보 -->
 				<tr>
+					<th>NO</th>
+					<th>답글</th>
 					<th>작성자</th>
-					<th>답변내용</th>
+					<th>삭제</th>
 					<!-- 옆에 삭제버튼 만들기 -->
 				</tr>
 			</thead>
@@ -88,6 +82,18 @@
 			<tbody id="tlist">
 
 			</tbody>
+			<div id="replyContent">
+			<tr>
+				<c:choose>
+					<c:when test="${id.equals('admin')}">
+					</c:when>
+				</c:choose>
+				<th>답글쓰기</th>
+				<td><input type="text" size="50" id="replyInput">
+					<button type="button" id="addBtn">등록</button></td>
+			</tr>
+			</div>
+
 		</table>
 		<!-- 댓글수정.숨겨짐 -->
 		<table style="display: none;">
@@ -105,150 +111,165 @@
 
 <script>
 
-	let showFields = ['replyNo', 'reply']
+	let showFields = ['replyNo', 'reply','replyWriter']
 	let xhtp = new XMLHttpRequest();
-	xhtp.open('get', 'replyListCenter.do?no=${vo.noticeNo}');
+	xhtp.open('get', 'replyListCustomer.do?no=${vo.noticeNo}');
 	xhtp.send();
 	xhtp.onload = function () {
 		console.log(xhtp.response);
 		//목록생성
-		let tlist = document.querySelector('#tlist');
+		let reply = document.querySelector('#tlist');
 		let data = JSON.parse(xhtp.response); //json ->object
 		for (let reply of data) {
-			console.log(reply);
+			console.log('reply='+reply);
 			let tr = makeTrFunc(reply);
 			tlist.append(tr);
 		}
 	}
 	
-	//등록 이벤트
-	document.querySelector('#addBtn').addEventListener('click', addReplyFnc);
+	 // tr 생성해주는 함수.
+	  function makeTrFunc(reply = {}) {
+	    let tr = document.createElement('tr');
+	    tr.id = reply.replyNo; // tr 속성추가: 댓글번호.
+	    tr.addEventListener('dblclick', function (e) {
+	    	let writer = this.children[2].innerText;
 
-	function addReplyFnc(e) {
-		
-		//console.log('click',e);
-		console.log(document.querySelector('#replyInput').value);
-		let reply = document.querySelector('#replyInput').value; //reply값을 가져와서 reply변수에 입력한다.
+	        console.log(writer, '${id }');
+	        /* if (writer != '${id }') {
+	          alert('권한이 없습니다.')
+	          return;
+	        } */
+	      console.log(this);
+	      let template = document.querySelector('.template').cloneNode(true);
+	      console.log(template);
+	      //template.children[0].innerText = reply.replyId;
+	      //template.children[1].children[0].value = reply.reply;
+	      //template.children[2].innerText = reply.replyWriter;
+	      template.querySelector('td:nth-of-type(1)').innerText = reply.replyNo;
+	      template.querySelector('td:nth-of-type(2)>input').value = reply.reply;
+	      template.querySelector('td:nth-of-type(3)').innerText = reply.replyWriter;
+	      template.querySelector('button').addEventListener('click', function (e) {
+	        // Ajax 호출.
+	        let replyId = reply.replyNo;
+	        let replyCon = this.parentElement.parentElement.children[1].children[0].value;
+	        console.log(replyId, replyCon);
 
-		//Ajax 호출
-		xhtp = new XMLHttpRequest();
-		xhtp.open('post', 'addReplyCustomer.do');//post방식으로 보냄.
-		xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');//post방식일때만 쓰는코드
-		xhtp.send('noticeNo=${vo.noticeNo}&reply=' + reply);//파라미터 넘김
-		xhtp.onload = function () {
-			console.log(xhtp.response);
-			let result = JSON.parse(xhtp.response);
-			if (result.retCode == 'Success') {
-				//값을 이용해서 tr생성
-				let tr = makeTrFunc(result.data);
-				tlist.append(tr);
-			} else if (result.retCode == 'Fail') {
-				//alert('처리중 에러')
-			}
-		}
+	        let xhtp = new XMLHttpRequest();
+	        xhtp.open('post', 'modifyReplyCustomer.do');
+	        xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	        xhtp.send('rid=' + replyId + '&reply=' + replyCon);
+	        xhtp.onload = function () {
+	          let result = JSON.parse(xhtp.response);
+	          if (result.retCode == 'Success') {
+	            // 화면변경.
+	            alert('성공.');
+	            let newTr = makeTrFunc(result.data);
+	            oldTr = document.querySelector('.template');
+	            document.getElementById('tlist').replaceChild(newTr, oldTr);
 
-	}
-	
-	//tr생성해주는 함수
-	function makeTrFunc(reply = {}) {
-		let tr = document.createElement('tr');
-		//tr에 속성추가: 댓글번호;
-		tr.id = reply.replyNo;
-		//this 1) Object 안에서 사용되면 object자체를 가리킴 
-		//				let obj ={name:"hong",age=20,showInfo:function(){this.age+this.name}};
-		//		 2)function 선언안에서 this는 window 전역객체 
-		//			 function add(){console.log(this)}->window가 나옴
-		//		 3)event 안에서 사용되는 this는 이벤트 받는 대상
-		//			 document.getElementById('tlist').addEventListener('click',function(e){console.log(this)})->id=tlist인 요소를 가져옴 
-		//tr 더블클릭 이벤트
-		tr.addEventListener('dblclick', function (e) {
-			if(!id.equals('admin')){
-				alert('관리자만 수정할 수 있습니다');
-				return;
-			}
-			let template = document.querySelector('#template').cloneNode(true);
-			console.log(template);
-			// template.children[0].innerText=reply.replyId;
-			// template.children[1].innerText=reply.replyWriter;
-			// template.children[2].children[0].value=reply.reply;
-			template.querySelector('td:nth-of-type(1)').innerText = reply.replyId;
-			template.querySelector('td:nth-of-type(2)').innerText = reply.replyWriter;
-			template.querySelector('td:nth-of-type(3)>input').value = reply.reply;
-			template.querySelector('button').addEventListener('click', function (e) {
-				//데이테을 서버에 반영후 보이는 곳도 변경
-				//Ajax호출
-				let replyId = reply.replyId;
-				let replyCon = this.parentElement.parentElement.children[2].children[0].value;
-				console.log(replyId, replyCon);
-				let xhtp = new XMLHttpRequest();
-				xhtp.open('post', 'modifyReply.do');
-				xhtp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				xhtp.send('rid='+replyId +'&reply=' + replyCon);
-				xhtp.onload = function () {
-					let result = JSON.parse(xhtp.response);
-					if (result.retCode == 'Success') {
-						alert('변경를 성공을 했습니다');
-						//화면 변경
-						let newTr=makeTrFunc(result.data);
-						let oldTr =document.querySelector('#template');
-						document.querySelector('#tlist').replaceChild(newTr,oldTr );
-					} else if (result.retCode == 'Fail') {
-						alert('처리중 에러.');
-					} else {
-						alert('알수 없는 결과값입니다');
-					}
-				}
+	          } else if (result.retCode == 'Fail') {
+	            alert('처리중 에러.');
+	          } else {
+	            alert('알수 없는 반환값.');
+	          }
+	        }
 
-			})
-			document.querySelector('#tlist').replaceChild(template, tr);
+	      });
+	      // 화면전환.
+	      document.getElementById('tlist').replaceChild(template, tr);
+	    });
+	    // td생성.
+	    for (let prop of showFields) {
+	      let td = document.createElement('td');
+	      td.innerText = reply[prop];
+	      tr.append(td);
+	    }
+	    // 삭제버튼.
+	    let btn = document.createElement('button');
+	    btn.addEventListener('click', function (e) {
+	      let writer = btn.parentElement.previousElementSibling.innerText;
 
-		})
-		for (let prop of showFields) {
-			let td = document.createElement('td');
-			td.innerText = reply[prop];
-			tr.append(td);
-		}
+	      console.log(writer, '${id }');
+/* 	      if (writer != '${id }') {
+	        alert('권한이 없습니다.')
+	        return;
+	      } */
 
-		/* 
-		
-		//삭제버튼
-		let btn = document.createElement('button');
-		btn.addEventListener('click', function (e) {
-			let writer = btn.parentElement.previousElementSibling.previousElementSibling.innerText;
-			console.log(writer, '${memberInfo.email}');
-			if (writer != '${memberInfo.email}') {
-				alert('권한이 없습니다')
-				return;
-			}
-			//db에서 삭제 화면에서 삭제.
-			let xhtp = new XMLHttpRequest();
-			xhtp.open('post', 'removeReply.do');
-			xhtp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-			console.log(btn.parentElement.parentElement.id);
-			//post방식이면 send에 parameter를 적음
-			xhtp.send('rid=' + btn.parentElement.parentElement.children[0].innerText);
-			xhtp.onload = function () {
-				let result = JSON.parse(xhtp.response);
-				console.log(result);
-				if (result.retCode == 'Success') {
-					alert('삭제를 성공을 했습니다');
-					//화면에서 지우기.
-					btn.parentElement.parentElement.remove();
-				} else if (result.retCode == 'Fail') {
-					alert('처리중 에러발생');
-				} else {
-					alert('알수 없는 결과값입니다');
-				}
-			}
-		})
-		btn.innerText = '삭제';
-		let td = document.createElement('td');
-		td.append(btn);
-		tr.append(td)
-		return tr; //생성한 tr을 반환
-		
-		 */
-		
-	}
-	
+	      console.log(btn.parentElement.parentElement);
+	      let delNo = btn.parentElement.parentElement.id;
+	      // db에서 삭제 후... 화면에서 삭제.
+	      let xhtp = new XMLHttpRequest();
+	      xhtp.open('post', 'delReplyCustomer.do')
+	      xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	      xhtp.send('rid=' + delNo); // 요청방식post일 경우에 parameter를 send() 포함.
+
+	      xhtp.onload = function () {
+	        let result = JSON.parse(xhtp.response);
+	        if (result.retCode == 'Success') {
+	          // 화면에서 지우기.
+	          alert('삭제완료.')
+	          btn.parentElement.parentElement.remove();
+
+	        } else if (result.retCode == 'Fail') {
+	          alert('처리중 에러발생.');
+
+	        } else {
+	          alert('알수 없는 결과값입니다.');
+
+	        }
+	      }
+
+	    })
+	    btn.innerText = '삭제'
+	    let td = document.createElement('td');
+	    td.append(btn);
+	    tr.append(td);
+
+	    return tr; // 생성한 tr 을 반환.
+	  }
+
+	  // 등록이벤트...
+	  document.querySelector("#addBtn").addEventListener('click', addReplyFnc);
+
+	  function addReplyFnc(e) {
+	    // 로그인 여부를 체크해서 로그인 정보가 없으면 로그인화면으로 이동하기.
+	    /* let id = document.querySelector('#replyContent span').innerText;
+	    if (id != 'admin') {
+	      alert("권한이 없습니다.");
+	      return;
+	    } */
+
+	    console.log('click', e.target);
+	    console.log('reply', document.querySelector("#replyInput").value)
+	    console.log('id', "${id }");
+	    let reply = document.querySelector("#replyInput").value;
+		console.log(reply);
+	    if (reply == null || reply == '') {
+	      alert('댓글을 등록하세요.');
+	      document.querySelector("#replyInput").focus();
+	      return;
+	    }
+
+	    // Ajax 호출.
+	    let xhtp = new XMLHttpRequest();
+	    xhtp.open('post', 'addReplyCustomer.do');
+	    xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	    xhtp.send('id=${id }&reply=' + reply + "&noticeNo=${vo.noticeNo}");
+	    xhtp.onload = function () {
+	      console.log(xhtp.response); // 
+	      let result = JSON.parse(xhtp.response);
+	      if (result.retCode == 'Success') {
+	        // 값을 활용해서 tr 생성.
+	        alert("등록완료.");
+	        let tr = makeTrFunc(result.data);
+	        tlist.append(tr);
+
+	        // 입력값 초기화하기.
+	        document.getElementById("replyInput]").value = '';
+	        document.getElementById("replyInput").focus();
+	      } else if (result.retCode == 'Fail') {
+	        alert('처리중 에러.');
+	      }
+	    }
+	  }
 </script>
