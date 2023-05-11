@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.product.domain.BoardVO;
-import com.yedam.product.domain.ProductVO;
+import com.yedam.product.domain.QnaVO;
+import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.service.ProductService;
 import com.yedam.product.service.ProductServiceImpl;
 
@@ -25,12 +26,16 @@ public class getBoardControl implements Control {
 		ProductService ps = new ProductServiceImpl();
 		BoardVO vo = ps.getBoard(Integer.parseInt(bno));
 		
+		List<QnaVO> list = ps.qnaList(Integer.parseInt(bno));
+		
 		
 		req.setAttribute("boardInfo", vo);
 		req.setAttribute("pageNum", page);
+		req.setAttribute("qnaList", list);
 		
 		System.out.println("boardInfo : "+vo);
 		System.out.println("page : "+page);
+		System.out.println("qnaList : "+list);
 		
 		return "product/getBoard.tiles";
 	}

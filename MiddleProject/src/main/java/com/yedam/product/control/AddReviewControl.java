@@ -36,7 +36,7 @@ public class AddReviewControl implements Control {
 		
 		String mno = multi.getParameter("mno");
 		String rcontent = multi.getParameter("rcontent");
-		String attach = multi.getParameter("attach");
+		String attach = multi.getFilesystemName("attach");
 		String score = multi.getParameter("score");
 		String bno = multi.getParameter("bno");
 		System.out.println(mno);

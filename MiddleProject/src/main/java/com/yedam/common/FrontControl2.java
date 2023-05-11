@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.member.control.SignInControl;
 import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpControl;
+import com.yedam.notice.control.FaqControl;
 import com.yedam.product.control.AddBoardControl;
 import com.yedam.product.control.AddBoardFormControl;
 import com.yedam.product.control.AddProductControl;
@@ -34,6 +35,7 @@ import com.yedam.product.control.ModifyProductControl;
 import com.yedam.product.control.ModifyReviewControl;
 import com.yedam.product.control.ProductListControl;
 import com.yedam.product.control.QnaListControl;
+import com.yedam.product.control.RemoveQnaControl;
 import com.yedam.product.control.RemoveReviewControl;
 import com.yedam.product.control.ReviewListControl;
 import com.yedam.product.control.getBoardControl;
@@ -99,9 +101,9 @@ public class FrontControl2 extends HttpServlet{
 //		map.put("/addQna.do", new AddQnaControl());
 //		map.put("/addQnaForm.do", new AddQnaFormControl());
 //		map.put("/modifyQna.do", new ModifyQnaControl());
-//		map.put("/removeQna.do", new RemoveQnaControl());
-		
-		
+		map.put("/removeQna.do", new RemoveQnaControl());
+		// 자주묻는 질문
+		map.put("/faq.do", new FaqControl());
 	}
 	
 	@Override

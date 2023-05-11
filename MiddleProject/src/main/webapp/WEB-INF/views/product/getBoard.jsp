@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- Bootstrap icons-->
@@ -63,6 +64,8 @@
 	li {
 		text-align: -webkit-match-parent;
 		display: inline-block;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 
 	div.review-image img {
@@ -133,6 +136,20 @@
 	.rate label:hover~input:checked~label {
 		color: #f73c32 !important;
 	}
+
+	.qlist-table {
+		width: 800px;
+	}
+
+	th,
+	td {
+		padding: 20px;
+	}
+
+	#qna-title {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 </style>
 
 <form action="modifyBoard.do" method="GET">
@@ -185,33 +202,56 @@
 	<li id="company">업체정보</li>
 </ul>
 <hr>
-
 <ul id="rtd">
-	<li>
-		<div class="review_cont">
-			<div class="review_writer"></div>
-			<div class="review_img">
-				<img class="img">
-			</div>
-			<div class="review_exp">
-				<div class="review_score"></div>
-				<div class="review_date"></div>
-				<div class="review_content"></div>
-			</div>
-		</div>
-	</li>
 </ul>
-<ul id="qna-ul"></ul>
+<div id="top"></div>
+<table id="qna-table" style="display:none;">
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+	</thead>
+	<c:forEach var="list" items="${qnaList }">
+		<tbody id="${id}">
+			<tr id="${list.name}_tr">
+				<td>${list.qnaNo }</td>
+				<td>${list.qnaTitle }</td>
+				<td id="${list.name}">${list.name }</td>
+				<td>${list.qnaDate}</td>
+				<!-- <td style="display: none;"><input id="qna-pw">입력</td> -->
+			</tr>
+			<tr id="${list.name}_content" style="display:none;">
+				<td></td>
+				<td>${list.qnaContent }</td>
+				<td>수정</td>
+				<td>삭제</td>
+			</tr>
+			<tr id="${list.name}_answer" style="display:none;">
+				<td></td>
+				<td>${list.qnaAnswer }</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</c:forEach>
+</table>
+<div id="qna-div"></div>
 <ul id="comapny-ul"></ul>
 
 <script>
-//Review
+	//Review
 	let review = document.getElementById('review');
-	let qna = document.getElementById('qna');
+	let qna = document.querySelector('#qna');
 	let company = document.getElementById('company');
 	let rtd = document.getElementById('rtd');
-	let qu = document.getElementById('qna-ul');
+	let divTop = document.getElementById('top');
+	let qu = document.getElementById('qna-div');
 	let cu = document.getElementById('comapny-ul');
+	let table = document.querySelector('#qna-table');
+
 
 	review.addEventListener('click', function () {
 		fetch('reviewList.do?bno=${boardInfo.boardNo}', {
@@ -220,18 +260,22 @@
 			.then(resolve => resolve.json())
 			.then(result => {
 				rtd.innerHTML = "";
-				let addBtn=document.createElement('button');
-				addBtn.innerText="후기 등록";
-				addBtn.type="submit";
-				rtd.append(addBtn);		
+				divTop.innerHTML = "";
+				if (table.style.display != "none") {
+					table.style.display = "none";
+				}
+				let addBtn = document.createElement('button');
+				addBtn.innerText = "후기 등록";
+				addBtn.type = "submit";
+				rtd.append(addBtn);
 				let br = document.createElement('br');
 				rtd.append(br);
 				rtd.append(br);
-				
+
 				addBtn.addEventListener('click', function () {
-					location.href="addReviewForm.do?id=${id}"
+					location.href = "addReviewForm.do?id=${id}"
 				})
-				
+
 				result.forEach(rlist => {
 					console.log(rlist);
 					let list = makeLi(rlist);
@@ -242,18 +286,18 @@
 
 			})
 	})
-	
-	
-	
-	function makeLi(rlist){
-		
+
+
+
+	function makeLi(rlist) {
+
 		let li = document.createElement('li');
 		li.className = "review-li";
 		li.id = rlist.reviewNo;
 		let br = document.createElement('br');
 		li.append(br);
-		
-		
+
+
 		let div = document.createElement('div');
 		div.innerText = rlist.name;
 		li.append(div);
@@ -327,7 +371,7 @@
 										alert('후기 수정 성공');
 										let newLi = makeLi(modify.data);
 										let oldLi = document.getElementById(rlist.reviewNo);
-										
+
 										rtd.replaceChild(newLi, oldLi);
 
 									} else if (renew.retCode == 'Fail') {
@@ -338,7 +382,7 @@
 								})
 						})
 						div.append(button1);
-						
+
 						let button2 = document.createElement('button');
 						button2.innerText = "삭제";
 						button2.type = 'button';
@@ -346,30 +390,30 @@
 						button2.value = 'Submit';
 						div.append(button2);
 						li.append(div);
-						
+
 						button2.addEventListener('click', function () {
 							console.log(rlist.reviewNo);
 							console.log(rlist.boardNo);
-							
-							fetch('removeReview.do',{
-								method: "POST",
-								headers: {
-									'Content-Type': 'application/x-www-form-urlencoded'
-								},
-								body: 'rno=' + rlist.reviewNo
-							})
-							.then(deleteDate=>deleteDate.json())
-							.then(remove=>{
-								if(remove.retCode=='Success'){
-								document.getElementById(rlist.reviewNo).remove();
-								}else if(result.retCode == 'Fail'){
-									alert('처리중 에러 발생')
-								}else{
-									alert('알 수 없는 결과값입니다.');
-								}
-							})
-							
-							
+
+							fetch('removeReview.do', {
+									method: "POST",
+									headers: {
+										'Content-Type': 'application/x-www-form-urlencoded'
+									},
+									body: 'rno=' + rlist.reviewNo
+								})
+								.then(deleteDate => deleteDate.json())
+								.then(remove => {
+									if (remove.retCode == 'Success') {
+										document.getElementById(rlist.reviewNo).remove();
+									} else if (result.retCode == 'Fail') {
+										alert('처리중 에러 발생')
+									} else {
+										alert('알 수 없는 결과값입니다.');
+									}
+								})
+
+
 						})
 
 					})
@@ -413,47 +457,45 @@
 		return li;
 	}
 
-//Qna
-qna.addEventListener('click', function(){
-	fetch(`qnaList.do?bno=${boardInfo.boardNo}`,{
-		method:"GET",
-	})
-	.then(qnaResolve=>qnaResolve.json())
-	.then(qnaList=>{
-		rtd.innerHTML="";
-		qu.innerHTML="";
-		div = document.createElement('div');
-		div.id="qna-list";
-			qu.append(div);
-			
-			let addQna=document.createElement('button');
-			addQna.innerText="문의 등록";
-			addQna.type="submit";
-			qu.append(addQna);
-			let br = document.createElement('br');
-			qu.append(br);
-			qu.append(br);
-			
-			//addBtn 클릭 이벤트
-			
-			//qnal
-			qnaList.forEach(qlist=>{
-				console.log(qlist);
-				let listq = makeQli(qlist);
-				
-				qu.append(listq);
-			})//li end
-			
-	})
-})
+	//Qna
 
-function makeQli(qlist){
-	let li=document.createElement('li');
-	li.id="qna-category";
-	let div = document.createElement('div');
-	div.innerText = qlist.qnaCategory;
-	li.append(div);
-	return li;
-}
-	
+	qna.addEventListener('click', function () {
+		rtd.innerHTML = "";
+		divTop.innerHTML = "";
+		if (table.style.display != "none") {
+			table.style.display = "none";
+		} else if (table.style.display == "none") {
+			let div = document.createElement('div');
+
+			table.style.display = "block";
+		}
+
+	})
+
+	let Atr = document.getElementById('${id}');
+	let Btr = document.querySelector('#${name}_tr');
+	let Ctr = document.querySelector('#${name}_content');
+	let Dtr = document.querySelector('#${name}_answer');
+	Btr.addEventListener('click', function () {
+		fetch('qnaList.do?bno=${boardInfo.boardNo}', {
+				method: "GET"
+			})
+			.then(qresolve => qresolve.json())
+			.then(qresult => {
+				qresult.forEach(qlist => {
+					if (Ctr.style.display != "none" && Dtr.style.display != "none") {
+						Ctr.style.display = "none";
+						Dtr.style.display = "none";
+
+					} else if (Ctr.style.display == "none" && Dtr.style.display == "none") {
+						//Ctr.innerHTML="";
+						Ctr.style.display = "table-row";
+						Dtr.style.display = "table-row";
+
+
+					}
+				})
+
+			})
+	})
 </script>
