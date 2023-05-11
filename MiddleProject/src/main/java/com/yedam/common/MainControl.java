@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yedam.notice.domain.NoticeVO;
+import com.yedam.notice.service.NoticeService;
+import com.yedam.notice.service.NoticeServiceImpl;
 import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.MainCategoryVO;
 import com.yedam.product.service.ProductService;
@@ -42,6 +45,22 @@ public class MainControl implements Control {
 		List<MainCategoryVO> mainCateoryList = ps.ctgMain();
 		req.setAttribute("mainCategoryList", mainCateoryList);
 		
+		//공지사항
+		NoticeService ns = new NoticeServiceImpl();
+		List<NoticeVO> noticeList = ns.notiList();
+		if(noticeList.size()>4) {
+			noticeList=noticeList.subList(0, 4);
+		}
+		req.setAttribute("noticeList", noticeList);
+		System.out.println(noticeList);
+		
+		//자주묻는질문
+		List<NoticeVO> faqList = ns.searchFaq(1);
+		if(faqList.size()>4) {
+			faqList=faqList.subList(0, 4);			
+		}
+		req.setAttribute("faqList", faqList);
+		System.out.println(faqList);
 		
 		return "common/main.tiles";
 	}

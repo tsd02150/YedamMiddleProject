@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.member.control.AdminCompanyControl;
+import com.yedam.member.control.AdminMemberControl;
+import com.yedam.member.control.AdminNewCompanyControl;
+import com.yedam.member.control.ConfirmControl;
 import com.yedam.member.control.DeleteOrderControl;
 import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.member.control.MyPageControl;
@@ -42,6 +46,7 @@ import com.yedam.notice.control.ReplyListCustomerControl;
 import com.yedam.member.control.NaverLoginControl;
 import com.yedam.member.control.OrderDetailControl;
 import com.yedam.member.control.OrderListControl;
+import com.yedam.member.control.OrderPageControl;
 import com.yedam.member.control.OtherLoginControl;
 import com.yedam.member.control.OtherLoginInfoControl;
 import com.yedam.member.control.SearchIdControl;
@@ -51,6 +56,7 @@ import com.yedam.product.control.AddBoardFormControl;
 import com.yedam.product.control.AddProductControl;
 import com.yedam.product.control.AddProductFormControl;
 import com.yedam.product.control.AddReviewControl;
+import com.yedam.product.control.AddReviewFormControl;
 import com.yedam.product.control.BoardListControl;
 import com.yedam.product.control.CategoryBoardControl;
 import com.yedam.product.control.CtgJoin;
@@ -63,11 +69,14 @@ import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ModifyBoardControl;
 import com.yedam.product.control.ModifyProductControl;
 import com.yedam.product.control.ModifyReviewControl;
+import com.yedam.product.control.PayControl;
 import com.yedam.product.control.ProductListControl;
+import com.yedam.product.control.QnaListControl;
 import com.yedam.product.control.RemoveReviewControl;
 import com.yedam.product.control.ReviewListControl;
 import com.yedam.product.control.SearchProductNameControl;
 import com.yedam.product.control.ThemeControl;
+import com.yedam.product.control.ThemeListControl;
 import com.yedam.product.control.getBoardControl;
 
 public class FrontControl extends HttpServlet {
@@ -112,9 +121,10 @@ public class FrontControl extends HttpServlet {
 		map.put("/myQnaList.do", new MyQnaListControl());
 		map.put("/deleteOrder.do", new DeleteOrderControl());
 		map.put("/orderDetail.do", new OrderDetailControl());
+		map.put("/orderPage.do", new OrderPageControl());
 
 		// 상품 전체 리스트
-		map.put("/prodList.do", new ProductListControl());
+		map.put("/productList.do", new ProductListControl());
 		// 상품 상세페이지
 		map.put("/getProduct.do", new GetProductControl());
 		// 상품 등록, 수정, 삭제(판매자)
@@ -144,9 +154,12 @@ public class FrontControl extends HttpServlet {
 		// 상품후기
 		map.put("/reviewList.do", new ReviewListControl());
 		map.put("/addReview.do", new AddReviewControl());
+		map.put("/addReviewForm.do", new AddReviewFormControl());
 		map.put("/modifyReview.do", new ModifyReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
 
+		map.put("/qnaList.do", new QnaListControl());
+		
 		// 자주묻는 질문
 		map.put("/faq.do", new FaqControl());
 
@@ -186,6 +199,20 @@ public class FrontControl extends HttpServlet {
 
 		// 테마
 		map.put("/theme.do", new ThemeControl());
+		map.put("/themeList.do", new ThemeListControl());
+		
+		// 관리자용 페이지
+		// 회원관리
+		map.put("/adminMember.do", new AdminMemberControl());
+		// 업체관리
+		map.put("/adminCompany.do", new AdminCompanyControl());
+		// 신규업체
+		map.put("/newCompany.do", new AdminNewCompanyControl());
+		//업체컨펌
+		map.put("/confirm.do", new ConfirmControl());
+		
+		//결제
+		map.put("/pay.do", new PayControl());
 	}
 
 	@Override

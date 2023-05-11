@@ -12,6 +12,7 @@ import com.yedam.product.domain.ProductVO;
 import com.yedam.product.domain.QnaVO;
 import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.domain.SubCategoryVO;
+import com.yedam.product.domain.ThemeVO;
 import com.yedam.product.mapper.ProductMapper;
 
 public class ProductServiceImpl implements ProductService{
@@ -168,6 +169,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<QnaVO> myQnaList(int memberNo) {
 		return mapper.myQnaList(memberNo);
+	}
+	
+	@Override
+	public List<ThemeVO> themeList(int themeNo) {
+		return mapper.selectTheme(themeNo);
 	}
 
 

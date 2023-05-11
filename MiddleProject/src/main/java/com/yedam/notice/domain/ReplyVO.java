@@ -17,7 +17,7 @@ public class ReplyVO {
 	
 
 	private int replyNo;
-	private String reply;
+	private String replyContent;
 	private String replyWriter;
 	private int noticeNo;
 

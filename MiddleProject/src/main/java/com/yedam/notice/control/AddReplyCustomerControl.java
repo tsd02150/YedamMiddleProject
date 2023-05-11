@@ -22,14 +22,17 @@ public class AddReplyCustomerControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-		String writer = (String) session.getAttribute("id");
+		String id= (String) session.getAttribute("id");
+		
+		String writer = req.getParameter("id");
 		String noticeNo = req.getParameter("noticeNo");
 		String reply = req.getParameter("reply");
 
 		ReplyVO vo = new ReplyVO();
-		vo.setNoticeNo(Integer.parseInt(noticeNo));
 		vo.setReplyWriter(writer);
-		vo.setReply(reply);
+		vo.setNoticeNo(Integer.parseInt(noticeNo));
+		vo.setReplyContent(reply);
+		
 		ReplyService service = new ReplyServiceImpl();
 		boolean result = service.addReply(vo);
 
@@ -46,7 +49,7 @@ public class AddReplyCustomerControl implements Control {
 		Gson gson = new GsonBuilder().create();
 		json = gson.toJson(map);
 
-		return ".json";
+		return json + ".json";
 	}
 
 }
