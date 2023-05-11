@@ -67,7 +67,6 @@
 </head>
 <body>
 	<c:set var="no" value="0"></c:set>
-	<h3>장바구니</h3>
 	<table class="mycontainer">
 		<tr>
 			<td><c:choose>
@@ -97,44 +96,102 @@
 					</c:otherwise>
 				</c:choose></td>
 			<td>
-				<table class="table">
+				<h3>장바구니</h3>
+				<table class="table" id="cartInfo">
 					<tr>
 						<th>no</th>
-						<th>선택</th>
 						<th>제품명</th>
 						<th>가격</th>
 						<th>주문수량</th>
 						<th></th>
 					</tr>
 					<c:forEach var="myCart" items="${myCartList }">
-						<tr>
+						<tr class="myCart">
 							<td><c:out value="${no=no+1}"></c:out></td>
-							<td><input type="checkbox" name="check" class="cartCheck"></td>
 							<td>${myCart.productName }</td>
 							<td>${myCart.price }</td>
-							<td>${myCart.orderCount }</td>
+							<td><input type="number" value=${myCart.orderCount } class="cartCnt" min="0"></td>
 						</tr>
 					</c:forEach>
 				</table>
-				<table>
+				<table id="totalCart">
 					<tr>
-						<td>선택상품 가격 : </td>
+						<td>선택상품 가격 : </td><td>0</td>
 					</tr>
 					<tr>
-						<td>기본 배송비 : </td>
+						<td>기본 배송비 : </td><td>0</td>
 					</tr>
 					<tr>
-						<td>추가 배송비 : </td>
+						<td>추가 배송비 : </td><td>0</td>
 					</tr>
 					<tr>
-						<td>설치 여부(선택시 3만원 추가) : <input type="checkbox" name="setting" ></td>
+						<td>설치 여부 <input type="checkbox" name="setting" id="settingCheck"> (선택시 3만원 추가) : </td><td>0</td>
 					</tr>
 					<tr>
-						<td>총 비용 : </td>
+						<td>총 비용 : </td><td>0</td>
 					</tr>
 				</table>
+				<button type="button" id="payBtn">결제</button>
 			</td>
 		</tr>
 	</table>
 </body>
+<script>
+	
+	let total = document.querySelector('#totalCart').children[0];
+	let myCartList = document.querySelectorAll('.myCart');
+	let selectPrice;
+	let checkCnt = 0;
+	
+	myCartList.forEach(myCart=>{
+		total.children[0].children[1].innerText = parseInt(total.children[0].children[1].innerText)+parseInt(myCart.children[2].innerText)*parseInt(myCart.children[3].children[0].value);
+		total.children[1].children[1].innerText=3000;
+		<c:if test="${myCart.mainCategoryNo != 2 && myCart.subCategoryNo != 3}">
+			total.children[2].children[1].innerText=20000;
+		</c:if>
+		total.children[4].children[1].innerText=parseInt(total.children[0].children[1].innerText)+parseInt(total.children[1].children[1].innerText)+parseInt(total.children[2].children[1].innerText)+parseInt(total.children[3].children[1].innerText);
+	})
+	
+	
+	document.querySelector('#settingCheck').addEventListener('click',function(){
+		if(this.checked==true){
+			total.children[3].children[1].innerText=30000;
+		}else{
+			total.children[3].children[1].innerText=0;
+		}
+		total.children[4].children[1].innerText=parseInt(total.children[0].children[1].innerText)+parseInt(total.children[1].children[1].innerText)+parseInt(total.children[2].children[1].innerText)+parseInt(total.children[3].children[1].innerText);
+	})
+	
+	let cartCntList = document.querySelectorAll('.cartCnt');
+	cartCntList.forEach(cartCnt=>{
+		cartCnt.addEventListener('change',function(){
+			let cnt;
+			myCartList.forEach((myCart,index)=>{
+				console.log(index);
+				if(index==0){
+					total.children[0].children[1].innerText=0;
+					cnt=0;
+				}
+				total.children[0].children[1].innerText = parseInt(total.children[0].children[1].innerText)+parseInt(myCart.children[2].innerText)*parseInt(myCart.children[3].children[0].value);
+				if(myCart.children[3].children[0].value!=0){
+					cnt++;
+				}
+				total.children[1].children[1].innerText=3000;
+				<c:if test="${myCart.mainCategoryNo != 2 && myCart.subCategoryNo != 3}">
+					total.children[2].children[1].innerText=20000;
+				</c:if>
+				total.children[4].children[1].innerText=parseInt(total.children[0].children[1].innerText)+parseInt(total.children[1].children[1].innerText)+parseInt(total.children[2].children[1].innerText)+parseInt(total.children[3].children[1].innerText);
+			})
+			if(cnt==0){
+				total.children[1].children[1].innerText=0;
+				total.children[2].children[1].innerText=0;
+				total.children[4].children[1].innerText=parseInt(total.children[0].children[1].innerText)+parseInt(total.children[1].children[1].innerText)+parseInt(total.children[2].children[1].innerText)+parseInt(total.children[3].children[1].innerText);
+			}
+		})
+	})
+	
+	document.querySelector('#payBtn').addEventListener('click',function(){
+		location.href="pay.do";
+	})
+</script>
 </html>
