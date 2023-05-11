@@ -33,16 +33,17 @@ public class CustomerAddControl implements Control {
 		String attach= multi.getParameter("attach");
 		String noticePw= multi.getParameter("noticePw");
 		
-		NoticeService service = new NoticeServiceImpl();
 		NoticeVO vo= new NoticeVO();
 		vo.setId(id);
 		vo.setNoticeTitle(title);
 		vo.setNoticeContent(content);
 		vo.setNoticeAttach(attach);
 		vo.setNoticePw(noticePw);
+				
 		System.out.println(id);
 		System.out.println(vo);
 
+		NoticeService service = new NoticeServiceImpl();
 		if(service.CustomerAdd(vo)) {
 			
 			return"customerCenter.do";

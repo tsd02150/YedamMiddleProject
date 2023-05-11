@@ -210,5 +210,20 @@
 		where q.board_no = #{boardNo}
 	</select>
 	
+	<!-- 테마 -->
+	<select id="selectTheme" resultType="theme">
+ 	<![CDATA[
+    select b.*
+    from (select rownum rn, a.*
+          from (select * from board b join product p 
+				on(b.product_no = p.product_no)
+				join subcategory s on(p.sub_category_no=s.sub_category_no)
+				join theme t on(t.theme_no=p.theme_no)
+				where t.theme_no=#{theme_no}) a
+          where rownum <= #{page} * 10 ) b
+    where b.rn > (#{page} - 1) * 10
+    order by price  
+    ]]>
+	</select>
 	
 </mapper>

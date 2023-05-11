@@ -10,6 +10,7 @@ import com.yedam.product.domain.ProductVO;
 import com.yedam.product.domain.QnaVO;
 import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.domain.SubCategoryVO;
+import com.yedam.product.domain.ThemeVO;
 
 public interface ProductMapper {
 	//상품검색
@@ -65,4 +66,10 @@ public interface ProductMapper {
 	public int deleteQna(QnaVO vo);
 
 	public List<QnaVO> myQnaList(int memberNo);
+	
+	//테마전
+	public List<ThemeVO> selectTheme(int themeNo);
+	
+	
+	
 }
