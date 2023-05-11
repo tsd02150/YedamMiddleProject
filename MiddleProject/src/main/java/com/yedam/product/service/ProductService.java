@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.yedam.notice.domain.ReplyVO;
 import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.MainCategoryVO;
 import com.yedam.product.domain.ProductVO;
+import com.yedam.product.domain.QnaVO;
 import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.domain.SubCategoryVO;
+import com.yedam.product.domain.ThemeVO;
 
 public interface ProductService {
 	//검색기능
@@ -43,5 +44,17 @@ public interface ProductService {
 	public boolean removeReview(ReviewVO vo);
 	
 	public List<ReviewVO> myOrderList(String id);
+	
+	//qna
+	public List<QnaVO> qnaList(int boardNo);
+	public QnaVO getQna(int qnaNo);
+	public boolean addQna(QnaVO vo);
+	public boolean modifyQna(QnaVO vo);
+	public boolean removeQna(QnaVO vo);
+	
+	public List<QnaVO> myQnaList(int memberNo);
+	
+	//테마
+	public List<ThemeVO> themeList(int themeNo);
 	
 }

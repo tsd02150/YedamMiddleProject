@@ -58,7 +58,7 @@ article {
 				<td><fmt:formatDate pattern="yyyy-MM-dd"
 						value="${notice.noticeDate }" /></td>
 			</tr>
-			<tr style="display: none;">
+			<tr style="display: none;background-color: #f5f5f5;">
 				<td></td>
 				<td>${notice.noticeContent }</td>
 				<td></td>
@@ -86,18 +86,13 @@ article {
 
 <script>
 	let items = document.querySelectorAll('.item');
-	items
-			.forEach(function(item) {
-				item
-						.addEventListener(
-								'click',
-								function() {
-									if (document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style.display == "none") {
-										document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style
-												.removeProperty('display');
-									} else {
-										document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style = "display:none";
-									}
-								})
-			});
+	items.forEach(function(item) {
+		item.addEventListener('click',function() {
+			if (document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style.display == "none") {
+				document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style.removeProperty('display');
+			} else {
+				document.querySelector('.table').children[0].children[item.children[0].innerText * 2].style = "display:none";
+			}
+		})
+	});
 </script>

@@ -21,17 +21,29 @@
 	<select id="memberInfo" resultType="member" parameterType="String">
 		select * from member where id = #{id}
 	</select>
+	<select id="companyInfo" resultType="company" parameterType="String">
+		select * from member join company using(company_no) where id = #{id}
+	</select>
 	<select id="searchId" resultType="String" parameterType="member">
 		select id from member where name=#{name} and rrn=#{rrn}
 	</select>
 	<select id="searchPw" resultType="String" parameterType="member">
 		select pw from member where id=#{id} and name=#{name} and rrn=#{rrn}
 	</select>
+	
 	<update id="updateMemberM" parameterType="member">
 		update member
 		set pw=#{pw}, phone=#{phone}, adress=#{adress}, email=#{email}
 		where id=#{id}
 	</update>
+	
+	<update id="updateMemberC" parameterType="company">
+		update company
+		set companyPhone=#{companyPhone}, companyAddr=#{companyAddr}
+		where company_no=#{companyNo}
+	</update>
+	
+	
  	<select id="qnaList" parameterType="String" resultType="qna">
  		select * from qna join member using (member_no)
 		where id = #{id};
@@ -75,6 +87,22 @@
         join maincategory using(main_category_no)
 		where id = #{id}
  	</select>
+ 	
+ 	<select id="orderNoList" resultType="order" parameterType="String">
+ 		select * from(
+        select * from(
+        select * from(
+		select * from(
+		select * from(
+		select * from orders join order_detail using(order_no))
+		join product using(product_no))
+		join member using(member_no))
+		join board using(product_no))
+        join subcategory using(sub_category_no))
+        join maincategory using(main_category_no)
+		where order_no = #{orderNo}
+ 	</select>
+ 	
  	<delete id="deleteOrder" parameterType="int">
  		delete from orders where order_no = #{orderNo}
  	</delete>
@@ -95,5 +123,20 @@
  	</select>
  	<select id="memberList">
  	select * from member where grade='c'
+ 	</select>
+ 	<select id="myCart" resultType="orderDetail" parameterType="int">
+ 		select * 
+ 		from (
+			select * 
+			from order_detail 
+			where order_no in
+				(select order_no 
+				from orders join member 
+				using(member_no) 
+				where member_no=#{memberNo})
+			) a 
+		join product p
+		using(product_no)
+		order by order_no desc
  	</select>
 </mapper>

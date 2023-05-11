@@ -5,16 +5,30 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.notice.mapper.ReplyMapper">
 	<select id="replyList">
-		select notice.notice_no, reply_no, reply_content, reply_writer
-		from notice join cc_reply
-		on notice.notice_no = cc_reply.notice_no
-		where notice.notice_id=${replyNo}
+		select * from cc_reply
+		where notice_no=#{noticeNo}
 	</select>
-
 	<insert id="insertReply" parameterType="reply">
-		insert into
-		cc_reply(reply_no,reply_content,notice_no)
-		values(cc_reply_seq.nextval, ${reply},${noticeNo})
+		<selectKey keyProperty="replyNo" resultType="int"
+			order="BEFORE">
+			select cc_reply_seq.nextval from dual
+		</selectKey>
+		insert into cc_reply
+		values(#{replyNo},#{replyContent},#{replyWriter},#{noticeNo})
 	</insert>
+	<delete id="deleteReply" parameterType="int">
+		delete from cc_reply
+		where reply_no = #{replyNo}
+	</delete>
+	<update id="updateReply" parameterType="reply">
+		update cc_reply
+		set reply_content = #{replyContent}
+		where reply_no = #{replyNo}
+	</update>
+	<select id="getReply" parameterType="int">
+		select * from cc_reply
+		where
+		reply_no = #{replyNo}
+	</select>
 </mapper>
 

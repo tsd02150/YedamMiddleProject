@@ -1,6 +1,9 @@
 package com.yedam.notice.control;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,22 +20,24 @@ public class GetCustomerControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		HttpSession session = req.getSession();
-		String memId= (String) session.getAttribute("id");
-
 		//customerCenter.jsp 에서 넘어오는 "no"파라미터
 		String no= req.getParameter("no");
-		System.out.println("no: "+no);		
 		NoticeService service= new NoticeServiceImpl();
 		NoticeVO vo = service.getCustomer(Integer.parseInt(no));
 		req.setAttribute("vo", vo); //getCustomer.jsp로 넘겨주는 파라미터 "vo"
-		System.out.println("vo :"+vo);
+		String page =req.getParameter("page");
+		req.setAttribute("pageNum",page);
 		
-		/*if(pw.equals(noticePw)) {*/
+		
+		if(vo.getNoticeAttach()!=null) {
+			String imgPath = req.getServletContext().getRealPath("images");
+			Path file =Paths.get(imgPath+"/"+ vo.getNoticeAttach());
+			System.out.println(imgPath);
+			String filetype= Files.probeContentType(file);
+			req.setAttribute("fileType", filetype.substring(0, filetype.indexOf("/")));
+		}
 			return "notice/getCustomer.tiles";			
-			/*
-			 * }else { return "notice/customerCenter.tiles"; }
-			 */
+			
 	}
 
 }

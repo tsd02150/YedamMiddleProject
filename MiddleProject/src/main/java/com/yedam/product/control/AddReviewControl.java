@@ -49,7 +49,7 @@ public class AddReviewControl implements Control {
 		ReviewVO vo = new ReviewVO();
 		vo.setMemberNo(Integer.parseInt(mno));
 		vo.setReviewContent(rcontent);
-		vo.setReviewContent(attach);
+		vo.setReviewAttach(attach);
 		vo.setScore(Integer.parseInt(score));
 		vo.setBoardNo(Integer.parseInt(bno));
 		

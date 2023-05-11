@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.member.domain.CompanyVO;
 import com.yedam.member.domain.DeliveryVO;
 import com.yedam.member.domain.MemberVO;
+import com.yedam.member.domain.OrderDetailVO;
 import com.yedam.member.domain.OrdersVO;
 import com.yedam.member.domain.WishVO;
 import com.yedam.member.mapper.MemberMapper;
@@ -76,6 +78,23 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<MemberVO> memberList() {
 		return mapper.memberList();
+	}
+	@Override
+	public List<OrdersVO> orderNoList(String orderNo) {
+		return mapper.orderNoList(orderNo);
+	}
+	@Override
+	public List<OrderDetailVO> myCart(int memberNo) {
+		return mapper.myCart(memberNo);
+	}
+
+	@Override
+	public CompanyVO companyInfo(String id) {
+		return mapper.companyInfo(id);
+	}
+	@Override
+	public boolean updateMemberCo(CompanyVO vo) {
+		return mapper.updateMemberCo(vo)>0;
 	}
 	
 }

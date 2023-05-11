@@ -189,7 +189,7 @@
 		where review_no=#{reviewNo}
 	</delete>
 	<select id="myOrderList" parameterType="String">
-		select m.member_no, m.id, o.order_no, o.order_date, p.product_name, b.*
+		select m.member_no, m.id,m.name, o.order_no, o.order_date, p.product_name, b.*
 			from member m 
 			join orders o on(m.member_no=o.member_no)
 			join order_detail d on o.order_no = d.order_no
@@ -197,4 +197,33 @@
 			join board b on b.product_no = p.product_no
 		where m.id=#{id}
 	</select>
+	
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<!-- Qna -->
+	<select id="qnaList" parameterType="int">
+
+		select m.member_no, m.id, m.name, q.qna_no, q.qna_category, q.qna_title, q.qna_content, q.qna_date, q.qna_hide, q.qna_answer, q.board_no, p.product_no, p.product_name
+			from member m 
+			join qna q on(m.member_no=q.qna_no)
+			join board b on q.board_no = b.board_no
+			join product p on b.product_no = p.product_no
+		where q.board_no = #{boardNo}
+	</select>
+	
+	<!-- 테마 -->
+	<select id="selectTheme" resultType="theme">
+ 	<![CDATA[
+    select b.*
+    from (select rownum rn, a.*
+          from (select * from board b join product p 
+				on(b.product_no = p.product_no)
+				join subcategory s on(p.sub_category_no=s.sub_category_no)
+				join theme t on(t.theme_no=p.theme_no)
+				where t.theme_no=#{theme_no}) a
+          where rownum <= #{page} * 10 ) b
+    where b.rn > (#{page} - 1) * 10
+    order by price  
+    ]]>
+	</select>
+	
 </mapper>

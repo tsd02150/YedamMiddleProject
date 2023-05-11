@@ -135,6 +135,7 @@ height:
 <table class="table">
 	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="delivery" items="${list}">
+		<c:if test ="${delivery.deliveryState == 'r' || delivery.deliveryState == 'd' || delivery.deliveryState == 's'}">
 		<tr>
 			<td><c:out value="${no=no+1 }"></c:out></td>
 			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>품번 : ${delivery.productNo}</a></td>
@@ -158,6 +159,7 @@ height:
 			</c:choose>
 			</td>
 		</tr>
+		</c:if>
 			<c:set var = "totalPrice" value="${totalPrice + (delivery.price * delivery.orderCount)}"/>
 	</c:forEach>
 </table>
