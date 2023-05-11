@@ -17,6 +17,7 @@ import com.yedam.member.control.AdminNewCompanyControl;
 import com.yedam.member.control.ConfirmControl;
 import com.yedam.member.control.DeleteOrderControl;
 import com.yedam.member.control.ModifyMemberControl;
+import com.yedam.member.control.MyCartControl;
 import com.yedam.member.control.MyPageControl;
 import com.yedam.member.control.MyQnaListControl;
 import com.yedam.member.control.SignInControl;
@@ -213,7 +214,10 @@ public class FrontControl extends HttpServlet {
 		
 		//결제
 		map.put("/pay.do", new PayControl());
-	}
+		
+		//장바구니
+		map.put("/myCart.do", new MyCartControl());
+	} 
 
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

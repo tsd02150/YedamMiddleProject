@@ -9,4 +9,8 @@ public class OrderDetailVO {
 	private int productNo;
 	private int orderNo;
 	
+	private String productName;
+	private int price;
+	private int mainCategoryNo;
+	private int subCategoryNo;
 }

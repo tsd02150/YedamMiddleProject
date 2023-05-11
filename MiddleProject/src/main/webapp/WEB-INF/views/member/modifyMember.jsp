@@ -78,7 +78,7 @@ height:
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
 		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
-		<li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
+		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
 		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
@@ -99,8 +99,9 @@ height:
 </c:choose>
 </td>
 <td>
+<c:choose>
+<c:when test="${grade=='c' }">
 <form action="modifyMember.do" method="post">
-	<!-- 첨부파일이 있기 때문에 method는 post로 -->
 	<table class="table" align="center">
 		<tr>
 			<th>이름</th>
@@ -137,6 +138,78 @@ height:
 		</tr>
 	</table>
 </form>
+</c:when>
+<c:when test="${grade=='s' }">
+<form action="modifyMemberCo.do" method="post">
+	<table class="table">
+		<tr>
+			<th>이름</th>
+			<td>${name }</td>
+		</tr>
+		<tr>
+			<th>아이디</th>
+			<td><input type="text" name="id" value="${id }" readonly style=display:none>${id }</td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td><input type="password" name="pw" value=""></td>
+		</tr>
+		<tr>
+			<th>연락처</th>
+			<td><input type="text" name="phone" value="${memberInfo.phone }" readonly></td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td><input type="text" name="email" value="${memberInfo.email }"></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td><input type="text" name="adress" value="${memberInfo.adress }"></td>
+		</tr>
+		<tr>
+			<th>asdasd쿠폰</th>
+			<td><input type="text" name="coupon" value="#" readonly></td>
+		</tr>
+	</table>
+	<table class="table">
+		<tr style="display:none">
+			<th>사업장 이름</th>
+			<td><input type="text" name="companyNo" value="${companyInfo.companyNo }" readonly style=display:none></td>
+		</tr>
+		<tr>
+			<th>사업장 이름</th>
+			<td>${companyInfo.companyName }</td>
+		</tr>
+		<tr>
+			<th>사업주</th>
+			<td><input type="text" name="name" value="${name }" readonly style=display:none>${name }</td>
+		</tr>
+		<tr>
+			<th>사업자 번호</th>
+			<td><input type="text" name="crn" value="${companyInfo.crn }" readonly></td>
+		</tr>
+		<tr>
+			<th>사업장 연락처</th>
+			<td><input type="text" name="companyPhone" value="${companyInfo.companyPhone }" ></td>
+		</tr>
+		<tr>
+			<th>사업장 이메일</th>
+			<td><input type="text" name="email" value="${memberInfo.email }" ></td>
+		</tr>
+		<tr>
+			<th>사업장 주소</th>
+			<td><input type="text" name="companyAddr" value="${companyInfo.companyAddr }"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<button type="submit" onClick="location.href='myPage.do'">저장</button>
+				<button type="button" onClick="location.href='myPage.do'">취소</button>
+		</tr>
+	</table>
+</form>
+</c:when>
+</c:choose>
+
 </td>
 </tr>
 </table>

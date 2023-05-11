@@ -23,7 +23,9 @@ public class OrdersVO {
 	private int orderCount;
 	private String deliveryState;
 	private String setting;
-	
+	private String name;
+	private String adress;
+	private String phone;
 	
 	
 }
