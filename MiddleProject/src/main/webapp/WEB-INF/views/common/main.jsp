@@ -241,7 +241,7 @@ to {
 			<div class="row g-5 mb-5">
 				<div class="col-lg-4">
 					<div class="mb-4 footer-logo-wrap">
-						<a href="#" class="footer-logo">고객센터</a>
+						<a href="customerCenter.do" class="footer-logo">고객센터</a>
 					</div>
 					<p class="mb-4">
 						전화상담 : 0000-0000<br>온라인 상담 : 1:1 문의
@@ -255,15 +255,14 @@ to {
 					</ul>
 				</div>
 
-				<div class="col-lg-4">
+				<div class="col-lg-4">	
 					<div class="mb-4 footer-logo-wrap">
-						<a href="#" class="footer-logo">공지사항</a>
+						<a href="noti.do" class="footer-logo">공지사항</a>
 					</div>
 					<ul class="list-unstyled">
-						<li><a href="#">test1</a></li>
-						<li><a href="#">test2</a></li>
-						<li><a href="#">test3</a></li>
-						<li><a href="#">test4</a></li>
+						<c:forEach var="notice" items="${noticeList }">
+							<li style="text-overflow: ellipsis;"><a href="getNoti.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></li>
+						</c:forEach>
 					</ul>
 				</div>
 				<div class="col-lg-4">
@@ -271,10 +270,9 @@ to {
 						<a href="faq.do" class="footer-logo">자주묻는 질문</a>
 					</div>
 					<ul class="list-unstyled">
-						<li><a href="#">test1</a></li>
-						<li><a href="#">test2</a></li>
-						<li><a href="#">test3</a></li>
-						<li><a href="#">test4</a></li>
+						<c:forEach var="faq" items="${faqList }">
+							<li style="text-overflow: ellipsis;">${faq.noticeTitle }</li>
+						</c:forEach>
 					</ul>
 				</div>
 
