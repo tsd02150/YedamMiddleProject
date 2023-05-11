@@ -51,14 +51,17 @@ public class ModifyMemberCoControl implements Control {
 			MemberService service = new MemberServiceImpl();
 			System.out.println(vo);
 			String companyNo = req.getParameter("companyNo");
+			String crn = req.getParameter("crn");
 			String companyAddr = req.getParameter("companyAddr");
 			String companyPhone = req.getParameter("companyPhone");
 			CompanyVO vo2 = new CompanyVO();
 			vo2.setCompanyNo(Integer.parseInt(companyNo));
+			vo2.setCrn(crn);
 			vo2.setCompanyAddr(companyAddr);
 			vo2.setCompanyPhone(companyPhone);
-			if(service.updateMemberM(vo)||service.updateMemberCo(vo2)) {
-				
+			System.out.println(vo2);
+			if(service.updateMemberM(vo)) {
+				service.updateMemberCo(vo2);
 				return "myPage.do"; 
 			}else {
 				return null;

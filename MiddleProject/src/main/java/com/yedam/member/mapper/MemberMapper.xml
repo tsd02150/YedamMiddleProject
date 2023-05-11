@@ -37,9 +37,9 @@
 		where id=#{id}
 	</update>
 	
-	<update id="updateMemberC" parameterType="company">
+	<update id="updateMemberCo" parameterType="company">
 		update company
-		set companyPhone=#{companyPhone}, companyAddr=#{companyAddr}
+		set company_phone=#{companyPhone}, company_addr=#{companyAddr}
 		where company_no=#{companyNo}
 	</update>
 	

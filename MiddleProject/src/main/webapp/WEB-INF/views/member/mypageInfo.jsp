@@ -78,7 +78,7 @@ height:
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
 		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
-		<li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
+		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
 		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
