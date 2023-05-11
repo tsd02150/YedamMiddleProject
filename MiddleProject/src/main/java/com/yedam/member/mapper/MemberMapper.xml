@@ -75,6 +75,22 @@
         join maincategory using(main_category_no)
 		where id = #{id}
  	</select>
+ 	
+ 	<select id="orderNoList" resultType="order" parameterType="String">
+ 		select * from(
+        select * from(
+        select * from(
+		select * from(
+		select * from(
+		select * from orders join order_detail using(order_no))
+		join product using(product_no))
+		join member using(member_no))
+		join board using(product_no))
+        join subcategory using(sub_category_no))
+        join maincategory using(main_category_no)
+		where order_no = #{orderNo}
+ 	</select>
+ 	
  	<delete id="deleteOrder" parameterType="int">
  		delete from orders where order_no = #{orderNo}
  	</delete>

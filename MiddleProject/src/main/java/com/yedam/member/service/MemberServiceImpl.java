@@ -77,5 +77,9 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> memberList() {
 		return mapper.memberList();
 	}
+	@Override
+	public List<OrdersVO> orderNoList(String orderNo) {
+		return mapper.orderNoList(orderNo);
+	}
 	
 }

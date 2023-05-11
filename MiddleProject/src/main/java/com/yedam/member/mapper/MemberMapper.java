@@ -25,5 +25,5 @@ public interface MemberMapper {
 	public int deleteOrderDetail(int orderNo);
 	public List<DeliveryVO> orderDetail(String id);
 	public List<MemberVO> memberList();
-	
+	public List<OrdersVO> orderNoList(String orderNo);
 }
