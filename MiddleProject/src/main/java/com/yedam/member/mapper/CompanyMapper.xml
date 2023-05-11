@@ -28,4 +28,12 @@
 		set member.grade='s'
 		where member.company_no=#{companyNo}
 	</update>
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

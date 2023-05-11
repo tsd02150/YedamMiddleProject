@@ -26,6 +26,7 @@ import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
 import com.yedam.member.control.WishListControl;
 import com.yedam.product.control.GetProductControl;
+import com.yedam.product.control.ProdNowListControl;
 import com.yedam.product.control.ProductListControl;
 
 
@@ -67,6 +68,13 @@ public class FrontControl3 extends HttpServlet{
 		map.put("/orderPage.do", new OrderPageControl());
 		
 		map.put("/modifyMemberCo.do",new ModifyMemberCoControl());
+		map.put("/prodNowList.do", new ProdNowListControl());
+		
+		
+		
+		
+		
+		
 	}
 	
 	@Override
