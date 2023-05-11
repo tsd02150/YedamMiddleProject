@@ -131,13 +131,13 @@ height:
 </c:choose>
 </td>
 <td>
-<form name="order" action="orderPage.do" method="post">
 <table class="table">
 	<c:set var = "totalPrice" value = "0"/>
-		<tr><td><input type="checkbox" id="chkAll" value="selectall" onclick="allCheckboxes('chk', this.checked);calc();" />전체선택</td></tr>
+		<tr><td><input type="checkbox" id="chkAll" value="selectall" onclick="allCheckboxes('chk', this.checked);calc();selectOrder();" />전체선택</td></tr>
 	<c:forEach var="order" items="${list}">
-		<tr>
-			<td><input type="checkbox" name = "chk" class="c" onclick="isAllCheck(this.name, 'chkAll');calc();" value="${order.price * order.orderCount}" ></td>
+		<tr class="itemList">
+			<td><input type="checkbox" name = "chk" class="c" onclick="isAllCheck(this.name, 'chkAll');calc();selectOrder();" value="${order.price * order.orderCount}" ></td>
+			<td><input name="orderNo" style="display:none;" value="${order.orderNo}"></td>
 			<td><img width="70px" src="images/${order.boardThumbnail}"></td>
 			<td>제품명 : ${order.productName}</td>
 			<td>제품 설명 : ${order.boardContent }</td>
@@ -166,10 +166,9 @@ height:
 	</tr>
 	<tr>
 	<td colspan="2" align="right">
-		<button type="submit">주문</button>
+		<button type="button" id = "orderBtn">주문</button>
 	</tr>
 </table>
-</form>
 <div class="center">
 	<div class="pagination">
 		<c:if test="${pageInfo.prev }">
@@ -189,6 +188,7 @@ height:
 </table>
 
 <script>
+
 
 
 function allCheckboxes(boxNames, chkMode){
@@ -264,13 +264,7 @@ function allCheckboxes(boxNames, chkMode){
 			document.querySelector(".alphaFee").innerText = 0; 
 		}
 		
-		
-		
-		
-		
-		
-		
-		
+	
 	}
 
 	
@@ -316,21 +310,31 @@ function allCheckboxes(boxNames, chkMode){
         	sum=0;
         }
         
-        
-        
     }
     
-	
+    function selectOrder() {
+        var obj_length = document.getElementsByName("chk").length;
+  		let itemList = document.querySelectorAll(".itemList");
+  		itemList.forEach(item=>{
+  			let orderSelectNo;
+            if (item.children[0].children[0].checked == true) {
+            		orderSelectNo = item.children[1].children[0].value;
+            		console.log(orderSelectNo);
+            	}
+							document.getElementById('orderBtn').addEventListener('click',function(){
+								
+								window.location = 'orderPage.do?orderNo='+orderSelectNo;
+						}) 
+            	//선택한 값만 가져와서 control
+  		})
+		
+  		
+  		
+  		
+    }
     
     
-    
-    
-    
-    
-    
-    		    
-    
-    
+   
 	
 	
 </script>

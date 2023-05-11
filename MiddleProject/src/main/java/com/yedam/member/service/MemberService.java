@@ -25,5 +25,6 @@ public interface MemberService {
 	public List<DeliveryVO> orderDetail(String id);
 	
 	public List<MemberVO> memberList();
+	public List<OrdersVO> orderNoList(String orderNo);
 	
 }
