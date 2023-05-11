@@ -21,17 +21,29 @@
 	<select id="memberInfo" resultType="member" parameterType="String">
 		select * from member where id = #{id}
 	</select>
+	<select id="companyInfo" resultType="company" parameterType="String">
+		select * from member join company using(company_no) where id = #{id}
+	</select>
 	<select id="searchId" resultType="String" parameterType="member">
 		select id from member where name=#{name} and rrn=#{rrn}
 	</select>
 	<select id="searchPw" resultType="String" parameterType="member">
 		select pw from member where id=#{id} and name=#{name} and rrn=#{rrn}
 	</select>
+	
 	<update id="updateMemberM" parameterType="member">
 		update member
 		set pw=#{pw}, phone=#{phone}, adress=#{adress}, email=#{email}
 		where id=#{id}
 	</update>
+	
+	<update id="updateMemberC" parameterType="company">
+		update company
+		set companyPhone=#{companyPhone}, companyAddr=#{companyAddr}
+		where company_no=#{companyNo}
+	</update>
+	
+	
  	<select id="qnaList" parameterType="String" resultType="qna">
  		select * from qna join member using (member_no)
 		where id = #{id};

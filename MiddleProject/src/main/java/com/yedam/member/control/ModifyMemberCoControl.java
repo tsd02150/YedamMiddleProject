@@ -13,7 +13,7 @@ import com.yedam.member.domain.MemberVO;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceImpl;
 
-public class ModifyMemberControl implements Control {
+public class ModifyMemberCoControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,7 +50,14 @@ public class ModifyMemberControl implements Control {
 			vo.setAdress(adress);
 			MemberService service = new MemberServiceImpl();
 			System.out.println(vo);
-			if(service.updateMemberM(vo)) {
+			String companyNo = req.getParameter("companyNo");
+			String companyAddr = req.getParameter("companyAddr");
+			String companyPhone = req.getParameter("companyPhone");
+			CompanyVO vo2 = new CompanyVO();
+			vo2.setCompanyNo(Integer.parseInt(companyNo));
+			vo2.setCompanyAddr(companyAddr);
+			vo2.setCompanyPhone(companyPhone);
+			if(service.updateMemberM(vo)||service.updateMemberCo(vo2)) {
 				
 				return "myPage.do"; 
 			}else {

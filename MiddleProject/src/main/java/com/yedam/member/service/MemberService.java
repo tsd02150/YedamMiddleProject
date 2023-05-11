@@ -2,6 +2,7 @@ package com.yedam.member.service;
 
 import java.util.List;
 
+import com.yedam.member.domain.CompanyVO;
 import com.yedam.member.domain.DeliveryVO;
 import com.yedam.member.domain.MemberVO;
 import com.yedam.member.domain.OrdersVO;
@@ -26,5 +27,8 @@ public interface MemberService {
 	
 	public List<MemberVO> memberList();
 	public List<OrdersVO> orderNoList(String orderNo);
+	public CompanyVO companyInfo(String id);
+	public boolean updateMemberCo(CompanyVO vo);
+	
 	
 }

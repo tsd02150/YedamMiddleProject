@@ -99,6 +99,8 @@ height:
 </c:choose>
 </td>
 <td>
+<c:choose>
+<c:when test="${grade=='c' }">
 <form action="modifyMember.do" method="get">
 
 	<table class="table" align="center">
@@ -136,6 +138,69 @@ height:
 		</tr>
 	</table>
 </form>
+</c:when>
+<c:when test="${grade=='s' }">
+<form action="modifyMember.do" method="get">
+
+	<table class="table" align="center">
+		<tr>
+			<th>이름</th>
+			<td>${name }</td>
+		</tr>
+		<tr>
+			<th>아이디</th>
+			<td>${id }</td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td>●●●●●●●●</td>
+		</tr>
+		<tr>
+			<th>연락처</th>
+			<td>${memberInfo.phone }</td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td>${memberInfo.email }</td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td>${memberInfo.adress}</td>
+		</tr>
+		<tr>
+			<th>dsdads쿠폰</th>
+			<td>1개</td>
+		</tr>
+	
+	</table>
+	<table class="table" align="center">
+		<tr>
+			<th>사업장 이름</th>
+			<td>${companyInfo.companyName }</td>
+		</tr>
+		<tr>
+			<th>사업주</th>
+			<td>${name }</td>
+		</tr>
+		<tr>
+			<th>사업자 번호</th>
+			<td>${companyInfo.crn }</td>
+		</tr>
+		<tr>
+			<th>연락처</th>
+			<td>${companyInfo.companyPhone }</td>
+		</tr>
+		
+		<tr>
+			<th>사업장 주소</th>
+			<td>${companyInfo.companyAddr}</td>
+		</tr>
+	</table>
+		<button type="submit">수정</button>
+	
+</form>
+</c:when>
+</c:choose>
 </td>
 </tr>
 </table>
