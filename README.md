@@ -52,28 +52,32 @@
   
 ## 4. 개인 Branch에서 자유롭게(?) 작업한 후에 push하는 과정
 1.
-올리기 전에 main branch에 내용 pull
+깃에 올리기 전 깃안에 있는 main branch의 내용을 본인 로컬branch로 pull해야함
 pull... 클릭
 ![image](https://user-images.githubusercontent.com/85140469/235565671-328d60fb-96a9-4ce7-a45e-4996c397fc58.png)
+
+--충돌이 있다던지 오류가 나면 commit 후 pull...--
 Reference 에 main 입력 후 main[branch]선택
 Finish
 
 2.
-프로젝트 우클릭 Team Share > push branch '본인 브랜치'
+Git staging에서 올릴 파일들을 stage에 넣어주고 commit message 작성후 commit&push
+--커밋을 했었다면 프로젝트 우클릭 Team Share > push branch '본인 브랜치'--
+-- or Git stageing 에서 push HEAD --
 ![image](https://user-images.githubusercontent.com/85140469/235566029-924fb414-e207-43a1-9ede-3d9a039fd533.png)
 
   
 ## 5. 마무리로 master branch에 병합
 1.
-혹시 모르니 한번 더 main branch에 내용 pull
-pull... 클릭
-![image](https://user-images.githubusercontent.com/85140469/235565671-328d60fb-96a9-4ce7-a45e-4996c397fc58.png)
-Reference 에 main 입력 후 main[branch]선택
-Finish
+git Repositories 가서 switch to로 로컬 main 브랜치로 이동
+![image](https://user-images.githubusercontent.com/85140469/235566227-46d3db56-ea94-4959-9cd8-20ea116a970d.png)
 
 2.
-git Repositories 가서 switch to로 main 브랜치로 이동
-![image](https://user-images.githubusercontent.com/85140469/235566227-46d3db56-ea94-4959-9cd8-20ea116a970d.png)
+깃의 main branch의 내용 로컬 main branch로 pull
+pull... 클릭
+![image](https://user-images.githubusercontent.com/85140469/235565671-328d60fb-96a9-4ce7-a45e-4996c397fc58.png)
+
+3.
 우클릭 해서 merge 선택
 origin/"본인브랜치" 선택
 merge 완료 후
