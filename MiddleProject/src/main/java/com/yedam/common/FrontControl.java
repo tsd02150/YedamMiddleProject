@@ -51,6 +51,7 @@ import com.yedam.product.control.AddBoardFormControl;
 import com.yedam.product.control.AddProductControl;
 import com.yedam.product.control.AddProductFormControl;
 import com.yedam.product.control.AddReviewControl;
+import com.yedam.product.control.AddReviewFormControl;
 import com.yedam.product.control.BoardListControl;
 import com.yedam.product.control.CategoryBoardControl;
 import com.yedam.product.control.CtgJoin;
@@ -114,7 +115,7 @@ public class FrontControl extends HttpServlet {
 		map.put("/orderDetail.do", new OrderDetailControl());
 
 		// 상품 전체 리스트
-		map.put("/prodList.do", new ProductListControl());
+		map.put("/productList.do", new ProductListControl());
 		// 상품 상세페이지
 		map.put("/getProduct.do", new GetProductControl());
 		// 상품 등록, 수정, 삭제(판매자)
@@ -144,6 +145,7 @@ public class FrontControl extends HttpServlet {
 		// 상품후기
 		map.put("/reviewList.do", new ReviewListControl());
 		map.put("/addReview.do", new AddReviewControl());
+		map.put("/addReviewForm.do", new AddReviewFormControl());
 		map.put("/modifyReview.do", new ModifyReviewControl());
 		map.put("/removeReview.do", new RemoveReviewControl());
 
