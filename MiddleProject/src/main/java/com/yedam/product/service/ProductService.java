@@ -10,6 +10,7 @@ import com.yedam.product.domain.ProductVO;
 import com.yedam.product.domain.QnaVO;
 import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.domain.SubCategoryVO;
+import com.yedam.product.domain.ThemeVO;
 
 public interface ProductService {
 	//검색기능
@@ -53,5 +54,7 @@ public interface ProductService {
 	
 	public List<QnaVO> myQnaList(int memberNo);
 	
+	//테마
+	public List<ThemeVO> themeList(int themeNo);
 	
 }

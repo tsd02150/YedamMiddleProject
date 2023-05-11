@@ -20,7 +20,7 @@ public class ModifyReplyCustomerControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ReplyVO vo = new ReplyVO();
-		vo.setReply(req.getParameter("reply"));
+		vo.setReplyContent(req.getParameter("reply"));
 		vo.setReplyNo(Integer.parseInt(req.getParameter("rid")));
 
 		ReplyService service = new ReplyServiceImpl();

@@ -94,9 +94,9 @@ height:
 <div style="display: block;">
 	<nav id="sidebar-wrapper" class="active" style="display: inline-block;">
 		<ul id="ul" class="sidebar-nav">
-			<c:forEach var="ctgList" items="${ctgList }">
+			<c:forEach var="themeList" items="${themeList }">
 				<li class="sidebar-nav-item"><a
-					href="categoryBoard.do?page=${pageInfo.pageNum}&sno=${ctgList.subCategoryNo}">${ctgList.subCategoryName }</a></li>
+					href="categoryBoard.do?page=${pageInfo.pageNum}&sno=${themeList.themeNo}">${themeList.themeName }</a></li>
 			</c:forEach>
 		</ul>
 	</nav>
@@ -139,7 +139,6 @@ height:
 					</div>
 				</c:forEach>
 				<!-- End Column 1 -->
-
 			</div>
 		</div>
 	</div>

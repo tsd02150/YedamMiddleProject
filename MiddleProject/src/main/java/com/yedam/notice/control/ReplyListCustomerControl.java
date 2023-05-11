@@ -27,8 +27,8 @@ public class ReplyListCustomerControl implements Control {
 		for (int i = 0; i < list.size(); i++) {
 			
 			json += "{\"replyNo\":" + list.get(i).getReplyNo() + ",";
-			json += "\"reply\":\"" + list.get(i).getReply() + "\",";
-			json += "\"replyWriter\":\"" + list.get(i).getReplyWriter() + "\",";
+			json += "\"replyContent\":\"" + list.get(i).getReplyContent() + "\",";
+			json += "\"replyWriter\":\"" + list.get(i).getReplyWriter() + "\"}";
 			if (i + 1 != list.size()) {
 				json += ",";
 			}
