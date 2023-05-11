@@ -112,4 +112,19 @@
  	<select id="memberList">
  	select * from member where grade='c'
  	</select>
+ 	<select id="myCart" resultType="orderDetail" parameterType="int">
+ 		select * 
+ 		from (
+			select * 
+			from order_detail 
+			where order_no in
+				(select order_no 
+				from orders join member 
+				using(member_no) 
+				where member_no=#{memberNo})
+			) a 
+		join product p
+		using(product_no)
+		order by order_no desc
+ 	</select>
 </mapper>

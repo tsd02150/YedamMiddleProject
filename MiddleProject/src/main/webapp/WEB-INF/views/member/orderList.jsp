@@ -68,6 +68,7 @@ height:
 	color: #fff;
 	background: none;
 }
+
 .center {
 	text-align: center;
 }
@@ -95,96 +96,100 @@ height:
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
-
-
-
-
-
 </style>
 <table class="mycontainer">
-<tr>
-<td>
-<c:choose>
-<c:when test="${grade=='s'}">
-<nav id="sidebar-wrapper" class="active">
-	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
-		<li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
-	</ul>
-</nav>
-</c:when>
-<c:otherwise>
-<nav id="sidebar-wrapper" class="active">
-	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
-		<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
-		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
-	</ul>
-</nav>
-</c:otherwise>
-</c:choose>
-</td>
-<td>
-<table class="table">
-	<c:set var = "totalPrice" value = "0"/>
-		<tr><td><input type="checkbox" id="chkAll" value="selectall" onclick="allCheckboxes('chk', this.checked);calc();selectOrder();" />전체선택</td></tr>
-	<c:forEach var="order" items="${list}">
-		<tr class="itemList">
-			<td><input type="checkbox" name = "chk" class="c" onclick="isAllCheck(this.name, 'chkAll');calc();selectOrder();" value="${order.price * order.orderCount}" ></td>
-			<td><input name="orderNo" style="display:none;" value="${order.orderNo}"></td>
-			<td><img width="70px" src="images/${order.boardThumbnail}"></td>
-			<td>제품명 : ${order.productName}</td>
-			<td>제품 설명 : ${order.boardContent }</td>
-			<td>가격 : ${order.price}</td>
-			<td>주문 수량 : ${order.orderCount}</td>
-			<td><button id="delbtn" type="button" name="orderNo" onClick="location.href='deleteOrder.do?orderNo=${order.orderNo }'">삭제</button>
-		</tr>
-			<c:set var = "totalPrice" value="${totalPrice + (order.price * order.orderCount)}"/>
-	</c:forEach>
-							<!-- <c:if test="c">
+	<tr>
+		<td><c:choose>
+				<c:when test="${grade=='s'}">
+					<nav id="sidebar-wrapper" class="active">
+						<ul class="sidebar-nav">
+							<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
+							<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)
+							</a></li>
+							<li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
+							<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
+							<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
+							<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+						</ul>
+					</nav>
+				</c:when>
+				<c:otherwise>
+					<nav id="sidebar-wrapper" class="active">
+						<ul class="sidebar-nav">
+							<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
+							<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
+							<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
+							<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
+							<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
+						</ul>
+					</nav>
+				</c:otherwise>
+			</c:choose></td>
+		<td>
+			<table class="table">
+				<c:set var="totalPrice" value="0" />
+				<tr>
+					<td><input type="checkbox" id="chkAll" value="selectall"
+						onclick="allCheckboxes('chk', this.checked);calc();selectOrder();" />전체선택</td>
+				</tr>
+				<c:forEach var="order" items="${list}">
+					<tr class="itemList">
+						<td><input type="checkbox" name="chk" class="c"
+							onclick="isAllCheck(this.name, 'chkAll');calc();selectOrder();"
+							value="${order.price * order.orderCount}"></td>
+						<td><input name="orderNo" style="display: none;"
+							value="${order.orderNo}"></td>
+						<td><img width="70px" src="images/${order.boardThumbnail}"></td>
+						<td>제품명 : ${order.productName}</td>
+						<td>제품 설명 : ${order.boardContent }</td>
+						<td>가격 : ${order.price}</td>
+						<td>주문 수량 : ${order.orderCount}</td>
+						<td><button id="delbtn" type="button" name="orderNo"
+								onClick="location.href='deleteOrder.do?orderNo=${order.orderNo }'">삭제</button>
+					</tr>
+					<c:set var="totalPrice"
+						value="${totalPrice + (order.price * order.orderCount)}" />
+				</c:forEach>
+				<!-- <c:if test="c">
 							<c:if test="${order.mainCategoryNo != 2 && order.subCategoryNo != 3}">
 								20000
 							</c:if>
 							</c:if> -->
-	<tr>
-		<td>
-			선택 상품 가격 : <span class="allPrice" ></span>
-		</td>
-		<td>기본 배송비 : <span class="nomalFee">0</span></td>
-		<td>추가 배송비 : <span class="alphaFee">
-							0
-					   </span></td>
-		<td>설치 여부 : <input type="checkbox" name="setting" class="setting" onClick="checkS();calc();"><br>체크시 30,000원 추가</td>
-		<td>총 합계 : <span class="sumPrice"></span></td>
-		
-	</tr>
-	<tr>
-	<td colspan="2" align="right">
-		<button type="button" id = "orderBtn">주문</button>
-	</tr>
-</table>
-<div class="center">
-	<div class="pagination">
-		<c:if test="${pageInfo.prev }">
-			<a href="wishList.do?page=${pageInfo.startPage-1 }">Previous</a>
-		</c:if>
-		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-			<a class="${i == pageInfo.pageNum ? 'active' : '' }" href="wishList.do?page=${i}">${i } </a>
-		</c:forEach>
-		<c:if test="${pageInfo.next }">
-			<a href="wishList.do?page=${pageInfo.endPage+1 }">Next</a>
-		</c:if>
-	</div>
-</div>
+				<tr>
+					<td>선택 상품 가격 : <span class="allPrice"></span>
+					</td>
+					<td>기본 배송비 : <span class="nomalFee">0</span></td>
+					<td>추가 배송비 : <span class="alphaFee"> 0 </span></td>
+					<td>설치 여부 : <input type="checkbox" name="setting"
+						class="setting" onClick="checkS();calc();"><br>체크시
+						30,000원 추가
+					</td>
+					<td>총 합계 : <span class="sumPrice"></span></td>
 
-</td>
-</tr>
+				</tr>
+				<tr>
+					<td colspan="2" align="right">
+						<button type="button" id="orderBtn">주문</button>
+				</tr>
+			</table>
+			<div class="center">
+				<div class="pagination">
+					<c:if test="${pageInfo.prev }">
+						<a href="wishList.do?page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i == pageInfo.pageNum ? 'active' : '' }"
+							href="wishList.do?page=${i}">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a href="wishList.do?page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</div>
+			</div>
+
+		</td>
+	</tr>
 </table>
 
 <script>
@@ -315,22 +320,15 @@ function allCheckboxes(boxNames, chkMode){
     function selectOrder() {
         var obj_length = document.getElementsByName("chk").length;
   		let itemList = document.querySelectorAll(".itemList");
-  		itemList.forEach(item=>{
-  			let orderSelectNo;
-            if (item.children[0].children[0].checked == true) {
+		document.getElementById('orderBtn').addEventListener('click',function(){
+			let orderSelectNo;
+	  		itemList.forEach(item=>{
+        	    if (item.children[0].children[0].checked == true) {
             		orderSelectNo = item.children[1].children[0].value;
-            		console.log(orderSelectNo);
             	}
-							document.getElementById('orderBtn').addEventListener('click',function(){
-								
-								window.location = 'orderPage.do?orderNo='+orderSelectNo;
-						}) 
-            	//선택한 값만 가져와서 control
-  		})
-		
-  		
-  		
-  		
+			}) 
+			window.location = 'orderPage.do?orderNo='+orderSelectNo;
+  		})	
     }
     
     

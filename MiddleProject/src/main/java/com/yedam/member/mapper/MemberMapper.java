@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yedam.member.domain.DeliveryVO;
 import com.yedam.member.domain.MemberVO;
+import com.yedam.member.domain.OrderDetailVO;
 import com.yedam.member.domain.OrdersVO;
 import com.yedam.member.domain.WishVO;
 import com.yedam.product.domain.QnaVO;
@@ -26,4 +27,5 @@ public interface MemberMapper {
 	public List<DeliveryVO> orderDetail(String id);
 	public List<MemberVO> memberList();
 	public List<OrdersVO> orderNoList(String orderNo);
+	public List<OrderDetailVO> myCart(int memberNo);
 }
