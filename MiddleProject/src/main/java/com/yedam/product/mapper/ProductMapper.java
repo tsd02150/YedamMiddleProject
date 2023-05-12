@@ -70,6 +70,7 @@ public interface ProductMapper {
 	//테마전
 	public List<ThemeVO> selectTheme(int themeNo);
 	
-	
+	//판매상품 리스트
+	public List<ProductVO> productInfo2(String id);
 	
 }

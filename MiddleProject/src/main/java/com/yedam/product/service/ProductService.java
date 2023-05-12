@@ -57,4 +57,8 @@ public interface ProductService {
 	//테마
 	public List<ThemeVO> themeList(int themeNo);
 	
+	//판매상품리스트
+	public List<ProductVO> productInfo2(String id);
+	
+	
 }

@@ -19,12 +19,15 @@ import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.member.control.MyPageControl;
 import com.yedam.member.control.OrderListControl;
 import com.yedam.member.control.OrderPageControl;
+import com.yedam.member.control.OrderProdListControl;
 import com.yedam.member.control.SignInControl;
 import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpCheckControl;
 import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
 import com.yedam.member.control.WishListControl;
+import com.yedam.product.control.DeleteNowProductControl;
+import com.yedam.product.control.DeleteProductControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ProdNowListControl;
 import com.yedam.product.control.ProductListControl;
@@ -69,8 +72,8 @@ public class FrontControl3 extends HttpServlet{
 		
 		map.put("/modifyMemberCo.do",new ModifyMemberCoControl());
 		map.put("/prodNowList.do", new ProdNowListControl());
-		
-		
+		map.put("/deleteNowProduct.do", new DeleteNowProductControl());
+		map.put("/orderProdList.do", new OrderProdListControl());
 		
 		
 		

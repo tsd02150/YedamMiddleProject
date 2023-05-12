@@ -226,4 +226,20 @@
     ]]>
 	</select>
 	
+	<!-- 판매상품리스트 -->
+	<select id="productInfo2" resultType="product" parameterType="String">
+ 		select * from(
+		select * from(
+		select * from(
+		select * from member join company using(company_no))
+		join product using(company_no))
+		join subcategory using(sub_category_no))
+		join maincategory using(main_category_no)
+		where id = #{id}
+ 	</select>
+	
+	
+	
+	
+	
 </mapper>

@@ -176,7 +176,12 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.selectTheme(themeNo);
 	}
 
+	@Override
+	public List<ProductVO> productInfo2(String id) {
+		return mapper.productInfo2(id);
+	}
 
+	
 
 
 }

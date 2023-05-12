@@ -16,7 +16,8 @@ public class ProductVO {
 	private String subCategoryName;
 	private String mainCategoryName;
 	
-	
+	private String id;
+	private String companyName;
 	
 }
 
