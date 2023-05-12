@@ -19,37 +19,45 @@
 	<select id="ctgMain" resultType="mctg">
 		select * from maincategory
 	</select>
-	
+
 	<select id="ctgSub" resultType="sctg">
 		select * from subcategory
-		where main_category_no=#{mainCategoryNo}
+		where
+		main_category_no=#{mainCategoryNo}
 	</select>
 	<select id="ctgJoin" resultType="board">
-		select * from maincategory join subcategory using(main_category_no)
+		select * from maincategory join
+		subcategory using(main_category_no)
 	</select>
-	
+
 	<select id="ctgProd" resultType="product">
 		select * from(
-		select * from product join member using(company_no))
-		join (select * from subcategory join maincategory using(main_category_no))
+		select * from
+		product join member using(company_no))
+		join (select * from subcategory
+		join maincategory using(main_category_no))
 		using(sub_category_no)
-		where main_category_no=#{mainCategoryNo}
+		where
+		main_category_no=#{mainCategoryNo}
 		and sub_category_no=#{subCategoryNo}
 	</select>
 	<!-- PRODUCT -->
 	<select id="productList" resultType="product">
-		select * from product order by 1 
+		select * from product order
+		by 1
 	</select>
 	<select id="myProductList" resultType="product">
 		select * from (
-		select * from product join (
-		select * from subcategory join maincategory using(main_category_no))
+		select *
+		from product join (
+		select * from subcategory join maincategory
+		using(main_category_no))
 		using(sub_category_no)) join member
 		using(company_no)
 		where company_no=#{companyNo}
 		order by product_name
 	</select>
-	
+
 	<select id="prodWithPage" resultType="product">
  	<![CDATA[
     select b.*
@@ -65,8 +73,12 @@
 		product_no=#{productNo}
 	</select>
 	<insert id="insertProduct" parameterType="product">
-		insert into product (product_no, product_name, price, product_count, sub_category_no,theme_no, company_no)
-		values(products_seq.nextval, #{productName}, #{price}, #{productCount},#{subCategoryNo}, #{themeNo}, #{companyNo})
+		insert into product
+		(product_no, product_name, price, product_count,
+		sub_category_no,theme_no, company_no)
+		values(products_seq.nextval,
+		#{productName}, #{price}, #{productCount},#{subCategoryNo},
+		#{themeNo}, #{companyNo})
 	</insert>
 	<update id="updateProduct" parameterType="product">
 		update product set
@@ -85,7 +97,8 @@
 	<select id="boardList" resultType="board">
 		select b.board_no,
 		b.board_thumbnail, b.board_title, p.price as "price" from board b
-		join product p
+		join
+		product p
 		on b.product_no = p.product_no
 		order by 1
 	</select>
@@ -98,8 +111,8 @@
 				using(product_no)) join subcategory
 				using(sub_category_no)
 				order by board_no) a
-          where rownum <= #{page} * 10 ) b
-    where b.rn > (#{page} - 1) * 10  
+          where rownum <= #{page} * 12 ) b
+    where b.rn > (#{page} - 1) * 12  
     ]]>
 	</select>
 	<select id="categoryList" resultType="board">
@@ -115,53 +128,120 @@
  	       where b.rn > (#{page}-1)*20
     ]]>
 	</select>
+
+	<select id="topCountList" resultType="board">
+ 		<![CDATA[
+				select * from(
+				select rownum rn, a.* from(
+				select * from order_detail r 
+				join orders o on (r.order_no = o.order_no)
+				join delivery d on (d.order_no=r.order_no)
+				join product p on (p.product_no=r.product_no)
+				join board b on p.product_no=b.board_no
+				join subcategory s on(s.sub_category_no=p.sub_category_no)
+				where delivery_state='s'
+				ORDER BY order_count desc) a
+		       where rownum <= #{page}*12) b 
+			where b.rn > (#{page}-1)*12
+    	]]>
+	</select>
+	<select id="lowPriceList" resultType="board">
+		<![CDATA[
+			select * from(
+				select rownum rn, a.* from(
+				select * from board b
+				join product p on p.product_no=b.product_no
+				join subcategory s on p.sub_category_no=s.sub_category_no
+				order by price asc) a
+		       where rownum <= #{page}*12) b 
+			where b.rn > (#{page}-1)*12
+		]]>
+	</select>
+	<select id="highPriceList" resultType="board">
+		<![CDATA[
+			select * from(
+				select rownum rn, a.* from(
+				select * from board b
+				join product p on p.product_no=b.product_no
+				join subcategory s on p.sub_category_no=s.sub_category_no
+				order by price asc) a
+		       where rownum <= #{page}*12) b 
+			where b.rn > (#{page}-1)*12
+		]]>
+	</select>
+
+	<select id="searchPrice" resultType="int">
+		<![CDATA[
+			select * from(
+				select rownum rn, a.* from(
+				SELECT b.*, p.price AS product_price
+				FROM board b
+				  JOIN product p on (p.product_no=b.product_no)
+				  JOIN subcategory s on(p.sub_category_no=s.sub_category_no)
+				WHERE p.price >= #{price}
+				  AND p.price <= #{price}
+				ORDER BY b.board_no) a
+		       where rownum <= #{page}*12) b 
+			where b.rn > (#{page}-1)*12
+		]]>
+	</select>
+
 	<select id="searchboard" resultType="board">
 		select*from(select * from(
 		select * from board join product using(product_no))
 		join subcategory
 		using(sub_category_no)
 		where board_no=#{boardNo})join
-		company	using(company_no)
+		company
+		using(company_no)
 	</select>
 	<select id="getCount" resultType="int">
 		select count(*) from product
 	</select>
-	
+
 
 	<insert id="insertBoard" parameterType="board">
 		insert into
 		board(board_no, board_title, board_thumbnail, board_content,
 		board_attach, member_no, product_no)
-		values(board_seq.nextval, #{boardTitle},
-		#{boardThumbnail}, #{boardContent},#{boardAttach}, #{memberNo}, #{productNo})
+		values(board_seq.nextval,
+		#{boardTitle},
+		#{boardThumbnail}, #{boardContent},#{boardAttach},
+		#{memberNo}, #{productNo})
 	</insert>
 	<update id="updateBoard" parameterType="board">
 		update board
 		set
 		board_title=#{boardTitle},
 		board_content=#{boardContent}
-		where board_no = #{boardNo}
+		where board_no
+		= #{boardNo}
 	</update>
 	<delete id="deleteBoard" parameterType="int">
-		delete from board 
+		delete from board
 		where board_no=#{boardNo}
 	</delete>
 	<select id="getOrderList" resultType="board">
-		select * from orders join order_detail using(order_no)
+		select * from orders join
+		order_detail using(order_no)
 		where member_no=#{memberNo}
 	</select>
 	<select id="searchMyorder" resultType="board">
-		select * from orders where member_no=#{memberNo}
+		select * from orders where
+		member_no=#{memberNo}
 	</select>
 	<insert id="insertOrder" parameterType="board">
-		<selectKey keyProperty="orderNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="orderNo" resultType="int"
+			order="BEFORE">
 			select ORDER_NO.nextval from dual
 		</selectKey>
 		insert into orders(order_no, order_date, member_no)
-		values(#{orderNo}, sysdate, #{memberNo})
+		values(#{orderNo},
+		sysdate, #{memberNo})
 	</insert>
 	<insert id="insertOrderDetail" parameterType="board">
-		insert into order_detail(order_detail_no, order_count, order_no, product_no)
+		insert into
+		order_detail(order_detail_no, order_count, order_no, product_no)
 		values(orderdetail.nextval, #{orderCount}, #{orderNo}, #{productNo})
 	</insert>
 
@@ -170,16 +250,21 @@
 	<!-- REVIEW -->
 	<select id="reviewList" parameterType="int">
 		select * from(
-		select * from member join(
+		select *
+		from member join(
 		select rb.*, p.product_name from product p join(
-		select r.*, b.product_no from review r join board b on(b.board_no=r.board_no))rb
+		select r.*, b.product_no from review r join board b
+		on(b.board_no=r.board_no))rb
 		on(rb.product_no = p.product_no))
 		using(member_no)) a
 		join
-		(select * from orders join order_detail using(order_no)) c
-		on(a.product_no=c.product_no and a.member_no=c.member_no)
+		(select * from orders join order_detail
+		using(order_no)) c
+		on(a.product_no=c.product_no and
+		a.member_no=c.member_no)
 		where board_no=#{boardNo}
-		order by review_date desc
+		order by review_date
+		desc
 	</select>
 	<select id="searchReview" parameterType="int">
 		select * from review
@@ -189,7 +274,8 @@
 	</select>
 	<insert id="insertReview" parameterType="review">
 		insert into review
-		(review_no, review_content, score, review_attach, member_no, board_no,review_date)
+		(review_no, review_content, score, review_attach, member_no,
+		board_no,review_date)
 		values(review_seq.nextval,#{reviewContent},#{score},#{reviewAttach},#{memberNo},#{boardNo},sysdate)
 	</insert>
 	<update id="updateReview" parameterType="review">
@@ -197,43 +283,53 @@
 		set
 		review_content=#{reviewContent},
 		score=#{score}
-		where review_no=#{reviewNo}
+		where
+		review_no=#{reviewNo}
 	</update>
 	<delete id="deleteReview" parameterType="int">
-		delete review 
+		delete review
 		where review_no=#{reviewNo}
 	</delete>
 	<select id="myOrderList" parameterType="String">
-		select m.member_no, m.id,m.name, o.order_no, o.order_date, p.product_name, b.*
-			from member m 
-			join orders o on(m.member_no=o.member_no)
-			join order_detail d on o.order_no = d.order_no
-			join product p on p.product_no = d.product_no
-			join board b on b.product_no = p.product_no
+		select m.member_no,
+		m.id,m.name, o.order_no, o.order_date, p.product_name, b.*
+		from member m
+		join orders o on(m.member_no=o.member_no)
+		join order_detail d on o.order_no = d.order_no
+		join product p on p.product_no = d.product_no
+		join board b on b.product_no = p.product_no
 		where m.id=#{id}
 	</select>
-	
+
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- Qna -->
 	<select id="qnaList" parameterType="int">
-		select m.member_no, m.id, m.name, q.qna_no, q.qna_category, q.qna_title, q.qna_content, q.qna_date, q.qna_hide, q.qna_answer, q.board_no, p.product_no, p.product_name
-			from member m 
-			join qna q on(m.member_no=q.member_no)
-			join board b on q.board_no = b.board_no
-			join product p on b.product_no = p.product_no
+		select m.member_no, m.id,
+		m.name, q.qna_no, q.qna_category, q.qna_title, q.qna_content,
+		q.qna_date, q.qna_hide, q.qna_answer, q.board_no, p.product_no,
+		p.product_name
+		from member m
+		join qna q on(m.member_no=q.member_no)
+		join board b on q.board_no = b.board_no
+		join product p on b.product_no = p.product_no
 		where q.board_no = #{boardNo}
 	</select>
 	<update id="updateQna" parameterType="qna">
 		update qna
-			set qna_content=#{qnaContent}
-			where qna_no=#{qnaNo}
-			and member_no=#{memberNo}
-			and qna_hide=#{qnaHide}
+		set qna_content=#{qnaContent}
+		where qna_no=#{qnaNo}
+		and member_no=#{memberNo}
+		and qna_hide=#{qnaHide}
 	</update>
+	<delete id="deleteQna" parameterType="int">
+		delete qna
+		where qna_no=#{qnaNo}
+	</delete>
 	<select id="searchQna" parameterType="int">
-		select * from qna where qna_no=#{qnaNo}
+		select * from qna where
+		qna_no=#{qnaNo}
 	</select>
-	
+
 
 	<select id="selectTheme" resultType="theme">
  	<![CDATA[
@@ -249,18 +345,43 @@
     order by price  
     ]]>
 	</select>
-	
+
 	<!-- 판매상품리스트 -->
-	<select id="productInfo2" resultType="product" parameterType="String">
- 		select * from(
+	<select id="productInfo2" resultType="product"
+		parameterType="String">
 		select * from(
 		select * from(
-		select * from member join company using(company_no))
+		select * from(
+		select * from member join company
+		using(company_no))
 		join product using(company_no))
-		join subcategory using(sub_category_no))
+		join subcategory
+		using(sub_category_no))
 		join maincategory using(main_category_no)
-		where id = #{id}
- 	</select>
-	
+		where
+		id = #{id}
+	</select>
+	<!-- 구매자통계 -->
+	<select id="chartDataList" resultType="product"
+		parameterType="int">
+		SELECT gender, SUM(order_count) AS order_count
+		FROM (
+		SELECT 'm' AS gender, SUM(s.order_count) AS order_count
+		FROM orders o
+		JOIN order_detail s ON o.order_no=s.order_no
+		JOIN member m ON m.member_no=o.member_no
+		WHERE s.product_no=#{productNo} AND m.gender='m'
+
+		UNION
+
+		SELECT 'f' AS gender, NVL(SUM(s.order_count), 0) AS order_count
+		FROM orders o
+		JOIN order_detail s ON o.order_no=s.order_no
+		JOIN member m ON m.member_no=o.member_no
+		WHERE s.product_no=#{productNo} AND m.gender='f'
+		)
+		GROUP BY gender
+	</select>
+
 
 </mapper>
