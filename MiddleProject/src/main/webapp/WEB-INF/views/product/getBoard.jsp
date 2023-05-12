@@ -179,7 +179,6 @@
 								<div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
 								<div>
 									<select>
-										<option value="">상품 선택해주세요</option>
 										<option value="${boardInfo.productNo }">${boardInfo.productName}</option>
 									</select>
 									<span>

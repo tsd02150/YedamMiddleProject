@@ -145,16 +145,6 @@
 		where id = #{id}
 	</select>
 
-	<select id="myCart" resultType="orderDetail" parameterType="int">
-		select * from
-		(select * from order_detail where order_no in
-		(select order_no from orders join member using(member_no)where
-		member_no=#{memberNo}))
-		join
-		(select * from product join subcategory using(sub_category_no))
-		using(product_no)
-		order by order_no desc
- 	</select>
  	
  	<select id="orderProdList" resultType="member" parameterType="int">
  		select m.id, m.adress, o.order_no, s.order_detail_no, s.order_count,d.dali_date,d.delivery_state,p.product_no,p.product_name,b.* from member m 
@@ -188,9 +178,7 @@
 
 
 	<!-- 관리자페이지 -->
-	<select id="memberList">
-		select *from member where grade='c'
-	</select>
+	
 	
 	<delete id="deleteMember" parameterType="int">
 		delete from member
