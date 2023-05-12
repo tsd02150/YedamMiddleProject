@@ -41,9 +41,11 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/yedam/product/mapper/ProductMapper.xml"/>
+		<mapper resource="com/yedam/product/mapper/ThemeMapper.xml"/>
 		<mapper resource="com/yedam/notice/mapper/NoticeMapper.xml"/>
 		<mapper resource="com/yedam/notice/mapper/ReplyMapper.xml"/>
 		<mapper resource="com/yedam/member/mapper/MemberMapper.xml"/>
 		<mapper resource="com/yedam/member/mapper/CompanyMapper.xml"/>
+		
 	</mappers>
 </configuration>

@@ -38,7 +38,7 @@ height:
 	z-index: 2;
 	top: 20px;
 	right: 0;
-	width: 150px;
+	width: 200px;
 	height: 100%;
 	background: #3b5d50;
 	border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -47,7 +47,7 @@ height:
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
+	width: 200px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -93,52 +93,53 @@ height:
 
 <div style="display: block;">
 	<nav id="sidebar-wrapper" class="active" style="display: inline-block;">
-		<ul id="ul" class="sidebar-nav">
-			<c:forEach var="themeList" items="${themeList }">
-				<li class="sidebar-nav-item"><a
-					href="categoryBoard.do?page=${pageInfo.pageNum}&sno=${themeList.themeNo}">${themeList.themeName }</a></li>
-			</c:forEach>
+		<ul class="sidebar-nav">
+			<li class="sidebar-nav-item"><a href="theme.do">테마 기획전</a></li>
+			<li class="sidebar-nav-item"><a
+				href="themeList.do?themeNo=1&page=${pageInfo.pageNum}">MODERN
+					STYLE</a></li>
+			<li class="sidebar-nav-item"><a
+				href="themeList.do?themeNo=2&page=${pageInfo.pageNum}">NATURAL
+					STYLE</a></li>
+			<li class="sidebar-nav-item"><a
+				href="themeList.do?themeNo=3&page=${pageInfo.pageNum}">NORTH
+					EUROPE STYLE</a></li>
+			<li class="sidebar-nav-item"><a
+				href="themeList.do?themeNo=4&page=${pageInfo.pageNum}">CLASSIC
+					STYLE</a></li>
+			<li class="sidebar-nav-item"><a
+				href="themeList.do?themeNo=5&page=${pageInfo.pageNum}">ROMANTIC
+					STYLE</a></li>
+			<li class="sidebar-nav-item"><a
+				href="themeList.do?themeNo=6&page=${pageInfo.pageNum}">VINTAGE
+					STYLE</a></li>
 		</ul>
 	</nav>
+
 	<div class="untree_co-section product-section before-footer-section"
 		style="width: 1200px; display: inline-block">
 		<div class="container">
 			<div class="row">
-				<c:choose>
-					<c:when test="${id !=null }">
-						<div class="terms-conditions product-page">
-							${id } ${grade }
-							<c:if test="${grade=='s'}">
-								<p>
-									<a href="addProductForm.do">상품 등록 </a>
-								</p>
-								<p>
-									<a href="productList.do">상품 리스트 </a>
-								</p>
-								<p>
-									<a href="addBoardForm.do?cno=${companyNo}">판매 등록</a>
-								</p>
-							</c:if>
-						</div>
-					</c:when>
-				</c:choose>
+
+<h3>${themeList[0].themeName }</h3>
 
 				<!-- Start Column 1 -->
-				<c:forEach var="board" items="${boardList }">
+				<c:forEach var="theme" items="${themeList }">
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
 						<a class="product-item"
-							href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}"><img
-							src="images/${board.boardThumbnail}"
+							href="getBoard.do?page=${pageInfo.pageNum}&bno=${theme.boardNo}"><img
+							src="images/${theme.boardThumbnail}"
 							class="img-fluid product-thumbnail">
-							<h3 class="product-title">${board.boardTitle}</h3> <strong
+							<h3 class="product-title">${theme.boardTitle}</h3> <strong
 							class="product-price"> <fmt:formatNumber
-									value="${board.price}" pattern="#,###" /></strong> <span
+									value="${theme.price}" pattern="#,###" /></strong> <span
 							class="icon-cross"> <img src="images/cross.svg"
 								class="img-fluid">
 						</span> </a>
 					</div>
 				</c:forEach>
 				<!-- End Column 1 -->
+
 			</div>
 		</div>
 	</div>

@@ -36,5 +36,12 @@ public class CompanyServiceImpl implements CompanyService {
 		return mapper.updateCompany(companyNo)==1;
 	}
 	
+	
+	@Override
+	public boolean delCompany(int companyNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 
 }

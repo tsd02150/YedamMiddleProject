@@ -34,5 +34,4 @@ public class PayControl implements Control {
 		req.setAttribute("price", price);
 		return "product/pay.tiles";
 	}
-
 }

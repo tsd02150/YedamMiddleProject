@@ -71,16 +71,54 @@ height:
 	background: none;
 }
 
+* {
+	margin: 0;
+	padding: 0;
+}
 
-*{margin:0; padding:0;}
-a{text-decoration:none;}
-.wrap{padding:10px;}
+a {
+	text-decoration: none;
+}
 
-.btn_open{font-weight:bold; margin:10px; padding:4px 6px; background:#000; color:#fff;}
-.pop_wrap{position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.5); font-size:0; text-align:center;}
-.pop_wrap:after{display:inline-block; height:100%; vertical-align:middle; content:'';}
-.pop_wrap .pop_inner{display:inline-block; padding:30px 30px; background:#fff; width:300px; height:150px; vertical-align:middle; font-size:15px;}
+.wrap {
+	padding: 10px;
+}
 
+.btn_open {
+	font-weight: bold;
+	margin: 10px;
+	padding: 4px 6px;
+	background: #000;
+	color: #fff;
+}
+
+.pop_wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .5);
+	font-size: 0;
+	text-align: center;
+}
+
+.pop_wrap:after {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+}
+
+.pop_wrap .pop_inner {
+	display: inline-block;
+	padding: 30px 30px;
+	background: #fff;
+	width: 300px;
+	height: 150px;
+	vertical-align: middle;
+	font-size: 15px;
+}
 </style>
 
 
@@ -108,6 +146,7 @@ a{text-decoration:none;}
 			<th>전화번호</th>
 			<th>주소</th>
 			<th>업체등록</th>
+			<th>삭제</th>
 		</tr>
 		<c:set var="no" value="0"></c:set>
 		<c:forEach var="com" items="${list }">
@@ -118,19 +157,20 @@ a{text-decoration:none;}
 				<td>${com.name}</td>
 				<td>${com.companyPhone}</td>
 				<td>${com.companyAddr}</td>
-				<td><a href="#pop_info_1" class="btn_open">업체 등록하기</a>
-				</td>
-
+				<td><a href="#pop_info_1" class="btn_open">업체 등록하기</a></td>
 				<!-- 팝업1 -->
 				<div id="pop_info_1" class="pop_wrap" style="display: none;">
 					<div class="pop_inner">
-						<p class="dsc">등록하시겠습니까?</p>
+						<p class="dsc">업체를 등록하시겠습니까?</p>
 						<button type="button"
 							onclick="location.href='confirm.do?comNo=${com.companyNo}'">확인</button>
 						<button type="button" class="btn_close">취소</button>
 					</div>
 				</div>
 				<!-- 팝업1 -->
+
+				<td><button>삭제</button></td>
+
 			</tr>
 		</c:forEach>
 

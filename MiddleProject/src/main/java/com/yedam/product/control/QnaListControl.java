@@ -22,10 +22,7 @@ public class QnaListControl implements Control {
 		String json="[";
 		List<QnaVO> list = ps.qnaList(Integer.parseInt(bno));
 		for(int i=0; i<list.size(); i++) {
-	        //, , , , 
-	        //, , qna_category, 
-	        //qna_title, qna_content, 
-	        //qna_date, qna_hide, qna_qnswer
+
 			json += "{\"memberNo\":"+list.get(i).getMemberNo()+",";
 			json += "\"id\":\""+list.get(i).getId()+"\",";
 			json += "\"name\":\""+list.get(i).getName()+"\",";

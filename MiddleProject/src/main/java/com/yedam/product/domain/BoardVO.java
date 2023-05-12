@@ -1,5 +1,7 @@
 package com.yedam.product.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -26,7 +28,21 @@ public class BoardVO {
 	private String companyPhone;
 	private String companyAddr;
 	
-	
+
+	private String id;
+	private int orderNo;
+	private String adress;
+	private int orderCount;
+	private Date daliDate;
+	private int deliveryNo;
+	private String deliveryState;
+
+	private int orderDetailNo;
+
+	private Date orderDate;
+	private String setting;
+	private String name;
+	private String phone;
 	
 	
 }

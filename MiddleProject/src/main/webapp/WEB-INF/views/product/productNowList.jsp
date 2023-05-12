@@ -112,7 +112,7 @@ height:
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
 		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
 		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
 	</ul>
@@ -134,31 +134,17 @@ height:
 <td>
 <table class="table">
 	<c:set var = "totalPrice" value = "0"/>
-	<c:forEach var="delivery" items="${list}">
-		<tr>
+	<c:forEach var="productNow" items="${productNowInfo}">
+		<tr class="table">
 			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>품번 : ${delivery.productNo}</a></td>
-			<td><img width="70px" src="images/${delivery.boardThumbnail}"></td>
-			<td>제품명 : ${delivery.productName}</td>
-			<td>주문 수량 : ${delivery.orderCount}</td>
-			<td>주문 날짜 : <fmt:formatDate value="${delivery.orderDate}" pattern="yyyy-MM-dd"/></td>
-			<td>배송상태 : <c:choose>
-				<c:when test ="${delivery.deliveryState == 'r'}">
-					상품 준비중
-				</c:when>
-				<c:when test ="${delivery.deliveryState == 'd'}">
-					배송중
-				</c:when>
-				<c:when test ="${delivery.deliveryState == 's'}">
-					배송완료 
-				</c:when>
-				<c:otherwise>
-					test
-				</c:otherwise>
-			</c:choose>
-			</td>
+			<td>상품 번호 : ${productNow.productNo}</td>
+			<td>제품명 : ${productNow.productName}</td>
+			<td>남은 수량 : ${productNow.productCount}</td>
+			<td>메인 카테고리 : ${productNow.mainCategoryName}</td>
+			<td>서브 카테고리 : ${productNow.subCategoryName}</td>
+			<td><button id="delbtn" type="button" name="pno"
+			onClick="location.href='deleteNowProduct.do?pno=${productNow.productNo }'">삭제</button>
 		</tr>
-			<c:set var = "totalPrice" value="${totalPrice + (delivery.price * delivery.orderCount)}"/>
 	</c:forEach>
 </table>
 </td>

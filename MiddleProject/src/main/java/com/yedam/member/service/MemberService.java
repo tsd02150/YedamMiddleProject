@@ -8,6 +8,7 @@ import com.yedam.member.domain.MemberVO;
 import com.yedam.member.domain.OrderDetailVO;
 import com.yedam.member.domain.OrdersVO;
 import com.yedam.member.domain.WishVO;
+import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.QnaVO;
 
 public interface MemberService {
@@ -33,4 +34,7 @@ public interface MemberService {
 	public boolean updateMemberCo(CompanyVO vo);
 	public boolean updateCart(OrderDetailVO vo);
 	public boolean deleteCart(int orderDetailNo);
+	public List<BoardVO> orderProdList(int memberNo);
+	public boolean delMember(int memberNo);
+
 }

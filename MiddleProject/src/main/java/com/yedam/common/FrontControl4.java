@@ -13,9 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.member.control.SignInControl;
 import com.yedam.member.control.SignOutControl;
+import com.yedam.member.control.SignUpCheckControl;
+import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
 import com.yedam.member.control.WishListControl;
 import com.yedam.member.control.AdminCompanyControl;
+import com.yedam.member.control.AdminDelCompanyControl;
+import com.yedam.member.control.AdminDelMemberControl;
 import com.yedam.member.control.AdminMemberControl;
 import com.yedam.member.control.AdminNewCompanyControl;
 import com.yedam.member.control.ConfirmControl;
@@ -23,8 +27,13 @@ import com.yedam.member.control.DeleteOrderControl;
 import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.member.control.MyPageControl;
 import com.yedam.member.control.MyQnaListControl;
+import com.yedam.member.control.NaverLoginControl;
 import com.yedam.member.control.OrderDetailControl;
 import com.yedam.member.control.OrderListControl;
+import com.yedam.member.control.OtherLoginControl;
+import com.yedam.member.control.OtherLoginInfoControl;
+import com.yedam.member.control.SearchIdControl;
+import com.yedam.member.control.SearchPwControl;
 import com.yedam.notice.control.AddNotiControl;
 import com.yedam.notice.control.AddNotiFormControl;
 import com.yedam.notice.control.CustomerAddControl;
@@ -70,10 +79,23 @@ public class FrontControl4 extends HttpServlet {
 
 		// 로그인 페이지
 		map.put("/signIn.do", new SignInControl());
-		// 회원가입 페이지
-		map.put("/signUp.do", new SignUpControl());
 		// 로그아웃 페이지
 		map.put("/signOut.do", new SignOutControl());
+		
+		// 회원가입 페이지
+		map.put("/signUp.do", new SignUpControl());
+		// 회원가입 회원종류 체크
+		map.put("/signUpCheck.do", new SignUpCheckControl());
+		// 업체 회원일 경우 업체정보 입력
+		map.put("/signUpCompany.do", new SignUpCompanyControl());
+		// id,pw찾기
+		map.put("/searchId.do", new SearchIdControl());
+		map.put("/searchPw.do", new SearchPwControl());
+		// kakao,naver 로그인
+		map.put("/otherLogin.do", new OtherLoginControl());
+		map.put("/naverLogin.do", new NaverLoginControl());
+		map.put("/otherLoginInfo.do", new OtherLoginInfoControl());
+		
 		
 		// 상품 페이지
 		map.put("/prodList.do", new ProductListControl());
@@ -120,12 +142,14 @@ public class FrontControl4 extends HttpServlet {
 		// 관리자용 페이지
 		// 회원관리
 		map.put("/adminMember.do", new AdminMemberControl());
+		map.put("/adminDelMember.do", new AdminDelMemberControl());
 		// 업체관리
 		map.put("/adminCompany.do", new AdminCompanyControl());
 		// 신규업체
 		map.put("/newCompany.do", new AdminNewCompanyControl());
 		//업체컨펌
 		map.put("/confirm.do", new ConfirmControl());
+		map.put("/adminDelCompany.do", new AdminDelCompanyControl());		
 
 	}
 

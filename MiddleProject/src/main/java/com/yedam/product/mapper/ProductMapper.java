@@ -38,6 +38,14 @@ public interface ProductMapper {
 	public List<BoardVO> boardWithPage(int page);
 	//게시판 상세보기
 	public BoardVO searchboard(int boardNo);
+	
+	//장바구니
+	public int insertOrder(BoardVO vo);
+	public int insertOrderDetail(BoardVO vo);
+	public List<BoardVO> getOrderList(int memberNo);
+	public BoardVO searchMyorder(int memberNo);
+	
+	
 	//카테고리별
 	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page);
 	
@@ -70,6 +78,7 @@ public interface ProductMapper {
 	//테마전
 	public List<ThemeVO> selectTheme(int themeNo);
 	
-	
+	//판매상품 리스트
+	public List<ProductVO> productInfo2(String id);
 	
 }

@@ -12,6 +12,7 @@ import com.yedam.member.domain.OrderDetailVO;
 import com.yedam.member.domain.OrdersVO;
 import com.yedam.member.domain.WishVO;
 import com.yedam.member.mapper.MemberMapper;
+import com.yedam.product.domain.BoardVO;
 import com.yedam.product.domain.QnaVO;
 
 public class MemberServiceImpl implements MemberService{
@@ -95,6 +96,14 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean updateMemberCo(CompanyVO vo) {
 		return mapper.updateMemberCo(vo)>0;
+	}
+	@Override
+	public List<BoardVO> orderProdList(int memberNo) {
+		return mapper.orderProdList(memberNo);
+	}
+	@Override
+	public boolean delMember(int memberNo) {
+		return mapper.deleteMember(memberNo)==1;
 	}
 	@Override
 	public boolean updateCart(OrderDetailVO vo) {
