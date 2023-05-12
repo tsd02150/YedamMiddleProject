@@ -150,6 +150,7 @@
 		padding-left: 20px;
 		padding-right: 20px;
 	}
+
 </style>
 
 <form action="modifyBoard.do" method="GET">
@@ -168,25 +169,37 @@
 									</tr>
 								</table>
 								<h4 class="mb-1">${boardInfo.boardTitle }</h4>
-								<img class="card-img-top" src="images/${boardInfo.boardAttach }" alt="..." />
+								<img class="card-img-top" src="images/${boardInfo.boardThumbnail }" alt="..." />
 							</div>
 							<div class="col-md-6">
 								<h3 class="display-5 fw-bolder">${boardInfo.productName}</h3>
 								<div class="fs-5 mb-5">
 									<span>
 										<fmt:formatNumber value="${boardInfo.price}" pattern="#,###" /></span>
+								<div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
+								<div>
+									<select>
+										<option value="">상품 선택해주세요</option>
+										<option value="${boardInfo.productNo }">${boardInfo.productName}</option>
+									</select>
+									<span>
+										<button type="button">-</button>
+										<input class="order-count" type="text" name="count" title="수량입력" value="1" min="1" max="10" style="width: 35px; text-align: center;">
+										<button type="button">+</button>
+									</span>
+								</div>
+										<button class="addOrder-Btn" type="button">장바구니</button>
+										<a href="#"><button class="addPay-Btn" type="button">구매하기</button></a>
 								</div>
 							</div>
 							<table>
 								<tr>
-									<td><button type="submit">저장(수정)</button>
+									<td><button type="submit">수정</button>
 										<button type="button" onclick="deleteBoard()">삭제</button> <a
 											href="addBoardForm.do?cno=${companyNo }"><button type="button" id="addBtn">판매 등록</button></a></td>
 								</tr>
 							</table>
-							<a href="#"><i class="fa fa-star" aria-hidden="true"></i>장바구니</a>
-							<a href="#"><i class="fa fa-star" aria-hidden="true"></i>주문하기</a>
-							<div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
+								<img class="card-img-top" src="images/${boardInfo.boardAttach }" alt="..." />
 						</div>
 					</div>
 				</div>
@@ -196,10 +209,31 @@
 	</div>
 </form>
 <br>
+<div id="comapny-div" style="display:block;">
+<h4>판매자 정보</h4>
+	<table>
+	<tr>
+		<th>상호</th>
+		<td>${boardInfo.companyName}</td>
+	</tr>
+	<tr>
+		<th>주소</th>
+		<td>${boardInfo.companyAddr}</td>
+	</tr>
+	<tr>
+		<th>연락처</th>
+		<td>${boardInfo.companyPhone}</td>
+	</tr>
+	<tr>
+		<th>사업자등록번호</th>
+		<td>${boardInfo.crn}</td>
+	</tr>
+	</table>
+</div>
+<hr>
 <ul>
 	<li id="review">상품후기</li>
 	<li id="qna">문의내역</li>
-	<li id="company">업체정보</li>
 </ul>
 <hr>
 <ul id="rtd">
@@ -214,9 +248,9 @@
 			<th>작성일</th>
 		</tr>
 	</thead>
-	<c:forEach var="list" items="${qnaList }">
+		<c:forEach var="list" items="${qnaList }">
 		<tbody id="${id}">
-			<tr id="${list.name}_tr">
+			<tr id="${list.name }_tr">
 				<td>${list.qnaNo }</td>
 				<td>${list.qnaTitle }</td>
 				<td id="${list.name}">${list.name }</td>
@@ -224,13 +258,13 @@
 				<!-- <td style="display: none;"><input id="qna-pw">입력</td> -->
 			</tr>
 			<tr id="${list.name}_content" style="display:none;">
-				<td></td>
+				<td>문의내용 : </td>
 				<td>${list.qnaContent }</td>
-				<td>수정</td>
-				<td>삭제</td>
+				<td class="${list.name}_modify">수정</td>
+				<td class="${list.name}_delete">삭제</td>
 			</tr>
 			<tr id="${list.name}_answer" style="display:none;">
-				<td></td>
+				<td>답변 : </td>
 				<td>${list.qnaAnswer }</td>
 				<td></td>
 				<td></td>
@@ -239,7 +273,7 @@
 	</c:forEach>
 </table>
 <div id="qna-div"></div>
-<ul id="comapny-ul"></ul>
+
 
 <script>
 	//Review
@@ -249,7 +283,7 @@
 	let rtd = document.getElementById('rtd');
 	let divTop = document.getElementById('top');
 	let qu = document.getElementById('qna-div');
-	let cu = document.getElementById('comapny-ul');
+	let cu = document.getElementById('comapny-div');
 	let table = document.querySelector('#qna-table');
 
 
@@ -261,6 +295,7 @@
 			.then(result => {
 				rtd.innerHTML = "";
 				divTop.innerHTML = "";
+				cu.innerHTML = "";
 				if (table.style.display != "none") {
 					table.style.display = "none";
 				}
@@ -282,7 +317,7 @@
 
 					rtd.append(list);
 
-				}) //li end
+				}) //end
 
 			})
 	})
@@ -344,7 +379,7 @@
 						button1.innerText = "수정";
 						button1.type = 'button';
 						button1.className = 'rno' + rlist.reviewNo;
-						button1.value = 'Submit';
+						button1.value = 'submit';
 						li.append(div);
 
 						button1.addEventListener('click', function () {
@@ -412,8 +447,6 @@
 										alert('알 수 없는 결과값입니다.');
 									}
 								})
-
-
 						})
 
 					})
@@ -458,7 +491,6 @@
 	}
 
 	//Qna
-
 	qna.addEventListener('click', function () {
 		rtd.innerHTML = "";
 		divTop.innerHTML = "";
@@ -476,26 +508,70 @@
 	let Btr = document.querySelector('#${name}_tr');
 	let Ctr = document.querySelector('#${name}_content');
 	let Dtr = document.querySelector('#${name}_answer');
-	Btr.addEventListener('click', function () {
-		fetch('qnaList.do?bno=${boardInfo.boardNo}', {
-				method: "GET"
-			})
-			.then(qresolve => qresolve.json())
-			.then(qresult => {
-				qresult.forEach(qlist => {
-					if (Ctr.style.display != "none" && Dtr.style.display != "none") {
-						Ctr.style.display = "none";
-						Dtr.style.display = "none";
-
-					} else if (Ctr.style.display == "none" && Dtr.style.display == "none") {
-						//Ctr.innerHTML="";
-						Ctr.style.display = "table-row";
-						Dtr.style.display = "table-row";
-
-
-					}
+	
+	
+		Btr.addEventListener('click', function () {
+			fetch('qnaList.do?bno=${boardInfo.boardNo}', {
+					method: "GET"
 				})
-
-			})
+				.then(qresolve => qresolve.json())
+				.then(qresult => {
+					qresult.forEach(qlist => {
+						if (Ctr.style.display != "none" && Dtr.style.display != "none") {
+							Ctr.style.display = "none";
+							Dtr.style.display = "none";
+	
+						} else if (Ctr.style.display == "none" && Dtr.style.display == "none") {
+							//Ctr.innerHTML="";
+							Ctr.style.display = "table-row";
+							Dtr.style.display = "table-row";
+							
+							let qnaModifyBtn = document.querySelector('.${name}_modify');
+							qnaModifyBtn.addEventListener('click', function(){
+								
+							})
+						}
+					})
+				})
+		})
+		
+	//장바구니 담기
+	let orderBtn = document.querySelector('.addOrder-Btn');
+	orderBtn.addEventListener('click', function(){
+		let countVal = document.querySelector('.order-count');
+		let count = countVal.value;
+		fetch('addOrder.do', {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'bno=' + '${boardInfo.boardNo}' +  '&pno=' + '${boardInfo.productNo}' + '&count=' + count
+		})
+		.then(oresult=>{
+			console.log(count);
+			alert('장바구니 담기 성공');
+		})
 	})
+	
+	//구매하기
+	let payBtn = document.querySelector('.addPay-Btn');
+	payBtn.addEventListener('click', function(){
+		let countVal = document.querySelector('.order-count');
+		let count = countVal.value;
+		
+		fetch('addOrder.do', {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'bno=' + '${boardInfo.boardNo}' +  '&pno=' + '${boardInfo.productNo}' + '&count=' + count + '&price' + '${boardInfo.price}'
+		})
+		.then(oresult=>{
+			console.log(oresult);
+			alert('구매하기 성공');
+		})
+	})
+	
+	
+
 </script>

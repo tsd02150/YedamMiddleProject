@@ -34,6 +34,11 @@ public interface ProductService {
 	public boolean modifyBoard(BoardVO vo);
 	public boolean removeBoard(int boardNo);
 	
+	public boolean addOrder(BoardVO vo);
+	public boolean addOrderDetail(BoardVO vo);
+	public List<BoardVO> getOrderList(int memberNo);
+	public BoardVO searchMyorder(int memberNo);
+	
 	public int totalCount();
 
 	//review

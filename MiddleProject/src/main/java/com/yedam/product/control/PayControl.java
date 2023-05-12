@@ -17,5 +17,4 @@ public class PayControl implements Control {
 		req.setAttribute("price", 10000);
 		return "product/pay.tiles";
 	}
-
 }

@@ -121,8 +121,7 @@
 		join subcategory
 		using(sub_category_no)
 		where board_no=#{boardNo})join
-		company
-		using(company_no)
+		company	using(company_no)
 	</select>
 	<select id="getCount" resultType="int">
 		select count(*) from product
@@ -140,15 +139,31 @@
 		update board
 		set
 		board_title=#{boardTitle},
-		board_content=#{boardContent},
-		board_attach=#{boardAttach},
-		board_thumbnail=#{boardThumbnail}
+		board_content=#{boardContent}
 		where board_no = #{boardNo}
 	</update>
 	<delete id="deleteBoard" parameterType="int">
 		delete from board 
 		where board_no=#{boardNo}
 	</delete>
+	<select id="getOrderList" resultType="board">
+		select * from orders join order_detail using(order_no)
+		where member_no=#{memberNo}
+	</select>
+	<select id="searchMyorder" resultType="board">
+		select * from orders where member_no=#{memberNo}
+	</select>
+	<insert id="insertOrder" parameterType="board">
+		<selectKey keyProperty="orderNo" resultType="int" order="BEFORE">
+			select ORDER_NO.nextval from dual
+		</selectKey>
+		insert into orders(order_no, order_date, member_no)
+		values(#{orderNo}, sysdate, #{memberNo})
+	</insert>
+	<insert id="insertOrderDetail" parameterType="board">
+		insert into order_detail(order_detail_no, order_count, order_no, product_no)
+		values(orderdetail.nextval, #{orderCount}, #{orderNo}, #{productNo})
+	</insert>
 
 
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -201,16 +216,24 @@
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- Qna -->
 	<select id="qnaList" parameterType="int">
-
 		select m.member_no, m.id, m.name, q.qna_no, q.qna_category, q.qna_title, q.qna_content, q.qna_date, q.qna_hide, q.qna_answer, q.board_no, p.product_no, p.product_name
 			from member m 
-			join qna q on(m.member_no=q.qna_no)
+			join qna q on(m.member_no=q.member_no)
 			join board b on q.board_no = b.board_no
 			join product p on b.product_no = p.product_no
 		where q.board_no = #{boardNo}
 	</select>
+	<update id="updateQna" parameterType="qna">
+		update qna
+			set qna_content=#{qnaContent}
+			where qna_no=#{qnaNo}
+			and member_no=#{memberNo}
+			and qna_hide=#{qnaHide}
+	</update>
+	<select id="searchQna" parameterType="int">
+		select * from qna where qna_no=#{qnaNo}
+	</select>
 	
-	<!-- 테마 -->
 	<select id="selectTheme" resultType="theme">
  	<![CDATA[
     select b.*

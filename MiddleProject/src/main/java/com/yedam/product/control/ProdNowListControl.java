@@ -13,10 +13,6 @@ public class ProdNowListControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		HttpSession session = req.getSession();
-		String 
-		
-		
 		
 		
 		return "product/productNowList.tiles";
