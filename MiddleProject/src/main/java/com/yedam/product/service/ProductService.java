@@ -34,11 +34,6 @@ public interface ProductService {
 	public boolean modifyBoard(BoardVO vo);
 	public boolean removeBoard(int boardNo);
 	
-	public boolean addOrder(BoardVO vo);
-	public boolean addOrderDetail(BoardVO vo);
-	public List<BoardVO> getOrderList(int memberNo);
-	public BoardVO searchMyorder(int memberNo);
-	
 	public int totalCount();
 
 	//review
@@ -59,9 +54,12 @@ public interface ProductService {
 	
 	public List<QnaVO> myQnaList(int memberNo);
 	
-	
-	//판매상품리스트
-	public List<ProductVO> productInfo2(String id);
-	
+	//테마
+	public List<ThemeVO> themeList(int themeNo);
+	public List<BoardVO> getOrderList(int mno);
+	boolean addOrder(BoardVO vo);
+	boolean addOrderDetail(BoardVO vo);
+	BoardVO searchMyorder(int memberNo);
+	List<ProductVO> productInfo2(String id);
 	
 }

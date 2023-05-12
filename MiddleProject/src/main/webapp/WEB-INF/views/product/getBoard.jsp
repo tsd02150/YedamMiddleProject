@@ -538,6 +538,9 @@
 	//장바구니 담기
 	let orderBtn = document.querySelector('.addOrder-Btn');
 	orderBtn.addEventListener('click', function(){
+		if('${id}'==null){
+			alert('로그인 후 이용 가능합니다.');
+		}
 		let countVal = document.querySelector('.order-count');
 		let count = countVal.value;
 		fetch('addOrder.do', {
@@ -556,6 +559,9 @@
 	//구매하기
 	let payBtn = document.querySelector('.addPay-Btn');
 	payBtn.addEventListener('click', function(){
+		if('${id}'==null){
+			alert('로그인 후 이용 가능합니다.');
+		}
 		let countVal = document.querySelector('.order-count');
 		let count = countVal.value;
 		

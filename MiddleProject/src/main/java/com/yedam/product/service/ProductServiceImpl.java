@@ -171,8 +171,6 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.myQnaList(memberNo);
 	}
 	
-
-
 	@Override
 	public boolean addOrder(BoardVO vo) {
 		int cnt =0; int cnt1=0;
@@ -201,6 +199,12 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<ProductVO> productInfo2(String id) {
 		return mapper.productInfo2(id);
+	}
+
+	@Override
+	public List<ThemeVO> themeList(int themeNo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

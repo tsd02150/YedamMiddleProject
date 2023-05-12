@@ -145,15 +145,15 @@
 		where id = #{id}
 	</select>
 
-	<select id="myCart" resultType="orderDetail" parameterType="int">
-		select * from
-		(select * from order_detail where order_no in
-		(select order_no from orders join member using(member_no)where
-		member_no=#{memberNo}))
-		join
-		(select * from product join subcategory using(sub_category_no))
+<select id="myCart" resultType="orderDetail" parameterType="int">
+ 		select * from 
+			(select * from order_detail where order_no in
+   				(select order_no from orders join member using(member_no)where member_no=#{memberNo}))
+		join 
+   			(select * from
+        		(select * from product join subcategory using(sub_category_no)) join board using(product_no)) 
 		using(product_no)
-		order by order_no desc
+		order by order_detail_no desc
  	</select>
  	
  	<select id="orderProdList" resultType="member" parameterType="int">
@@ -169,16 +169,7 @@
  	<select id="memberList">
  	select * from member where grade='c'
  	</select>
- 	<select id="myCart" resultType="orderDetail" parameterType="int">
- 		select * from 
-			(select * from order_detail where order_no in
-   				(select order_no from orders join member using(member_no)where member_no=#{memberNo}))
-		join 
-   			(select * from
-        		(select * from product join subcategory using(sub_category_no)) join board using(product_no)) 
-		using(product_no)
-		order by order_detail_no desc
- 	</select>
+ 	
  	<update id="updateCart" parameterType="orderDetail">
  		update order_detail set order_count=#{orderCount} where order_detail_no=#{orderDetailNo}
  	</update>
@@ -188,10 +179,7 @@
 
 
 	<!-- 관리자페이지 -->
-	<select id="memberList">
-		select *from member where grade='c'
-	</select>
-	
+
 	<delete id="deleteMember" parameterType="int">
 		delete from member
 		where member_no=#{memberNo}
