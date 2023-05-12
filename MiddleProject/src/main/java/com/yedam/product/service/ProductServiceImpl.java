@@ -171,12 +171,6 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.myQnaList(memberNo);
 	}
 	
-	@Override
-	public List<ThemeVO> themeList(int themeNo) {
-		return mapper.selectTheme(themeNo);
-	}
-
-
 
 
 }

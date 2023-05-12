@@ -66,10 +66,6 @@ public interface ProductMapper {
 	public int deleteQna(QnaVO vo);
 
 	public List<QnaVO> myQnaList(int memberNo);
-	
-	//테마전
-	public List<ThemeVO> selectTheme(int themeNo);
-	
-	
+
 	
 }

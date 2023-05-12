@@ -25,7 +25,6 @@ public class getBoardControl implements Control {
 		ProductService ps = new ProductServiceImpl();
 		BoardVO vo = ps.getBoard(Integer.parseInt(bno));
 		
-		
 		req.setAttribute("boardInfo", vo);
 		req.setAttribute("pageNum", page);
 		

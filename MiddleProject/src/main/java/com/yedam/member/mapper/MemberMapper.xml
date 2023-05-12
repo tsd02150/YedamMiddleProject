@@ -3,52 +3,62 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.member.mapper.MemberMapper">
-<insert id="insertMember" parameterType="member">
-	insert into member(member_no,id,pw,name,adress,phone,grade,rrn,gender,email)
-	values(member_seq.nextval,#{id},#{pw},#{name},#{adress},#{phone},#{grade},#{rrn},#{gender},#{email})
-</insert>
-<update id="updateMember" parameterType="member">
-	update member set company_no=
+	<insert id="insertMember" parameterType="member">
+		insert into member(member_no,id,pw,name,adress,phone,grade,rrn,gender,email)
+		values(member_seq.nextval,#{id},#{pw},#{name},#{adress},#{phone},#{grade},#{rrn},#{gender},#{email})
+	</insert>
+	<update id="updateMember" parameterType="member">
+		update member set company_no=
 		(select company_no
 		from company
-		where crn=#{crn}) 
-	where id=#{id}
-</update>
-<select id="loginCheck" resultType="member" parameterType="member">
+		where crn=#{crn})
+		where id=#{id}
+	</update>
+	<select id="loginCheck" resultType="member"
+		parameterType="member">
 		select * from member
 		where id=#{id} and pw=#{pw}
 	</select>
-	<select id="memberInfo" resultType="member" parameterType="String">
+	<select id="memberInfo" resultType="member"
+		parameterType="String">
 		select * from member where id = #{id}
 	</select>
-	<select id="companyInfo" resultType="company" parameterType="String">
-		select * from member join company using(company_no) where id = #{id}
+	<select id="companyInfo" resultType="company"
+		parameterType="String">
+		select * from member join company using(company_no)
+		where id = #{id}
 	</select>
 	<select id="searchId" resultType="String" parameterType="member">
-		select id from member where name=#{name} and rrn=#{rrn}
+		select
+		id from member where name=#{name} and rrn=#{rrn}
 	</select>
 	<select id="searchPw" resultType="String" parameterType="member">
-		select pw from member where id=#{id} and name=#{name} and rrn=#{rrn}
+		select
+		pw from member where id=#{id} and name=#{name} and rrn=#{rrn}
 	</select>
-	
+
 	<update id="updateMemberM" parameterType="member">
 		update member
-		set pw=#{pw}, phone=#{phone}, adress=#{adress}, email=#{email}
-		where id=#{id}
+		set
+		pw=#{pw}, phone=#{phone}, adress=#{adress}, email=#{email}
+		where
+		id=#{id}
 	</update>
-	
+
 	<update id="updateMemberCo" parameterType="company">
 		update company
-		set company_phone=#{companyPhone}, company_addr=#{companyAddr}
-		where company_no=#{companyNo}
+		set
+		company_phone=#{companyPhone}, company_addr=#{companyAddr}
+		where
+		company_no=#{companyNo}
 	</update>
-	
-	
- 	<select id="qnaList" parameterType="String" resultType="qna">
- 		select * from qna join member using (member_no)
+
+
+	<select id="qnaList" parameterType="String" resultType="qna">
+		select * from qna join member using (member_no)
 		where id = #{id};
- 	</select>
- 	<select id="qnaWithPage" resultType="qna">
+	</select>
+	<select id="qnaWithPage" resultType="qna">
   <![CDATA[
   	select b.* 
   		from (select rownum rn, a.*
@@ -57,80 +67,105 @@
            	 where rownum <=${page}*10 ) b
 		where b.rn >(${page}-1)*10
 	]]>
- 	</select>
- 	<select id="getCount" resultType="int">
+	</select>
+	<select id="getCount" resultType="int">
 		select count(*) from qna
 	</select>
- 	<select id="wishList" resultType="wish" parameterType="String">
- 		select * from
-		(select b.board_thumbnail,p.product_no,p.product_name,b.board_content,p.price,p.product_count,
+	<select id="wishList" resultType="wish" parameterType="String">
+		select * from
+		(select
+		b.board_thumbnail,p.product_no,p.product_name,b.board_content,p.price,p.product_count,
 		s.sub_category_name,m.id,w.wish_no
-		from wish w, product p, member m,board b,subcategory s
+		from wish w, product p, member
+		m,board b,subcategory s
 		where w.product_no = p.product_no
-		and w.member_no = m.member_no
+		and
+		w.member_no = m.member_no
 		and b.product_no = p.product_no
-		and s.sub_category_no = p.sub_category_no)
+		and
+		s.sub_category_no = p.sub_category_no)
 		where id = #{id}
- 	</select>
- 	
- 	<select id="orderList" resultType="order" parameterType="String">
- 		select * from(
-        select * from(
-        select * from(
+	</select>
+
+	<select id="orderList" resultType="order" parameterType="String">
 		select * from(
 		select * from(
-		select * from orders join order_detail using(order_no))
+		select * from(
+		select * from(
+		select * from(
+		select * from orders join
+		order_detail using(order_no))
 		join product using(product_no))
-		join member using(member_no))
+		join
+		member using(member_no))
 		join board using(product_no))
-        join subcategory using(sub_category_no))
-        join maincategory using(main_category_no)
+		join subcategory using(sub_category_no))
+		join maincategory using(main_category_no)
 		where id = #{id}
- 	</select>
- 	
- 	<select id="orderNoList" resultType="order" parameterType="String">
- 		select * from(
-        select * from(
-        select * from(
+	</select>
+
+	<select id="orderNoList" resultType="order"
+		parameterType="String">
 		select * from(
 		select * from(
-		select * from orders join order_detail using(order_no))
+		select * from(
+		select * from(
+		select * from(
+		select * from orders join
+		order_detail using(order_no))
 		join product using(product_no))
-		join member using(member_no))
+		join
+		member using(member_no))
 		join board using(product_no))
-        join subcategory using(sub_category_no))
-        join maincategory using(main_category_no)
+		join subcategory using(sub_category_no))
+		join maincategory using(main_category_no)
 		where order_no = #{orderNo}
- 	</select>
- 	
- 	<delete id="deleteOrder" parameterType="int">
- 		delete from orders where order_no = #{orderNo}
- 	</delete>
- 	<delete id="deleteOrderDetail" parameterType="int">
-		delete from order_detail where order_no = #{orderNo}
- 	</delete>
- 	<select id="orderDetail" resultType="delivery" parameterType="String">
- 		select * from(
-        select * from(
+	</select>
+
+	<delete id="deleteOrder" parameterType="int">
+		delete from orders where order_no = #{orderNo}
+	</delete>
+	<delete id="deleteOrderDetail" parameterType="int">
+		delete from
+		order_detail where order_no = #{orderNo}
+	</delete>
+	<select id="orderDetail" resultType="delivery"
+		parameterType="String">
 		select * from(
 		select * from(
-		select * from orders join order_detail using(order_no))
+		select * from(
+		select * from(
+		select * from orders join
+		order_detail using(order_no))
 		join product using(product_no))
-		join member using(member_no))
+		join
+		member using(member_no))
 		join board using(product_no))
-        full outer join delivery using(delivery_no)
+		full outer join delivery using(delivery_no)
 		where id = #{id}
- 	</select>
- 	<select id="memberList">
- 	select * from member where grade='c'
- 	</select>
- 	<select id="myCart" resultType="orderDetail" parameterType="int">
- 		select * from 
-    		(select * from order_detail where order_no in
- 	       		(select order_no from orders join member using(member_no)where member_no=#{memberNo}))
-		join 
- 		   	(select * from product join subcategory using(sub_category_no)) 
+	</select>
+
+	<select id="myCart" resultType="orderDetail" parameterType="int">
+		select * from
+		(select * from order_detail where order_no in
+		(select order_no from orders join member using(member_no)where
+		member_no=#{memberNo}))
+		join
+		(select * from product join subcategory using(sub_category_no))
 		using(product_no)
 		order by order_no desc
- 	</select>
+	</select>
+
+	<!-- 관리자페이지 -->
+	<select id="memberList">
+		select *from member where grade='c'
+	</select>
+	
+	<delete id="deleteMember" parameterType="int">
+		delete from member
+		where member_no=#{memberNo}
+	</delete>
+	
+	
+
 </mapper>

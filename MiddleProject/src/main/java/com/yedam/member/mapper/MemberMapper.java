@@ -31,5 +31,6 @@ public interface MemberMapper {
 	public List<OrderDetailVO> myCart(int memberNo);
 	public CompanyVO companyInfo(String id);
 	public int updateMemberCo(CompanyVO vo);
+	public int deleteMember(int memberNo);
 
 }

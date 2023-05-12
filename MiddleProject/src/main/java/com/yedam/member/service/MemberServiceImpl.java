@@ -96,5 +96,9 @@ public class MemberServiceImpl implements MemberService{
 	public boolean updateMemberCo(CompanyVO vo) {
 		return mapper.updateMemberCo(vo)>0;
 	}
+@Override
+	public boolean delMember(int memberNo) {
+		return mapper.deleteMember(memberNo)==1;
+	}
 	
 }

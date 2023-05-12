@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
@@ -14,6 +14,7 @@ width
 height:
 100%
 }
+
 #sidebar-wrapper {
 	position: relative;
 	z-index: 2;
@@ -70,44 +71,141 @@ height:
 	color: #fff;
 	background: none;
 }
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.wrap {
+	padding: 10px;
+}
+
+.btn_open {
+	font-weight: bold;
+	margin: 10px;
+	padding: 4px 6px;
+	background: #fff;
+	color: #000;
+}
+
+.pop_wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .5);
+	font-size: 0;
+	text-align: center;
+}
+
+.pop_wrap:after {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+}
+
+.pop_wrap .pop_inner {
+	display: inline-block;
+	padding: 30px 30px;
+	background: #fff;
+	width: 300px;
+	height: 150px;
+	vertical-align: middle;
+	font-size: 15px;
+}
 </style>
 
 
-	<nav id="sidebar-wrapper" class="active">
-		<ul class="sidebar-nav">
-			<li class="sidebar-nav-item"><a href="adminMember.do">회원관리</a></li>
-			<li class="sidebar-nav-item"><a href="adminCompany.do">업체관리</a></li>
-			<li class="sidebar-nav-item"><a href="newCompany.do">신규업체</a></li>
-			<li class="sidebar-nav-item"><a href="#">매출관리</a></li>
-		</ul>
-	</nav>
+<nav id="sidebar-wrapper" class="active">
+	<ul class="sidebar-nav">
+		<li class="sidebar-nav-item"><a href="adminMember.do">회원관리</a></li>
+		<li class="sidebar-nav-item"><a href="adminCompany.do">업체관리</a></li>
+		<li class="sidebar-nav-item"><a href="newCompany.do">신규업체</a></li>
+		<li class="sidebar-nav-item"><a href="#">매출관리</a></li>
+	</ul>
+</nav>
 <br>
 <br>
 
 <h3>회원관리</h3>
-
-<table class="table">
-	<tr>
-		<th>NO</th>
-		<th>이름</th>
-		<th>성별</th>
-		<th>아이디</th>
-		<th>이메일</th>
-		<th>전화번호</th>
-		<th>비고</th>
-		
-	</tr>
-	<c:set var="no" value="0"></c:set>
-	<c:forEach var="mem" items="${list }">
+<form action="adminDelMember.do" method="get">
+	<table class="table">
 		<tr>
-			<td><c:out value="${no=no+1}"></c:out></td>
-			<td>${mem.name}</td>
-			<td>${mem.gender}</td>
-			<td>${mem.id}</td>
-			<td>${mem.email}</td>
-			<td>${mem.phone}</td>
-			<td></td>
-		</tr>
-	</c:forEach>
+			<th>NO</th>
+			<th>분류</th>
+			<th>이름</th>
+			<th>성별</th>
+			<th>아이디</th>
+			<th>이메일</th>
+			<th>전화번호</th>
+			<th>삭제</th>
 
-</table>
+		</tr>
+		<c:set var="no" value="0"></c:set>
+		<c:forEach var="mem" items="${list }" varStatus="m">
+			<tr>
+				<td><c:out value="${no=no+1}"></c:out></td>
+				<c:choose>
+					<c:when test="${mem.grade.equals('c') }">
+						<td>구매회원</td>
+					</c:when>
+					<c:otherwise>
+						<td>판매회원</td>
+					</c:otherwise>
+				</c:choose>
+				<td>${mem.name}</td>
+				<c:choose>
+					<c:when test="${mem.gender.equals('m') }">
+						<td>남</td>
+					</c:when>
+					<c:otherwise>
+						<td>여</td>
+					</c:otherwise>
+				</c:choose>
+				<td>${mem.id}</td>
+				<td>${mem.email}</td>
+				<td>${mem.phone}</td>
+				<td><a href="#pop_info_${m.count }" class="btn_open">회원삭제</a></td>
+				<!-- 팝업1 -->
+				<div id="pop_info_${m.count }" class="pop_wrap" style="display: none;">
+					<div class="pop_inner">
+						<p class="dsc">회원을 삭제하시겠습니까?</p>
+						<button type="button"
+							onclick="location.href='adminDelMember.do?memNo=${mem.memberNo}'">삭제</button>
+						<button type="button" class="btn_close">취소</button>
+					</div>
+				</div>
+				<!-- 팝업1 -->
+			</tr>
+		</c:forEach>
+	</table>
+</form>
+
+<script>
+	var target = document.querySelectorAll('.btn_open');
+	var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+	var targetID;
+
+	// 팝업 열기
+	for (var i = 0; i < target.length; i++) {
+		target[i].addEventListener('click', function() {
+			targetID = this.getAttribute('href');
+			document.querySelector(targetID).style.display = 'block';
+			console.log(document.querySelector(targetID));
+		});
+	}
+
+	// 팝업 닫기
+	for (var j = 0; j < target.length; j++) {
+		btnPopClose[j].addEventListener('click', function() {
+			this.parentNode.parentNode.style.display = 'none';
+		});
+	}
+</script>

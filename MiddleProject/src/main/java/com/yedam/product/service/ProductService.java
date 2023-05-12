@@ -54,7 +54,5 @@ public interface ProductService {
 	
 	public List<QnaVO> myQnaList(int memberNo);
 	
-	//테마
-	public List<ThemeVO> themeList(int themeNo);
 	
 }

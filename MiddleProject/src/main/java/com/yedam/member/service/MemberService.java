@@ -31,5 +31,6 @@ public interface MemberService {
 	public List<OrderDetailVO> myCart(int memberNo);
 	public CompanyVO companyInfo(String id);
 	public boolean updateMemberCo(CompanyVO vo);
+	public boolean delMember(int memberNo);
 
 }
