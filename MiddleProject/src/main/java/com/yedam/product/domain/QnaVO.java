@@ -1,6 +1,6 @@
 package com.yedam.product.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -23,5 +23,6 @@ public class QnaVO {
 	private String name;
 	private String id;
 	private int orderNo;
+	private String orderDate;
 	
 }

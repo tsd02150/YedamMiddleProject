@@ -46,21 +46,14 @@
  -->
 		<br>
   
-		<div id="productList"></div>
       </div>
+		<div id="productList"></div>
       <div>
-    	  <table>
-	        <tr>
-	        	<td>
-		          <button type="submit" class="button button1">등록</button>
-		          <button type="reset" class="button button2">취소</button>
-	         	</td>
-	        </tr>
-	       </table>
+    	  
 	    </div>
     </div>
 <div id="top">
-    <button type="button" id="add-row-btn" class="renew-row-btn">항목추가</button>
+    <!-- <button type="button" id="add-row-btn" class="renew-row-btn">항목추가</button> -->
     <div id="productSelector"></div>
     <table id="myTable" style="margin-left:auto;margin-right:auto;">
   <thead>
@@ -69,8 +62,8 @@
       <th>내용</th>
       <th>Thumbnail</th>
       <th>Attach</th>
+      <!-- <td>제거</td> -->
       <th>MemberNo</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -79,14 +72,17 @@
       <td><input class="w3-input w3-border" type="text" placeholder="내용" name="content" required></td>
       <td><input class="w3-input w3-border" type="file" placeholder="thumbnail" name="thumbnail" required></td>
       <td><input class="w3-input w3-border" type="file" placeholder="attach" name="attach" required></td>
+      <!-- <td><button type="button" class="remove-row-btn">항목제거</button></td> -->
       <td><input class="w3-input w3-border" type="text" name="mno" value="${list.memberNo}" style="display: none;"></td>
-      <td><button type="button" class="remove-row-btn">항목제거</button></td>
     </tr>
   </tbody>
 </table>
 </div>
+<div>
+	<button type="submit" class="button button1">등록</button>
+	<button type="reset" class="button button2">취소</button>
+</div>
 
-    
     
 </form>
 
@@ -94,9 +90,11 @@
 
 
 <script>
+
 createProductSelector();
 function createProductSelector() {
 	let Adiv = document.createElement('div');
+	Adiv.className="selector";
 	  let productSelector = document.getElementById("productSelector");
 
 	  let mainCategoryNameSelect = document.createElement("select");
@@ -130,7 +128,6 @@ function createProductSelector() {
 	  Adiv.appendChild(document.createElement("br"));
 	  
 	  productSelector.appendChild(Adiv); 
-
 
 	  let url1 = 'ctgMain.do';
 	  let url2 = 'ctgSub.do';
@@ -202,7 +199,7 @@ function createProductSelector() {
 	}
 
 
-//
+
 // Add row button 클릭 시, 새로운 행을 추가
  const addRowBtn = document.getElementById("add-row-btn");
   addRowBtn.addEventListener("click", function() {
@@ -215,13 +212,14 @@ function createProductSelector() {
       <td><input class="w3-input w3-border" type="text" placeholder="내용" name="content" required></td>
       <td><input class="w3-input w3-border" type="file" placeholder="thumbnail" name="thumbnail" required></td>
       <td><input class="w3-input w3-border" type="file" placeholder="attach" name="attach" required></td>
+      //<td><button type="button" class="remove-row-btn">항목제거</button></td>
       <td><input class="w3-input w3-border" type="text" name="mno" value="${list.memberNo}" style="display: none;"></td>
-      <td><button type="button" class="remove-row-btn">항목제거</button></td>
     `;
 
     tbody.appendChild(newRow);
   });
 
+  /*
   const table = document.getElementById("myTable");
   table.addEventListener("click", function(e) {
 	  if (e.target.className === "remove-row-btn") {
@@ -232,5 +230,5 @@ function createProductSelector() {
 	    }
 	    row.parentNode.removeChild(row);
 	  }
-	});
+	});*/
 </script>

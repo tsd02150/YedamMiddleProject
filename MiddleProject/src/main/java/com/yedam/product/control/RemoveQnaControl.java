@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class PayControl implements Control {
+public class RemoveQnaControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.setAttribute("productName", "test");
-		req.setAttribute("price", 10000);
-		return "product/pay.tiles";
+		return null;
 	}
+
 }

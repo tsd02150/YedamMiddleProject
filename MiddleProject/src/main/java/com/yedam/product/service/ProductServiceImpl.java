@@ -173,4 +173,32 @@ public class ProductServiceImpl implements ProductService{
 	
 
 
+	@Override
+	public boolean addOrder(BoardVO vo) {
+		int cnt =0; int cnt1=0;
+		cnt = mapper.insertOrder(vo);
+		cnt1 = mapper.insertOrderDetail(vo);
+		if(cnt >0 && cnt1>0) {
+			return true;
+		}else{return false;}
+	}
+
+	@Override
+	public boolean addOrderDetail(BoardVO vo) {
+		return mapper.insertOrderDetail(vo)==1;
+	}
+
+	@Override
+	public List<BoardVO> getOrderList(int memberNo) {
+		return mapper.getOrderList(memberNo);
+	}
+
+	@Override
+	public BoardVO searchMyorder(int memberNo) {
+		return mapper.searchMyorder(memberNo);
+	}
+
+
+
+
 }
