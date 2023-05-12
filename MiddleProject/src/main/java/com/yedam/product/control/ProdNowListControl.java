@@ -21,7 +21,7 @@ public class ProdNowListControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		HttpSession session = req.getSession();
 		
 		String pageStr = req.getParameter("page");
@@ -43,7 +43,6 @@ public class ProdNowListControl implements Control {
 		req.setAttribute("productNowInfo", list);
 		
 		System.out.println(list);
-		
 		
 		
 		return "product/productNowList.tiles";

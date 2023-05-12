@@ -101,5 +101,9 @@ public class MemberServiceImpl implements MemberService{
 	public List<BoardVO> orderProdList(int memberNo) {
 		return mapper.orderProdList(memberNo);
 	}
+	@Override
+	public boolean delMember(int memberNo) {
+		return mapper.deleteMember(memberNo)==1;
+	}
 	
 }

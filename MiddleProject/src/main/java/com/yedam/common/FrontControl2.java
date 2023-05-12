@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.member.control.SignInControl;
 import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpControl;
+import com.yedam.notice.control.FaqControl;
 import com.yedam.product.control.AddBoardControl;
 import com.yedam.product.control.AddBoardFormControl;
+import com.yedam.product.control.AddPayControl;
 import com.yedam.product.control.AddProductControl;
 import com.yedam.product.control.AddProductFormControl;
 import com.yedam.product.control.AddReviewControl;
@@ -31,12 +33,17 @@ import com.yedam.product.control.DeleteProductControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.ModifyBoardControl;
 import com.yedam.product.control.ModifyProductControl;
+import com.yedam.product.control.ModifyQnaControl;
 import com.yedam.product.control.ModifyReviewControl;
 import com.yedam.product.control.ProductListControl;
 import com.yedam.product.control.QnaListControl;
+import com.yedam.product.control.RemoveQnaControl;
 import com.yedam.product.control.RemoveReviewControl;
 import com.yedam.product.control.ReviewListControl;
+import com.yedam.product.control.addOrderControl;
+import com.yedam.product.control.addOrderDetilControl;
 import com.yedam.product.control.getBoardControl;
+import com.yedam.product.control.myOrderListControl;
 
 
 public class FrontControl2 extends HttpServlet{
@@ -78,6 +85,11 @@ public class FrontControl2 extends HttpServlet{
 		map.put("/boardList.do", new BoardListControl());
 		//상품게시판 상세보기
 		map.put("/getBoard.do", new getBoardControl());
+		//장바구니 담기
+		map.put("/addOrderDetail.do", new addOrderDetilControl());
+		map.put("/addOrder.do", new addOrderControl());
+		map.put("/addPay.do", new AddPayControl());
+		map.put("/myOrderList.do", new myOrderListControl());
 		//카테고리별 
 		map.put("/categoryBoard.do", new CategoryBoardControl());
 		
@@ -98,10 +110,11 @@ public class FrontControl2 extends HttpServlet{
 		map.put("/qnaList.do", new QnaListControl());
 //		map.put("/addQna.do", new AddQnaControl());
 //		map.put("/addQnaForm.do", new AddQnaFormControl());
-//		map.put("/modifyQna.do", new ModifyQnaControl());
-//		map.put("/removeQna.do", new RemoveQnaControl());
+		map.put("/modifyQna.do", new ModifyQnaControl());
+		map.put("/removeQna.do", new RemoveQnaControl());
 		
-		
+		// 자주묻는 질문
+		map.put("/faq.do", new FaqControl());
 	}
 	
 	@Override

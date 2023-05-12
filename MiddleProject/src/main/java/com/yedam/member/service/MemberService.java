@@ -33,4 +33,6 @@ public interface MemberService {
 	public CompanyVO companyInfo(String id);
 	public boolean updateMemberCo(CompanyVO vo);
 	public List<BoardVO> orderProdList(int memberNo);
+	public boolean delMember(int memberNo);
+
 }

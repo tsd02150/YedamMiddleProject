@@ -13,6 +13,8 @@ public interface CompanyService {
 	public List<CompanyVO> newCompany();
 	
 	public boolean confirm(int companyNo);
+	
+	public boolean delCompany(int companyNo);
 
 	
 }
