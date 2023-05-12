@@ -15,13 +15,10 @@ public class ProductVO {
 	private int themeNo;
 	private String subCategoryName;
 	private String mainCategoryName;
-	
+
 	private String id;
 	private String companyName;
-	
+	private String gender;
+	private int orderCount;
+
 }
-
-
-
-
-

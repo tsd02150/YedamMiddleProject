@@ -4,153 +4,117 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- Bootstrap icons-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
 <style>
-	html,
-	body,
-	div,
-	span,
-	object,
-	iframe,
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	p,
-	blockquote,
-	pre,
-	abbr,
-	address,
-	em,
-	img,
-	dl,
-	dt,
-	dd,
-	ol,
-	ul,
-	li,
-	fieldset,
-	form,
-	label,
-	legend,
-	table,
-	caption,
-	tbody,
-	tfoot,
-	thead,
-	tr,
-	th,
-	td {
-		font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-		line-height: 1.4;
-		letter-spacing: -0.5px;
-		margin: 0;
-		padding: 0;
-		border: 0;
-		vertical-align: top;
-		box-sizing: border-box;
-		word-break: break-word;
-	}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, abbr, address, em, img, dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr,
+	th, td {
+	font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+	line-height: 1.4;
+	letter-spacing: -0.5px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: top;
+	box-sizing: border-box;
+	word-break: break-word;
+}
 
-	ol,
-	li,
-	figure {
-		list-style-type: none;
-		display: inline-block;
-	}
+ol, li, figure {
+	list-style-type: none;
+	display: inline-block;
+}
 
-	li {
-		text-align: -webkit-match-parent;
-		display: inline-block;
-		padding-left: 20px;
-		padding-right: 20px;
-	}
+li {
+	text-align: -webkit-match-parent;
+	display: inline-block;
+	padding-left: 20px;
+	padding-right: 20px;
+}
 
-	div.review-image img {
-		width: 200px;
-		height: 200px;
-	}
+div.review-image img {
+	width: 200px;
+	height: 200px;
+}
 
-	div.bi-star-fill {
-		float: left;
-	}
+div.bi-star-fill {
+	float: left;
+}
 
-	li.review-li {
-		margin-right: 20px;
-	}
+li.review-li {
+	margin-right: 20px;
+}
 
-	div.review-date {
-		float: right;
-	}
+div.review-date {
+	float: right;
+}
 
-	div.renew-imange img {
-		width: 30px;
-		height: 30px;
-		float: right;
-	}
+div.renew-imange img {
+	width: 30px;
+	height: 30px;
+	float: right;
+}
 
-	@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+@import
+	url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-	.rate {
-		display: inline-block;
-		border: 0;
-		margin-right: 15px;
-	}
+.rate {
+	display: inline-block;
+	border: 0;
+	margin-right: 15px;
+}
 
-	.rate>input {
-		display: none;
-	}
+.rate>input {
+	display: none;
+}
 
-	.rate>label {
-		float: right;
-		color: #ddd
-	}
+.rate>label {
+	float: right;
+	color: #ddd
+}
 
-	.rate>label:before {
-		display: inline-block;
-		font-size: 1rem;
-		padding: .3rem .2rem;
-		margin: 0;
-		cursor: pointer;
-		font-family: FontAwesome;
-		content: "\f005 ";
-	}
+.rate>label:before {
+	display: inline-block;
+	font-size: 1rem;
+	padding: .3rem .2rem;
+	margin: 0;
+	cursor: pointer;
+	font-family: FontAwesome;
+	content: "\f005 ";
+}
 
-	.rate .half:before {
-		content: "\f089 ";
-		position: absolute;
-		padding-right: 0;
-	}
+.rate .half:before {
+	content: "\f089 ";
+	position: absolute;
+	padding-right: 0;
+}
 
-	.rate input:checked~label,
-	.rate label:hover,
-	.rate label:hover~label {
-		color: #f73c32 !important;
-	}
+.rate input:checked ~label, .rate label:hover, .rate label:hover ~label
+	{
+	color: #f73c32 !important;
+}
 
-	.rate input:checked+.rate label:hover,
-	.rate input input:checked~label:hover,
-	.rate input:checked~.rate label:hover~label,
-	.rate label:hover~input:checked~label {
-		color: #f73c32 !important;
-	}
+.rate input:checked+.rate label:hover, .rate input input:checked ~label:hover,
+	.rate input:checked ~.rate label:hover ~label, .rate label:hover ~input:checked
+	~label {
+	color: #f73c32 !important;
+}
 
-	.qlist-table {
-		width: 800px;
-	}
+.qlist-table {
+	width: 800px;
+}
 
-	th,
-	td {
-		padding: 20px;
-	}
+th, td {
+	padding: 20px;
+}
 
-	#qna-title {
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-
+#qna-title {
+	padding-left: 20px;
+	padding-right: 20px;
+}
 </style>
 
 <form action="modifyBoard.do" method="GET">
@@ -165,41 +129,47 @@
 
 								<table>
 									<tr>
-										<td><input type="text" name="bno" value="${boardInfo.boardNo }" style="display: none;"></td>
+										<td><input type="text" name="bno"
+											value="${boardInfo.boardNo }" style="display: none;"></td>
 									</tr>
 								</table>
 								<h4 class="mb-1">${boardInfo.boardTitle }</h4>
-								<img class="card-img-top" src="images/${boardInfo.boardThumbnail }" alt="..." />
+								<img class="card-img-top"
+									src="images/${boardInfo.boardThumbnail }" alt="..." />
 							</div>
 							<div class="col-md-6">
 								<h3 class="display-5 fw-bolder">${boardInfo.productName}</h3>
 								<div class="fs-5 mb-5">
-									<span>
-										<fmt:formatNumber value="${boardInfo.price}" pattern="#,###" /></span>
-								<div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
-								<div>
-									<select>
-										<option value="">상품 선택해주세요</option>
-										<option value="${boardInfo.productNo }">${boardInfo.productName}</option>
-									</select>
-									<span>
-										<button type="button">-</button>
-										<input class="order-count" type="text" name="count" title="수량입력" value="1" min="1" max="10" style="width: 35px; text-align: center;">
-										<button type="button">+</button>
-									</span>
-								</div>
-										<button class="addOrder-Btn" type="button">장바구니</button>
-										<a href="#"><button class="addPay-Btn" type="button">구매하기</button></a>
+									<span> <fmt:formatNumber value="${boardInfo.price}"
+											pattern="#,###" /></span>
+									<div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
+									<div>
+										<select>
+											<option value="${boardInfo.productNo }">${boardInfo.productName}</option>
+										</select> <span>
+											<button class="order-count-minus" type="button">-</button> <input
+											class="order-count" type="text" name="count" title="수량입력"
+											value="1" min="1" max="10"
+											style="width: 35px; text-align: center;">
+											<button class="order-count-plus" type="button">+</button>
+										</span>
+									</div>
+									<button class="addOrder-Btn" type="button">장바구니</button>
+									<a href="#"><button class="addPay-Btn" type="button">구매하기</button></a>
 								</div>
 							</div>
 							<table>
 								<tr>
 									<td><button type="submit">수정</button>
 										<button type="button" onclick="deleteBoard()">삭제</button> <a
-											href="addBoardForm.do?cno=${companyNo }"><button type="button" id="addBtn">판매 등록</button></a></td>
+										href="addBoardForm.do?cno=${companyNo }"><button
+												type="button" id="addBtn">판매 등록</button></a></td>
 								</tr>
 							</table>
-								<img class="card-img-top" src="images/${boardInfo.boardAttach }" alt="..." />
+							<!-- 차트 -->
+							<div id="chart_div"></div>
+							<img class="card-img-top" src="images/${boardInfo.boardAttach }"
+								alt="..." />
 						</div>
 					</div>
 				</div>
@@ -209,25 +179,25 @@
 	</div>
 </form>
 <br>
-<div id="comapny-div" style="display:block;">
-<h4>판매자 정보</h4>
+<div id="comapny-div" style="display: block;">
+	<h4>판매자 정보</h4>
 	<table>
-	<tr>
-		<th>상호</th>
-		<td>${boardInfo.companyName}</td>
-	</tr>
-	<tr>
-		<th>주소</th>
-		<td>${boardInfo.companyAddr}</td>
-	</tr>
-	<tr>
-		<th>연락처</th>
-		<td>${boardInfo.companyPhone}</td>
-	</tr>
-	<tr>
-		<th>사업자등록번호</th>
-		<td>${boardInfo.crn}</td>
-	</tr>
+		<tr>
+			<th>상호</th>
+			<td>${boardInfo.companyName}</td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td>${boardInfo.companyAddr}</td>
+		</tr>
+		<tr>
+			<th>연락처</th>
+			<td>${boardInfo.companyPhone}</td>
+		</tr>
+		<tr>
+			<th>사업자등록번호</th>
+			<td>${boardInfo.crn}</td>
+		</tr>
 	</table>
 </div>
 <hr>
@@ -239,7 +209,7 @@
 <ul id="rtd">
 </ul>
 <div id="top"></div>
-<table id="qna-table" style="display:none;">
+<table id="qna-table" style="display: none;">
 	<thead>
 		<tr>
 			<th>No</th>
@@ -248,7 +218,7 @@
 			<th>작성일</th>
 		</tr>
 	</thead>
-		<c:forEach var="list" items="${qnaList }">
+	<c:forEach var="list" items="${qnaList }">
 		<tbody id="${id}">
 			<tr id="${list.name }_tr">
 				<td>${list.qnaNo }</td>
@@ -257,14 +227,14 @@
 				<td>${list.qnaDate}</td>
 				<!-- <td style="display: none;"><input id="qna-pw">입력</td> -->
 			</tr>
-			<tr id="${list.name}_content" style="display:none;">
-				<td>문의내용 : </td>
+			<tr id="${list.name}_content" style="display: none;">
+				<td>문의내용 :</td>
 				<td>${list.qnaContent }</td>
-				<td class="${list.name}_modify">수정</td>
-				<td class="${list.name}_delete">삭제</td>
+				<td class="qna-modify-button">수정</td>
+				<td class="qna-delete-button">삭제</td>
 			</tr>
-			<tr id="${list.name}_answer" style="display:none;">
-				<td>답변 : </td>
+			<tr id="${list.name}_answer" style="display: none;">
+				<td>답변 :</td>
 				<td>${list.qnaAnswer }</td>
 				<td></td>
 				<td></td>
@@ -273,7 +243,6 @@
 	</c:forEach>
 </table>
 <div id="qna-div"></div>
-
 
 <script>
 	//Review
@@ -295,7 +264,6 @@
 			.then(result => {
 				rtd.innerHTML = "";
 				divTop.innerHTML = "";
-				cu.innerHTML = "";
 				if (table.style.display != "none") {
 					table.style.display = "none";
 				}
@@ -509,7 +477,7 @@
 	let Ctr = document.querySelector('#${name}_content');
 	let Dtr = document.querySelector('#${name}_answer');
 	
-	
+	if('${id}'!=null){
 		Btr.addEventListener('click', function () {
 			fetch('qnaList.do?bno=${boardInfo.boardNo}', {
 					method: "GET"
@@ -526,23 +494,56 @@
 							Ctr.style.display = "table-row";
 							Dtr.style.display = "table-row";
 							
-							let qnaModifyBtn = document.querySelector('.${name}_modify');
-							qnaModifyBtn.addEventListener('click', function(){
-								
+							let qnadeleteBtn = document.querySelector('.qna-delete-button');
+							qnadeleteBtn.addEventListener('click', function(){
+								fetch('removeQna.do', {
+									method: "POST",
+									headers: {
+										'Content-Type': 'application/x-www-form-urlencoded'
+									},
+									body: 'qno=' + qlist.qnaNo + '&bno=' + '${boardInfo.boardNo}'
+								})
+								.then(deleteQna => deleteQna.json())
+								.then(removeQna => {
+									if (result.retCode == 'Success') {
+										document.getElementById(qlist.name+'_tr').remove();
+										alert('문의내역 삭제 성공');
+									} else if (result.retCode == 'Fail') {
+										alert('처리중 에러 발생')
+									} else {
+										alert('알 수 없는 결과값입니다.');
+									}
+								})
 							})
 						}
 					})
 				})
 		})
-		
+	}
 	//장바구니 담기
 	let orderBtn = document.querySelector('.addOrder-Btn');
 	orderBtn.addEventListener('click', function(){
 		if('${id}'==null){
 			alert('로그인 후 이용 가능합니다.');
 		}
-		let countVal = document.querySelector('.order-count');
-		let count = countVal.value;
+		let minusBtn = document.querySelector('.order-count-minus');
+		let plusBtn = document.querySelector('.order-count-plus');
+		let countInput = document.querySelector('.order-count');
+
+		minusBtn.addEventListener('click', () => {
+			if (countInput.value > 1) {
+				countInput.value = countInput.value - 1;
+			}
+		});
+
+		plusBtn.addEventListener('click', () => {
+			if (countInput.value < 10) {
+				countInput.value = countInput.value + 1;
+			}
+		});
+
+		let count = countInput.value;
+		console.log(count);
 		fetch('addOrder.do', {
 			method: "POST",
 			headers: {
@@ -562,6 +563,7 @@
 		if('${id}'==null){
 			alert('로그인 후 이용 가능합니다.');
 		}
+			
 		let countVal = document.querySelector('.order-count');
 		let count = countVal.value;
 		
@@ -578,6 +580,44 @@
 		})
 	})
 	
-	
+	//차트
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(fetchData);
+
+function fetchData() {
+  fetch('chartData.do?pno=1')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(jsonData) {
+    	let data = new google.visualization.DataTable();
+      data.addColumn('string', '성별');
+      data.addColumn('number', '구매 수');
+      for(let i = 0; i < jsonData.length; i++) {
+        data.addRow([jsonData[i].gender, jsonData[i].orderCount]);
+      }
+
+      let options = {
+        title: '구매자 통계',
+        //subtitle: 'Based on most recent and previous census data',
+        hAxis: {
+          title: '',
+          minValue: 0
+        },
+        vAxis: {
+          title: '성별'
+        },
+        bars: 'horizontal',
+        axes: {
+          y: {
+            0: {side: 'right'}
+          }
+        }
+      };
+      
+      let chart = new google.charts.Bar(document.getElementById('chart_div'));
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    });
+}
 
 </script>

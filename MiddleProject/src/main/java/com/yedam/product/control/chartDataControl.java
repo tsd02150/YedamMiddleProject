@@ -1,35 +1,36 @@
 package com.yedam.product.control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.product.domain.QnaVO;
+import com.yedam.product.domain.ProductVO;
 import com.yedam.product.service.ProductService;
 import com.yedam.product.service.ProductServiceImpl;
 
-public class ModifyQnaControl implements Control {
+public class chartDataControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ProductService ps = new ProductServiceImpl();
-		if(req.getMethod().equals("GET")) {
-			String qno = req.getParameter("qno");
-			
-			QnaVO vo = ps.getQna(Integer.parseInt(qno));
-			req.setAttribute("MyQna", vo);
-			
-			return "product/qnaModify.tiles";
-			
-		} else if(req.getMethod().equals("POST")) {
-			
-		}
-		
-		
-		return null;
-	}
+		String pno = req.getParameter("pno");
 
+		ProductService ps = new ProductServiceImpl();
+		String json = "[";
+		List<ProductVO> list = ps.chartDataList(Integer.parseInt(pno));
+		for (int i = 0; i < list.size(); i++) {
+
+			json += "{\"gender\":\"" + list.get(i).getGender() + "\",";
+			json += "\"orderCount\":" + list.get(i).getOrderCount() + "}";
+
+			if (i + 1 != list.size()) {
+				json += ",";
+			}
+		}
+		json += "]";
+		return json + ".json";
+	}
 }

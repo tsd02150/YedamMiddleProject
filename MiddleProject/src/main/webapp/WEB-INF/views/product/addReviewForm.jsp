@@ -143,29 +143,29 @@
 
 const ratingInputs = document.querySelectorAll('input[name="score"]');
 
-ratingInputs.forEach((input) => {
-  input.addEventListener("change", () => {
-    console.log(input.value);
-  });
-});
+	ratingInputs.forEach((input) => {
+	  input.addEventListener('change', () => {
+	    console.log(input.value);
+	  });
+	});
 
 const productNameSelect = document.getElementById("porductName");
 const orderDateSelect = document.getElementById("orderDate");
 
-productNameSelect.addEventListener("change", () => {
-  console.log(productNameSelect.value);
-});
+	productNameSelect.addEventListener('change', () => {
+	  console.log(productNameSelect.value);
+	});
+	
+	orderDateSelect.addEventListener('change', () => {
+	  console.log(orderDateSelect.value);
+	});
 
-orderDateSelect.addEventListener("change", () => {
-  console.log(orderDateSelect.value);
-});
-
-const fileInput = document.querySelector('input[type="file"]');
-fileInput.addEventListener('change', function() {
-  const fileList = this.files;
-  for (let i = 0; i < fileList.length; i++) {
-    console.log(fileList[i].name);
-  }
-});
+	const fileInput = document.querySelector('input[type="file"]');
+	fileInput.addEventListener('change', function() {
+	  const fileList = this.files;
+	  for (let i = 0; i < fileList.length; i++) {
+	    console.log(fileList[i].name);
+	  }
+	});
 
 </script>

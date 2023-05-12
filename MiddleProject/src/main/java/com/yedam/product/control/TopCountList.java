@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.product.domain.BoardVO;
-import com.yedam.product.domain.ReviewVO;
 import com.yedam.product.service.ProductService;
 import com.yedam.product.service.ProductServiceImpl;
 
-public class AddReviewFormControl implements Control {
+public class TopCountList implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String pageStr = req.getParameter("page");
+		pageStr = pageStr == null ? "1" : pageStr;
+		int page = Integer.parseInt(pageStr);
 		ProductService ps = new ProductServiceImpl();
-		String id=req.getParameter("id");
-		List<BoardVO> list = ps.myOrderList(id);
-		
-		req.setAttribute("myOrder", list);
-		System.out.println("myOrder==>"+list);
-		
-		return "product/addReviewForm.tiles";
-	}
+		int total = ps.totalCount();
+		List<BoardVO> list = ps.topCountList(page);
+		req.setAttribute("topCountList", list);
 
+		System.out.println("topCountList==>" + list);
+		return "product/topCountList.tiles";
+	}
 }

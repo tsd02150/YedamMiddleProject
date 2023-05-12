@@ -12,7 +12,7 @@
 
 <meta name="description" content="" />
 <meta name="keywords" content="bootstrap, bootstrap4" />
-
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Bootstrap CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link

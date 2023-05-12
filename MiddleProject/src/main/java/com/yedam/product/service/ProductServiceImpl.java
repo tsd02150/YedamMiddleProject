@@ -15,8 +15,8 @@ import com.yedam.product.domain.SubCategoryVO;
 import com.yedam.product.domain.ThemeVO;
 import com.yedam.product.mapper.ProductMapper;
 
-public class ProductServiceImpl implements ProductService{
-	
+public class ProductServiceImpl implements ProductService {
+
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 
@@ -34,18 +34,19 @@ public class ProductServiceImpl implements ProductService{
 	public ProductVO getProduct(int productNo) {
 		return mapper.searchprod(productNo);
 	}
+
 	@Override
 	public boolean addProduct(ProductVO vo) {
-		return mapper.insertProduct(vo)==1;
+		return mapper.insertProduct(vo) == 1;
 	}
-	
+
 	public boolean modifyProduct(ProductVO vo) {
-		return mapper.updateProduct(vo)==1;
+		return mapper.updateProduct(vo) == 1;
 	}
-	
+
 	@Override
 	public boolean removeProduct(int productNo) {
-		return mapper.deleteProduct(productNo)==1;
+		return mapper.deleteProduct(productNo) == 1;
 	}
 
 	@Override
@@ -66,17 +67,17 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public boolean addBoard(BoardVO vo) {
-		return mapper.insertBoard(vo)==1;
+		return mapper.insertBoard(vo) == 1;
 	}
 
 	@Override
 	public boolean modifyBoard(BoardVO vo) {
-		return mapper.updateBoard(vo)==1;
+		return mapper.updateBoard(vo) == 1;
 	}
 
 	@Override
 	public boolean removeBoard(int boardNo) {
-		return mapper.deleteBoard(boardNo)==1;
+		return mapper.deleteBoard(boardNo) == 1;
 	}
 
 	@Override
@@ -91,17 +92,17 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public boolean addReview(ReviewVO vo) {
-		return mapper.insertReview(vo)==1;
+		return mapper.insertReview(vo) == 1;
 	}
 
 	@Override
 	public boolean modifyReview(ReviewVO vo) {
-		return mapper.updateReview(vo)==1;
+		return mapper.updateReview(vo) == 1;
 	}
 
 	@Override
 	public boolean removeReview(ReviewVO vo) {
-		return mapper.deleteReview(vo)==1;
+		return mapper.deleteReview(vo) == 1;
 	}
 
 	@Override
@@ -120,11 +121,10 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> ctgProd(@Param("mainCategoryNo") int mainCategoryNo, @Param("subCategoryNo")int subCategoryNo) {
+	public List<ProductVO> ctgProd(@Param("mainCategoryNo") int mainCategoryNo,
+			@Param("subCategoryNo") int subCategoryNo) {
 		return mapper.ctgProd(mainCategoryNo, subCategoryNo);
 	}
-
-
 
 	@Override
 	public List<BoardVO> ctgJoin() {
@@ -137,7 +137,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ReviewVO> myOrderList(String id) {
+	public List<BoardVO> myOrderList(String id) {
 		return mapper.myOrderList(id);
 	}
 
@@ -153,37 +153,40 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public boolean addQna(QnaVO vo) {
-		return mapper.insertQna(vo)==1;
+		return mapper.insertQna(vo) == 1;
 	}
 
 	@Override
 	public boolean modifyQna(QnaVO vo) {
-		return mapper.updateQna(vo)==1;
+		return mapper.updateQna(vo) == 1;
 	}
 
 	@Override
 	public boolean removeQna(QnaVO vo) {
-		return mapper.deleteQna(vo)==1;
+		return mapper.deleteQna(vo) == 1;
 	}
 
 	@Override
 	public List<QnaVO> myQnaList(int memberNo) {
 		return mapper.myQnaList(memberNo);
 	}
-	
+
 	@Override
 	public boolean addOrder(BoardVO vo) {
-		int cnt =0; int cnt1=0;
+		int cnt = 0;
+		int cnt1 = 0;
 		cnt = mapper.insertOrder(vo);
 		cnt1 = mapper.insertOrderDetail(vo);
-		if(cnt >0 && cnt1>0) {
+		if (cnt > 0 && cnt1 > 0) {
 			return true;
-		}else{return false;}
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean addOrderDetail(BoardVO vo) {
-		return mapper.insertOrderDetail(vo)==1;
+		return mapper.insertOrderDetail(vo) == 1;
 	}
 
 	@Override
@@ -207,7 +210,29 @@ public class ProductServiceImpl implements ProductService{
 		return null;
 	}
 
-	
+	@Override
+	public List<BoardVO> topCountList(int page) {
+		return mapper.topCountList(page);
+	}
 
+	@Override
+	public List<BoardVO> highPriceList(int page) {
+		return mapper.highPriceList(page);
+	}
+
+	@Override
+	public List<BoardVO> lowPriceList(int page) {
+		return mapper.lowPriceList(page);
+	}
+
+	@Override
+	public List<ProductVO> chartDataList(int companyNo) {
+		return mapper.chartDataList(companyNo);
+	}
+
+	@Override
+	public List<BoardVO> searchPrice(int minPrice, int maxPrice, int page) {
+		return mapper.searchPrice(minPrice, maxPrice, page);
+	}
 
 }
