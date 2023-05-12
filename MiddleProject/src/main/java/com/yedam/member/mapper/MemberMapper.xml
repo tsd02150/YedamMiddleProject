@@ -176,7 +176,10 @@
  		delete from order_detail where order_detail_no=#{orderDetailNo}
  	</delete>
 
-	
+
+
+	<!-- 관리자페이지 -->
+
 	<delete id="deleteMember" parameterType="int">
 		delete from member
 		where member_no=#{memberNo}
