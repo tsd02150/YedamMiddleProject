@@ -53,7 +53,6 @@
 		company_no=#{companyNo}
 	</update>
 
-
 	<select id="qnaList" parameterType="String" resultType="qna">
 		select * from qna join member using (member_no)
 		where id = #{id};
@@ -182,12 +181,7 @@
 
 
 	<!-- 관리자페이지 -->
-<<<<<<< HEAD
-	
-	
-=======
 
->>>>>>> refs/heads/mihyang
 	<delete id="deleteMember" parameterType="int">
 		delete from member
 		where member_no=#{memberNo}
