@@ -19,7 +19,7 @@ public interface MemberMapper {
 	public String searchPw(MemberVO vo);
 	public int updateMemberM(MemberVO vo);
 	public List<QnaVO> qnaList(String id);
-	public List<QnaVO> qnaWithPage(int page);
+	public List<QnaVO> qnaWithPage(QnaVO vo);
 	public int getCount();
 	public List<WishVO> wishList(String id);
 	public List<OrdersVO> orderList(String id);
@@ -31,5 +31,6 @@ public interface MemberMapper {
 	public List<OrderDetailVO> myCart(int memberNo);
 	public CompanyVO companyInfo(String id);
 	public int updateMemberCo(CompanyVO vo);
-
+	public int updateCart(OrderDetailVO vo);
+	public int deleteCart(int orderDetailNo);
 }

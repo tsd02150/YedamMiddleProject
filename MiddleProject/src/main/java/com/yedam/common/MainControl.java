@@ -52,7 +52,6 @@ public class MainControl implements Control {
 			noticeList=noticeList.subList(0, 4);
 		}
 		req.setAttribute("noticeList", noticeList);
-		System.out.println(noticeList);
 		
 		//자주묻는질문
 		List<NoticeVO> faqList = ns.searchFaq(1);
@@ -60,7 +59,7 @@ public class MainControl implements Control {
 			faqList=faqList.subList(0, 4);			
 		}
 		req.setAttribute("faqList", faqList);
-		System.out.println(faqList);
+
 		
 		return "common/main.tiles";
 	}

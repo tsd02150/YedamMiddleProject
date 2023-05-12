@@ -20,7 +20,7 @@ public interface MemberService {
 	public boolean updateMemberM(MemberVO vo);
 	public List<QnaVO> qnaList(String id);
 	public int totalCount();
-	public List<QnaVO> qnaList(int page);
+	public List<QnaVO> qnaList(QnaVO vo);
 	public List<WishVO> wishList(String id);
 	public List<OrdersVO> orderList(String id);
 	public boolean deleteOrder(int orderNo);
@@ -31,5 +31,6 @@ public interface MemberService {
 	public List<OrderDetailVO> myCart(int memberNo);
 	public CompanyVO companyInfo(String id);
 	public boolean updateMemberCo(CompanyVO vo);
-
+	public boolean updateCart(OrderDetailVO vo);
+	public boolean deleteCart(int orderDetailNo);
 }

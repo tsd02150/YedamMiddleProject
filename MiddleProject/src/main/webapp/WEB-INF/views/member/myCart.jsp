@@ -87,7 +87,7 @@
 						<nav id="sidebar-wrapper" class="active">
 							<ul class="sidebar-nav">
 								<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-								<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
+								<li class="sidebar-nav-item"><a href="myCart.do">장바구니</a></li>
 								<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
 								<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
 								<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
@@ -100,16 +100,18 @@
 				<table class="table" id="cartInfo">
 					<tr>
 						<th>no</th>
+						<th>사진</th>
 						<th>제품명</th>
 						<th>가격</th>
 						<th>주문수량</th>
 						<th></th>
 					</tr>
 					<c:forEach var="myCart" items="${myCartList }">
-						<tr class="myCart">
+						<tr class="myCart" data-detailno=${myCart.orderDetailNo }>
 							<td><c:out value="${no=no+1}"></c:out></td>
+							<td><img src="images/${myCart.boardThumbnail }" width="200" height="100" style="overflow: hidden"></td>
 							<td>${myCart.productName }</td>
-							<td>${myCart.price }</td>
+							<td>${myCart.price } <span>원</span></td>
 							<td><input type="number" value=${myCart.orderCount } class="cartCnt" min="0"></td>
 						</tr>
 					</c:forEach>
@@ -144,7 +146,7 @@
 	let checkCnt = 0;
 	
 	myCartList.forEach(myCart=>{
-		total.children[0].children[1].innerText = parseInt(total.children[0].children[1].innerText)+parseInt(myCart.children[2].innerText)*parseInt(myCart.children[3].children[0].value);
+		total.children[0].children[1].innerText = parseInt(total.children[0].children[1].innerText)+parseInt(myCart.children[3].innerText)*parseInt(myCart.children[4].children[0].value);
 		total.children[1].children[1].innerText=3000;
 		<c:if test="${myCart.mainCategoryNo != 2 && myCart.subCategoryNo != 3}">
 			total.children[2].children[1].innerText=20000;
@@ -172,7 +174,7 @@
 					total.children[0].children[1].innerText=0;
 					cnt=0;
 				}
-				total.children[0].children[1].innerText = parseInt(total.children[0].children[1].innerText)+parseInt(myCart.children[2].innerText)*parseInt(myCart.children[3].children[0].value);
+				total.children[0].children[1].innerText = parseInt(total.children[0].children[1].innerText)+parseInt(myCart.children[3].innerText)*parseInt(myCart.children[4].children[0].value);
 				if(myCart.children[3].children[0].value!=0){
 					cnt++;
 				}
@@ -187,11 +189,28 @@
 				total.children[2].children[1].innerText=0;
 				total.children[4].children[1].innerText=parseInt(total.children[0].children[1].innerText)+parseInt(total.children[1].children[1].innerText)+parseInt(total.children[2].children[1].innerText)+parseInt(total.children[3].children[1].innerText);
 			}
+			
 		})
 	})
 	
 	document.querySelector('#payBtn').addEventListener('click',function(){
-		location.href="pay.do";
+
+		let updateCartInfo = "";
+
+		myCartList.forEach((myCart,index)=>{
+			updateCartInfo += '&orderDetailNo='+myCart.dataset.detailno+"&orderCnt="+myCart.children[4].children[0].value;
+		})
+		
+		console.log(updateCartInfo.substring(1));
+			
+		fetch("updateCart.do?"+updateCartInfo.substring(1))
+		.then(resolve=>resolve.json)
+		.then(result=>{
+			console.log(result);
+			location.href="pay.do?totalPrice="+total.children[4].children[1].innerText;
+		})
+		.catch(err=>console.log(err))
 	})
+	
 </script>
 </html>

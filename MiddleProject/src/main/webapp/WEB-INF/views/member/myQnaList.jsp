@@ -89,7 +89,7 @@ height:
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
+		<li class="sidebar-nav-item"><a href="myCart.do">장바구니</a></li>
 		<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
 		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
@@ -103,33 +103,31 @@ height:
 	<thead>
 		<tr>
 			<th>순번</th>
-			<th>문의글 번호</th>
 			<th>제목</th>
 			<th>작성자</th>
-			<th>답변상태</th>
 		</tr>
 	</thead>
 	<c:forEach var="qna" items="${list}">
 		<tr>
 			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td>
-			<!--  <a href="getQna.do?page=${pageInfo.pageNum }&qnaNo=${qna.qnaNo}">--><a>${qna.qnaNo}</a></td>
 			<td>${qna.qnaTitle}</td>
-			<td>${qna.id}</td>
+			<td>${qna.name}</td>
 		</tr>
+		<tr><td>문의 내용</td><td colspan="2">${qna.qnaContent }</td></tr>
+		<tr><td>답변 : </td><td colspan="2">${qna.qnaAnswer }</td></tr>
 	</c:forEach>
 </table>
 <hr>
 <div class="center">
 	<div class="pagination">
 		<c:if test="${pageInfo.prev }">
-			<a href="qnaList.do?page=${pageInfo.startPage-1 }">Previous</a>
+			<a href="myQnaList.do?page=${pageInfo.startPage-1 }">Previous</a>
 		</c:if>
 		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-			<a class="${i == pageInfo.pageNum ? 'active' : '' }" href="qnaList.do?page=${i}">${i } </a>
+			<a class="${i == pageInfo.pageNum ? 'active' : '' }" href="myQnaList.do?page=${i}">${i } </a>
 		</c:forEach>
 		<c:if test="${pageInfo.next }">
-			<a href="qnaList.do?page=${pageInfo.endPage+1 }">Next</a>
+			<a href="myQnaList.do?page=${pageInfo.endPage+1 }">Next</a>
 		</c:if>
 	</div>
 </div>

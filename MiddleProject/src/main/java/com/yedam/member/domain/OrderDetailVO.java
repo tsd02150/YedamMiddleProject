@@ -13,4 +13,5 @@ public class OrderDetailVO {
 	private int price;
 	private int mainCategoryNo;
 	private int subCategoryNo;
+	private String boardThumbnail;
 }

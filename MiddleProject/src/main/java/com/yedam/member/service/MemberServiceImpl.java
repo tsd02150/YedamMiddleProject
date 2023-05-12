@@ -55,8 +55,8 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.getCount();
 	}
 	@Override
-	public List<QnaVO> qnaList(int page) {
-		return mapper.qnaWithPage(page);
+	public List<QnaVO> qnaList(QnaVO vo) {
+		return mapper.qnaWithPage(vo);
 	}
 	@Override
 	public List<WishVO> wishList(String id) {
@@ -96,5 +96,14 @@ public class MemberServiceImpl implements MemberService{
 	public boolean updateMemberCo(CompanyVO vo) {
 		return mapper.updateMemberCo(vo)>0;
 	}
+	@Override
+	public boolean updateCart(OrderDetailVO vo) {
+		return mapper.updateCart(vo)>0;
+	}
+	@Override
+	public boolean deleteCart(int orderDetailNo) {
+		return mapper.deleteCart(orderDetailNo)>0;		
+	}
+	
 	
 }

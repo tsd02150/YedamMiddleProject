@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,18 @@
 </head>
 <body>
 
-<div style="width:1200px; margin:0 auto;">
+<div style="width:1200px; margin:0 auto; background-color: white;">
 	<div>
-		
+		<table class="table">
+			<c:forEach var="myCart" items="${myCartList }">
+				<tr class="myCart" data-detailno=${myCart.orderDetailNo }>
+					<td  width="200"><img src="images/${myCart.boardThumbnail }" width="200" height="100" style="overflow: hidden"></td>
+					<td>${myCart.productName }</td>
+					<td>${myCart.price } <span>원</span></td>
+					<td>${myCart.orderCount } <span>개</span></td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
   	<!-- 결제위젯, 이용약관 영역 -->
   	<div id="payment-method"></div>

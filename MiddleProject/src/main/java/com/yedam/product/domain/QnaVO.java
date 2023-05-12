@@ -23,5 +23,5 @@ public class QnaVO {
 	private String name;
 	private String id;
 	private int orderNo;
-	
+	private int page;
 }

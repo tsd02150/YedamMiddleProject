@@ -180,7 +180,7 @@ to {
 					<tr>
 						<td><div id="category"><span>Category</span></div></td>
 						<td><input type="text" id="searchItem"></td>
-						<td><button type="button">검색</button></td>
+						<td><img src="images/search.png" id=searchImg width=40 height=30 style="margin-left: 5px"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -305,6 +305,9 @@ to {
 					let li = document.createElement('li');
 					li.innerText=data.subCategoryName;
 					li.value = data.subVategoryNo;
+					li.addEventListener('click',function(){
+						location.href="categoryBoard.do?page=1&sno="+data.subCategoryNo;
+					})
 					subList.append(li);
 					subList.parentElement.style.display="flex";
 				})	
