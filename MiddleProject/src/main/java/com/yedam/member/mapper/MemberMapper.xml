@@ -213,6 +213,5 @@
 		where member_no=#{memberNo}
 	</delete>
 	
->>>>>>> branch 'main' of https://github.com/tsd02150/YedamMiddleProject.git
 
 </mapper>
