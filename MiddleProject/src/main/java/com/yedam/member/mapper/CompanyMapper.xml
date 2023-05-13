@@ -25,11 +25,23 @@
 	</select>
 	<update id="updateCompany" parameterType="int">
 		update member
-		set member.grade='s'
+		set
+		member.grade='s'
 		where member.company_no=#{companyNo}
 	</update>
-	<delete id="delCompany">
-	
+	<delete id="delCompany" parameterType="int">
+		delete from company
+		where
+		company_no=#{companyNo}
 	</delete>
-	
+	<select id="companyCount">
+		select count(*)
+		from member
+		where grade='s'
+	</select>
+		<select id="newCompanyCount">
+		select count(*)
+		from member
+		where grade='r'
+	</select>
 </mapper>

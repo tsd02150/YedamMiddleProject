@@ -77,9 +77,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public List<MemberVO> memberList() {
-		return mapper.memberList();
+	public List<MemberVO> memberList(int page) {
+		return mapper.memberList(page);
 	}
+	
 	@Override
 	public List<OrdersVO> orderNoList(String orderNo) {
 		return mapper.orderNoList(orderNo);
@@ -113,6 +114,9 @@ public class MemberServiceImpl implements MemberService{
 	public boolean deleteCart(int orderDetailNo) {
 		return mapper.deleteCart(orderDetailNo)>0;		
 	}
-	
+	@Override
+	public int memberCount() {
+		return mapper.memberCount();
+	}
 	
 }

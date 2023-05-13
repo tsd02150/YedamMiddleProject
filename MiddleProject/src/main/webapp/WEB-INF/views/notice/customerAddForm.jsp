@@ -25,10 +25,6 @@
 			<td><input name="attach" type="file"></td>
 		</tr>
 		<tr>
-			<th>비밀번호</th>
-			<td><input name="noticePw" type="password" required></td>
-		</tr>
-		<tr>
 			<td colspan="2" align="center">
 				<button type="submit">등록</button>
 				<button type="button" onclick="location.href='customerCenter.do'">취소</button>

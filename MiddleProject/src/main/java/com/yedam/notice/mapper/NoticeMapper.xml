@@ -6,22 +6,26 @@
 <mapper namespace="com.yedam.notice.mapper.NoticeMapper">
 	<!-- 고객센터 selector=3 -->
 	<select id="CustomerCenter" resultType="notice">
-		SELECT *
-		FROM notice INNER
-		JOIN member
-		ON notice.member_no = member.member_no
-		WHERE
-		notice.selector= 3
-		ORDER BY notice.notice_date desc
+		<![CDATA[
+		Select rownum rn, b.*
+		FROM(SELECT rownum rn, a.* 
+  	 		FROM(SELECT *
+				FROM notice 
+				JOIN member
+				ON notice.member_no = member.member_no
+				WHERE
+				notice.selector= 3
+				ORDER BY notice.notice_date desc) a 
+    		WHERE rownum <= #{page}*10) b
+		WHERE b.rn > (#{page}-1)*10
+	]]>
 	</select>
 	<insert id="CustomerAdd" parameterType="notice">
 		INSERT INTO notice
-		(notice_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_ATTACH,
-		notice_pw,
-		SELECTOR, member_No)
+		(notice_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_ATTACH,SELECTOR, member_No)
 		VALUES (notice_sequence.nextval, #{noticeTitle},
 		#{noticeContent},
-		#{noticeAttach}, #{noticePw}, 3, (SELECT member_no
+		#{noticeAttach},3, (SELECT member_no
 		FROM member WHERE id=#{id}))
 	</insert>
 	<select id="GetCustomer" parameterType="int" resultType="notice">
@@ -41,7 +45,12 @@
 		delete from notice where
 		notice_no=#{noticeNo}
 	</delete>
-
+	<select id="CustomerCount" resultType="int">
+		SELECT count(*)
+		FROM notice JOIN member
+		ON notice.member_no = member.member_no
+		WHERE notice.selector= 3
+	</select>
 
 	<select id="selectFaq" resultType="notice">
 	<![CDATA[
@@ -65,10 +74,15 @@
 	</select>
 	<!-- 공지사항 selector=1 -->
 	<select id="notiList" resultType="notice">
-		SELECT * FROM notice
-		WHERE
-		selector= 1
-		ORDER BY notice_date desc
+	<![CDATA[
+		Select rownum rn, b.*
+		FROM(SELECT rownum rn, a.* 
+  	 		FROM(SELECT * FROM notice
+          		 WHERE selector= 1
+         		 ORDER BY notice_date desc) a 
+    		WHERE rownum <= #{page}*10) b
+		WHERE b.rn > (#{page}-1)*10
+	]]>
 	</select>
 	<insert id="addNoti" parameterType="notice">
 		insert into
@@ -93,17 +107,11 @@
 		where
 		notice_no=#{noticeNo}
 	</delete>
-	<select id="noticeWithPage" resultType="notice">
-	<![CDATA[
-		Select rownum rn, b.*
-		FROM    (SELECT rownum rn, a.* 
-	        	 FROM (SELECT * FROM tbl_notice
-	             	   ORDER BY 1 DESC) a 
-	    		 WHERE rownum <= #{page}*10) b
-		WHERE b.rn > (#{page}-1)*10	
-	]]>
+	<select id="notiCount" resultType="int">
+		SELECT count(*)
+		FROM notice
+		WHERE selector=1
 	</select>
-
-
+	
 </mapper>
 	

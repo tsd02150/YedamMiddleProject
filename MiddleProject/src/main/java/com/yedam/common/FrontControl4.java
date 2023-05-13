@@ -143,7 +143,7 @@ public class FrontControl4 extends HttpServlet {
 		// 회원관리
 		map.put("/adminMember.do", new AdminMemberControl());
 		map.put("/adminDelMember.do", new AdminDelMemberControl());
-		// 업체관리
+		// 업체관리  
 		map.put("/adminCompany.do", new AdminCompanyControl());
 		// 신규업체
 		map.put("/newCompany.do", new AdminNewCompanyControl());

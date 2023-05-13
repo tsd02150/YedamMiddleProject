@@ -113,6 +113,40 @@ height:
 	color: #fff;
 	background: none;
 }
+article {
+	margin: 0 auto;
+	padding: 50px;
+}
+
+.center {
+	text-align: center;
+	font-weight: bold;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 12px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #3b5d50;
+	color: white;
+	border: 1px solid #3b5d50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
 </style>
 
 
@@ -126,8 +160,7 @@ height:
 
 <br>
 <br>
-<h3>고객센터</h3>
-
+<h3>고객센터 문의 게시판</h3>
 <c:set var="no" value="0"></c:set>
 <form id="all" action="getCustomer.do" method="post">
 	<table class="table">
@@ -167,24 +200,21 @@ height:
 		</c:forEach>
 	</table>
 </form>
-<!-- 
-<script>
-	const modal = document.getElementById("modal");
-	const open = document.getElementById("viewContent");
-	const closeBtn = document.getElementsByClassName("close")[0];
+	<hr>
+	<div class="center">
+		<div class="pagination">
+			<c:if test="${pageInfo.prev}">
+				<a href="customerCenter.do?page=${pageInfo.startPage-1 }">Prev</a>
+			</c:if>
+			<c:forEach var="i" begin="${pageInfo.startPage }"
+				end="${pageInfo.endPage }">
+				<a href="customerCenter.do?page=${i }"
+					class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
+			</c:forEach>
+			<c:if test="${pageInfo.next}">
+			
+				<a href="customerCenter.do?page=${pageInfo.endPage+1 }">Next</a>
+			</c:if>
+		</div>
+	</div>
 
-	open.addEventListener('click',function(){
-		modal.style.display = "block"; /*팝업 보이기 */
-	});
-
-	closeBtn.onclick = function() {
-		modal.style.display = "none"; // x클릭시-모달 팝업 숨기기
-	}
-
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none"; //팝업 숨기기
-		}
-	}
-	
-</script> -->

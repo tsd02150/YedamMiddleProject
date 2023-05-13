@@ -92,6 +92,7 @@ a {
 	color: #fff;
 }
 
+
 .pop_wrap {
 	position: fixed;
 	top: 0;
@@ -119,6 +120,45 @@ a {
 	vertical-align: middle;
 	font-size: 15px;
 }
+
+/* 삭제버튼 */
+#delBtn {
+	font-weight: bold;
+	margin: 10px;
+	padding: 4px 6px;
+	background: #fff;
+	color: #000;
+}
+
+.center {
+	text-align: center;
+	font-weight: bold;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 12px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #3b5d50;
+	color: white;
+	border: 1px solid #3b5d50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
 </style>
 
 
@@ -149,7 +189,7 @@ a {
 			<th>삭제</th>
 		</tr>
 		<c:set var="no" value="0"></c:set>
-		<c:forEach var="com" items="${list }">
+		<c:forEach var="com" items="${list }" varStatus="m">
 			<tr>
 				<td><c:out value="${no=no+1}"></c:out></td>
 				<td>${com.companyName}</td>
@@ -157,9 +197,9 @@ a {
 				<td>${com.name}</td>
 				<td>${com.companyPhone}</td>
 				<td>${com.companyAddr}</td>
-				<td><a href="#pop_info_1" class="btn_open">업체 등록하기</a></td>
+				<td><a href="#pop_info_${m.count }" class="btn_open">업체 등록하기</a></td>
 				<!-- 팝업1 -->
-				<div id="pop_info_1" class="pop_wrap" style="display: none;">
+				<div id="pop_info_${m.count }" class="pop_wrap" style="display: none;">
 					<div class="pop_inner">
 						<p class="dsc">업체를 등록하시겠습니까?</p>
 						<button type="button"
@@ -169,13 +209,42 @@ a {
 				</div>
 				<!-- 팝업1 -->
 
-				<td><button>삭제</button></td>
+				<td><a href="#pop_info_del_${m.count }" id= "delBtn" class="btn_open">업체삭제</a></td>
+				<!-- 팝업1 -->
+				<div id="pop_info_del_${m.count }" class="pop_wrap"
+					style="display: none;">
+					<div class="pop_inner">
+						<p class="dsc">업체를 삭제하시겠습니까?</p>
+						<button type="button"
+							onclick="location.href='adminDelCompany.do?comNo=${com.companyNo}'">삭제</button>
+						<button type="button" class="btn_close">취소</button>
+					</div>
+				</div>
+				<!-- 팝업1 -->
 
 			</tr>
 		</c:forEach>
 
 	</table>
 </form>
+	<hr>
+	<div class="center">
+		<div class="pagination">
+			<c:if test="${pageInfo.prev}">
+				<a href="newCompany.do?page=${pageInfo.startPage-1 }">Prev</a>
+			</c:if>
+			<c:forEach var="i" begin="${pageInfo.startPage }"
+				end="${pageInfo.endPage }">
+				<a href="newCompany.do?page=${i }"
+					class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
+			</c:forEach>
+			<c:if test="${pageInfo.next}">
+			
+				<a href="newCompany.do?page=${pageInfo.endPage+1 }">Next</a>
+			</c:if>
+		</div>
+	</div>
+
 
 <script>
 	var target = document.querySelectorAll('.btn_open');
