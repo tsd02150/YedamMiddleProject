@@ -317,6 +317,8 @@ a.more {
 	-webkit-transition: .3s all ease;
 	-o-transition: .3s all ease;
 	transition: .3s all ease;
+	width: 300px;
+	height: 300px;
 }
 
 .product-section .product-item h3 {

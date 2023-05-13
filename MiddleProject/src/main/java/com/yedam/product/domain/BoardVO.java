@@ -27,7 +27,6 @@ public class BoardVO {
 	private String companyName;
 	private String companyPhone;
 	private String companyAddr;
-	
 
 	private String id;
 	private int orderNo;
@@ -43,6 +42,8 @@ public class BoardVO {
 	private String setting;
 	private String name;
 	private String phone;
-	
-	
+
+	private int minPrice;
+	private int maxPrice;
+
 }

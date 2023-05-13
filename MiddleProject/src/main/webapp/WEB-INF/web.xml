@@ -21,7 +21,11 @@
 	<servlet>
 		<servlet-name>frontControl</servlet-name>
 
-		<servlet-class>com.yedam.common.FrontControl</servlet-class>
+<<<<<<< HEAD
+		<servlet-class>com.yedam.common.FrontControl4</servlet-class>
+=======
+		<servlet-class>com.yedam.common.FrontControl2</servlet-class>
+>>>>>>> refs/heads/mihyang
 
 
 		<init-param>

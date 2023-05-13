@@ -21,8 +21,8 @@ public class getBoardControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO 상품게시판 상세보기
 		HttpSession session = req.getSession();
-		int mno = Integer.parseInt(String.valueOf(session.getAttribute("mno")));
-		System.out.println(mno);
+		String id = String.valueOf(session.getAttribute("id"));
+		System.out.println(id);
 		
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
@@ -31,7 +31,7 @@ public class getBoardControl implements Control {
 		BoardVO vo = ps.getBoard(Integer.parseInt(bno));
 
 		List<QnaVO> list = ps.qnaList(Integer.parseInt(bno));
-		List<BoardVO> orderList = ps.getOrderList(mno);
+		List<BoardVO> orderList = ps.myOrderList(id);
 
 		req.setAttribute("boardInfo", vo);
 		req.setAttribute("pageNum", page);

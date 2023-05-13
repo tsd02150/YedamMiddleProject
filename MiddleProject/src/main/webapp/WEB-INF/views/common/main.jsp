@@ -219,7 +219,24 @@ to {
 			style="width: 1200px; display: inline-block">
 			<div class="container">
 				<div class="row">
-					<c:forEach var="board" items="${boardList }">
+				<h1>Best Seller</h1>
+					<c:forEach var="board" items="${topCountList}" begin="0" end="3" step="1">
+						<div class="col-12 col-md-4 col-lg-3 mb-5">
+							<a class="product-item"
+								href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}">
+								<img src="images/${board.boardThumbnail}"
+								class="img-fluid product-thumbnail">
+								<h3 class="product-title">${board.boardTitle}</h3> <strong
+								class="product-price"> <fmt:formatNumber
+										value="${board.price}" pattern="#,###" />
+							</strong> <span class="icon-cross"> <img src="images/cross.svg"
+									class="img-fluid">
+							</span>
+							</a>
+						</div>
+					</c:forEach>
+					<h1>신상품??</h1>
+					<c:forEach var="board" items="${boardList}" begin="0" end="3" step="1">
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item"
 								href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}">
