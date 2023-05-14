@@ -19,17 +19,21 @@ public class NotiControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		NoticeService service = new NoticeServiceImpl();
+		
 		String pageStr=req.getParameter("page");
 		pageStr = (pageStr==null) ? "1" :pageStr ;
+		
 		int page=Integer.parseInt(pageStr) ;
-//		int total= service.totalCount();
-//		PageDTO dto =new PageDTO(page,);
 		
+		List<NoticeVO> list = service.notiList(page);
 		
-		List<NoticeVO> list = service.notiList();
+		int total= service.notiCount();
+		
+		PageDTO dto =new PageDTO(page,total);
+		
 		
 		req.setAttribute("list", list);
-		
+		req.setAttribute("pageInfo", dto);
 		
 		
 		return "notice/notiList.tiles";

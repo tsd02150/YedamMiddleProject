@@ -57,7 +57,7 @@ public class MainControl implements Control {
 		
 		//공지사항
 		NoticeService ns = new NoticeServiceImpl();
-		List<NoticeVO> noticeList = ns.notiList();
+		List<NoticeVO> noticeList = ns.notiList(1);
 		if(noticeList.size()>4) {
 			noticeList=noticeList.subList(0, 4);
 		}
