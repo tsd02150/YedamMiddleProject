@@ -120,7 +120,7 @@ height:
 		</tr>
 		<c:if test="${grade=='s' }">
 			<c:if test="${qna.qnaAnswer==null }">
-				<tr><td>답변 : </td><td colspan="4"><textarea cols="50"></textarea></td><td><button type="button" class="saveAnswer">저장</button></td></tr>
+				<tr data-qna-no=${qna.qnaNo }><td>답변 : </td><td colspan="4"><textarea cols="50"></textarea></td><td><button type="button" class="saveAnswer">저장</button></td></tr>
 			</c:if>
 			<c:if test="${qna.qnaAnswer!=null }">
 				<tr data-qna-no=${qna.qnaNo }><td>답변 : </td><td colspan="4">${qna.qnaAnswer }</td><td><button type="button" class="modifyAnswer">수정</button></td></tr>
@@ -128,10 +128,10 @@ height:
 		</c:if>
 		<c:if test="${grade=='c' }">
 			<c:if test="${qna.qnaAnswer==null }">
-				<tr><td>답변 : </td><td colspan="4">답변이 아직 달리지 않았어요.</td></tr>
+				<tr data-qna-no=${qna.qnaNo }><td>답변 : </td><td colspan="4">답변이 아직 달리지 않았어요.</td></tr>
 			</c:if>
 			<c:if test="${qna.qnaAnswer!=null }">
-				<tr><td>답변 : </td><td colspan="4">${qna.qnaAnswer }</td></tr>
+				<tr data-qna-no=${qna.qnaNo }><td>답변 : </td><td colspan="4">${qna.qnaAnswer }</td></tr>
 			</c:if>
 		</c:if>
 	</c:forEach>
@@ -167,12 +167,10 @@ height:
 			template.dataset.qnaNo = this.parentNode.parentNode.dataset.qnaNo;
 			template.children[1].children[0].innerText=this.parentNode.parentNode.children[1].innerText;
 			template.children[2].children[0].addEventListener('click',function(){
-				console.log(template.dataset.qnaNo);
-				console.log(template);
-				fetch("updateQna.do?qnaNo="+template.dataset.qnaNo+"&qnaContent="+template.children[1].children[0].innerText)
+				fetch("updateQna.do?qnaNo="+template.dataset.qnaNo+"&qnaAnswer="+template.children[1].children[0].value)
 				.then(resolve=>resolve.json())
 				.then(result=>{
-					modify.parentNode.parentNode.children[1].innerText=template.children[1].children[0].innerText;
+					modify.parentNode.parentNode.children[1].innerText=template.children[1].children[0].value;
 					document.getElementById('tlist').replaceChild(modify.parentNode.parentNode,template);
 				})
 				.catch(err=>console.log(err));
@@ -185,6 +183,16 @@ height:
 	})
 	
 	document.querySelector('.saveAnswer').addEventListener('click',function(){
-		console.log(this.parentNode.parentNode.parentNode);
+		console.log(this.parentNode.parentNode.children[1].children[0].value);
+		fetch("updateQna.do?qnaNo="+this.parentNode.parentNode.dataset.qnaNo+"&qnaAnswer="+this.parentNode.parentNode.children[1].children[0].value)
+		.then(resolve=>resolve.json())
+		.then(result=>{
+			let temp=this.parentNode.parentNode.children[1].children[0].value;
+			this.parentNode.parentNode.children[1].removeChild(this.parentNode.parentNode.children[1].firstChild);
+			this.parentNode.parentNode.children[1].innerText=temp;
+			this.innerText = "수정";
+			this.className="modifyAnswer";
+		})
+		.catch(err=>console.log(err));
 	})
 </script>
