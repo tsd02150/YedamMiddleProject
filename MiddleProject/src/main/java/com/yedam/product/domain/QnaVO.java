@@ -25,5 +25,5 @@ public class QnaVO {
 	private int orderNo;
 	private int page;
 	private String orderDate;
-
+	private String boardTitle;
 }

@@ -21,7 +21,8 @@ public interface MemberService {
 	public boolean updateMemberM(MemberVO vo);
 	public List<QnaVO> qnaList(String id);
 	public int totalCount();
-	public List<QnaVO> qnaList(QnaVO vo);
+	public List<QnaVO> qnaListCustomer(QnaVO vo);
+	public List<QnaVO> qnaListSeller(QnaVO vo);
 	public List<WishVO> wishList(String id);
 	public List<OrdersVO> orderList(String id);
 	public boolean deleteOrder(int orderNo);

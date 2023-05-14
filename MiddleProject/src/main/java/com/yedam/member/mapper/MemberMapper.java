@@ -20,7 +20,8 @@ public interface MemberMapper {
 	public String searchPw(MemberVO vo);
 	public int updateMemberM(MemberVO vo);
 	public List<QnaVO> qnaList(String id);
-	public List<QnaVO> qnaWithPage(QnaVO vo);
+	public List<QnaVO> qnaListSeller(QnaVO vo);
+	public List<QnaVO> qnaListCustomer(QnaVO vo);
 	public int getCount();
 	public List<WishVO> wishList(String id);
 	public List<OrdersVO> orderList(String id);
