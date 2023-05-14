@@ -48,6 +48,7 @@ public class OtherLoginControl implements Control {
 			HttpSession session = req.getSession();
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("name", vo.getName());
+			session.setAttribute("memberNo", vo.getMemberNo());
 			if(vo.getCompanyNo()!=0) {
 				session.setAttribute("companyNo", vo.getCompanyNo());
 			}

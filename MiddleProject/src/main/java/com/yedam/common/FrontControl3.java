@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.member.control.MyQnaListControl;
+import com.yedam.member.control.OrderDeliListControl;
 import com.yedam.member.control.OrderDetailControl;
 import com.yedam.member.control.DeleteOrderControl;
 import com.yedam.member.control.ModifyMemberCoControl;
@@ -20,11 +21,13 @@ import com.yedam.member.control.MyPageControl;
 import com.yedam.member.control.OrderListControl;
 import com.yedam.member.control.OrderPageControl;
 import com.yedam.member.control.OrderProdListControl;
+import com.yedam.member.control.SalesControl;
 import com.yedam.member.control.SignInControl;
 import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpCheckControl;
 import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
+import com.yedam.member.control.UpdateDeliControl;
 import com.yedam.member.control.WishListControl;
 import com.yedam.product.control.DeleteNowProductControl;
 import com.yedam.product.control.DeleteProductControl;
@@ -74,9 +77,9 @@ public class FrontControl3 extends HttpServlet{
 		map.put("/prodNowList.do", new ProdNowListControl());
 		map.put("/deleteNowProduct.do", new DeleteNowProductControl());
 		map.put("/orderProdList.do", new OrderProdListControl());
-		
-		
-		
+		map.put("/orderDeliList.do", new OrderDeliListControl());
+		map.put("/updateDeli.do", new UpdateDeliControl());
+		map.put("/sales.do", new SalesControl());
 		
 	}
 	

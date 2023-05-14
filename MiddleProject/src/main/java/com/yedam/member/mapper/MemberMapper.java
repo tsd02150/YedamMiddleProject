@@ -36,5 +36,5 @@ public interface MemberMapper {
 	public int deleteCart(int orderDetailNo);
 	public List<BoardVO> orderProdList(int memberNo);
 	public int deleteMember(int memberNo);
-
+	public int changeDeli(int orderNo);
 }
