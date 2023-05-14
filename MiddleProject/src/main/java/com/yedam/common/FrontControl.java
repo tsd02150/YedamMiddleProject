@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.member.control.AdminCompanyControl;
+import com.yedam.member.control.AdminDelCompanyControl;
+import com.yedam.member.control.AdminDelMemberControl;
 import com.yedam.member.control.AdminMemberControl;
 import com.yedam.member.control.AdminNewCompanyControl;
 import com.yedam.member.control.ConfirmControl;
@@ -75,6 +77,8 @@ import com.yedam.product.control.DeleteBoardControl;
 import com.yedam.product.control.DeleteNowProductControl;
 import com.yedam.product.control.DeleteProductControl;
 import com.yedam.product.control.GetProductControl;
+import com.yedam.product.control.HighPriceList;
+import com.yedam.product.control.LowPriceList;
 import com.yedam.product.control.ModifyBoardControl;
 import com.yedam.product.control.ModifyProductControl;
 import com.yedam.product.control.ModifyReviewControl;
@@ -82,11 +86,14 @@ import com.yedam.product.control.PayControl;
 import com.yedam.product.control.ProdNowListControl;
 import com.yedam.product.control.ProductListControl;
 import com.yedam.product.control.QnaListControl;
+import com.yedam.product.control.RemoveQnaControl;
 import com.yedam.product.control.RemoveReviewControl;
 import com.yedam.product.control.ReviewListControl;
 import com.yedam.product.control.SearchProductNameControl;
 import com.yedam.product.control.ThemeControl;
 import com.yedam.product.control.ThemeListControl;
+import com.yedam.product.control.TopCountList;
+import com.yedam.product.control.chartDataControl;
 import com.yedam.product.control.getBoardControl;
 
 public class FrontControl extends HttpServlet {
@@ -161,6 +168,11 @@ public class FrontControl extends HttpServlet {
 		map.put("/getBoard.do", new getBoardControl());
 		// 카테고리별
 		map.put("/categoryBoard.do", new CategoryBoardControl());
+		// 매출순
+		map.put("/topCountList.do", new TopCountList());
+		// 가격순
+		map.put("/highPriceList.do", new HighPriceList());
+		map.put("/lowPriceList.do", new LowPriceList());
 
 		// 게시판 등록, 수정, 삭제 (판매자)
 		map.put("/addBoardForm.do", new AddBoardFormControl());
@@ -176,29 +188,25 @@ public class FrontControl extends HttpServlet {
 		map.put("/removeReview.do", new RemoveReviewControl());
 
 		map.put("/qnaList.do", new QnaListControl());
+		map.put("/removeQna.do", new RemoveQnaControl());
 		
+		// chart
+		map.put("/chartData.do", new chartDataControl());
 		// 자주묻는 질문
 		map.put("/faq.do", new FaqControl());
-
-		// 고객센터 목록
+		
+		// 고객센터
 		map.put("/customerCenter.do", new CustomerCenterControl());
-		// 고객센터 글등록
 		map.put("/customerAddForm.do", new CustomerAddFormControl());
 		map.put("/customerAdd.do", new CustomerAddControl());
-		// 고객센터 글조회
 		map.put("/getCustomer.do", new GetCustomerControl());
-		// 고객센터 글수정
 		map.put("/modifyCustomer.do", new ModifyCustomerControl());
-		// 고객센터 글삭제
 		map.put("/delCustomer.do", new DelCustomerControl());
 
-		// 댓글목록
+		// 고객센터 댓글
 		map.put("/replyListCustomer.do", new ReplyListCustomerControl());
-		// 댓글등록
 		map.put("/addReplyCustomer.do", new AddReplyCustomerControl());
-		// 댓글수정
 		map.put("/modifyReplyCustomer.do", new ModifyReplyCustomerControl());
-		// 댓글삭제
 		map.put("/delReplyCustomer.do", new DelReplyCustomerControl());
 
 		// 공지사항 목록
@@ -221,12 +229,14 @@ public class FrontControl extends HttpServlet {
 		// 관리자용 페이지
 		// 회원관리
 		map.put("/adminMember.do", new AdminMemberControl());
+		map.put("/adminDelMember.do", new AdminDelMemberControl());
 		// 업체관리
 		map.put("/adminCompany.do", new AdminCompanyControl());
 		// 신규업체
 		map.put("/newCompany.do", new AdminNewCompanyControl());
 		//업체컨펌
 		map.put("/confirm.do", new ConfirmControl());
+		map.put("/adminDelCompany.do", new AdminDelCompanyControl());		
 		
 		//결제
 		map.put("/pay.do", new PayControl());
