@@ -117,6 +117,10 @@ public class MemberServiceImpl implements MemberService{
 	public boolean deleteCart(int orderDetailNo) {
 		return mapper.deleteCart(orderDetailNo)>0;		
 	}
+	@Override
+	public boolean updateQna(QnaVO vo) {
+		return mapper.updateQna(vo)>0;
+	}
 	
 	
 }

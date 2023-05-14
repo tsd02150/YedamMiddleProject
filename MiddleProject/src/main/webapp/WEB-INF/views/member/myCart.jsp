@@ -204,7 +204,7 @@
 		console.log(updateCartInfo.substring(1));
 			
 		fetch("updateCart.do?"+updateCartInfo.substring(1))
-		.then(resolve=>resolve.json)
+		.then(resolve=>resolve.json())
 		.then(result=>{
 			console.log(result);
 			location.href="pay.do?totalPrice="+total.children[4].children[1].innerText;

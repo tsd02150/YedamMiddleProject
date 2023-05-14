@@ -25,6 +25,7 @@ import com.yedam.member.control.SignOutControl;
 import com.yedam.member.control.SignUpCheckControl;
 import com.yedam.member.control.SignUpCompanyControl;
 import com.yedam.member.control.SignUpControl;
+import com.yedam.member.control.UpdateQnaControl;
 import com.yedam.member.control.UpdateCartControl;
 import com.yedam.member.control.WishListControl;
 import com.yedam.notice.control.AddNotiControl;
@@ -219,6 +220,9 @@ public class FrontControl extends HttpServlet {
 		//장바구니
 		map.put("/myCart.do", new MyCartControl());
 		map.put("/updateCart.do", new UpdateCartControl());
+		
+		//qna수정
+		map.put("/updateQna.do", new UpdateQnaControl());
 	} 
 
 	@Override

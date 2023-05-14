@@ -191,5 +191,7 @@
 		join board b on (b.product_no = p.product_no)
 		where member_no=#{memberNo}
  	</select>
-
+	<update id="updateQna" parameterType="qna">
+		update qna set qna_answer=#{qnaAnswer} where qna_no=#{qnaNo} 
+	</update>
 </mapper>

@@ -105,29 +105,40 @@ height:
 			<th>순번</th>
 			<th>게시물</th>
 			<th>문의명</th>
+			<th>문의 내용</th>
 			<th>작성자</th>
 		</tr>
 	</thead>
+	<tbody id="tlist">
 	<c:forEach var="qna" items="${list}">
 		<tr>
 			<td><c:out value="${no=no+1 }"></c:out></td>
 			<td>${qna.boardTitle}</td>
 			<td>${qna.qnaTitle}</td>
+			<td>${qna.qnaContent }</td>
 			<td>${qna.name}</td>
 		</tr>
-		<tr><td>문의 내용</td><td colspan="2">${qna.qnaContent }</td></tr>
 		<c:if test="${grade=='s' }">
 			<c:if test="${qna.qnaAnswer==null }">
-				<tr><td>답변 : </td><td colspan="2"><textarea id="answer"></textarea></td></tr>
+				<tr><td>답변 : </td><td colspan="4"><textarea cols="50"></textarea></td><td><button type="button" class="saveAnswer">저장</button></td></tr>
 			</c:if>
 			<c:if test="${qna.qnaAnswer!=null }">
-				<tr><td>답변 : </td><td colspan="2">${qna.qnaAnswer }</td></tr>
+				<tr data-qna-no=${qna.qnaNo }><td>답변 : </td><td colspan="4">${qna.qnaAnswer }</td><td><button type="button" class="modifyAnswer">수정</button></td></tr>
 			</c:if>
 		</c:if>
 		<c:if test="${grade=='c' }">
-			<tr><td>답변 : </td><td colspan="2">${qna.qnaAnswer }</td></tr>
+			<c:if test="${qna.qnaAnswer==null }">
+				<tr><td>답변 : </td><td colspan="4">답변이 아직 달리지 않았어요.</td></tr>
+			</c:if>
+			<c:if test="${qna.qnaAnswer!=null }">
+				<tr><td>답변 : </td><td colspan="4">${qna.qnaAnswer }</td></tr>
+			</c:if>
 		</c:if>
 	</c:forEach>
+	</tbody>
+</table>
+<table style="display:none">
+	<tr class="template"><td>답변 : </td><td colspan="4"><textarea id="answer" cols="50"></textarea></td><td><button type="button">저장</button></td></tr>
 </table>
 <hr>
 <div class="center">
@@ -147,3 +158,33 @@ height:
 </tr>
 </table>
 
+<script>
+	document.querySelectorAll('.modifyAnswer').forEach(modify=>{
+		modify.addEventListener('click',function(){
+			let template = document.querySelector('.template').cloneNode(true);
+			console.log(this.parentNode.parentNode.dataset.qnaNo);
+			console.log(this.parentNode.parentNode);
+			template.dataset.qnaNo = this.parentNode.parentNode.dataset.qnaNo;
+			template.children[1].children[0].innerText=this.parentNode.parentNode.children[1].innerText;
+			template.children[2].children[0].addEventListener('click',function(){
+				console.log(template.dataset.qnaNo);
+				console.log(template);
+				fetch("updateQna.do?qnaNo="+template.dataset.qnaNo+"&qnaContent="+template.children[1].children[0].innerText)
+				.then(resolve=>resolve.json())
+				.then(result=>{
+					modify.parentNode.parentNode.children[1].innerText=template.children[1].children[0].innerText;
+					document.getElementById('tlist').replaceChild(modify.parentNode.parentNode,template);
+				})
+				.catch(err=>console.log(err));
+				
+			})
+			document.getElementById('tlist').replaceChild(template,modify.parentNode.parentNode);
+			
+		})
+		
+	})
+	
+	document.querySelector('.saveAnswer').addEventListener('click',function(){
+		console.log(this.parentNode.parentNode.parentNode);
+	})
+</script>

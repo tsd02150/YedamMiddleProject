@@ -37,5 +37,5 @@ public interface MemberService {
 	public boolean deleteCart(int orderDetailNo);
 	public List<BoardVO> orderProdList(int memberNo);
 	public boolean delMember(int memberNo);
-
+	public boolean updateQna(QnaVO vo);
 }
