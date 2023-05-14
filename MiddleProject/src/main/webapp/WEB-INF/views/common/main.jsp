@@ -171,7 +171,10 @@ to {
 }
 .list-unstyled{
 	font-weight: bold;
+}
 
+#categoryList{
+	margin-left: 200px;
 }
 
 </style>
