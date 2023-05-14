@@ -140,7 +140,6 @@ th, td {
 							<div class="col-md-6">
 								<h3 class="display-5 fw-bolder">${boardInfo.productName}</h3>
 								<div class="fs-5 mb-5">
-<<<<<<< HEAD
 									<span>
 										<fmt:formatNumber value="${boardInfo.price}" pattern="#,###" /></span>
 								<div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
@@ -156,24 +155,6 @@ th, td {
 								</div>
 										<button class="addOrder-Btn" type="button">장바구니</button>
 										<a href="#"><button class="addPay-Btn" type="button">구매하기</button></a>
-=======
-									<span> <fmt:formatNumber value="${boardInfo.price}"
-											pattern="#,###" /></span>
-									<div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
-									<div>
-										<select>
-											<option value="${boardInfo.productNo }">${boardInfo.productName}</option>
-										</select> <span>
-											<button class="order-count-minus" type="button">-</button> <input
-											class="order-count" type="text" name="count" title="수량입력"
-											value="1" min="1" max="10"
-											style="width: 35px; text-align: center;">
-											<button class="order-count-plus" type="button">+</button>
-										</span>
-									</div>
-									<button class="addOrder-Btn" type="button">장바구니</button>
-									<a href="#"><button class="addPay-Btn" type="button">구매하기</button></a>
->>>>>>> refs/heads/mihyang
 								</div>
 							</div>
 							<table>
