@@ -70,6 +70,41 @@ height:
 	color: #fff;
 	background: none;
 }
+
+article {
+	margin: 0 auto;
+	padding: 50px;
+}
+
+.center {
+	text-align: center;
+	font-weight: bold;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 12px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #3b5d50;
+	color: white;
+	border: 1px solid #3b5d50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
 </style>
 
 
@@ -114,3 +149,21 @@ height:
 	</c:forEach>
 
 </table>
+
+	<hr>
+	<div class="center">
+		<div class="pagination">
+			<c:if test="${pageInfo.prev}">
+				<a href="noti.do?page=${pageInfo.startPage-1 }">Prev</a>
+			</c:if>
+			<c:forEach var="i" begin="${pageInfo.startPage }"
+				end="${pageInfo.endPage }">
+				<a href="noti.do?page=${i }"
+					class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
+			</c:forEach>
+			<c:if test="${pageInfo.next}">
+			
+				<a href="noti.do?page=${pageInfo.endPage+1 }">Next</a>
+			</c:if>
+		</div>
+	</div>

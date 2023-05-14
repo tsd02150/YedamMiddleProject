@@ -17,31 +17,46 @@ public class CompanyServiceImpl implements CompanyService {
 		return mapper.insertCompany(vo) > 0;
 	}
 
-	@Override
-	public List<CompanyVO> companyList() {
-		// TODO Auto-generated method stub
-		return mapper.companyList();
-	}
+//	@Override
+//	public List<CompanyVO> companyList() {
+//		return mapper.companyList();
+//	}
 
-	@Override
-	public List<CompanyVO> newCompany() {
-		// TODO Auto-generated method stub
-		return mapper.newCompany();
-	}
-	
-	
+//	@Override
+//	public List<CompanyVO> newCompany() {
+//		return mapper.newCompany();
+//	}
+
 	@Override
 	public boolean confirm(int companyNo) {
-		// TODO Auto-generated method stub
-		return mapper.updateCompany(companyNo)==1;
+		return mapper.updateCompany(companyNo) == 1;
 	}
-	
-	
+
 	@Override
 	public boolean delCompany(int companyNo) {
-		// TODO Auto-generated method stub
-		return mapper.delCompany(companyNo)==1;
+		return mapper.delCompany(companyNo) == 1;
+	}
+
+	@Override
+	public List<CompanyVO> companyList(int page) {
+		return mapper.companyList(page);
+	}
+
+	@Override
+	public int companyCount() {
+		return mapper.companyCount();
+	}
+
+	@Override
+	public List<CompanyVO> newCompany(int page) {
+		return mapper.newCompany(page);
 	}
 	
-
+	@Override
+	public int newCompanyCount() {
+		return mapper.newCompanyCount();
+	}
+	
+	
+	
 }

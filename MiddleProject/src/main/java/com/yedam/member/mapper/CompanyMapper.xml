@@ -8,28 +8,53 @@
 		values(company_seq.nextval,#{crn},#{companyName},#{companyPhone},#{companyAddr})
 	</insert>
 	<select id="companyList" resultType="company">
-		select company_no,
+	<![CDATA[
+     select b.* 
+        from (select rownum rn, a.*
+             from(select company_no,
 		company_name, crn, name, grade,company_phone, company_addr
 		from company
 		join member
 		using (company_no)
-		where grade='s'
+		where grade='s') a
+               where rownum <=${page}*10 ) b
+      where b.rn >(${page}-1)*10
+   ]]>
 	</select>
 	<select id="newCompany" resultType="company">
-		select
+	<![CDATA[
+     select b.* 
+        from (select rownum rn, a.*
+             from(select
 		company_no,company_name, crn, name, grade,company_phone,company_addr
 		from company
 		join member
 		using (company_no)
-		where grade='r'
+		where grade='r') a
+               where rownum <=${page}*10 ) b
+      where b.rn >(${page}-1)*10
+   ]]>
 	</select>
 	<update id="updateCompany" parameterType="int">
 		update member
-		set member.grade='s'
+		set
+		member.grade='s'
 		where member.company_no=#{companyNo}
 	</update>
-	<delete id="delCompany">
-	
+	<delete id="delCompany" parameterType="int">
+		delete from company
+		where
+		company_no=#{companyNo}
 	</delete>
-	
+	<select id="companyCount">
+		select count(*)
+		from member
+		where grade='s'
+	</select>
+	<select id="newCompanyCount">
+		select count(*)
+		from member
+		where grade='r'
+	</select>
+
 </mapper>
