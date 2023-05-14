@@ -94,6 +94,108 @@
 		where id = #{id}
 	</select>
 
+	<select id="qnaList" parameterType="String" resultType="qna">
+		select * from qna join member using (member_no)
+		where id = #{id};
+	</select>
+	<select id="qnaWithPage" resultType="qna">
+  <![CDATA[
+  	select b.* 
+  		from (select rownum rn, a.*
+         	 from(select * from qna join member using (member_no)
+		where member_no = #{memberNo}) a
+           	 where rownum <=${page}*10 ) b
+		where b.rn >(${page}-1)*10
+	]]>
+	</select>
+	<select id="getCount" resultType="int">
+		select count(*) from qna
+	</select>
+	<select id="wishList" resultType="wish" parameterType="String">
+		select * from
+		(select
+		b.board_thumbnail,p.product_no,p.product_name,b.board_content,p.price,p.product_count,
+		s.sub_category_name,m.id,w.wish_no
+		from wish w, product p, member
+		m,board b,subcategory s
+		where w.product_no = p.product_no
+		and
+		w.member_no = m.member_no
+		and b.product_no = p.product_no
+		and
+		s.sub_category_no = p.sub_category_no)
+		where id = #{id}
+	</select>
+
+	<select id="orderList" resultType="order" parameterType="String">
+		select * from(
+		select * from(
+		select * from(
+		select * from(
+		select * from(
+		select * from orders join
+		order_detail using(order_no))
+		join product using(product_no))
+		join
+		member using(member_no))
+		join board using(product_no))
+		join subcategory using(sub_category_no))
+		join maincategory using(main_category_no)
+		where id = #{id}
+	</select>
+
+	<select id="orderNoList" resultType="order"
+		parameterType="String">
+		select * from(
+		select * from(
+		select * from(
+		select * from(
+		select * from(
+		select * from orders join
+		order_detail using(order_no))
+		join product using(product_no))
+		join
+		member using(member_no))
+		join board using(product_no))
+		join subcategory using(sub_category_no))
+		join maincategory using(main_category_no)
+		where order_no = #{orderNo}
+	</select>
+
+	<delete id="deleteOrder" parameterType="int">
+		delete from orders where order_no = #{orderNo}
+	</delete>
+	<delete id="deleteOrderDetail" parameterType="int">
+		delete from
+		order_detail where order_no = #{orderNo}
+	</delete>
+	<select id="orderDetail" resultType="delivery"
+		parameterType="String">
+		select * from(
+		select * from(
+		select * from(
+		select * from(
+		select * from orders join
+		order_detail using(order_no))
+		join product using(product_no))
+		join
+		member using(member_no))
+		join board using(product_no))
+		full outer join delivery using(delivery_no)
+		where id = #{id}
+	</select>
+
+ 	
+ 	<select id="orderProdList" resultType="board" parameterType="int">
+ 		select m.id, m.adress, o.order_no, o.order_date, s.order_detail_no, s.order_count,d.dali_date,d.delivery_state,p.product_no,p.product_name,b.* from member m 
+		join orders o on(m.member_no=o.member_no)
+		join order_detail s on(o.order_no=s.order_no)
+		join delivery d on(d.delivery_no = o.delivery_no)
+		join product p on(p.product_no = s.product_no)
+		join board b on (b.product_no = p.product_no)
+		where member_no=#{memberNo} order by DECODE(delivery_state, 'r',1),order_date
+ 	</select>
+
  	<select id="memberList">
  	select * from member where grade='c'
  	</select>
@@ -114,6 +216,13 @@
  		delete from order_detail where order_detail_no=#{orderDetailNo}
  	</delete>
 
+
+	<update id="changeDeli" parameterType="int">
+		update delivery
+		set delivery_state = 'd' 
+		where order_no = #{orderNo}
+	</update>
+	
 
 
 	<!-- 관리자페이지 -->

@@ -122,5 +122,10 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.updateQna(vo)>0;
 	}
 	
+	@Override
+	public boolean changeDeli(int orderNo) {
+		return mapper.changeDeli(orderNo)>0;
+	}
+	
 	
 }

@@ -50,6 +50,7 @@ public class OtherLoginControl implements Control {
 			session.setAttribute("name", vo.getName());
 			session.setAttribute("grade", vo.getGrade());
 			session.setAttribute("mno", vo.getMemberNo());
+			session.setAttribute("memberNo", vo.getMemberNo());
 			if(vo.getCompanyNo()!=0) {
 				session.setAttribute("companyNo", vo.getCompanyNo());
 			}

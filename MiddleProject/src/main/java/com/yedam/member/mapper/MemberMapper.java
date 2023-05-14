@@ -38,4 +38,6 @@ public interface MemberMapper {
 	public List<BoardVO> orderProdList(int memberNo);
 	public int deleteMember(int memberNo);
 	public int updateQna(QnaVO vo);
+	public int changeDeli(int orderNo);
+
 }

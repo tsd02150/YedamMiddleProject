@@ -110,10 +110,10 @@ height:
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
+		<li class="sidebar-nav-item"><a href="sales.do">판매 내역<br>(매출현황)</a></li>
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
 		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
 	</ul>
 </nav>
@@ -135,24 +135,76 @@ height:
 <table class="table">
 	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="orderProdList" items="${orderProdList}">
+	<c:if test="${orderProdList.deliveryState =='r' || orderProdList.deliveryState =='q'}">
 		<tr class="table">
 			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td>상품 번호 : ${orderProdList.productNo}</td>
+			<td>주문 번호 : ${orderProdList.orderNo}</td>
+			<td><img width="70px" src="images/${orderProdList.boardThumbnail}"></td>
 			<td>제품명 : ${orderProdList.productName}</td>
 			<td>주문 수량 : ${orderProdList.orderCount}</td>
+			<td>배송상태 : <c:choose>
+				<c:when test ="${orderProdList.deliveryState == 'r'}">
+					<select name="deliveryState" id="deliveryState" onchange="changeDeli(${orderProdList.orderNo})">
+	          			<option value='r'>상품 준비중</option>
+	         			<option value='d'>배송중</option>
+	          			<option value='q'>주문취소</option>
+        			</select>
+				</c:when>
+				<c:when test ="${orderProdList.deliveryState == 'd'}">
+					배송중
+				</c:when>
+				<c:when test ="${orderProdList.deliveryState == 's'}">
+					배송완료 
+				</c:when>
+				<c:when test ="${orderProdList.deliveryState == 'q'}">
+					주문 취소  
+				</c:when>
+				<c:otherwise>
+					test
+				</c:otherwise>
+			</c:choose>
+			</td>
 			
 			<!--  <td><button id="delbtn" type="button" name="pno"
 			onClick="location.href='deleteNowProduct.do?pno=${productNow.productNo }'">삭제</button>
 			-->
 		</tr>
+	</c:if>
 	</c:forEach>
+	<%-- <c:if test="${orderNo == 0; }">
+		<tr class="table">
+			<td>접수된 주문이 없습니다.</td>
+		</tr>
+	</c:if> --%>
+					
 </table>
 </td>
 </tr>
 </table>
 
-<script>
 
+
+<script>
+	function changeDeli(a){
+		var nowDeli = document.getElementById("deliveryState");
+		var changeDeli = nowDeli.options[nowDeli.selectedIndex].value;
+		setTimeout(function(){
+			if(changeDeli == 'd'){
+				if (confirm("정말 변경하시겠습니까?")) {
+	 	 			alert("변경 되었습니다.");
+	 	 			return (location.href='updateDeli.do?ono='+a);
+	 	        } else {
+	 	        	alert("취소 되었습니다.");
+	 	        	return (location.href='orderProdList.do');
+			}
+			
+		}	else{
+			return (location.href='orderProdList.do');
+		}
+		
+		})
+		}
+		
 </script>
 
 
