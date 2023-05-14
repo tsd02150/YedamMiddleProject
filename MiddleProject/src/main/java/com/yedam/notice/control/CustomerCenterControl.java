@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
+import com.yedam.common.PageDTO;
 import com.yedam.notice.domain.NoticeVO;
 import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.service.NoticeServiceImpl;
@@ -24,10 +25,20 @@ public class CustomerCenterControl implements Control {
 		System.out.println(id);
 
 		NoticeService service = new NoticeServiceImpl();
-		List<NoticeVO> list = service.CustomerCenter();
+		
+		String pageStr = req.getParameter("page");
+
+		pageStr= pageStr==null ? "1":pageStr;
+		int page= Integer.parseInt(pageStr);
+				
+		int total = service.CustomerCount();
+		
+		PageDTO dto = new PageDTO(page, total);
+		
+		List<NoticeVO> list = service.CustomerCenter(page);
 		
 		req.setAttribute("list", list);
-		
+		req.setAttribute("pageInfo", dto);
 		
 		return "notice/customerCenter.tiles";
 	}
