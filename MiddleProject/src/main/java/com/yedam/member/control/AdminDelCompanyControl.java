@@ -16,9 +16,17 @@ public class AdminDelCompanyControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CompanyService cs = new CompanyServiceImpl();
 		String comNo= req.getParameter("comNo");
+		System.out.println(comNo);
+		boolean result = cs.delCompany(Integer.parseInt(comNo));
+		System.out.println(result);
 		
+		if(result) {
+			return "adminCompany.do";
+		}else {
+			return "main.do";
+			
+		}
 		
-		return null;
 	}
 
 }
