@@ -1,6 +1,7 @@
 package com.yedam.member.control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,8 @@ public class MyQnaListControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		int memberNo = Integer.parseInt(String.valueOf(session.getAttribute("mno")));
-		
+		String grade = (String)session.getAttribute("grade");
+		System.out.println(grade);
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
@@ -32,17 +34,19 @@ public class MyQnaListControl implements Control {
 		
 		MemberService service = new MemberServiceImpl();
 		int total = service.totalCount();
-		List<QnaVO>list = service.qnaList(vo);
+		List<QnaVO>list;
+		if(grade.equals("s")) {
+			list = service.qnaListSeller(vo);
+		}else{
+			list = service.qnaListCustomer(vo);			
+		}
 		
 		System.out.println(list);
 		PageDTO dto = new PageDTO(page,total);
 		
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", dto);
-		
-		
-		
-		
+				
 		return "member/myQnaList.tiles";
 	}
 

@@ -56,8 +56,12 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.getCount();
 	}
 	@Override
-	public List<QnaVO> qnaList(QnaVO vo) {
-		return mapper.qnaWithPage(vo);
+	public List<QnaVO> qnaListCustomer(QnaVO vo) {
+		return mapper.qnaListCustomer(vo);
+	}
+	@Override
+	public List<QnaVO> qnaListSeller(QnaVO vo) {
+		return mapper.qnaListSeller(vo);
 	}
 	@Override
 	public List<WishVO> wishList(String id) {

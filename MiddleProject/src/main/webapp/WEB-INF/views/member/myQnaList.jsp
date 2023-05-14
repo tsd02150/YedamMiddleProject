@@ -103,18 +103,30 @@ height:
 	<thead>
 		<tr>
 			<th>순번</th>
-			<th>제목</th>
+			<th>게시물</th>
+			<th>문의명</th>
 			<th>작성자</th>
 		</tr>
 	</thead>
 	<c:forEach var="qna" items="${list}">
 		<tr>
 			<td><c:out value="${no=no+1 }"></c:out></td>
+			<td>${qna.boardTitle}</td>
 			<td>${qna.qnaTitle}</td>
 			<td>${qna.name}</td>
 		</tr>
 		<tr><td>문의 내용</td><td colspan="2">${qna.qnaContent }</td></tr>
-		<tr><td>답변 : </td><td colspan="2">${qna.qnaAnswer }</td></tr>
+		<c:if test="${grade=='s' }">
+			<c:if test="${qna.qnaAnswer==null }">
+				<tr><td>답변 : </td><td colspan="2"><textarea id="answer"></textarea></td></tr>
+			</c:if>
+			<c:if test="${qna.qnaAnswer!=null }">
+				<tr><td>답변 : </td><td colspan="2">${qna.qnaAnswer }</td></tr>
+			</c:if>
+		</c:if>
+		<c:if test="${grade=='c' }">
+			<tr><td>답변 : </td><td colspan="2">${qna.qnaAnswer }</td></tr>
+		</c:if>
 	</c:forEach>
 </table>
 <hr>

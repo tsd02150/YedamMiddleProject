@@ -53,19 +53,26 @@
 		company_no=#{companyNo}
 	</update>
 
-
 	<select id="qnaList" parameterType="String" resultType="qna">
 		select * from qna join member using (member_no)
-		where id = #{id};
+		where id = #{id}
 	</select>
-	<select id="qnaWithPage" resultType="qna">
+	<select id="qnaListSeller" resultType="qna">
+  	<![CDATA[
+  		select b.* 
+  		from (select rownum rn, a.*
+         	 from(select * from qna join (select * from board join member using(member_no) where member_no=#{memberNo}) using (board_no)) a
+           	 where rownum <=#{page}*10 ) b
+		where b.rn >(#{page}-1)*10
+	]]>
+	</select>
+	<select id="qnaListCustomer" resultType="qna">
   <![CDATA[
   	select b.* 
   		from (select rownum rn, a.*
-         	 from(select * from qna join member using (member_no)
-		where member_no = #{memberNo}) a
-           	 where rownum <=${page}*10 ) b
-		where b.rn >(${page}-1)*10
+         	 from(select * from qna join board using(board_no) where qna.member_no=#{memberNo}) a
+           	 where rownum <=#{page}*10 ) b
+		where b.rn >(#{page}-1)*10
 	]]>
 	</select>
 	<select id="getCount" resultType="int">
@@ -87,6 +94,35 @@
 		where id = #{id}
 	</select>
 
+ 	<select id="memberList">
+ 	select * from member where grade='c'
+ 	</select>
+ 	<select id="myCart" resultType="orderDetail" parameterType="int">
+ 		select * from 
+			(select * from order_detail where order_no in
+   				(select order_no from orders join member using(member_no)where member_no=#{memberNo}))
+		join 
+   			(select * from
+        		(select * from product join subcategory using(sub_category_no)) join board using(product_no)) 
+		using(product_no)
+		order by order_detail_no desc
+ 	</select>
+ 	<update id="updateCart" parameterType="orderDetail">
+ 		update order_detail set order_count=#{orderCount} where order_detail_no=#{orderDetailNo}
+ 	</update>
+ 	<delete id="deleteCart" parameterType="int">
+ 		delete from order_detail where order_detail_no=#{orderDetailNo}
+ 	</delete>
+
+
+
+	<!-- 관리자페이지 -->
+
+	<delete id="deleteMember" parameterType="int">
+		delete from member
+		where member_no=#{memberNo}
+	</delete>
+	
 	<select id="orderList" resultType="order" parameterType="String">
 		select * from(
 		select * from(
@@ -155,35 +191,5 @@
 		join board b on (b.product_no = p.product_no)
 		where member_no=#{memberNo}
  	</select>
-
- 	<select id="memberList">
- 	select * from member where grade='c'
- 	</select>
- 	<select id="myCart" resultType="orderDetail" parameterType="int">
- 		select * from 
-			(select * from order_detail where order_no in
-   				(select order_no from orders join member using(member_no)where member_no=#{memberNo}))
-		join 
-   			(select * from
-        		(select * from product join subcategory using(sub_category_no)) join board using(product_no)) 
-		using(product_no)
-		order by order_detail_no desc
- 	</select>
- 	<update id="updateCart" parameterType="orderDetail">
- 		update order_detail set order_count=#{orderCount} where order_detail_no=#{orderDetailNo}
- 	</update>
- 	<delete id="deleteCart" parameterType="int">
- 		delete from order_detail where order_detail_no=#{orderDetailNo}
- 	</delete>
-
-
-	<!-- 관리자페이지 -->
-	
-	
-	<delete id="deleteMember" parameterType="int">
-		delete from member
-		where member_no=#{memberNo}
-	</delete>
-	
 
 </mapper>
