@@ -65,6 +65,8 @@ import com.yedam.product.control.AddBoardControl;
 import com.yedam.product.control.AddBoardFormControl;
 import com.yedam.product.control.AddProductControl;
 import com.yedam.product.control.AddProductFormControl;
+import com.yedam.product.control.AddQnaControl;
+import com.yedam.product.control.AddQnaFormControl;
 import com.yedam.product.control.AddReviewControl;
 import com.yedam.product.control.AddReviewFormControl;
 import com.yedam.product.control.BoardListControl;
@@ -89,6 +91,7 @@ import com.yedam.product.control.QnaListControl;
 import com.yedam.product.control.RemoveQnaControl;
 import com.yedam.product.control.RemoveReviewControl;
 import com.yedam.product.control.ReviewListControl;
+import com.yedam.product.control.SearchPriceList;
 import com.yedam.product.control.SearchProductNameControl;
 import com.yedam.product.control.ThemeControl;
 import com.yedam.product.control.ThemeListControl;
@@ -173,6 +176,9 @@ public class FrontControl extends HttpServlet {
 		// 가격순
 		map.put("/highPriceList.do", new HighPriceList());
 		map.put("/lowPriceList.do", new LowPriceList());
+		
+		// 가격 검색
+		map.put("/searchPrice.do", new SearchPriceList());
 
 		// 게시판 등록, 수정, 삭제 (판매자)
 		map.put("/addBoardForm.do", new AddBoardFormControl());
@@ -247,6 +253,8 @@ public class FrontControl extends HttpServlet {
 		
 		//qna수정
 		map.put("/updateQna.do", new UpdateQnaControl());
+		map.put("/addQnaForm.do", new AddQnaFormControl());
+		map.put("/addQna.do", new AddQnaControl());
 	} 
 
 	@Override

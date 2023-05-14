@@ -249,22 +249,7 @@
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- REVIEW -->
 	<select id="reviewList" parameterType="int">
-		select * from(
-		select *
-		from member join(
-		select rb.*, p.product_name from product p join(
-		select r.*, b.product_no from review r join board b
-		on(b.board_no=r.board_no))rb
-		on(rb.product_no = p.product_no))
-		using(member_no)) a
-		join
-		(select * from orders join order_detail
-		using(order_no)) c
-		on(a.product_no=c.product_no and
-		a.member_no=c.member_no)
-		where board_no=#{boardNo}
-		order by review_date
-		desc
+		select * from review join member using (member_no) where board_no=#{boardNo}
 	</select>
 	<select id="searchReview" parameterType="int">
 		select * from review
@@ -329,6 +314,10 @@
 		select * from qna where
 		qna_no=#{qnaNo}
 	</select>
+	<insert id="insertQna" parameterType="qna">
+		insert into qna (qna_no,qna_category,qna_title,qna_content,qna_date,member_no,board_no)
+		values(QNA_SEQ.nextval,#{qnaCategory},#{qnaTitle},#{qnaContent},sysdate,#{memberNo},#{boardNo})
+	</insert>
 
 
 	<select id="selectTheme" resultType="theme">
