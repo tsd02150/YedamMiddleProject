@@ -17,10 +17,11 @@ public class UpdateQnaControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberService service = new MemberServiceImpl();
 		int qnaNo = Integer.parseInt(req.getParameter("qnaNo"));
-		String qnaContent = req.getParameter("qnaContent");
+		String qnaAnswer = req.getParameter("qnaAnswer");
 		QnaVO vo = new QnaVO();
 		vo.setQnaNo(qnaNo);
-		vo.setQnaContent(qnaContent);
+		vo.setQnaAnswer(qnaAnswer);
+		System.out.println(vo);
 		String json = "";
 		if(service.updateQna(vo)) {
 			json = "{\"retCode\":\"Success\"}";
