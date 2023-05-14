@@ -244,6 +244,45 @@ th, td {
 <div id="qna-div"></div>
 
 <script>
+//차트
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(fetchData);
+
+function fetchData() {
+  fetch('chartData.do?pno=1')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(jsonData) {
+    	let data = new google.visualization.DataTable();
+      data.addColumn('string', '성별');
+      data.addColumn('number', '구매 수');
+      for(let i = 0; i < jsonData.length; i++) {
+        data.addRow([jsonData[i].gender, jsonData[i].orderCount]);
+      }
+
+      let options = {
+        title: '구매자 통계',
+        //subtitle: 'Based on most recent and previous census data',
+        hAxis: {
+          title: '',
+          minValue: 0
+        },
+        vAxis: {
+          title: '성별'
+        },
+        bars: 'horizontal',
+        axes: {
+          y: {
+            0: {side: 'right'}
+          }
+        }
+      };
+      
+      let chart = new google.charts.Bar(document.getElementById('chart_div'));
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    });
+
 	//Review
 	let review = document.getElementById('review');
 	let qna = document.querySelector('#qna');
@@ -579,44 +618,7 @@ th, td {
 		})
 	})
 	
-	//차트
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(fetchData);
 
-function fetchData() {
-  fetch('chartData.do?pno=1')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(jsonData) {
-    	let data = new google.visualization.DataTable();
-      data.addColumn('string', '성별');
-      data.addColumn('number', '구매 수');
-      for(let i = 0; i < jsonData.length; i++) {
-        data.addRow([jsonData[i].gender, jsonData[i].orderCount]);
-      }
-
-      let options = {
-        title: '구매자 통계',
-        //subtitle: 'Based on most recent and previous census data',
-        hAxis: {
-          title: '',
-          minValue: 0
-        },
-        vAxis: {
-          title: '성별'
-        },
-        bars: 'horizontal',
-        axes: {
-          y: {
-            0: {side: 'right'}
-          }
-        }
-      };
-      
-      let chart = new google.charts.Bar(document.getElementById('chart_div'));
-      chart.draw(data, google.charts.Bar.convertOptions(options));
-    });
 }
 
 </script>

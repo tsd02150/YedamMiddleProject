@@ -160,6 +160,19 @@ to {
 	color: black;
 }
 
+.sub-name{
+	text-align: left;
+}
+
+.footer-logo{
+	border-bottom: 2px solid #121212;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+.list-unstyled{
+	font-weight: bold;
+
+}
 
 </style>
 
@@ -219,13 +232,14 @@ to {
 			style="width: 1200px; display: inline-block">
 			<div class="container">
 				<div class="row">
-				<h1>Best Seller</h1>
+				<h1><a href="topCountList.do">Best Seller</a></h1>
 					<c:forEach var="board" items="${topCountList}" begin="0" end="3" step="1">
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item"
 								href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}">
 								<img src="images/${board.boardThumbnail}"
 								class="img-fluid product-thumbnail">
+								<p class="sub-name" style="text-align: left;">${board.subCategoryName}</p>
 								<h3 class="product-title">${board.boardTitle}</h3> <strong
 								class="product-price"> <fmt:formatNumber
 										value="${board.price}" pattern="#,###" />
@@ -242,6 +256,7 @@ to {
 								href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}">
 								<img src="images/${board.boardThumbnail}"
 								class="img-fluid product-thumbnail">
+								<p class="sub-name" style="text-align: left;">${board.subCategoryName}</p>
 								<h3 class="product-title">${board.boardTitle}</h3> <strong
 								class="product-price"> <fmt:formatNumber
 										value="${board.price}" pattern="#,###" />
@@ -260,9 +275,9 @@ to {
 					<div class="mb-4 footer-logo-wrap">
 						<a href="customerCenter.do" class="footer-logo">고객센터</a>
 					</div>
-					<p class="mb-4">
+					<h4 class="mb-4" style="font-weight: bold;">
 						전화상담 : 0000-0000<br>온라인 상담 : 1:1 문의
-					</p>
+					</h4>
 
 					<ul class="list-unstyled custom-social">
 						<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
