@@ -68,6 +68,19 @@ height:
 	color: #fff;
 	background: none;
 }
+
+.myform {
+	display:flex;
+	width:1000px;
+
+}
+.myform button{
+	position:absolute;
+	margin-top: 330px;
+    margin-left: 500px;
+	
+}
+
 </style>
 <table class="mycontainer">
 <tr>
@@ -77,11 +90,17 @@ height:
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
+		<li class="sidebar-nav-item"><a href="sales.do">판매 내역<br>(매출현황)</a></li>
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
+<<<<<<< HEAD
 		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
 		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
+=======
+		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
+		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+>>>>>>> refs/remotes/origin/dohyun
 	</ul>
 </nav>
 </c:when>
@@ -101,7 +120,7 @@ height:
 <td>
 <c:choose>
 <c:when test="${grade=='c' }">
-<form action="modifyMember.do" method="get">
+<form action="modifyMember.do" method="get" class="myform">
 
 	<table class="table" align="center">
 		<tr>
@@ -140,7 +159,7 @@ height:
 </form>
 </c:when>
 <c:when test="${grade=='s' }">
-<form action="modifyMember.do" method="get">
+<form action="modifyMember.do" method="get" class="myform">
 
 	<table class="table" align="center">
 		<tr>

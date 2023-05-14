@@ -29,7 +29,8 @@ public class OrderProdListControl implements Control {
 		String id = "";
 		id = (String)session.getAttribute("id");
 		
-		int memberNo = (int)session.getAttribute("memberNo");
+		int memberNo = Integer.parseInt(String.valueOf(session.getAttribute("mno")));
+		
 		
 		MemberService service = new MemberServiceImpl();
 		int total = service.totalCount();
@@ -38,6 +39,9 @@ public class OrderProdListControl implements Control {
 		
 		MemberVO vo = service.memberInfo(id);
 		req.setAttribute("memberInfo", vo);
+		
+		System.out.println(memberNo);
+		
 		List<BoardVO>list = service.orderProdList(memberNo);
 		req.setAttribute("orderProdList", list);
 		

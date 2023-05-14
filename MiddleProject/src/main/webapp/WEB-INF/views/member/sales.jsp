@@ -134,39 +134,50 @@ height:
 <td>
 <table class="table">
 	<c:set var = "totalPrice" value = "0"/>
-	<c:forEach var="productNow" items="${productNowInfo}">
+	<c:forEach var="sales" items="${sales}">
+	<c:if test="${sales.deliveryState =='s'}">
 		<tr class="table">
 			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td>상품 번호 : ${productNow.productNo}</td>
-			<td>제품명 : ${productNow.productName}</td>
-			<td>남은 수량 : ${productNow.productCount}</td>
-			<td>메인 카테고리 : ${productNow.mainCategoryName}</td>
-			<td>서브 카테고리 : ${productNow.subCategoryName}</td>
-			<td><button id="delbtn" type="button" name="pno"
-			onclick="delConfirm(${productNow.productNo})">삭제</button>
+			<td>주문 번호 : ${sales.orderNo}</td>
+			<td><img width="70px" src="images/${sales.boardThumbnail}"></td>
+			<td>제품명 : ${sales.productName}</td>
+			<td>주문 수량 : ${sales.orderCount}</td>
+			<td>배송상태 : <c:choose>
+				<c:when test ="${sales.deliveryState == 'r'}">
+					상품 준비중
+				</c:when>
+				<c:when test ="${sales.deliveryState == 'd'}">
+					배송중
+				</c:when>
+				<c:when test ="${sales.deliveryState == 's'}">
+					배송완료 
+				</c:when>
+				<c:otherwise>
+					test
+				</c:otherwise>
+			</c:choose>
+			</td>
+			
+			<!--  <td><button id="delbtn" type="button" name="pno"
+			onClick="location.href='deleteNowProduct.do?pno=${productNow.productNo }'">삭제</button>
+			-->
 		</tr>
+	</c:if>
 	</c:forEach>
+	<%-- <c:if test="${orderNo == 0; }">
+		<tr class="table">
+			<td>접수된 주문이 없습니다.</td>
+		</tr>
+	</c:if> --%>
+	
+	
 </table>
 </td>
 </tr>
 </table>
 
 <script>
-	
- 	function delConfirm(a){
- 		if (confirm("삭제된 물품은 다시 등록 하셔야 합니다 \n삭제하시겠습니까?")) {
- 			if (confirm("정말 삭제하시겠습니까?")) {
- 	 			alert("삭제 되었습니다.");
- 	 			return (location.href='deleteNowProduct.do?pno='+a);
- 	        } else {
- 	        	alert("취소 되었습니다.");
- 	 		}
-        } else {
-        	alert("취소 되었습니다.");
- 		}
- 	}
-	
-	
+
 </script>
 
 
