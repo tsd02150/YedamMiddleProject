@@ -175,9 +175,6 @@
 		where member_no=#{memberNo} order by DECODE(delivery_state, 'r',1),order_date
  	</select>
 
- 	<select id="memberList">
- 	select * from member where grade='c'
- 	</select>
  	<select id="myCart" resultType="orderDetail" parameterType="int">
  		select * from 
 			(select * from order_detail where order_no in
@@ -214,4 +211,20 @@
 	<update id="updateQna" parameterType="qna">
 		update qna set qna_answer=#{qnaAnswer} where qna_no=#{qnaNo} 
 	</update>
+	
+	<select id="memberList" parameterType="int">
+    <![CDATA[
+     select b.* 
+        from (select rownum rn, a.*
+             from(select * from member where grade='c') a
+               where rownum <=${page}*10 ) b
+      where b.rn >(${page}-1)*10
+   ]]>
+   </select>
+   <select id="memberCount">
+      select count(*)
+      from member
+      where grade='c'
+   </select>
+	
 </mapper>

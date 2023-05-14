@@ -80,9 +80,14 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.orderDetail(id);
 	}
 	
+	
 	@Override
-	public List<MemberVO> memberList() {
-		return mapper.memberList();
+	public List<MemberVO> memberList(int page) {
+		return mapper.memberList(page);
+	}
+	@Override
+	public int memberCount() {
+		return mapper.memberCount();
 	}
 	@Override
 	public List<OrdersVO> orderNoList(String orderNo) {

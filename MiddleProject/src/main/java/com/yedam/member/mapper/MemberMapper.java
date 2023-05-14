@@ -28,7 +28,6 @@ public interface MemberMapper {
 	public int deleteOrder(int orderNo);
 	public int deleteOrderDetail(int orderNo);
 	public List<DeliveryVO> orderDetail(String id);
-	public List<MemberVO> memberList();
 	public List<OrdersVO> orderNoList(String orderNo);
 	public List<OrderDetailVO> myCart(int memberNo);
 	public CompanyVO companyInfo(String id);
@@ -39,5 +38,8 @@ public interface MemberMapper {
 	public int deleteMember(int memberNo);
 	public int updateQna(QnaVO vo);
 	public int changeDeli(int orderNo);
+	public List<MemberVO> memberList();
+	public List<MemberVO> memberList(int page);
+	public int memberCount();
 
 }
