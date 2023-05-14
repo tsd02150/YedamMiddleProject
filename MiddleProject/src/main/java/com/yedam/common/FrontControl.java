@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.member.control.AdminCompanyControl;
-import com.yedam.member.control.AdminMemberControl;
 import com.yedam.member.control.AdminNewCompanyControl;
 import com.yedam.member.control.ConfirmControl;
 import com.yedam.member.control.DeleteOrderControl;
@@ -206,7 +205,6 @@ public class FrontControl extends HttpServlet {
 		
 		// 관리자용 페이지
 		// 회원관리
-		map.put("/adminMember.do", new AdminMemberControl());
 		// 업체관리
 		map.put("/adminCompany.do", new AdminCompanyControl());
 		// 신규업체

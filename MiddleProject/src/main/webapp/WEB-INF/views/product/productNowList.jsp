@@ -14,15 +14,13 @@ height:
 100%
 }
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
-	background: #3b5d50;
-	border-left: 1px solid rgba(255, 255, 255, 0.1);
-	text-align: center;
+	position: absolute;
+    top: 90px;
+    left: 0;
+    width: 150px;
+    background: #3b5d50;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .sidebar-nav {
@@ -96,7 +94,15 @@ height:
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
-
+table{
+	caption-side: bottom;
+    border-collapse: collapse;
+    position: revert;
+    padding-left: 80px;
+    padding-top: 10px;
+    width: 1000px;
+    display: inline-block;
+}
 
 
 

@@ -20,7 +20,6 @@ import com.yedam.member.control.WishListControl;
 import com.yedam.member.control.AdminCompanyControl;
 import com.yedam.member.control.AdminDelCompanyControl;
 import com.yedam.member.control.AdminDelMemberControl;
-import com.yedam.member.control.AdminMemberControl;
 import com.yedam.member.control.AdminNewCompanyControl;
 import com.yedam.member.control.ConfirmControl;
 import com.yedam.member.control.DeleteOrderControl;
@@ -141,7 +140,6 @@ public class FrontControl4 extends HttpServlet {
 
 		// 관리자용 페이지
 		// 회원관리
-		map.put("/adminMember.do", new AdminMemberControl());
 		map.put("/adminDelMember.do", new AdminDelMemberControl());
 		// 업체관리
 		map.put("/adminCompany.do", new AdminCompanyControl());
