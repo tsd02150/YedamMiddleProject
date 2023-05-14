@@ -100,6 +100,13 @@ height:
 			</c:forEach>
 		</ul>
 	</nav>
+	<br><br><br>
+	<div class="search-by-price">
+		<p>가격 검색</p>
+		<input class="min-price" type="number" defaultValue="10000" placeholder="10,000원" style="width: 100px;"> ~ 
+		<br><input class="max-price" defaultValue="999999999" placeholder="999,999,999원"  style="width: 100px;">
+		<button type="submit" class="search-price-btn" onclick="searchPrice()"> 제출 </button>
+	</div>
 	<div class="untree_co-section product-section before-footer-section"
 		style="width: 1200px; display: inline-block">
 		<div class="container">
@@ -124,6 +131,11 @@ height:
 				</c:choose>
 
 				<!-- Start Column 1 -->
+				<div class="kind-of-selector">
+					<a href="highPriceList.do">높은가격순</a>
+					<a href="lowPriceList.do">높은가격순</a>
+					<a href="topCountList">매출순</a>
+				</div>
 				<c:forEach var="board" items="${boardList }">
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
 						<a class="product-item"
@@ -146,5 +158,9 @@ height:
 </div>
 
 <script>
-	
+	function searchPrice() {
+			var minPrice = document.querySelector('.min-price').value;
+			var maxPrice = document.querySelector('.max-price').value;
+			window.location.href = 'searchPrice.do?minPrice=' + minPrice + '&maxPrice=' + maxPrice+'page='+'${pageInfo.pageNum}';
+		}
 </script>

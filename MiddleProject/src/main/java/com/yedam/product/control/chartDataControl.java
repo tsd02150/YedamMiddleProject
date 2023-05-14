@@ -8,23 +8,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.product.domain.BoardVO;
-import com.yedam.product.domain.ReviewVO;
+import com.yedam.product.domain.ProductVO;
 import com.yedam.product.service.ProductService;
 import com.yedam.product.service.ProductServiceImpl;
 
-public class AddReviewFormControl implements Control {
+public class chartDataControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ProductService ps = new ProductServiceImpl();
-		String id=req.getParameter("id");
-		List<BoardVO> list = ps.myOrderList(id);
-		
-		req.setAttribute("myOrder", list);
-		System.out.println("myOrder==>"+list);
-		
-		return "product/addReviewForm.tiles";
-	}
+		String pno = req.getParameter("pno");
 
+		ProductService ps = new ProductServiceImpl();
+		String json = "[";
+		List<ProductVO> list = ps.chartDataList(Integer.parseInt(pno));
+		for (int i = 0; i < list.size(); i++) {
+
+			json += "{\"gender\":\"" + list.get(i).getGender() + "\",";
+			json += "\"orderCount\":" + list.get(i).getOrderCount() + "}";
+
+			if (i + 1 != list.size()) {
+				json += ",";
+			}
+		}
+		json += "]";
+		return json + ".json";
+	}
 }

@@ -41,6 +41,16 @@ public class MainControl implements Control {
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("pageInfo", dto);
 		
+		//매출순
+		List<BoardVO> topCountList = ps.topCountList(1);
+		req.setAttribute("topCountList", topCountList);
+		
+		//가격순
+		List<BoardVO> highPriceList = ps.highPriceList(1);
+		req.setAttribute("highPriceList", highPriceList);
+		List<BoardVO> lowPriceList = ps.lowPriceList(1);
+		req.setAttribute("lowPriceList", lowPriceList);
+		
 		//카테고리
 		List<MainCategoryVO> mainCateoryList = ps.ctgMain();
 		req.setAttribute("mainCategoryList", mainCateoryList);
