@@ -138,6 +138,34 @@ article {
 .quickbar-ul {
 	padding: 0;
 }
+.center {
+	text-align: center;
+	font-weight: bold;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 12px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #3b5d50;
+	color: white;
+	border: 1px solid #3b5d50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
 </style>
 
 
@@ -157,8 +185,6 @@ article {
 		<div class="untree_co-section product-section before-footer-section"
 			style="width: 1200px; display: inline-block">
 			<div class="container">
-				<p>${subCategoryName }</p>
-
 				<c:choose>
 					<c:when test="${id !=null }">
 						<div class="terms-conditions product-page">
@@ -218,6 +244,21 @@ article {
 
 				</div>
 			</div>
+			<div class="center">
+			<div class="pagination">
+				<c:if test="${pageInfo.prev}">
+					<a href="boardList.do?page=${pageInfo.startPage-1 }">Prev</a>
+				</c:if>
+				<c:forEach var="i" begin="${pageInfo.startPage }"
+					end="${pageInfo.endPage }">
+					<a href="boardList.do?page=${i }"
+						class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
+				</c:forEach>
+				<c:if test="${pageInfo.next}">
+					<a href="boardList.do?page=${pageInfo.endPage+1 }">Next</a>
+				</c:if>
+			</div>
+		</div>
 		</div>
 
 	</div>
@@ -251,9 +292,8 @@ article {
 
 <script>
 	function searchPrice() {
-		var minPrice = document.querySelector('.min-price').value;
-		var maxPrice = document.querySelector('.max-price').value;
-		window.location.href = 'searchPrice.do?minPrice=' + minPrice
-				+ '&maxPrice=' + maxPrice + 'page=' + '${pageInfo.pageNum}';
-	}
+			var minPrice = document.querySelector('.min-price').value;
+			var maxPrice = document.querySelector('.max-price').value;
+			window.location.href = 'searchPrice.do?minPrice=' + minPrice + '&maxPrice=' + maxPrice+'&page='+'${pageInfo.pageNum}';
+		}
 </script>

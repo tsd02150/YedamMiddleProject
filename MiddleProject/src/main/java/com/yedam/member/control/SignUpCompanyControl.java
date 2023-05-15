@@ -26,7 +26,7 @@ public class SignUpCompanyControl implements Control {
 			String id = req.getParameter("id");
 			String crn=req.getParameter("crn");
 			String comName=req.getParameter("comName");
-			String comPhone=req.getParameter("comName");
+			String comPhone=req.getParameter("comPhone");
 			String comAddr=req.getParameter("comAddr");
 			CompanyVO vo = new CompanyVO();
 			vo.setCrn(crn);

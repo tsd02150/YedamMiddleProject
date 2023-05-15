@@ -272,7 +272,7 @@ article {
 			<c:forEach var="wish" items="${list}">
 				<tr class="wish-content-tr">
 					<td><c:out value="${no=no+1 }"></c:out></td>
-					<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>${wish.productNo}</a></td>
+					<td><a href="getBoard.do?bno=${wish.boardNo}"><img width="70px"  src="images/${wish.boardThumbnail}"></a></td>
 					<td>${wish.productName}</td>
 					<td><img style="width:70px;" src="images/${wish.boardThumbnail}"></td>
 					<td>${wish.price}</td>

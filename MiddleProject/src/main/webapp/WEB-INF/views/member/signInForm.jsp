@@ -67,7 +67,7 @@
 			<a href="javascript:kakaoLogin()"> <img src="https://mall.hanssem.com/resources/images/common/easy-log-4.png"
 			width=50 height=50 alt="카카오 로그인 버튼" /></a>
 			<br>
-		<a href="signUp.do">회원가입</a> 
+		<a href="signUpCheck.do">회원가입</a> 
 		<a href="searchId.do">ID 찾기</a> 
 		<a href="searchPw.do">PW 찾기</a>
 		</form>

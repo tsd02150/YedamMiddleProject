@@ -45,7 +45,7 @@ public interface ProductService {
 	public ProductVO searchBoardFromName(String productName);
 
 	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page);
-
+	public int categoryListCount(int subCategoryNo);
 	// 매출순
 	public List<BoardVO> topCountList(int page);
 

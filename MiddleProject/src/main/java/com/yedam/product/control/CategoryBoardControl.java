@@ -20,11 +20,12 @@ public class CategoryBoardControl implements Control {
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
-		String sno = req.getParameter("sno");
-		
+		int sno = Integer.parseInt(req.getParameter("sno"));
+		System.out.println(page);
+		System.out.println(sno);
 		ProductService ps = new ProductServiceImpl();
-		int total = ps.totalCount();
-		List<BoardVO> ctgrlist = ps.categoryList(Integer.parseInt(sno), page);
+		int total = ps.categoryListCount(sno);
+		List<BoardVO> ctgrlist = ps.categoryList(sno, page);
 		List<BoardVO> boardList = ps.boardList(page);
 		List<BoardVO> ctgList = ps.ctgJoin();
 		PageDTO dto = new PageDTO(page,total);

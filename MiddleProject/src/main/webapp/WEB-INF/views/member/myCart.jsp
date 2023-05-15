@@ -131,93 +131,6 @@
 					</c:otherwise>
 				</c:choose></td>
 			<td class="cartInfo-td">
-				<h3>장바구니</h3> <br>
-				<table class="table" id="cartInfo">
-					<tr>
-						<th>no</th>
-						<th>사진</th>
-						<th>제품명</th>
-						<th>가격</th>
-						<th>주문수량</th>
-						<th></th>
-					</tr>
-					<c:forEach var="myCart" items="${myCartList }">
-						<tr class="myCart" data-detailno=${myCart.orderDetailNo }
-							data-main-category-no=${myCart.mainCategoryNo }
-							data-sub-category-no=${myCart.subCategoryNo }>
-							<td><c:out value="${no=no+1}"></c:out></td>
-							<td><img src="images/${myCart.boardThumbnail }" width="150"
-								height="100" style="overflow: hidden"></td>
-							<td>${myCart.productName }</td>
-							<td>${myCart.price }<span>원</span></td>
-							<td><input type="number" value=${myCart.orderCount }
-								class="cartCnt" min="0"></td>
-						</tr>
-					</c:forEach>
-
-				</table>
-			</td>
-		</tr>
-	</table>
-	<table id="totalCart" border="1">
-		<tr>
-			<td class="totalCart-td">선택상품 가격 :</td>
-			<td>0</td>
-		</tr>
-		<tr>
-			<td class="totalCart-td">기본 배송비 :</td>
-			<td>0</td>
-		</tr>
-		<tr>
-			<td class="totalCart-td">추가 배송비 :</td>
-			<td>0</td>
-		</tr>
-		<tr>
-			<td class="totalCart-td">설치 여부 <input type="checkbox"
-				name="setting" id="settingCheck"> (선택시 3만원 추가) :
-			</td>
-			<td>0</td>
-		</tr>
-		<tr style="font-size: large; font-weight: bold">
-			<td class="totalCart-td">총 비용 :</td>
-			<td>0</td>
-		</tr>
-	</table>
-	<br>
-	<p style="padding-left: 1100px">
-		<button type="button" id="payBtn">결제하기</button>
-	</p>
-
-	<c:set var="no" value="0"></c:set>
-	<table class="mycontainer">
-		<tr>
-			<td><c:choose>
-					<c:when test="${grade=='s'}">
-						<nav id="sidebar-wrapper" class="active">
-							<ul class="sidebar-nav">
-								<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-								<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)
-								</a></li>
-								<li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
-								<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
-								<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
-								<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
-							</ul>
-						</nav>
-					</c:when>
-					<c:otherwise>
-						<nav id="sidebar-wrapper" class="active">
-							<ul class="sidebar-nav">
-								<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-								<li class="sidebar-nav-item"><a href="myCart.do">장바구니</a></li>
-								<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
-								<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
-								<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
-							</ul>
-						</nav>
-					</c:otherwise>
-				</c:choose></td>
-			<td class="cartInfo-td">
 				<h3>장바구니</h3> 
 				<c:if test="${myCartList[0]!=null }">
 					<table class="table" id="cartInfo">
@@ -251,7 +164,7 @@
 		</tr>
 	</table>
 	<c:if test="${myCartList[0]!=null }">
-		<table id="totalCart">
+		<table id="totalCart" border="1">
 			<tr>
 				<td class="totalCart-td">선택상품 가격 :</td>
 				<td>0</td>
@@ -270,7 +183,7 @@
 				</td>
 				<td>0</td>
 			</tr>
-			<tr>
+			<tr style="font-size: large; font-weight: bold">
 				<td class="totalCart-td">총 비용 :</td>
 				<td>0</td>
 			</tr>

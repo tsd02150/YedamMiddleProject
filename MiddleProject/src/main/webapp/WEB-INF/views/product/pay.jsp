@@ -8,11 +8,23 @@
 <title>Insert title here</title>
 <!-- 결제위젯 SDK 추가 -->
 <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+<style>
+#payment-button {
+	font-weight: bold;
+	font-size: large;
+	margin: 10px;
+	padding: 4px 6px;
+	background: #000;
+	color: #fff;
+	width: 270px;
+}
+</style>
 </head>
 <body>
 
-<div style="width:1200px; margin:0 auto; background-color: white;">
+<div style="width:1200px; margin:0 auto; background-color: white; padding: 50px;">
 	<div>
+		<h3>결제</h3>
 		<table class="table">
 			<c:forEach var="myCart" items="${myCartList }">
 				<tr class="myCart" data-detailno=${myCart.orderDetailNo }>
@@ -23,6 +35,7 @@
 					<td style="display:none;">${myCart.productNo }</td>
 				</tr>
 			</c:forEach>
+			<tr style="font-size: large; font-weight: bold; border-top: solid 1px black; border-bottom: solid 1px black; height: 70px; vertical-align: middle;"><td></td><td>총비용 (배송비용 + 설치비용) : </td><td>${price }</td><td></td></tr>
 		</table>
 	</div>
   	<!-- 결제위젯, 이용약관 영역 -->
