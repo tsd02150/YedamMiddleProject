@@ -21,13 +21,8 @@
 	<servlet>
 		<servlet-name>frontControl</servlet-name>
 
-<<<<<<< HEAD
-		<servlet-class>com.yedam.common.FrontControl3</servlet-class>
-		
-=======
 		<servlet-class>com.yedam.common.FrontControl</servlet-class>
 
->>>>>>> branch 'main' of https://github.com/tsd02150/YedamMiddleProject.git
 		<init-param>
 			<param-name>enc</param-name>
 			<param-value>UTF-8</param-value>
