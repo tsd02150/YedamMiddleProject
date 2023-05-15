@@ -88,13 +88,16 @@ to {
 	width: 1200px;
 	background-color: white;
 	display: none;
-	border: solid 1px gray;
-	height: 600px;
+	border: solid 1px black;
+	height: 550px;
 	position: fixed;
 	margin: 0 auto;
-	top: 100px;
+	top: 200px;
 	left: 0;
 	right: 0;
+}
+.modal img{
+	width:1200px;
 }
 
 #check {
@@ -290,7 +293,7 @@ notice-li{
 <body id="mainBody" style="text-align:center">
 
 	<div class="modal animate">
-		<img src="" alt="#" />
+		<img src="images/hotdeal.png" alt="#" />
 		<div id="check">
 			<input type="checkbox" id=xCheck>
 			<p>다시 열지 않겠습니다.&nbsp &nbsp</p>
@@ -343,7 +346,8 @@ notice-li{
 			style="width: 1200px; display: inline-block">
 			<div class="container">
 				<div class="row">
-				<h1><a href="topCountList.do">Best Seller</a></h1>
+
+				<h1><a href="topCountList.do">Best Seller + </a></h1>
 					<c:forEach var="board" items="${topCountList}" begin="0" end="7" step="1">
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item"
@@ -532,7 +536,7 @@ notice-li{
 	console.log(date);
 	console.log(date.getHours());
 	
-	if('${checked}'=="false" && date.getHours()==9){
+	if('${checked}'=="false" && date.getHours()==17){
 		document.querySelector('.modal').style.display="block";	
 	}
 	if('${checked}'=="true" || '${close}'=="close"){

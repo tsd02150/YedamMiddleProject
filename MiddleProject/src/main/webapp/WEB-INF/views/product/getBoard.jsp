@@ -148,9 +148,9 @@ th, td {
                               <option value="${boardInfo.productNo }">${boardInfo.productName}</option>
                            </select>
                            <span>
-                              <button type="button">-</button>
+                              <button type="button" class="order-count-minus">-</button>
                               <input class="order-count" type="text" name="count" title="수량입력" value="1" min="1" max="10" style="width: 35px; text-align: center;">
-                              <button type="button">+</button>
+                              <button type="button" class="order-count-plus">+</button>
                            </span>
                         </div>
                               <button class="addOrder-Btn" type="button">장바구니</button>
@@ -573,25 +573,26 @@ function fetchData() {
    
    //장바구니 담기
    let orderBtn = document.querySelector('.addOrder-Btn');
+   let minusBtn = document.querySelector('.order-count-minus');
+   let plusBtn = document.querySelector('.order-count-plus');
+   let countInput = document.querySelector('.order-count');
+
+   minusBtn.addEventListener('click', function(){
+    if (countInput.value > 1) {
+         countInput.value = parseInt(countInput.value) - 1;
+      }
+    });
+
+    plusBtn.addEventListener('click', function(){
+        if (countInput.value < 10) {
+           countInput.value = parseInt(countInput.value) + 1;
+        }
+    });
    orderBtn.addEventListener('click', function(){
       if('${id}'==null){
          alert('로그인 후 이용 가능합니다.');
+         return;
       }
-      let minusBtn = document.querySelector('.order-count-minus');
-      let plusBtn = document.querySelector('.order-count-plus');
-      let countInput = document.querySelector('.order-count');
-
-      minusBtn.addEventListener('click', () => {
-         if (countInput.value > 1) {
-            countInput.value = countInput.value - 1;
-         }
-      });
-
-      plusBtn.addEventListener('click', () => {
-         if (countInput.value < 10) {
-            countInput.value = countInput.value + 1;
-         }
-      });
 
       let count = countInput.value;
       console.log(count);
@@ -603,7 +604,7 @@ function fetchData() {
          body: 'bno=' + '${boardInfo.boardNo}' +  '&pno=' + '${boardInfo.productNo}' + '&count=' + count
       })
       .then(oresult=>{
-         console.log(count);
+         console.log(oresult);
          alert('장바구니 담기 성공');
       })
    })
@@ -613,6 +614,7 @@ function fetchData() {
    payBtn.addEventListener('click', function(){
       if('${id}'==null){
          alert('로그인 후 이용 가능합니다.');
+         return;
       }
          
       let countVal = document.querySelector('.order-count');

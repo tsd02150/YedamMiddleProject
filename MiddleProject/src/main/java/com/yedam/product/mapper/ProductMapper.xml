@@ -203,6 +203,15 @@
 	<select id="getCount" resultType="int">
 		select count(*) from product
 	</select>
+	
+	<select id="getHotDealCount" resultType="int">
+	<![CDATA[
+		select count(*) from board join product
+		using(product_no)
+        where product_count<4
+		order by 1
+	]]>
+	</select>
 
 
 	<insert id="insertBoard" parameterType="board">
@@ -233,7 +242,7 @@
 	</select>
 	<select id="searchMyorder" resultType="board">
 		select * from orders where
-		member_no=#{memberNo}
+		member_no=#{memberNo} and complete='r'
 	</select>
 	<insert id="insertOrder" parameterType="board">
 		<selectKey keyProperty="orderNo" resultType="int"
@@ -249,6 +258,12 @@
 		order_detail(order_detail_no, order_count, order_no, product_no)
 		values(orderdetail.nextval, #{orderCount}, #{orderNo}, #{productNo})
 	</insert>
+	<update id="completeOrder" parameterType="int">
+		update orders set complete='c' where order_no=#{orderNo}
+	</update>
+	<update id="downProductCount" parameterType="product">
+		update product set product_count=product_count-#{productCount} where product_no=#{productNo}
+	</update>
 
 
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -377,5 +392,16 @@
 		GROUP BY gender
 	</select>
 
-
+	<select id="hotDealList" resultType="board" parameterType="int">
+	<![CDATA[ 
+		select b.*
+    	from (select rownum rn, a.*
+        		from (select * from board join product
+					using(product_no)
+        			where product_count<4
+					order by 1) a
+        		where rownum <= #{page} * 12 ) b
+   		 where b.rn > (#{page} - 1) * 12	
+	]]>
+	</select>
 </mapper>

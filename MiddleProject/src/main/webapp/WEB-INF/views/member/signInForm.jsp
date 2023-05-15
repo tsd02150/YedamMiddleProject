@@ -70,8 +70,6 @@
 		<a href="signUp.do">회원가입</a> 
 		<a href="searchId.do">ID 찾기</a> 
 		<a href="searchPw.do">PW 찾기</a>
-		<a href="javascript:kakaoLogout()"><span>카카오 로그아웃</span></a>
-      	<a href="javascript:naverLogout()"> <span>네이버 로그아웃</span></a>
 		</form>
 
 

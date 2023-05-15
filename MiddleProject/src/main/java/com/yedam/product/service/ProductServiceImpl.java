@@ -195,6 +195,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public boolean completeOrder(int orderNo) {
+		return mapper.completeOrder(orderNo)>0;
+	}
+	
+
+	@Override
+	public boolean downProductCount(ProductVO vo) {
+		return mapper.downProductCount(vo)>0;
+	}
+
+	@Override
 	public List<BoardVO> getOrderList(int memberNo) {
 		return mapper.getOrderList(memberNo);
 	}
@@ -240,4 +251,14 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.searchPrice(minPrice, maxPrice, page);
 	}
 
+	@Override
+	public List<BoardVO> hotDealList(int page) {
+		return mapper.hotDealList(page);
+	}
+
+	@Override
+	public int getHotDealCount() {
+		return mapper.getHotDealCount();
+	}
+	
 }
