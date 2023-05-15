@@ -342,7 +342,7 @@ notice-li{
 			style="width: 1200px; display: inline-block">
 			<div class="container" style="max-width:1140px">
 				<div class="row">
-				<h1><a href="topCountList.do">Best Seller + ${grade }</a></h1>
+				<h1><a href="topCountList.do">Best Seller</a></h1>
 					<c:forEach var="board" items="${topCountList}" begin="0" end="7" step="1">
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item"
