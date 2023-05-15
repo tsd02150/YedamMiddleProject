@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -99,8 +99,7 @@
                   <nav id="sidebar-wrapper" class="active">
                      <ul class="sidebar-nav">
                         <li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-                        <li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)
-                           </a></li>
+                        <li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
                         <li class="sidebar-nav-item"><a href="#about">상품현황</a></li>
                         <li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
                         <li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
@@ -133,18 +132,15 @@
                   <th></th>
                </tr>
                <c:forEach var="myCart" items="${myCartList }">
-                  <tr class="myCart" data-detailno=${myCart.orderDetailNo }>
-                     <td>
-                        <c:out value="${no=no+1}"></c:out>
-                     </td>
-                     <td><img src="images/${myCart.boardThumbnail }" width="200" height="100" style="overflow: hidden">
-                     </td>
+                  <tr class="myCart" data-detailno=${myCart.orderDetailNo } data-main-category-no=${myCart.mainCategoryNo } data-sub-category-no=${myCart.subCategoryNo }>
+                     <td><c:out value="${no=no+1}"></c:out></td>
+                     <td><img src="images/${myCart.boardThumbnail }" width="200" height="100" style="overflow: hidden"></td>
                      <td>${myCart.productName }</td>
-                     <td>
-                        <fmt:formatNumber value="${myCart.price }" pattern="#,###" />원</td>
+                     <td>${myCart.price } <span>원</span></td>
                      <td><input type="number" value=${myCart.orderCount } class="cartCnt" min="0"></td>
                   </tr>
                </c:forEach>
+
             </table>
          </td>
       </tr>
@@ -152,23 +148,23 @@
    <table id="totalCart">
       <tr>
          <td class="totalCart-td">선택상품 가격 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">기본 배송비 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">추가 배송비 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">설치 여부 <input type="checkbox" name="setting" id="settingCheck"> (선택시 3만원 추가) : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">총 비용 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr><td><button type="button" id="payBtn">결제</button></td></tr>
    </table>
@@ -183,10 +179,11 @@
    myCartList.forEach(myCart => {
       total.children[0].children[1].innerText = parseInt(total.children[0].children[1].innerText) + parseInt(
          myCart.children[3].innerText) * parseInt(myCart.children[4].children[0].value);
-      total.children[1].children[1].innerText = 3000; <
-      c: if test = "${myCart.mainCategoryNo != 2 && myCart.subCategoryNo != 3}" >
-         total.children[2].children[1].innerText = 20000; <
-      /c:if>
+      total.children[1].children[1].innerText = 3000;
+      console.log(myCart.dataset.mainCategoryNo);
+      if(myCart.dataset.mainCategoryNo!=2&&myCart.dataset.subCategoryNo!=3){
+         total.children[2].children[1].innerText = 20000;    	  
+      }
       total.children[4].children[1].innerText = parseInt(total.children[0].children[1].innerText) + parseInt(total
          .children[1].children[1].innerText) + parseInt(total.children[2].children[1].innerText) + parseInt(
          total.children[3].children[1].innerText);
@@ -217,13 +214,13 @@
             total.children[0].children[1].innerText = parseInt(total.children[0].children[1]
                .innerText) + parseInt(myCart.children[3].innerText) * parseInt(myCart.children[4]
                .children[0].value);
-            if (myCart.children[3].children[0].value != 0) {
+            if (myCart.children[4].children[0].value != 0) {
                cnt++;
             }
-            total.children[1].children[1].innerText = 3000; <
-            c: if test = "${myCart.mainCategoryNo != 2 && myCart.subCategoryNo != 3}" >
-               total.children[2].children[1].innerText = 20000; <
-            /c:if>
+            total.children[1].children[1].innerText = 3000; 
+            <c:if test = "${myCart.mainCategoryNo != 2 && myCart.subCategoryNo != 3}" >
+               total.children[2].children[1].innerText = 20000; 
+            </c:if>
             total.children[4].children[1].innerText = parseInt(total.children[0].children[1]
                .innerText) + parseInt(total.children[1].children[1].innerText) + parseInt(total
                .children[2].children[1].innerText) + parseInt(total.children[3].children[1]
