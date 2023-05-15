@@ -127,6 +127,7 @@ article {
 				<c:choose>
 					<c:when test="${id !=null }">
 						<div class="terms-conditions product-page">
+							${id } ${grade }
 							<c:if test="${grade=='s'}">
 								<p>
 									<a href="addProductForm.do">상품 등록 </a>
@@ -144,8 +145,8 @@ article {
 	<table class="nav-price"><tr><td>
 		<div class="search-by-price" style="width: 150px;">
 			<p>가격 검색</p>
-			<input class="min-price" type="number" value="10000" placeholder="10,000원" style="width: 100px;"> ~ 	
-			<input class="max-price" value="999999999" placeholder="999,999,999원"  style="width: 100px;">
+			<input class="min-price" type="number" defaultValue="10000" placeholder="10,000원" style="width: 100px;"> ~ 	
+			<input class="max-price" defaultValue="999999999" placeholder="999,999,999원"  style="width: 100px;">
 			<button type="submit" class="search-price-btn" onclick="searchPrice()"> 제출 </button>
 		</div>
 	</td></tr></table>
@@ -162,8 +163,8 @@ article {
 							href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}"><img
 							src="images/${board.boardThumbnail}"
 							class="img-fluid product-thumbnail">
-							<h3 class="product-title">${board.boardTitle}</h3> <strong
-							class="product-price"> <fmt:formatNumber
+							<h3 class="product-title">${board.boardTitle}</h3> 
+							<strong	class="product-price"> <fmt:formatNumber
 									value="${board.price}" pattern="#,###" /></strong> <span
 							class="icon-cross"> <img src="images/cross.svg"
 								class="img-fluid">
@@ -184,6 +185,6 @@ article {
 	function searchPrice() {
 			var minPrice = document.querySelector('.min-price').value;
 			var maxPrice = document.querySelector('.max-price').value;
-			window.location.href = 'searchPrice.do?minPrice=' + minPrice + '&maxPrice=' + maxPrice+'&page='+'${pageInfo.pageNum}';
+			window.location.href = 'searchPrice.do?minPrice=' + minPrice + '&maxPrice=' + maxPrice+'page='+'${pageInfo.pageNum}';
 		}
 </script>

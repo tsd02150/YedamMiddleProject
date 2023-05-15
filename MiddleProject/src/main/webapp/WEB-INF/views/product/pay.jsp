@@ -61,7 +61,7 @@
       paymentWidget.requestPayment({
         orderId: "u0XHU8mFoZkItvhSh697l",            // 주문 ID(직접 만들어주세요)
         orderName: '${productName}',                 // 주문명
-        successUrl: "https://my-store.com/success",  // 결제에 성공하면 이동하는 페이지(직접 만들어주세요)
+        successUrl: "http://localhost:8081/MiddleProject/",  // 결제에 성공하면 이동하는 페이지(직접 만들어주세요)
         failUrl: "https://my-store.com/fail",        // 결제에 실패하면 이동하는 페이지(직접 만들어주세요)
         customerEmail: "admin@admin.com",
         customerName: "내일의 집"

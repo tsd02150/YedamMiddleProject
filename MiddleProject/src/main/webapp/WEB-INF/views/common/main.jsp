@@ -297,7 +297,7 @@ notice-li{
 		</div>
 	</div>
 	<div style="background-color: #3B5D50;">
-		<div id="search">
+		<div id="search" style="padding-top:20px">
 			<div id="searchDetail">
 				<table>
 					<tr>
@@ -340,9 +340,9 @@ notice-li{
 	<div style="width: 1200px; margin: 0 auto;">
 		<div class="untree_co-section product-section before-footer-section"
 			style="width: 1200px; display: inline-block">
-			<div class="container">
+			<div class="container" style="max-width:1140px">
 				<div class="row">
-				<h1><a href="topCountList.do">Best Seller + ${grade }</a></h1>
+				<h1><a href="topCountList.do">Best Seller</a></h1>
 					<c:forEach var="board" items="${topCountList}" begin="0" end="7" step="1">
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item"
@@ -364,7 +364,7 @@ notice-li{
 			</div>
 		</div>
 		<div class="footer-section" style="background-color: #eff2f1">
-			<div class="row g-5 mb-5">
+			<div class="row g-5 mb-5" style="width:1200px">
 				<div class="col-lg-4">
 					<div class="mb-4 footer-logo-wrap">
 						<a href="customerCenter.do" class="footer-logo">고객센터</a>
