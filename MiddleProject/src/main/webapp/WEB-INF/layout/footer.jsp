@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Start Footer Section -->
-		<footer class="footer-section">
-			<div class="container relative">
+		<footer class="footer-section" style="float:left; display:block">
+			<div class="container relative" style="float:left; display:block">
 				<div class="border-top copyright">
 					<div class="row pt-4">
 						<div class="col-lg-6">

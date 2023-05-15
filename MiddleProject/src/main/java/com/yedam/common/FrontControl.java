@@ -80,8 +80,10 @@ import com.yedam.product.control.CtgSub;
 import com.yedam.product.control.DeleteBoardControl;
 import com.yedam.product.control.DeleteNowProductControl;
 import com.yedam.product.control.DeleteProductControl;
+import com.yedam.product.control.DownProductCountControl;
 import com.yedam.product.control.GetProductControl;
 import com.yedam.product.control.HighPriceList;
+import com.yedam.product.control.HotDealControl;
 import com.yedam.product.control.LowPriceList;
 import com.yedam.product.control.ModifyBoardControl;
 import com.yedam.product.control.ModifyProductControl;
@@ -263,11 +265,14 @@ public class FrontControl extends HttpServlet {
 		map.put("/addPay.do", new AddPayControl());
 		map.put("/myOrderList.do", new myOrderListControl());		
 		map.put("/completeOrder.do", new CompleteOrderControl());
+		map.put("/downProductCount.do", new DownProductCountControl());
 		
 		//qna수정
 		map.put("/updateQna.do", new UpdateQnaControl());
 		map.put("/addQnaForm.do", new AddQnaFormControl());
 		map.put("/addQna.do", new AddQnaControl());
+		
+		map.put("/hotDeal.do", new HotDealControl());
 	} 
 
 	@Override

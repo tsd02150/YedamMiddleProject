@@ -65,6 +65,8 @@ public interface ProductMapper {
 	
 	public int completeOrder(int orderNo);
 
+	public int downProductCount(ProductVO vo);
+	
 	// 카테고리별
 	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page);
 
@@ -122,4 +124,7 @@ public interface ProductMapper {
 
 	public List<BoardVO> searchPrice(@Param("minPrice") int minPrice, @Param("maxPrice") int maxPrice,
 			@Param("page") int page);
+	
+	public List<BoardVO> hotDealList(int page);
+	public int getHotDealCount();
 }
