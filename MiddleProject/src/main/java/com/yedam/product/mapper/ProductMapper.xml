@@ -128,7 +128,13 @@
  	       where b.rn > (#{page}-1)*20
     ]]>
 	</select>
-
+	<select id="categoryListCount" resultType="int" parameterType="int">
+		select count(*) from (board join product
+				using(product_no)) join subcategory
+				using(sub_category_no)
+				where sub_category_no=#{subCategoryNo}
+				order by board_no
+	</select>
 	<select id="topCountList" resultType="board">
  		<![CDATA[
 				select * from(

@@ -69,7 +69,7 @@ public interface ProductMapper {
 	
 	// 카테고리별
 	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page);
-
+	public int categoryListCount(int subCategoryNo);
 	// 매출순
 	public List<BoardVO> topCountList(int page);
 

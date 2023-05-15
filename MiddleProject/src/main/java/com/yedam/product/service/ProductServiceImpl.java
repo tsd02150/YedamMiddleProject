@@ -142,6 +142,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public int categoryListCount(int subCategoryNo) {
+		return mapper.categoryListCount(subCategoryNo);
+	}
+
+	@Override
 	public List<BoardVO> myOrderList(String id) {
 		return mapper.myOrderList(id);
 	}
