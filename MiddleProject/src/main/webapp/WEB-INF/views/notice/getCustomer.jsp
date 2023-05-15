@@ -4,100 +4,114 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<h3>고객센터 문의하신 내용입니다.</h3>
+<style>
+#container {
+	margin-left: 50px;
+	width: 800px;
+}
+</style>
 
-<table class="table">
+<div id="container">
+<br>
 
-	<tr style="display: none">
-		<th>글번호</th>
-		<td id="no">${vo.noticeNo}</td>
-	</tr>
-	<tr>
-		<th>제목</th>
-		<td><input name="title" value="${vo.noticeTitle }" readonly
-			style="display: none">${vo.noticeTitle }</td>
-	</tr>
-	<tr>
-		<th>작성자</th>
-		<td>${vo.name }</td>
-	</tr>
-	<tr>
-		<th>작성날짜</th>
-		<td><fmt:formatDate pattern="yyyy-MM-dd"
-				value="${vo.noticeDate }" /></td>
-	</tr>
-	<tr>
-		<th>내용</th>
-		<td><textarea name="content" type="text" cols="50" rows="5"
-				readonly> ${vo.noticeContent } </textarea></td>
-	</tr>
-	<tr>
-		<th>첨부파일</th>
-		<td><c:if test="${vo.noticeAttach !=null}">
-				<c:choose>
-					<c:when test="${fileType =='image'}">
-						<img width="200px" height="200px" src="images/${vo.noticeAttach }">
-					</c:when>
-					<c:otherwise>
-						<a href="images/${vo.noticeAttach }">${vo.noticeAttach }</a>
-					</c:otherwise>
-				</c:choose>
+	<h3>고객센터 문의하신 내용입니다.</h3>
+<br>
+	<table class="table">
 
-			</c:if></td>
-	</tr>
-
-	<tr>
-		<td colspan="2" align="center"><c:choose>
-				<c:when test="${id == vo.id || id.equals('admin')}">
-					<button type="button"
-						onclick="location.href='modifyCustomer.do?no=${vo.noticeNo}'">수정</button>
-					<button type="button"
-						onclick="location.href='delCustomer.do?no=${vo.noticeNo}'">삭제</button>
-				</c:when>
-			</c:choose>
-			<button type="button" onclick="location.href='customerCenter.do'">목록으로</button></td>
-	</tr>
-</table>
-
-<!-- 댓글------------------기능 -->
-<table class="table">
-	<thead>
-		<!-- 댓글 정보 -->
+		<tr style="display: none">
+			<th>글번호</th>
+			<td id="no">${vo.noticeNo}</td>
+		</tr>
 		<tr>
-			<th>NO</th>
-			<th>답변</th>
+			<th>제목</th>
+			<td><input name="title" value="${vo.noticeTitle }" readonly
+				style="display: none">${vo.noticeTitle }</td>
+		</tr>
+		<tr>
 			<th>작성자</th>
-			<th>삭제</th>
+			<td>${vo.name }</td>
 		</tr>
-	</thead>
-	<!-- 댓글리스트 -->
-	<tbody id="tlist">
-	</tbody>
-</table>
+		<tr>
+			<th>작성날짜</th>
+			<td><fmt:formatDate pattern="yyyy-MM-dd"
+					value="${vo.noticeDate }" /></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea name="content" type="text" cols="50" rows="5"
+					readonly> ${vo.noticeContent } </textarea></td>
+		</tr>
+		<tr>
+			<th>첨부파일</th>
+			<td><c:if test="${vo.noticeAttach !=null}">
+					<c:choose>
+						<c:when test="${fileType =='image'}">
+							<img width="200px" height="200px"
+								src="images/${vo.noticeAttach }">
+						</c:when>
+						<c:otherwise>
+							<a href="images/${vo.noticeAttach }">${vo.noticeAttach }</a>
+						</c:otherwise>
+					</c:choose>
 
-<!-- 댓글등록 -->
-<div id="replyContent">
+				</c:if></td>
+		</tr>
 
-	<span>답글쓰기</span> <input type="text" size="50" id="reply">
-	<button type="button" id="addBtn">등록</button>
+		<tr>
+			<td colspan="2" align="center"><c:choose>
+					<c:when test="${id == vo.id || id.equals('admin')}">
+						<button type="button"
+							onclick="location.href='modifyCustomer.do?no=${vo.noticeNo}'">수정</button>
+						<button type="button"
+							onclick="location.href='delCustomer.do?no=${vo.noticeNo}'">삭제</button>
+					</c:when>
+				</c:choose>
+				<button type="button" onclick="location.href='customerCenter.do'">목록으로</button></td>
+		</tr>
+	</table>
+<br>
+<h5>관리자 답글</h5>
+<br>
+	<!-- 댓글------------------기능 -->
+	<div id="replyBox">
+		<table class="table">
+			<thead>
+				<!-- 댓글 정보 -->
+				<tr>
+					<th>NO</th>
+					<th>답변</th>
+					<th>작성자</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<!-- 댓글리스트 -->
+			<tbody id="tlist">
+			</tbody>
+		</table>
 
+		<!-- 댓글등록 -->
+		<div id="replyContent">
+
+			<span>답글쓰기</span> <input type="text" size="50" id="reply">
+			<button type="button" id="addBtn">등록</button>
+
+		</div>
+		<!-- 댓글수정.숨겨짐 -->
+		<table style="display: none;">
+			<tbody>
+				<tr class="template">
+					<td>NO</td>
+					<td><input type="text" class="reply"></td>
+					<td>작성자</td>
+					<td><button>수정</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
-<!-- 댓글수정.숨겨짐 -->
-<table style="display: none;">
-	<tbody>
-		<tr class="template">
-			<td>NO</td>
-			<td><input type="text" class="reply"></td>
-			<td>작성자</td>
-			<td><button>수정</button></td>
-		</tr>
-	</tbody>
-</table>
 
 
 <script>
-
-
 	let showFields = ['replyNo','replyContent','replyWriter']
 	let xhtp = new XMLHttpRequest();
 	xhtp.open('get', 'replyListCustomer.do?no=${vo.noticeNo}');

@@ -46,7 +46,6 @@
 	cursor: pointer;
 }
 
-
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
 body
@@ -57,13 +56,26 @@ width
 height:
 100%
 }
+
+
+article {
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 250px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
+	position: absolute;
+	top: 90px;
+	left: 0;
+	height: 97%;
+	width: 200px;
 	background: #3b5d50;
 	border-left: 1px solid rgba(255, 255, 255, 0.1);
 	text-align: center;
@@ -71,7 +83,6 @@ height:
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -113,10 +124,6 @@ height:
 	color: #fff;
 	background: none;
 }
-article {
-	margin: 0 auto;
-	padding: 50px;
-}
 
 .center {
 	text-align: center;
@@ -149,57 +156,59 @@ article {
 
 </style>
 
-
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터</a></li>
 		<li class="sidebar-nav-item"><a href="noti.do">공지사항</a></li>
-		<li class="sidebar-nav-item"><a href="#">자주하는 질문</a></li>
+		<li class="sidebar-nav-item"><a href="faq.do">자주하는 질문</a></li>
 	</ul>
 </nav>
 
-<br>
-<br>
-<h3>고객센터 문의 게시판</h3>
-<c:set var="no" value="0"></c:set>
-<form id="all" action="getCustomer.do" method="post">
-	<table class="table">
-		<c:choose>
-			<c:when test="${id!=null && !id.equals('admin') }">
-				<tr>
-					<td colspan="4" align="right">
-						<button type="button" onclick="location.href='customerAddForm.do'">문의하기</button>
-					</td>
-				</tr>
-			</c:when>
-		</c:choose>
+<article>
+	<br>
+	<h3>고객센터 문의 게시판</h3>
+	 <br>
+	<c:set var="no" value="0"></c:set>
+	<form id="all" action="getCustomer.do" method="post">
+		<table class="table">
+			<c:choose>
+				<c:when test="${id!=null && !id.equals('admin') }">
+					<tr>
+						<td colspan="4" align="right">
+							<button type="button"
+								onclick="location.href='customerAddForm.do'">문의하기</button>
+						</td>
+					</tr>
+				</c:when>
+			</c:choose>
 
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성날짜</th>
-		</tr>
-		<c:forEach var="notice" items="${list }">
 			<tr>
-				<td><c:out value="${no=no+1}"></c:out></td>
-				<!-- 팝업창 -->
-				<div id="modal" class="modal" style="display: none">
-					<div class="modal-content">
-						<span class="close">&times;</span>
-						<p>비밀번호를 입력하세요.</p>
-						<input type="password" name="pass">
-						<button type="submit">확인</button>
-					</div>
-				</div>
-				<td><a id="viewContent" href="getCustomer.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></td>
-				<td>${notice.name }</td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd"
-						value="${notice.noticeDate }" /></td>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성날짜</th>
 			</tr>
-		</c:forEach>
-	</table>
-</form>
+			<c:forEach var="notice" items="${list }">
+				<tr>
+					<td><c:out value="${no=no+1}"></c:out></td>
+					<!-- 팝업창 -->
+					<div id="modal" class="modal" style="display: none">
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<p>비밀번호를 입력하세요.</p>
+							<input type="password" name="pass">
+							<button type="submit">확인</button>
+						</div>
+					</div>
+					<td><a id="viewContent"
+						href="getCustomer.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></td>
+					<td>${notice.name }</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd"
+							value="${notice.noticeDate }" /></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</form>
 	<hr>
 	<div class="center">
 		<div class="pagination">
@@ -212,9 +221,9 @@ article {
 					class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
 			</c:forEach>
 			<c:if test="${pageInfo.next}">
-			
+
 				<a href="customerCenter.do?page=${pageInfo.endPage+1 }">Next</a>
 			</c:if>
 		</div>
 	</div>
-
+</article>

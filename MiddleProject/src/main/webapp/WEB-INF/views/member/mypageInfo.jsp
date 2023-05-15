@@ -13,20 +13,18 @@ height:
 100%
 }
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
-	background: #3b5d50;
-	border-left: 1px solid rgba(255, 255, 255, 0.1);
-	text-align: center;
+	position: absolute;
+    top: 90px;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background: #3b5d50;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -71,16 +69,36 @@ height:
 
 .myform {
 	display:flex;
-	width:1000px;
+	width:100%;
 
 }
 .myform button{
 	position:absolute;
 	margin-top: 330px;
-    margin-left: 500px;
+    margin-left: 450px;
 	
 }
+.myform table{
+    margin-left: 150px;
+	
+}
+.mycontainer{
+    width: 100%;
+    margin-left: 250px;
+	margin-top:150px;
+	margin-bottom:100px;
+}
+.mycontainer tr {
+}
+.mycontainer th td {
+	padding-left:10px ; 
+}
 
+
+
+
+
+a
 </style>
 <table class="mycontainer">
 <tr>
@@ -92,8 +110,8 @@ height:
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
 		<li class="sidebar-nav-item"><a href="sales.do">판매 내역<br>(매출현황)</a></li>
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
 		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 
 	</ul>
@@ -142,10 +160,10 @@ height:
 			<th>주소</th>
 			<td>${memberInfo.adress}</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>쿠폰</th>
 			<td>1개</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td colspan="2" align="center">
 				<button type="submit">수정</button>
@@ -181,10 +199,10 @@ height:
 			<th>주소</th>
 			<td>${memberInfo.adress}</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>dsdads쿠폰</th>
 			<td>1개</td>
-		</tr>
+		</tr> -->
 	
 	</table>
 	<table class="table" align="center">
@@ -218,4 +236,5 @@ height:
 </td>
 </tr>
 </table>
+
 

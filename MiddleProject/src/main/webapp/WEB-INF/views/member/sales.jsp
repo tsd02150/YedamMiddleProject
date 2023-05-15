@@ -114,7 +114,7 @@ height:
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:when>
@@ -133,30 +133,33 @@ height:
 </td>
 <td>
 <table class="table">
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>주문번호</th>
+			<th>주문날짜</th>
+			<th></th>
+			<th>제품명</th>
+			<th>단가</th>
+			<th>주문량</th>
+			<th>주문금액</th>
+		</tr>
+		
+	</thead>
 	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="sales" items="${sales}">
 	<c:if test="${sales.deliveryState =='s'}">
 		<tr class="table">
 			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td>주문 번호 : ${sales.orderNo}</td>
+			<td>${sales.orderNo}</td>
+			<td><fmt:formatDate value="${sales.orderDate}" pattern="yyyy-MM-dd"/></td>
 			<td><img width="70px" src="images/${sales.boardThumbnail}"></td>
-			<td>제품명 : ${sales.productName}</td>
-			<td>주문 수량 : ${sales.orderCount}</td>
-			<td>배송상태 : <c:choose>
-				<c:when test ="${sales.deliveryState == 'r'}">
-					상품 준비중
-				</c:when>
-				<c:when test ="${sales.deliveryState == 'd'}">
-					배송중
-				</c:when>
-				<c:when test ="${sales.deliveryState == 's'}">
-					배송완료 
-				</c:when>
-				<c:otherwise>
-					test
-				</c:otherwise>
-			</c:choose>
-			</td>
+			<td>${sales.productName}</td>
+			<td>${sales.price}</td>
+			<td>${sales.orderCount}</td>
+			<td>${sales.orderCount * sales.price}</td>
+			<c:set var="totalPrice"
+						value="${totalPrice + (sales.price * sales.orderCount)}" />
 			
 			<!--  <td><button id="delbtn" type="button" name="pno"
 			onClick="location.href='deleteNowProduct.do?pno=${productNow.productNo }'">삭제</button>
@@ -164,11 +167,7 @@ height:
 		</tr>
 	</c:if>
 	</c:forEach>
-	<%-- <c:if test="${orderNo == 0; }">
-		<tr class="table">
-			<td>접수된 주문이 없습니다.</td>
-		</tr>
-	</c:if> --%>
+	<tr><td>월 매출 : ${totalPrice}</td></tr>
 	
 	
 </table>

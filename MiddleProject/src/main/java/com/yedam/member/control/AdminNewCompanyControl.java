@@ -26,7 +26,7 @@ public class AdminNewCompanyControl implements Control {
 		
 		List<CompanyVO> list = service.newCompany(page);
 		int total = service.newCompanyCount();
-		
+		req.setAttribute("total", total);
 		req.setAttribute("list", list);
 		
 		PageDTO dto = new PageDTO(page, total);
