@@ -68,14 +68,19 @@ height:
 }
 .myform {
 	display:flex;
-	padding-left: 300px;
 
 }
 .myform button{
 	position:absolute;
-	margin-top: 330px;
-    margin-left: 450px;
+	margin-right: auto;
+    margin-left: auto;
 	
+}
+.subBtn{
+
+}
+.canBtn{
+	margin-left:45px;
 }
 .MDbtn {
 border-radius: 17px;
@@ -166,8 +171,8 @@ border-color:lightgray;
 		</tr> -->
 		<tr>
 			<td colspan="2" align="center">
-				<button type="submit" onClick="location.href='myPage.do'">저장</button>
-				<button type="button" onClick="location.href='myPage.do'">취소</button>
+				<button class="subBtn" type="submit" onClick="location.href='myPage.do'">저장</button>
+				<button class="canBtn" type="button" onClick="location.href='myPage.do'" style="margin-left:45px">취소</button>
 		</tr>
 	</table>
 </form>

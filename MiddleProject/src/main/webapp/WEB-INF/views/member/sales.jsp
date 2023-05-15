@@ -174,7 +174,7 @@ height:
 		<tr class="table3">
 			<td>${sales.orderNo}</td>
 			<td><fmt:formatDate value="${sales.orderDate}" pattern="yyyy-MM-dd"/></td>
-			<td><img width="70px" src="images/${sales.boardThumbnail}"></td>
+			<td><a href="getBoard.do?bno=${sales.boardNo}"><img width="70px"  src="images/${sales.boardThumbnail}"></a></td>
 			<td>${sales.productName}</td>
 			<td>${sales.price}</td>
 			<td>${sales.orderCount}</td>

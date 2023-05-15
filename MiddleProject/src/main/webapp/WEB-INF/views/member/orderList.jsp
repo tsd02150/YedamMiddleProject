@@ -136,7 +136,7 @@ height:
 							value="${order.price * order.orderCount}"></td>
 						<td><input name="orderNo" style="display: none;"
 							value="${order.orderNo}"></td>
-						<td><img width="70px" src="images/${order.boardThumbnail}"></td>
+						<td><a href="getBoard.do?bno=${order.boardNo}"><img width="70px"  src="images/${order.boardThumbnail}"></a></td>
 						<td>제품명 : ${order.productName}</td>
 						<td>제품 설명 : ${order.boardContent }</td>
 						<td>가격 : ${order.price}</td>

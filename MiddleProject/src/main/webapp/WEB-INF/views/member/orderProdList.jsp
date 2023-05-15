@@ -142,7 +142,7 @@ height:
 		<tr class="table">
 			<td><c:out value="${no=no+1 }"></c:out></td>
 			<td>주문 번호 : ${orderProdList.orderNo}</td>
-			<td><img width="70px" src="images/${orderProdList.boardThumbnail}"></td>
+			<td><a href="getBoard.do?bno=${orderProdList.boardNo}"><img width="70px"  src="images/${orderProdList.boardThumbnail}"></a></td>
 			<td>제품명 : ${orderProdList.productName}</td>
 			<td>주문 수량 : ${orderProdList.orderCount}</td>
 			<td>배송상태 : <c:choose>
