@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,11 +35,14 @@ public class AddReviewControl implements Control {
 			System.out.println("file: "+file);
 		}
 		
-		String mno = multi.getParameter("mno");
+		HttpSession session = req.getSession();
+		
+		int mno = Integer.parseInt(String.valueOf(session.getAttribute("mno")));
 		String rcontent = multi.getParameter("rcontent");
 		String attach = multi.getFilesystemName("attach");
 		String score = multi.getParameter("score");
 		String bno = multi.getParameter("bno");
+		
 		System.out.println(mno);
 		System.out.println(rcontent);
 		System.out.println(attach);
@@ -47,14 +51,13 @@ public class AddReviewControl implements Control {
 		
 		ProductService ps = new ProductServiceImpl();
 		ReviewVO vo = new ReviewVO();
-		vo.setMemberNo(Integer.parseInt(mno));
+		vo.setMemberNo(mno);
 		vo.setReviewContent(rcontent);
 		vo.setReviewAttach(attach);
 		vo.setScore(Integer.parseInt(score));
 		vo.setBoardNo(Integer.parseInt(bno));
 		
 		System.out.println("리뷰등록==>"+vo);
-		
 		
 		if(ps.addReview(vo)) {
 			System.out.println("리뷰등록 성공");
@@ -63,7 +66,5 @@ public class AddReviewControl implements Control {
 			System.out.println("리뷰등록 실패");
 			return "getBoard.do?bno="+bno;
 		}
-		
 	}
-
 }

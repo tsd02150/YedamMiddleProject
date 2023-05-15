@@ -30,17 +30,20 @@ public class getBoardControl implements Control {
 		ProductService ps = new ProductServiceImpl();
 		BoardVO vo = ps.getBoard(Integer.parseInt(bno));
 
-		List<QnaVO> list = ps.qnaList(Integer.parseInt(bno));
+		List<QnaVO> qnaList = ps.qnaList(Integer.parseInt(bno));
+		List<ReviewVO> reveiwList=ps.reviewList(Integer.parseInt(bno));
 		List<BoardVO> orderList = ps.myOrderList(id);
 
 		req.setAttribute("boardInfo", vo);
 		req.setAttribute("pageNum", page);
-		req.setAttribute("qnaList", list);
+		req.setAttribute("qnaList", qnaList);
+		req.setAttribute("reviewList", reveiwList);
 		req.setAttribute("orderList", orderList);
 		
 		System.out.println("boardInfo : "+vo);
 		System.out.println("page : "+page);
-		System.out.println("qnaList : "+list);
+		System.out.println("qnaList : "+qnaList);
+		System.out.println("reveiwList : "+reveiwList);
 		System.out.println("orderList : "+orderList);
 		
 		return "product/getBoard.tiles";

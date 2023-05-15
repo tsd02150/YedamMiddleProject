@@ -78,22 +78,12 @@
 	 <!-- Add Product -->
     <div class="w3-row-padding">
       <div class="w3-col s4">
-        ${id}<br>
-        ${companyNo}<br>
-        ${mno}<br>
         <h4>후기 등록</h4>
-             <select id="porductName">
-                 <option value="">상품 이름</option>
-                 <c:forEach var="my" items="${myOrder }"><option value="${my.productNo }">${my.productName }</option></c:forEach>
-             </select>
-             <select id="orderDate">
-                 <option value="">구매 날짜</option>
-                 <c:forEach var="my" items="${myOrder }"><option value="${my.orderDate }">${my.orderDate }</option></c:forEach>
-             </select>
-		<br>
-
-        
         <table style="margin-left:auto;margin-right:auto;">
+        	<tr>
+        		<th>상품 이름</th>
+        		<td>${boardTitle }</td>
+        	</tr>
 	        <tr>
 	        	<th>내용</th>
 	        	<td><input class="w3-input w3-border" type="text" placeholder="내용" name="rcontent" required></td>
@@ -111,19 +101,12 @@
 	        
 	        <tr>
 	        	<th>Attach</th>
-	        	<td><input class="w3-input w3-border" type="file" placeholder="attach" name="attach" required></td>
+	        	<td><input class="w3-input w3-border" type="file" placeholder="attach" name="attach"></td>
 	        </tr>
-	        <tr>
-	        	<th>MemberNo</th>
-	        	<td><c:forEach var="list" items="${myOrder }"><input class="w3-input w3-border" type="text" name="mno" value="${list.memberNo}" 
-	        	readonly></c:forEach></td>
-	        	<!-- style="display: none;" -->
-	        </tr>
-	        <tr>
+
+	        <tr style="display:none;">
 	        	<th>boardNo</th>
-	        	<td><c:forEach var="list" items="${myOrder }"><input class="w3-input w3-border" type="text" name="bno" value="${list.boardNo}" 
-	        	readonly></c:forEach></td>
-	        	<!-- style="display: none;" -->
+	        	<td><input class="w3-input w3-border" type="text" name="bno" value="${boardNo}"  readonly></td>
 	        </tr>
 	        <tr>
 	        	<td>

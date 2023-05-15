@@ -208,7 +208,9 @@ th, td {
 <ul id="rtd">
 </ul>
 <div id="top"></div>
-<table id="qna-table" style="display: none;">
+<div id="qna-table" style="display: none;">
+<button type="button" id="qnaBtn">문의 등록</button>
+<table>
    <thead>
       <tr>
          <th>No</th>
@@ -217,30 +219,42 @@ th, td {
          <th>작성일</th>
       </tr>
    </thead>
+      <tbody>
    <c:forEach var="list" items="${qnaList }">
-      <tbody id="${id}">
-         <tr id="${list.name }_tr">
+         <tr class="qnaInfo" data-member-no=${list.memberNo }>
             <td>${list.qnaNo }</td>
             <td>${list.qnaTitle }</td>
             <td id="${list.name}">${list.name }</td>
             <td>${list.qnaDate}</td>
             <!-- <td style="display: none;"><input id="qna-pw">입력</td> -->
          </tr>
-         <tr id="${list.name}_content" style="display: none;">
+         <tr class="qnaContent" style="display: none;">
             <td>문의내용 :</td>
-            <td>${list.qnaContent }</td>
-            <td class="qna-modify-button">수정</td>
-            <td class="qna-delete-button">삭제</td>
+            <td colspan="3"><span>${list.qnaContent }</span></td>
          </tr>
-         <tr id="${list.name}_answer" style="display: none;">
+         <c:if test="${list.memberNo==mno }">
+         	<tr>
+         	<td></td>
+         	<td></td>
+         	<td><button>수정</button></td>
+            <td><button>삭제</button></td>
+            </tr>
+         </c:if>
+         <tr class="qnaAnswer" style="display: none;">
             <td>답변 :</td>
-            <td>${list.qnaAnswer }</td>
+            <c:if test="${list.qnaAnswer !=null}">
+	            <td>${list.qnaAnswer }</td>
+            </c:if>
+            <c:if test="${list.qnaAnswer ==null}">
+	            <td>답변이 달리지 않았습니다.</td>
+            </c:if>
             <td></td>
             <td></td>
          </tr>
-      </tbody>
    </c:forEach>
+      </tbody>
 </table>
+</div>
 <div id="qna-div"></div>
 
 <script>
@@ -282,6 +296,7 @@ function fetchData() {
       let chart = new google.charts.Bar(document.getElementById('chart_div'));
       chart.draw(data, google.charts.Bar.convertOptions(options));
     });
+}
 
    //Review
    let review = document.getElementById('review');
@@ -314,7 +329,7 @@ function fetchData() {
             rtd.append(br);
 
             addBtn.addEventListener('click', function () {
-               location.href = "addReviewForm.do?id=${id}"
+               location.href = "addReviewForm.do?boardNo=${boardInfo.boardNo}&boardTitle=${boardInfo.boardTitle}"
             })
 
             result.forEach(rlist => {
@@ -509,55 +524,52 @@ function fetchData() {
       }
 
    })
-
-   let Atr = document.getElementById('${id}');
-   let Btr = document.querySelector('#${name}_tr');
-   let Ctr = document.querySelector('#${name}_content');
-   let Dtr = document.querySelector('#${name}_answer');
    
-   if('${id}'!=null){
-      Btr.addEventListener('click', function () {
-         fetch('qnaList.do?bno=${boardInfo.boardNo}', {
-               method: "GET"
-            })
-            .then(qresolve => qresolve.json())
-            .then(qresult => {
-               qresult.forEach(qlist => {
-                  if (Ctr.style.display != "none" && Dtr.style.display != "none") {
-                     Ctr.style.display = "none";
-                     Dtr.style.display = "none";
+   document.querySelector('#qnaBtn').addEventListener('click',function(){
+		location.href="addQnaForm.do?boardNo=${boardInfo.boardNo}";
+	})
+	
+	document.querySelectorAll(".qnaInfo").forEach(qna=>{
+		qna.nextElementSibling.style="display:none";
+		console.log(qna.dataset.memberNo);
+		if(qna.dataset.memberNo=='${mno}'){
+			qna.nextElementSibling.nextElementSibling.style="display:none";
+			qna.nextElementSibling.nextElementSibling.nextElementSibling.style="display:none";	
+		}else{
+			qna.nextElementSibling.nextElementSibling.style="display:none";			
+		}
+		qna.addEventListener('click',function(){
+			console.log(this.nextElementSibling.style.display);
+			if(this.nextElementSibling.style.display=="none"){
+				this.nextElementSibling.style.display="table-row";
+				if(this.dataset.memberNo=='${mno}'){
+					this.nextElementSibling.nextElementSibling.style.display="table-row";	
+					this.nextElementSibling.nextElementSibling.nextElementSibling.style.display="table-row";
+					this.nextElementSibling.nextElementSibling.children[2].children[0].addEventListener('click',function(){
+						let textarea = document.createElement('textarea');
+						qna.nextElementSibling.children[1].replaceChild(textarea,qna.nextElementSibling.children[1].children[0]);
+						this.addEventListener('click',function(){
+							//디비 수정 필요
+							let span = document.createElement('span');
+							span.innerText  = textarea.value;
+							qna.nextElementSibling.children[1].replaceChild(span,qna.nextElementSibling.children[1].children[0]);
+						})
+					});
+					this.nextElementSibling.nextElementSibling.children[3].children[0].addEventListener('click',function(){
+						//디비 삭제 필요
+						qna.parentNode.removeChild(qna.nextElementSibling);
+						qna.parentNode.removeChild(qna.nextElementSibling);
+						qna.parentNode.removeChild(qna.nextElementSibling);
+						qna.parentNode.removeChild(qna);
+					});
+				}else{
+					this.nextElementSibling.nextElementSibling.style.display="table-row";						
+				}
+			}
+			
+		})
+	})
    
-                  } else if (Ctr.style.display == "none" && Dtr.style.display == "none") {
-                     //Ctr.innerHTML="";
-                     Ctr.style.display = "table-row";
-                     Dtr.style.display = "table-row";
-                     
-                     let qnadeleteBtn = document.querySelector('.qna-delete-button');
-                     qnadeleteBtn.addEventListener('click', function(){
-                        fetch('removeQna.do', {
-                           method: "POST",
-                           headers: {
-                              'Content-Type': 'application/x-www-form-urlencoded'
-                           },
-                           body: 'qno=' + qlist.qnaNo + '&bno=' + '${boardInfo.boardNo}'
-                        })
-                        .then(deleteQna => deleteQna.json())
-                        .then(removeQna => {
-                           if (result.retCode == 'Success') {
-                              document.getElementById(qlist.name+'_tr').remove();
-                              alert('문의내역 삭제 성공');
-                           } else if (result.retCode == 'Fail') {
-                              alert('처리중 에러 발생')
-                           } else {
-                              alert('알 수 없는 결과값입니다.');
-                           }
-                        })
-                     })
-                  }
-               })
-            })
-      })
-   }
    //장바구니 담기
    let orderBtn = document.querySelector('.addOrder-Btn');
    orderBtn.addEventListener('click', function(){
@@ -618,5 +630,6 @@ function fetchData() {
       })
    })
    
+	
 
-}
+</script>

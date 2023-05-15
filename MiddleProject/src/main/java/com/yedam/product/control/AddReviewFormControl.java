@@ -17,12 +17,11 @@ public class AddReviewFormControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ProductService ps = new ProductServiceImpl();
-		String id=req.getParameter("id");
-		List<BoardVO> list = ps.myOrderList(id);
+		int boardNo = Integer.parseInt(req.getParameter("boardNo"));
+		String boardTitle = req.getParameter("boardTitle");
 		
-		req.setAttribute("myOrder", list);
-		System.out.println("myOrder==>"+list);
+		req.setAttribute("boardNo", boardNo);
+		req.setAttribute("boardTitle", boardTitle);
 		
 		return "product/addReviewForm.tiles";
 	}
