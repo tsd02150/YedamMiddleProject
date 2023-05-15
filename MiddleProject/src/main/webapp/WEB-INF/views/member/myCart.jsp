@@ -89,6 +89,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 	<c:set var="no" value="0"></c:set>
 	<table class="mycontainer">
 		<tr>
