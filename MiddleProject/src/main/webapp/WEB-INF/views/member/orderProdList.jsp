@@ -14,20 +14,18 @@ height:
 100%
 }
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
-	background: #3b5d50;
-	border-left: 1px solid rgba(255, 255, 255, 0.1);
-	text-align: center;
+	position: absolute;
+    top: 90px;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background: #3b5d50;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;

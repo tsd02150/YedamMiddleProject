@@ -44,7 +44,6 @@ a.more {
 	background: #3b5d50 !important;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	position: absolute;
     width: 100%;
 }
 
@@ -774,8 +773,9 @@ a.more {
 
 .footer-section {
 	background: #eff2f1;
-    position: absolute;
     width: 100%;
+    
+    
 }
 
 

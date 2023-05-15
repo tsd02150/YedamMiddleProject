@@ -82,10 +82,9 @@ height:
 	
 }
 .mycontainer{
-    width: 100%;
-    margin-left: 250px;
-	margin-top:150px;
-	margin-bottom:100px;
+        margin-left: 600px;
+    margin-top: 20px;
+    margin-bottom: 100px;
 }
 .mycontainer tr {
 }
@@ -105,12 +104,12 @@ height:
 <c:when test="${grade=='s'}">
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="memberInfo.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="#page-top">판매 내역<br>(매출현황)</a></li>
+		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
+		<li class="sidebar-nav-item"><a href="sales.do">판매 내역<br>(매출현황)</a></li>
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
-		<li class="sidebar-nav-item"><a href="#services">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="#portfolio">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
+		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:when>
@@ -118,7 +117,7 @@ height:
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
+		<li class="sidebar-nav-item"><a href="myCart.do">장바구니</a></li>
 		<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
 		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
@@ -156,10 +155,10 @@ height:
 			<th>주소</th>
 			<td><input type="text" name="adress" value="${memberInfo.adress }"></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>쿠폰</th>
 			<td><input type="text" name="coupon" value="#" readonly></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td colspan="2" align="center">
 				<button type="submit" onClick="location.href='myPage.do'">저장</button>
@@ -195,10 +194,10 @@ height:
 			<th>주소</th>
 			<td><input type="text" name="adress" value="${memberInfo.adress }"></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>asdasd쿠폰</th>
 			<td><input type="text" name="coupon" value="#" readonly></td>
-		</tr>
+		</tr> -->
 	</table>
 	<table class="table">
 		<tr style="display:none">

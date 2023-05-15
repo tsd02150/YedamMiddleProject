@@ -21,7 +21,7 @@ display:flex !important;
 	position: absolute;
     top: 90px;
     left: 0;
-    height: 97%;
+    height: 100%;
     width: 200px;
     background: #3b5d50;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -110,7 +110,7 @@ table{
     width: 80%;
     display: inline-table;
     margin-left: 220px;
-    margin-top: 120px;
+    margin-top: 20px;
     text-align: center;
 }
 .table2 tr td{

@@ -69,36 +69,33 @@ height:
 
 .myform {
 	display:flex;
-	width:100%;
-
+	padding-left: 300px;
 }
 .myform button{
-	position:absolute;
-	margin-top: 330px;
-    margin-left: 450px;
+	margin-left: 110px;
+    margin-top: 15px;
 	
 }
 .myform table{
-    margin-left: 150px;
-	
+	width:300px !important;
 }
 .mycontainer{
-    width: 100%;
-    margin-left: 250px;
-	margin-top:150px;
-	margin-bottom:100px;
+	width: 100%;
+    margin-top: 120px;
+    margin-bottom: 100px;
+    
 }
 .mycontainer tr {
 }
-.mycontainer th td {
-	padding-left:10px ; 
+.mycontainer td {
+
+}
+#tilesTable{
+	
 }
 
 
 
-
-
-a
 </style>
 <table class="mycontainer">
 <tr>
@@ -135,7 +132,7 @@ a
 <c:when test="${grade=='c' }">
 <form action="modifyMember.do" method="get" class="myform">
 
-	<table class="table" align="center">
+	<table class="table" >
 		<tr>
 			<th>이름</th>
 			<td>${name }</td>
@@ -174,7 +171,7 @@ a
 <c:when test="${grade=='s' }">
 <form action="modifyMember.do" method="get" class="myform">
 
-	<table class="table" align="center">
+	<table class="table">
 		<tr>
 			<th>이름</th>
 			<td>${name }</td>
@@ -205,7 +202,7 @@ a
 		</tr> -->
 	
 	</table>
-	<table class="table" align="center">
+	<table class="table">
 		<tr>
 			<th>사업장 이름</th>
 			<td>${companyInfo.companyName }</td>
@@ -227,9 +224,11 @@ a
 			<th>사업장 주소</th>
 			<td>${companyInfo.companyAddr}</td>
 		</tr>
-	</table>
+		<tr><td>
 		<button type="submit">수정</button>
-	
+		
+		</td></tr>
+	</table>
 </form>
 </c:when>
 </c:choose>

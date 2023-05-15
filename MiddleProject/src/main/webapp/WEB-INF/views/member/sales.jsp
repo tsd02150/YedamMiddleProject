@@ -14,20 +14,18 @@ height:
 100%
 }
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
-	background: #3b5d50;
-	border-left: 1px solid rgba(255, 255, 255, 0.1);
-	text-align: center;
+	position: absolute;
+    top: 90px;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background: #3b5d50;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -97,10 +95,27 @@ height:
 	background-color: #ddd;
 }
 
+.mycontainer{
+	width: 100%;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    
+}
+.table2 {
+    width: 70%;
+    margin-left: AUTO;
+    margin-right: auto;
 
+}
+.thead2 {
 
+}
+.thead2 tr {
 
+}
+.thead2 tr td {
 
+}
 </style>
 <table class="mycontainer">
 <tr>
@@ -132,10 +147,9 @@ height:
 </c:choose>
 </td>
 <td>
-<table class="table">
-	<thead>
+<table class="table2">
+	<thead class="thead2">
 		<tr>
-			<th>No</th>
 			<th>주문번호</th>
 			<th>주문날짜</th>
 			<th></th>
@@ -150,7 +164,6 @@ height:
 	<c:forEach var="sales" items="${sales}">
 	<c:if test="${sales.deliveryState =='s'}">
 		<tr class="table">
-			<td><c:out value="${no=no+1 }"></c:out></td>
 			<td>${sales.orderNo}</td>
 			<td><fmt:formatDate value="${sales.orderDate}" pattern="yyyy-MM-dd"/></td>
 			<td><img width="70px" src="images/${sales.boardThumbnail}"></td>
