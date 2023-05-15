@@ -5,19 +5,24 @@
 <style>
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
-body
-{
-width
-:
-100%
-height:
-100%
+body {
+width:100%
+height:100%
+
 }
+
+body {
+display:flex !important;
+}
+
+
+
 #sidebar-wrapper {
 	position: absolute;
     top: 90px;
     left: 0;
-    width: 150px;
+    height: 97%;
+    width: 200px;
     background: #3b5d50;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
@@ -25,7 +30,6 @@ height:
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -95,18 +99,23 @@ height:
 	background-color: #ddd;
 }
 table{
-	caption-side: bottom;
-    border-collapse: collapse;
-    position: revert;
-    padding-left: 80px;
-    padding-top: 10px;
-    width: 1000px;
-    display: inline-block;
+    display: inline-table;
 }
-
-
-
-
+.mycontainer{
+	width:100%;
+	
+}
+.table2{
+	    position: relative;
+    width: 80%;
+    display: inline-table;
+    margin-left: 220px;
+    margin-top: 120px;
+    text-align: center;
+}
+.table2 tr td{
+	padding:10px;
+}
 </style>
 <table class="mycontainer">
 <tr>
@@ -120,7 +129,7 @@ table{
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:when>
@@ -138,7 +147,7 @@ table{
 </c:choose>
 </td>
 <td>
-<table class="table">
+<table class="table2">
 	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="productNow" items="${productNowInfo}">
 		<tr class="table">
