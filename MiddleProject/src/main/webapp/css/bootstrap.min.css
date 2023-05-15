@@ -676,6 +676,7 @@ progress {
   padding-right: var(--bs-gutter-x, .75rem);
   padding-left: var(--bs-gutter-x, .75rem);
   margin-right: auto;
+  margin-left: auto
 }
 
 @media (min-width:576px) {
@@ -723,7 +724,7 @@ progress {
   .container-sm,
   .container-xl,
   .container-xxl {
-    max-width: 1320px
+    max-width: 95%
   }
 }
 
@@ -2061,8 +2062,8 @@ progress {
   vertical-align: bottom
 }
 
-.table>:not(:first-child) {
-  border-top: 2px solid currentColor
+.table>:not {
+  border-bottom: 1px solid lightgray
 }
 
 .caption-top {

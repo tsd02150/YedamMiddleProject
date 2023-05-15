@@ -20,7 +20,7 @@ public class DeliveryVO {
 	private String boardContent;
 	private int productNo;
 	private int orderCount;
-	
+	private int boardNo;
 	
 	
 	

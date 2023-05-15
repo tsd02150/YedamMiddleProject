@@ -27,21 +27,23 @@ article {
 
 
 #sidebar-wrapper {
-   position: absolute;
-   top: 90px;
-   left: 0;
-   height: 97%;
-   width: 200px;
-   background: #3b5d50;
-   border-left: 1px solid rgba(255, 255, 255, 0.1);
-   text-align: center;
+	position: absolute;
+    top: 90px;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background: #3b5d50;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+
 }
 
 .sidebar-nav {
-   top: 0;
-   margin: 0;
-   padding: 0;
-   list-style: none;
+	top: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
 }
 
 .sidebar-nav li.sidebar-nav-item a {
