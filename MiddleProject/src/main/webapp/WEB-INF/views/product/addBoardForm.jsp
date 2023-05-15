@@ -8,7 +8,35 @@
  #container{
   text-align: center;
   justify-content: center;
+	margin: 20px;
  }
+
+#container th{
+	padding: 10px;
+}
+#container td{
+	padding: 10px;
+}
+
+.mainCategoryName{
+	width: 100px;
+	margin-right: 10px;
+	text-align: center;
+}
+
+.subCategoryName{
+	width: 100px;
+	margin-right: 10px;
+	text-align: center;
+}
+.productName{
+	width: 100px;
+	text-align: center;
+}
+#productSelector{
+	margin-bottom: 20px;
+}
+
  .button {
   border: none;
   color: white;
@@ -21,6 +49,10 @@
   cursor: pointer;
 }
 
+#top{
+	margin-bottom: 20px;
+}
+
 .button1 {background-color: #3b5d50;} /* Green */
 .button2 {background-color: #008CBA;} /* Blue */
 </style>
@@ -30,9 +62,8 @@
 	 <!-- Add Product -->
     <div class="w3-row-padding">
       <div class="w3-col s4">
-        ${id}<br>
-        ${companyNo}<br>
-        <h4>게시글 등록</h4>
+
+        <h4 style="font-weight: bold;">게 시 글  등 록</h4>
         <!-- 
              <select id="mainCategoryName">
                  <option value="">대분류</option>
@@ -63,7 +94,7 @@
       <th>Thumbnail</th>
       <th>Attach</th>
       <!-- <td>제거</td> -->
-      <th>MemberNo</th>
+      <th style="display: none;">MemberNo</th>
     </tr>
   </thead>
   <tbody>

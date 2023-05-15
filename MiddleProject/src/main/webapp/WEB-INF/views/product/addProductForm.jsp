@@ -4,12 +4,16 @@
  #container{
   text-align: center;
   justify-content: center;
-	width: 1600px;
-  margin: 20px;
+	margin: 20px;
  }
 
- #container tr{
-	margin: 20px;
+ #container th{
+	padding: 13px;
+	padding-right: 60px;
+	font-size: large;
+ }
+ .w3-input w3-border{
+	width: 280px;
  }
 
  .button {
@@ -24,6 +28,7 @@
   cursor: pointer;
 }
 
+
 .button1 {background-color: #3b5d50;} /* Green */
 .button2 {background-color: #008CBA;} /* Blue */
 </style>
@@ -34,7 +39,7 @@
 		<!-- Add Product -->
 			<div class="w3-row-padding">
 				<div class="w3-col s4">
-					<h4>상품 등록</h4>
+					<h4 style="font-weight: bold;">상 품 등 록</h4>
 				<table style="margin-left:auto;margin-right:auto;">
 						<tr>
 						<th>상품 이름</th>
@@ -49,7 +54,7 @@
 						<td><input class="w3-input w3-border" type="text" placeholder="수량" name="pcount" required></td>
 						</tr>
 						<tr>
-						<th>subcategory</th>
+						<th>분 류</th>
 						<td><input type="radio" id="bed" checked name="subNo" value="1">
 				  <label for="bed">침대</label>
 				  <input type="radio" id="sofa" name="subNo" value="2">
@@ -77,7 +82,7 @@
 				</td>
 						</tr>
 						<tr>
-						<th>theme</th>
+						<th>Theme</th>
 						<td>
 				  <input type="radio" id="chair" checked name="tno" value="1">
 				  <label for="modern">modern</label>
@@ -93,12 +98,12 @@
 				  <label for="vintage">vintage</label>
 				</td>
 				</tr>
-						<tr><td>${id}</td></tr>
-						<tr><td><input name="companyNo" value="${companyNo}"></td></tr>
+						<tr style="display: none;"><td>${id}</td></tr>
+						<tr style="display: none;"><td><input name="companyNo" value="${companyNo}"></td></tr>
 						<tr>
-							<td>
-								<button type="submit" class="button button1">등록</button>
-								<button type="reset" class="button button2">취소</button>
+							<td colspan="2">
+								<button type="submit" class="button button1" style="padding-top: 10px;">등록</button>
+								<button type="reset" class="button button2" style="padding-top: 10px;">취소</button>
 							</td>
 						</tr>
 				</table>

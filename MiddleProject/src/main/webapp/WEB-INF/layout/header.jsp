@@ -22,18 +22,18 @@
 		<div class="collapse navbar-collapse" id="navbarsFurni">
 			<ul id="menu" class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 				<li class="nav-item"><a class="nav-link" href="main.do">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="boardList.do">shop</a></li>
+				<li class="nav-item"><a class="nav-link" href="boardList.do">Shop</a></li>
 				<c:choose>
 					<c:when test="${id == null }">
-						<li class="nav-item"><a class="nav-link" href="signIn.do">sign in</a></li>
-						<li class="nav-item"><a class="nav-link" href="signUpCheck.do">sign up</a></li>
+						<li class="nav-item"><a class="nav-link" href="signIn.do">Sign in</a></li>
+						<li class="nav-item"><a class="nav-link" href="signUpCheck.do">Sign up</a></li>
 					</c:when>
 					<c:when test="${id == 'admin' }">
-						<li class="nav-item"><a class="nav-link" href="signOut.do">sign out</a></li>
+						<li class="nav-item"><a class="nav-link" href="signOut.do">Sign out</a></li>
 						<li class="nav-item"><a class="nav-link" href="adminMember.do">Manager</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="nav-item"><a class="nav-link" href="signOut.do">sign out</a></li>
+						<li class="nav-item"><a class="nav-link" href="signOut.do">Sign out</a></li>
 						<li class="nav-item"><a class="nav-link" href="myPage.do">MyPage</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -49,6 +49,9 @@
 		let url = location.href;
 		if(url==a.href){			
 			a.parentElement.classList.add('active');
+		}
+		if(a.dataset.noti==url.substring(url.lastIndexOf("/")+1)||a.dataset.faq==url.substring(url.lastIndexOf("/")+1)){
+				a.parentElement.classList.add('active');
 		}
 		if(a.innerText=="Home"&&url.substring(url.lastIndexOf("/"))=="/" ){
 			a.parentElement.classList.add('active');

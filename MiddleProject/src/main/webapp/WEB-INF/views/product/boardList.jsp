@@ -36,7 +36,7 @@ article {
 	caption-side: bottom;
 	border-collapse: collapse;
 	position: revert;
-	padding-left: 250px;
+	padding-left: 200px;
 	padding-right: 50px;
 	padding-top: 10px;
 	width: 100%;
@@ -108,36 +108,6 @@ article {
 	margin-top: 20px;
 }
 
-.quick-menu {
-	position: fixed;
-	top: 50%;
-	right: 0;
-	z-index: 101;
-	box-sizing: border-box;
-	width: 113px;
-	opacity: 75%;
-	border: 1px solid #e2e2e2;
-	border-radius: 10px 0 0 10px;
-	background: #fff;
-	transform: translateY(-50%);
-	padding-top: 30px;
-	text-align: center;
-}
-
-.quickbar {
-	font-color: black !important;
-	list-style: none;
-	font-size: small;
-	padding: 10px;
-}
-
-.quickbar>a {
-	text-decoration: none;
-}
-
-.quickbar-ul {
-	padding: 0;
-}
 .center {
 	text-align: center;
 	font-weight: bold;
@@ -180,31 +150,28 @@ article {
 				</c:forEach>
 			</ul>
 		</nav>
-		<br> <br>
+
+			<c:choose>
+				<c:when test="${id !=null }">
+					<div class="terms-conditions product-page">
+					<c:if test="${grade=='s'}">
+					<ul style="padding-left: 50px; padding-top: 50px; list-style:none">
+					<li><h2 style="font-weight:bold">내일의 집 상품입니다.</h2></li>
+					<li>
+						<a href="addProductForm.do">>판매자 상품등록</a></li>
+						<li><a href="addBoardForm.do?cno=${companyNo}">>상품 판매등록</a></li>
+						</ul>
+					</c:if>
+					</div>
+				</c:when>
+			</c:choose>
 
 		<div class="untree_co-section product-section before-footer-section"
 			style="width: 1200px; display: inline-block">
 			<div class="container">
-				<c:choose>
-					<c:when test="${id !=null }">
-						<div class="terms-conditions product-page">
 
-							<c:if test="${grade=='s'}">
-								<p>
-									<a href="addProductForm.do">상품 등록</a>
-								</p>
-								<p>
-									<a href="productList.do">상품 리스트</a>
-								</p>
-								<p>
-									<a href="addBoardForm.do?cno=${companyNo}">판매 등록</a>
-								</p>
-							</c:if>
-						</div>
-					</c:when>
-				</c:choose>
-
-				<div class="search-by-price" style="text-align: right;">
+				<div class="search-by-price"
+					style="text-align: left; padding-top: 0">
 					<p>
 						가격 검색 <input class="min-price" type="number" defaultValue="10000"
 							placeholder="10,000원" style="width: 130px;"> ~ <input
@@ -212,11 +179,10 @@ article {
 							placeholder="99,999,999원" style="width: 130px;">
 						<button type="submit" class="search-price-btn"
 							onclick="searchPrice()">검색</button>
-					<!-- Start Column 1 -->
-					<div class="kind-of-selector">
-						<a href="highPriceList.do">높은 가격순</a> <a href="lowPriceList.do">낮은
-							가격순</a> <a href="topCountList.do">매출순</a>
-					</div>
+						<!-- Start Column 1 -->
+
+						<div class="kind-of-selector"><a href="highPriceList.do">높은 가격순</a> <a href="lowPriceList.do">낮은
+							가격순</a> <a href="topCountList.do">매출순</a></div>
 					</p>
 				</div>
 				<br> <br>
@@ -245,55 +211,30 @@ article {
 				</div>
 			</div>
 			<div class="center">
-			<div class="pagination">
-				<c:if test="${pageInfo.prev}">
-					<a href="boardList.do?page=${pageInfo.startPage-1 }">Prev</a>
-				</c:if>
-				<c:forEach var="i" begin="${pageInfo.startPage }"
-					end="${pageInfo.endPage }">
-					<a href="boardList.do?page=${i }"
-						class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
-				</c:forEach>
-				<c:if test="${pageInfo.next}">
-					<a href="boardList.do?page=${pageInfo.endPage+1 }">Next</a>
-				</c:if>
+				<div class="pagination">
+					<c:if test="${pageInfo.prev}">
+						<a href="boardList.do?page=${pageInfo.startPage-1 }">Prev</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a href="boardList.do?page=${i }"
+							class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
+					</c:forEach>
+					<c:if test="${pageInfo.next}">
+						<a href="boardList.do?page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</div>
 			</div>
-		</div>
 		</div>
 
 	</div>
 </article>
-<div id="quick">
-	<c:choose>
-		<c:when test="${grade=='c'}">
-			<nav class="quick-menu" class="active">
-				<ul class="quickbar-ul">
-					<li class="quickbar"><a href="myCart.do">장바구니</a></li>
-					<li class="quickbar"><a href="wishList.do">관심상품</a></li>
-					<li class="quickbar"><a href="orderDetail.do">주문/배송</a></li>
-					<li class="quickbar"><a href="myQnaList.do">문의내역</a></li>
-					<li class="quickbar"><a href="#">TOP</a></li>
-				</ul>
-			</nav>
-		</c:when>
-		<c:when test="${grade=='s'}">
-			<nav class="quick-menu" class="active">
-				<ul class="quickbar-ul">
-					<li class="quickbar"><a href="addBoardForm.do">판매등록</a></li>
-					<li class="quickbar"><a href="addBoard.do">목록/관리</a></li>
-					<li class="quickbar"><a href="orderDetail.do">주문/배송</a></li>
-					<li class="quickbar"><a href="myQnaList.do">문의내역</a></li>
-					<li class="quickbar"><a href="#">TOP</a></li>
-				</ul>
-			</nav>
-		</c:when>
-	</c:choose>
-</div>
 
 <script>
 	function searchPrice() {
-			var minPrice = document.querySelector('.min-price').value;
-			var maxPrice = document.querySelector('.max-price').value;
-			window.location.href = 'searchPrice.do?minPrice=' + minPrice + '&maxPrice=' + maxPrice+'&page='+'${pageInfo.pageNum}';
-		}
+		var minPrice = document.querySelector('.min-price').value;
+		var maxPrice = document.querySelector('.max-price').value;
+		window.location.href = 'searchPrice.do?minPrice=' + minPrice
+				+ '&maxPrice=' + maxPrice + '&page=' + '${pageInfo.pageNum}';
+	}
 </script>
