@@ -27,7 +27,7 @@ public class BoardListControl implements Control {
 		List<BoardVO> boardList = ps.boardList(page);
 		List<BoardVO> ctgList = ps.ctgJoin();
 		List<ProductVO> productList = ps.productList(page);
-		
+		System.out.println(total);
 		PageDTO dto = new PageDTO(page, total);
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("ctgList", ctgList);

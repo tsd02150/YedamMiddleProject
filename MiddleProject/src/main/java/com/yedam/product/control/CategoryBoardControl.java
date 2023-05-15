@@ -21,7 +21,8 @@ public class CategoryBoardControl implements Control {
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
 		int sno = Integer.parseInt(req.getParameter("sno"));
-		
+		System.out.println(page);
+		System.out.println(sno);
 		ProductService ps = new ProductServiceImpl();
 		int total = ps.categoryListCount(sno);
 		List<BoardVO> ctgrlist = ps.categoryList(sno, page);
