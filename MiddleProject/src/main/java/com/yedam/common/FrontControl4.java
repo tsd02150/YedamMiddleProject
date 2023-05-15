@@ -107,7 +107,6 @@ public class FrontControl4 extends HttpServlet {
 		map.put("/getBoard.do", new getBoardControl());
 		// 카테고리별
 		map.put("/categoryBoard.do", new CategoryBoardControl());
-
 		
 		// 고객센터
 		map.put("/customerCenter.do", new CustomerCenterControl());

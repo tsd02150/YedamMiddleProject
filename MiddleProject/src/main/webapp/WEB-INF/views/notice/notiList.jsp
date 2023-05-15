@@ -14,13 +14,24 @@ width
 height:
 100%
 }
+article {
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 250px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
+	position: absolute;
+	top: 90px;
+	left: 0;
+	height: 97%;
+	width: 200px;
 	background: #3b5d50;
 	border-left: 1px solid rgba(255, 255, 255, 0.1);
 	text-align: center;
@@ -28,7 +39,6 @@ height:
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -71,11 +81,6 @@ height:
 	background: none;
 }
 
-article {
-	margin: 0 auto;
-	padding: 50px;
-}
-
 .center {
 	text-align: center;
 	font-weight: bold;
@@ -104,7 +109,6 @@ article {
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
-
 </style>
 
 
@@ -112,43 +116,44 @@ article {
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터</a></li>
 		<li class="sidebar-nav-item"><a href="noti.do">공지사항</a></li>
-		<li class="sidebar-nav-item"><a href="#">자주하는 질문</a></li>
+		<li class="sidebar-nav-item"><a href="faq.do">자주하는 질문</a></li>
 	</ul>
 </nav>
 
-<br>
-<br>
+<article>
+	<br>
+	<h3>공지사항</h3>
+	<br>
+	<c:set var="no" value="0"></c:set>
 
-<h3>공지사항</h3>
-<c:set var="no" value="0"></c:set>
+	<table class="table">
 
-<table class="table">
-	<c:choose>
-		<c:when test="${id.equals('admin')}">
-			<tr>
-				<td colspan="4" align="right">
-					<button type="button" onclick="location.href='addNotiForm.do'">공지등록</button>
-				</td>
-			</tr>
-		</c:when>
-	</c:choose>
-	<tr>
-		<th>번호</th>
-		<th>제목</th>
-		<th>작성자</th>
-		<th>작성날짜</th>
-	</tr>
-	<c:forEach var="notice" items="${list }">
 		<tr>
-			<td><c:out value="${no=no+1}"></c:out></td>
-			<td><a id="view" href="getNoti.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></td>
-			<td>관리자</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd"
-					value="${notice.noticeDate }" /></td>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성날짜</th>
 		</tr>
-	</c:forEach>
+		<c:forEach var="notice" items="${list }">
+			<tr>
+				<td><c:out value="${no=no+1}"></c:out></td>
+				<td><a id="view" href="getNoti.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></td>
+				<td>관리자</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd"
+						value="${notice.noticeDate }" /></td>
+			</tr>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${id.equals('admin')}">
+				<tr>
+					<td colspan="4" align="right">
+						<button type="button" onclick="location.href='addNotiForm.do'">공지등록</button>
+					</td>
+				</tr>
+			</c:when>
+		</c:choose>
 
-</table>
+	</table>
 
 	<hr>
 	<div class="center">
@@ -162,8 +167,9 @@ article {
 					class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
 			</c:forEach>
 			<c:if test="${pageInfo.next}">
-			
+
 				<a href="noti.do?page=${pageInfo.endPage+1 }">Next</a>
 			</c:if>
 		</div>
 	</div>
+</article>

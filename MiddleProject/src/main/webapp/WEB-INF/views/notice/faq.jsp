@@ -5,10 +5,86 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <style>
-article {
-	margin: 0 auto;
-	padding: 50px;
+
+
+@import
+url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
+body
+{
+width
+:
+100%
+height:
+100%
 }
+
+article {
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 250px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#sidebar-wrapper {
+	position: absolute;
+	top: 90px;
+	left: 0;
+	height: 97%;
+	width: 200px;
+	background: #3b5d50;
+	border-left: 1px solid rgba(255, 255, 255, 0.1);
+	text-align: center;
+}
+
+.sidebar-nav {
+	top: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar-nav li.sidebar-nav-item a {
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	padding: 15px;
+}
+
+.sidebar-nav li a:hover {
+	text-decoration: none;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+	text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+	font-size: 1.2rem;
+	background: rgba(52, 58, 64, 0.1);
+	height: 80px;
+	line-height: 50px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+	color: #fff;
+	background: none;
+}
+
 
 .center {
 	text-align: center;
@@ -39,10 +115,20 @@ article {
 	background-color: #ddd;
 }
 </style>
-<div style="width:1200px; margin:100px auto;">
-	<h3>자주묻는 질문</h3>
-	<c:set var="no" value="0"></c:set>
 
+<nav id="sidebar-wrapper" class="active">
+	<ul class="sidebar-nav">
+		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터</a></li>
+		<li class="sidebar-nav-item"><a href="noti.do">공지사항</a></li>
+		<li class="sidebar-nav-item"><a href="faq.do">자주하는 질문</a></li>
+	</ul>
+</nav>
+
+<article>
+<br>
+	<h3>자주하는 질문</h3>
+	<br>
+	<c:set var="no" value="0"></c:set>
 	<table class="table">
 		<tr>
 			<th>번호</th>
@@ -82,7 +168,7 @@ article {
 			</c:if>
 		</div>
 	</div>
-</div>
+</article>
 
 <script>
 	let items = document.querySelectorAll('.item');

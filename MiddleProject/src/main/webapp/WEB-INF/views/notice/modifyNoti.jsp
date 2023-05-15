@@ -3,8 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<h3>공지사항 수정페이지</h3>
+<style>
+#container {
+	margin-left: 50px;
+	width: 800px;
+}
 
+</style>
+
+<div id="container">
+<br>
+<h3>공지사항 수정페이지</h3>
+<br>
 <form action="modifyNoti.do" method="post">
 	<table class="table">
 		<tr style="display: none">
@@ -36,4 +46,4 @@
 		</tr>
 	</table>
 </form>
-
+</div>

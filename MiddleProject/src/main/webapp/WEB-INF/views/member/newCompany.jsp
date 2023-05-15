@@ -14,13 +14,24 @@ width
 height:
 100%
 }
+article {
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 250px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
+	position: absolute;
+	top: 90px;
+	left: 0;
+	height: 97%;
+	width: 200px;
 	background: #3b5d50;
 	border-left: 1px solid rgba(255, 255, 255, 0.1);
 	text-align: center;
@@ -28,7 +39,6 @@ height:
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -91,7 +101,6 @@ a {
 	background: #000;
 	color: #fff;
 }
-
 
 .pop_wrap {
 	position: fixed;
@@ -158,75 +167,75 @@ a {
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
-
 </style>
-
-
-
 <nav id="sidebar-wrapper" class="active">
 	<ul class="sidebar-nav">
 		<li class="sidebar-nav-item"><a href="adminMember.do">회원관리</a></li>
 		<li class="sidebar-nav-item"><a href="adminCompany.do">업체관리</a></li>
 		<li class="sidebar-nav-item"><a href="newCompany.do">신규업체</a></li>
-		<li class="sidebar-nav-item"><a href="#">매출관리</a></li>
 	</ul>
 </nav>
-<br>
-<br>
 
-<h3>신규 업체</h3>
+<article>
+	<br>
+	<h3>신규 업체</h3>
+	<br>
 
-<form action="confirm.do" method="get">
-	<table class="table">
-		<tr>
-			<th>NO</th>
-			<th>업체명</th>
-			<th>사업자번호</th>
-			<th>사업주</th>
-			<th>전화번호</th>
-			<th>주소</th>
-			<th>업체등록</th>
-			<th>삭제</th>
-		</tr>
-		<c:set var="no" value="0"></c:set>
-		<c:forEach var="com" items="${list }" varStatus="m">
+	<form action="confirm.do" method="get">
+	<p>신규업체 총 ${total }개</p>
+		<table class="table">
 			<tr>
-				<td><c:out value="${no=no+1}"></c:out></td>
-				<td>${com.companyName}</td>
-				<td>${com.crn}</td>
-				<td>${com.name}</td>
-				<td>${com.companyPhone}</td>
-				<td>${com.companyAddr}</td>
-				<td><a href="#pop_info_${m.count }" class="btn_open">업체 등록하기</a></td>
-				<!-- 팝업1 -->
-				<div id="pop_info_${m.count }" class="pop_wrap" style="display: none;">
-					<div class="pop_inner">
-						<p class="dsc">업체를 등록하시겠습니까?</p>
-						<button type="button"
-							onclick="location.href='confirm.do?comNo=${com.companyNo}'">확인</button>
-						<button type="button" class="btn_close">취소</button>
-					</div>
-				</div>
-				<!-- 팝업1 -->
-
-				<td><a href="#pop_info_del_${m.count }" id= "delBtn" class="btn_open">업체삭제</a></td>
-				<!-- 팝업1 -->
-				<div id="pop_info_del_${m.count }" class="pop_wrap"
-					style="display: none;">
-					<div class="pop_inner">
-						<p class="dsc">업체를 삭제하시겠습니까?</p>
-						<button type="button"
-							onclick="location.href='adminDelCompany.do?comNo=${com.companyNo}'">삭제</button>
-						<button type="button" class="btn_close">취소</button>
-					</div>
-				</div>
-				<!-- 팝업1 -->
-
+				<th>NO</th>
+				<th>업체명</th>
+				<th>사업자번호</th>
+				<th>사업주</th>
+				<th>전화번호</th>
+				<th>주소</th>
+				<th>업체등록</th>
+				<th>삭제</th>
 			</tr>
-		</c:forEach>
+			<c:set var="no" value="0"></c:set>
+			<c:forEach var="com" items="${list }" varStatus="m">
+				<tr>
+					<td><c:out value="${no=no+1}"></c:out></td>
+					<td>${com.companyName}</td>
+					<td>${com.crn}</td>
+					<td>${com.name}</td>
+					<td>${com.companyPhone}</td>
+					<td>${com.companyAddr}</td>
+					<td><a href="#pop_info_${m.count }" class="btn_open">업체
+							등록하기</a></td>
+					<!-- 팝업1 -->
+					<div id="pop_info_${m.count }" class="pop_wrap"
+						style="display: none;">
+						<div class="pop_inner">
+							<p class="dsc">업체를 등록하시겠습니까?</p>
+							<button type="button"
+								onclick="location.href='confirm.do?comNo=${com.companyNo}'">확인</button>
+							<button type="button" class="btn_close">취소</button>
+						</div>
+					</div>
+					<!-- 팝업1 -->
 
-	</table>
-</form>
+					<td><a href="#pop_info_del_${m.count }" id="delBtn"
+						class="btn_open">업체삭제</a></td>
+					<!-- 팝업1 -->
+					<div id="pop_info_del_${m.count }" class="pop_wrap"
+						style="display: none;">
+						<div class="pop_inner">
+							<p class="dsc">업체를 삭제하시겠습니까?</p>
+							<button type="button"
+								onclick="location.href='adminDelCompany.do?comNo=${com.companyNo}'">삭제</button>
+							<button type="button" class="btn_close">취소</button>
+						</div>
+					</div>
+					<!-- 팝업1 -->
+
+				</tr>
+			</c:forEach>
+
+		</table>
+	</form>
 	<hr>
 	<div class="center">
 		<div class="pagination">
@@ -239,12 +248,12 @@ a {
 					class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
 			</c:forEach>
 			<c:if test="${pageInfo.next}">
-			
+
 				<a href="newCompany.do?page=${pageInfo.endPage+1 }">Next</a>
 			</c:if>
 		</div>
 	</div>
-
+</article>
 
 <script>
 	var target = document.querySelectorAll('.btn_open');
