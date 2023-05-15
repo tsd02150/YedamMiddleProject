@@ -195,6 +195,11 @@
 		company
 		using(company_no)
 	</select>
+	
+	<select id="searchBoardFromName" resultType="board">
+		select * from board join product using(product_no) where product_name=#{productName}
+	</select>
+	
 	<select id="getCount" resultType="int">
 		select count(*) from product
 	</select>

@@ -98,6 +98,7 @@ import com.yedam.product.control.ThemeListControl;
 import com.yedam.product.control.TopCountList;
 import com.yedam.product.control.chartDataControl;
 import com.yedam.product.control.getBoardControl;
+import com.yedam.product.control.SearchBoardFromNameControl;
 
 public class FrontControl extends HttpServlet {
 	private Map<String, Control> map;
@@ -169,6 +170,7 @@ public class FrontControl extends HttpServlet {
 		map.put("/boardList.do", new BoardListControl());
 		// 상품게시판 상세보기
 		map.put("/getBoard.do", new getBoardControl());
+		map.put("/searchBoardFromName.do", new SearchBoardFromNameControl());
 		// 카테고리별
 		map.put("/categoryBoard.do", new CategoryBoardControl());
 		// 매출순

@@ -386,6 +386,13 @@ to {
 
 		if(e.keyCode==13){
 			let productName = itemList.children[index].innerText;
+			console.log(productName);
+			fetch("searchBoardFromName.do?productName="+productName)
+			.then(resolve=>resolve.json)
+			.then(result=>{
+				console.log(result.boardNo);
+			})
+			.catch(err=>console.log(err));
 		}
 	});
 	let date = new Date();
