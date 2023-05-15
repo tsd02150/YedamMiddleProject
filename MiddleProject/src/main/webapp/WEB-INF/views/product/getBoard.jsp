@@ -8,7 +8,7 @@
    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
    rel="stylesheet" />
 <style>
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+html, body, div, span, object, iframe, h1, h2, h3, h5, h6, p,
    blockquote, pre, abbr, address, em, img, dl, dt, dd, ol, ul, li,
    fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr,
    th, td {
@@ -21,6 +21,21 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
    vertical-align: top;
    box-sizing: border-box;
    word-break: break-word;
+}
+
+.span-price{
+   font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+   line-height: 1.4;
+   letter-spacing: -0.5px;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   vertical-align: top;
+   box-sizing: border-box;
+   word-break: break-word;
+   margin-left: 400px;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 ol, li, figure {
@@ -53,6 +68,12 @@ div.review-date {
 }
 
 div.renew-imange img {
+   width: 25px;
+   height: 25px;
+   float: right;
+}
+
+div.renew-imange img:hover {
    width: 30px;
    height: 30px;
    float: right;
@@ -115,9 +136,227 @@ th, td {
    padding-left: 20px;
    padding-right: 20px;
 }
-</style>
 
-<form action="modifyBoard.do" method="GET">
+
+article {
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 250px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+
+.display-5 fw-bolder{
+   text-align: left;
+}
+.mb-1-title {
+    margin-bottom: 0.25rem !important;
+    text-align: left;
+}
+
+.col-md-6{
+   padding: 20px;
+}
+.order-count-minus{
+   width: 35px;
+   margin-left: 80px;
+   border: none;
+   font-weight: bold;
+   font-size: x-large;
+}
+.order-count-plus{
+   width: 35px;
+   border: none;
+   border: none;
+   font-weight: bold;
+   font-size: large;
+   margin-bottom: 10px;
+}
+
+.addOrder-Btn{
+   margin-top: 20px;
+   margin-right: 10px;
+   width: 120px;
+   margin-left: 250px;
+   border:solid 1px;
+   border-radius: 15px;
+   padding-left: 6px;
+   padding-bottom: 10px;
+   padding-top: 10px;
+}
+.addPay-Btn{
+   width: 120px;
+   border:none;
+   border-radius: 15px;
+   padding-left: 6px;
+   padding-bottom: 10px;
+   padding-top: 10px;
+   background-color: lightgray;
+}
+.addOrder-Btn.hover{
+   margin-top: 20px;
+   margin-right: 70px;
+   width: 120px;
+   margin-left: 28px;
+   border:solid 1px;
+   border-radius: 15px;
+   padding-left: 6px;
+   padding-bottom: 10px;
+   padding-top: 10px;
+   background-color: lightgray;
+}
+.board-option{
+   padding: 1px;
+}
+
+#chart_div{
+   margin-top: 10px;
+   margin-bottom: 10px;
+   width: 1200px;
+   text-align: center;
+}
+
+.col-md-6-content{
+   margin-top: 20px;
+   margin-bottom: 80px;
+}
+
+.quick-menu {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    z-index: 101;
+    box-sizing: border-box;
+    width: 140px;
+    padding: 34px 19px 29px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px 0 0 10px;
+    background: #fff;
+    transform: translateY(-50%);
+}
+
+#sidebar-wrapper {
+   position: absolute;
+   top: 90px;
+   left: 0;
+   height: 97%;
+   width: 200px;
+   background: #3b5d50;
+   border-left: 1px solid rgba(255, 255, 255, 0.1);
+   text-align: center;
+}
+
+.sidebar-nav {
+   top: 0;
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+.sidebar-nav li.sidebar-nav-item a {
+   display: block;
+   text-decoration: none;
+   color: black;
+   padding-top: 20px;
+   padding-bottom: 20px;
+}
+.sidebar-nav li.sidebar-nav-top a {
+   display: block;
+   text-decoration: none;
+   color: black;
+   padding-top: 40px;
+}
+
+.sidebar-nav li a:hover {
+   text-decoration: none;
+   color: lightgray;
+   background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+   text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+   font-size: 1.2rem;
+   background: rgba(52, 58, 64, 0.1);
+   height: 80px;
+   line-height: 50px;
+   padding-top: 15px;
+   padding-bottom: 15px;
+   padding-left: 15px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+   text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+   color: lightgray;
+   background: none;
+}
+.sidebar-nav-top{
+   text-align: center;
+}
+
+#comapny-div{
+   width: 500px;
+}
+
+#comapny-div h4{
+   border-bottom: solid 2px;
+   padding-bottom: 10px;
+}
+
+#review{
+   font-size: large;
+   padding-right: 60px;
+}
+#review:hover{
+   font-size: large;
+   font-weight: bold;
+   color: lightgray;
+}
+#qna{
+   font-size: large;
+}
+#qna:hover{
+   font-size: large;
+   font-weight: bold;
+   color: lightgray;
+}
+.review-button1 button{
+   border-radius: 12px;
+}
+.review-button1 button:hover{
+   border-radius: 12px;
+   background-color: lightgray;
+}
+.board-modify{
+   padding: 5px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    width: 50px;
+    border: none;
+    background: lightgray;
+}
+.board-remove{
+   padding: 5px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    width: 50px;
+    border: none;
+    background: lightgray;
+}
+
+</style>
+<article>
+<form action="modifyBoard.do" method="GET" class="getBoard-form">
    <div class="md-prod-page">
       <div class="md-prod-page-in">
          <div class="page-preview">
@@ -127,24 +366,31 @@ th, td {
                   <div class="row gx-4 gx-lg-5 align-items-center">
                      <div class="col-md-6">
 
+                        <div id="top-position"></div>
                         <table>
                            <tr>
                               <td><input type="text" name="bno"
                                  value="${boardInfo.boardNo }" style="display: none;"></td>
                            </tr>
                         </table>
-                        <h4 class="mb-1">${boardInfo.boardTitle }</h4>
+                        <h3 class="mb-1-title">${boardInfo.boardTitle }</h3>
+                        
                         <img class="card-img-top"
                            src="images/${boardInfo.boardThumbnail }" alt="..." />
                      </div>
                      <div class="col-md-6">
                         <h3 class="display-5 fw-bolder">${boardInfo.productName}</h3>
-                        <div class="fs-5 mb-5">
-                           <span>
-                              <fmt:formatNumber value="${boardInfo.price}" pattern="#,###" /></span>
-                        <div class="col-md-6">게시글 내용 : ${boardInfo.boardContent}</div>
-                        <div>
-                           <select>
+                        <div class="fs-5 mb-5" style="width: 600px; height: 230px;">
+                           
+                        <div class="col-md-6-content">${boardInfo.boardContent}</div>
+                        <table>
+                           <tr>
+                              <td class="board-option"><button class="board-modify" type="submit">수정</button>
+                                 <button class="board-remove" type="button" onclick="deleteBoard()">삭제</button></td>
+                           </tr>
+                        </table>
+                        <div class="getBoard-order-add">
+                           <select style="width: 300px; margin-left: 15px;text-align: center; padding: 5px;">
                               <option value="${boardInfo.productNo }">${boardInfo.productName}</option>
                            </select>
                            <span>
@@ -152,21 +398,21 @@ th, td {
                               <input class="order-count" type="text" name="count" title="수량입력" value="1" min="1" max="10" style="width: 35px; text-align: center;">
                               <button type="button" class="order-count-plus">+</button>
                            </span>
+                           <div>
+                              <span class="span-price">
+                                 <fmt:formatNumber value="${boardInfo.price}" pattern="#,###" />원</span>
+                           </div>
                         </div>
                               <button class="addOrder-Btn" type="button">장바구니</button>
                               <a href="#"><button class="addPay-Btn" type="button">구매하기</button></a>
+
+                              
                         </div>
                      </div>
-                     <table>
-                        <tr>
-                           <td><button type="submit">수정</button>
-                              <button type="button" onclick="deleteBoard()">삭제</button> <a
-                              href="addBoardForm.do?cno=${companyNo }"><button
-                                    type="button" id="addBtn">판매 등록</button></a></td>
-                        </tr>
-                     </table>
-                     <!-- 차트 -->
-                     <div id="chart_div"></div>
+                     <c:choose><c:when test="${boardInfo.memberNo}==${mno}">
+                        
+                     </c:when></c:choose>
+                     
                      <img class="card-img-top" src="images/${boardInfo.boardAttach }"
                         alt="..." />
                   </div>
@@ -178,28 +424,59 @@ th, td {
    </div>
 </form>
 <br>
-<div id="comapny-div" style="display: block;">
-   <h4>판매자 정보</h4>
-   <table>
-      <tr>
-         <th>상호</th>
-         <td>${boardInfo.companyName}</td>
-      </tr>
-      <tr>
-         <th>주소</th>
-         <td>${boardInfo.companyAddr}</td>
-      </tr>
-      <tr>
-         <th>연락처</th>
-         <td>${boardInfo.companyPhone}</td>
-      </tr>
-      <tr>
-         <th>사업자등록번호</th>
-         <td>${boardInfo.crn}</td>
-      </tr>
-   </table>
+<div>
+   <c:choose>
+      <c:when test="${grade=='c'}">
+      <nav class="quick-menu" class="active">
+         <ul class="sidebar-nav">
+            <li class="sidebar-nav-item"><a href="#">장바구니</a></li>
+            <li class="sidebar-nav-item"><a href="#">관심상품</a></li>
+            <li class="sidebar-nav-item"><a href="#">주문/배송</a></li>
+            <li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+            <li class="sidebar-nav-top"><a href="#">TOP</a></li>
+         </ul>
+      </nav>
+      </c:when>
+      <c:when test="${grade=='s'}">
+      <nav class="quick-menu" class="active">
+         <ul class="sidebar-nav">
+            <li class="sidebar-nav-item"><a href="addBoardForm.do?cno=${companyNo }">판매등록</a></li>
+            <li class="sidebar-nav-item"><a href="#">목록/관리</a></li>
+            <li class="sidebar-nav-item"><a href="#">주문/배송</a></li>
+            <li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+            <li class="sidebar-nav-top"><a href="#top-position">TOP</a></li>
+         </ul>
+      </nav>
+      </c:when>
+   </c:choose>
+
 </div>
+</div>
+<!-- 차트 -->
+<div id="chart_div"></div>
+   <div id="comapny-div" style="display: block;width: 800px;padding-left: 50px;">
+      <h4>판매자 정보</h4>
+      <table>
+         <tr>
+            <th>상호</th>
+            <td>${boardInfo.companyName}</td>
+         </tr>
+         <tr>
+            <th>주소</th>
+            <td>${boardInfo.companyAddr}</td>
+         </tr>
+         <tr>
+            <th>연락처</th>
+            <td>${boardInfo.companyPhone}</td>
+         </tr>
+         <tr>
+            <th>사업자등록번호</th>
+            <td>${boardInfo.crn}</td>
+         </tr>
+      </table>
+   
 <hr>
+<div id="tab-wrap">
 <ul>
    <li id="review">상품후기</li>
    <li id="qna">문의내역</li>
@@ -208,7 +485,7 @@ th, td {
 <ul id="rtd">
 </ul>
 <div id="top"></div>
-<div id="qna-table" style="display: none;">
+<div id="qna-table" style="width: 800px;display: none;padding-left: 50px;">
 <button type="button" id="qnaBtn">문의 등록</button>
 <table>
    <thead>
@@ -236,8 +513,8 @@ th, td {
          	<tr>
          	<td></td>
          	<td></td>
-         	<td><button>수정</button></td>
-            <td><button>삭제</button></td>
+         	<td class="review-button1"><button>수정</button></td>
+            <tdclass="review-button2"><button>삭제</button></td>
             </tr>
          </c:if>
          <tr class="qnaAnswer" style="display: none;">
@@ -256,7 +533,8 @@ th, td {
 </table>
 </div>
 <div id="qna-div"></div>
-
+</div>
+</article>
 <script>
 //차트
 google.charts.load('current', {packages: ['corechart', 'bar']});

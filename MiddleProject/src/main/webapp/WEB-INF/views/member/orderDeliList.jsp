@@ -14,20 +14,18 @@ height:
 100%
 }
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
-	background: #3b5d50;
-	border-left: 1px solid rgba(255, 255, 255, 0.1);
-	text-align: center;
+	position: absolute;
+    top: 90px;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background: #3b5d50;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -97,7 +95,12 @@ height:
 	background-color: #ddd;
 }
 
-
+.mycontainer{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-left: 250px;
+    margin-right: auto;
+}
 
 
 
@@ -114,7 +117,7 @@ height:
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:when>

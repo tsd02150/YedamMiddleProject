@@ -19,7 +19,7 @@
 	<br>
 	<br>
 	<br>
-	<h3 align="center">테마기획전</h3>
+	<h3 align="center" style="font-family:math"> "THEME INTERIOR EXHIBITION"</h3>
 	<br>
 	<br>
 	<br>
