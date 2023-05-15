@@ -14,13 +14,24 @@ width
 height:
 100%
 }
+article {
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 200px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
+	position: absolute;
+	top: 90px;
+	left: 0;
+	height: 97%;
+	width: 200px;
 	background: #3b5d50;
 	border-left: 1px solid rgba(255, 255, 255, 0.1);
 	text-align: center;
@@ -28,7 +39,6 @@ height:
 
 .sidebar-nav {
 	top: 0;
-	width: 150px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -70,10 +80,47 @@ height:
 	color: #fff;
 	background: none;
 }
+
+.kind-of-selector a {
+	text-decoration: none;
+	padding: 20px;
+	font-size: large;
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+.center {
+	text-align: center;
+	font-weight: bold;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 12px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #3b5d50;
+	color: white;
+	border: 1px solid #3b5d50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
 </style>
-<table>
-<tr><td>
-<div style="display:block; width: 150px;">
+<article>
+<div style="display:block; ">
 <form action="categoryBoard.do" method="get" style="width: 150px;">
 <nav id="sidebar-wrapper" class="active" style="display:inline-block;">
 	<ul id="ul" class="sidebar-nav">
@@ -84,19 +131,22 @@ height:
 </nav>
 </form>
 </div>
-</td><td>
+
+<c:choose>
+<c:when test="${id !=null }">
+	<div class="terms-conditions product-page">
+		<c:if test="${grade=='s'}">
+		<ul style="padding-left: 50px; padding-top: 50px; list-style:none">
+		<li><h3 style="font-weight:bold">가격 검색 조건 > <span id="min-price"></span>원 ~ <span id="max-price"></span>원</h3></li>
+		<li><p style="display:none;">page: <span id="page"></span></p></li>
+			</ul>
+		</c:if>
+		</div>
+	</c:when>
+</c:choose>
 <div class="untree_co-section product-section before-footer-section" style="width:1200px;display:inline-block">
 	<div class="container">
 		<div class="row">
-<c:choose><c:when test="${id !=null }">
-<div class="terms-conditions product-page">
-	  <c:if test="${grade == 's' }">
-		 <p><a href="addProductForm.do">상품 등록 </a></p>
-		 <p><a href="productList.do">상품 리스트 </a></p>
-		 <p><a href="addBoardForm.do?cno=${companyNo}">판매 등록</a></p>
-	 </c:if>
-</div>
-</c:when></c:choose>
   
 <!-- Start Column 1 -->
 <table>
@@ -115,27 +165,54 @@ height:
 </table>
 <!-- End Column 1 -->
 <div class="center">
-		<div class="pagination">
-			<c:if test="${pageInfo.prev}">
-				<a href="searchPrice.do?page=${pageInfo.startPage-1 }">Prev</a>
-			</c:if>
-			<c:forEach var="i" begin="${pageInfo.startPage }"
-				end="${pageInfo.endPage }">
-				<a href="searchPrice.do?page=${i }"
-					class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
-			</c:forEach>
-			<c:if test="${pageInfo.next}">
-				<a href="searchPrice.do?page=${pageInfo.endPage+1 }">Next</a>
-			</c:if>
-		</div>
+	<div class="pagination">
+	  <c:if test="${pageInfo.prev}">
+	    <a href="searchPrice.do?minPrice=${param.minPrice}&amp;maxPrice=${param.maxPrice}&amp;page=${pageInfo.startPage-1}">Prev</a>
+	  </c:if>
+	  <c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+	    <a href="searchPrice.do?minPrice=${param.minPrice}&amp;maxPrice=${param.maxPrice}&amp;page=${i}"
+	      class="${i==pageInfo.pageNum?'active':'' }">${i}</a>
+	  </c:forEach>
+	  <c:if test="${pageInfo.next}">
+	    <a href="searchPrice.do?minPrice=${param.minPrice}&amp;maxPrice=${param.maxPrice}&amp;page=${pageInfo.endPage+1}">Next</a>
+	  </c:if>
 	</div>
+</div>
 
 		</div>
 	</div>
 </div>
-</td></tr>
-</table>
+</article>
 <hr>
 <hr>
 <script>
+console.log('${minPirce}');
+console.log('${maxPirce}');
+function numberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function searchParams() {
+    let params = new URLSearchParams(window.location.search);
+    let minPrice = params.get('minPrice');
+    let maxPrice = params.get('maxPrice');
+    let page = params.get('page');
+    let minPriceElem = document.getElementById('min-price');
+    let maxPriceElem = document.getElementById('max-price');
+    let pageElem = document.getElementById('page');
+    if (minPrice) {
+        minPriceElem.textContent = numberWithCommas(minPrice);
+    }
+    if (maxPrice) {
+        maxPriceElem.textContent = numberWithCommas(maxPrice);
+    }
+    if (page) {
+        pageElem.textContent = page;
+    }
+}
+
+window.onload = function() {
+    searchParams();
+};
+
 </script>

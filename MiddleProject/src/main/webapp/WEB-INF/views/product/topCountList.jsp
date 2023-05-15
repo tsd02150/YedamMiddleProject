@@ -32,17 +32,80 @@ width
 height:
 100%
 }
-
 article {
-   caption-side: bottom;
-   border-collapse: collapse;
-   position: revert;
-   padding-left: 250px;
-   padding-right: 50px;
-   padding-top: 10px;
-   width: 100%;
-   display: inline-block;
-   margin: 0 auto;
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 200px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#sidebar-wrapper {
+	position: absolute;
+	top: 90px;
+	left: 0;
+	height: 97%;
+	width: 200px;
+	background: #3b5d50;
+	border-left: 1px solid rgba(255, 255, 255, 0.1);
+	text-align: center;
+}
+
+.sidebar-nav {
+	top: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar-nav li.sidebar-nav-item a {
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	padding: 15px;
+}
+
+.sidebar-nav li a:hover {
+	text-decoration: none;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+	text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+	font-size: 1.2rem;
+	background: rgba(52, 58, 64, 0.1);
+	height: 80px;
+	line-height: 50px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+	color: #fff;
+	background: none;
+}
+
+.kind-of-selector a {
+	text-decoration: none;
+	padding: 20px;
+	font-size: large;
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-top: 20px;
 }
 
 .center {
@@ -74,61 +137,6 @@ article {
 	background-color: #ddd;
 }
 
-#sidebar-wrapper {
-   position: absolute;
-   top: 90px;
-   left: 0;
-   height: 97%;
-   width: 200px;
-   background: #3b5d50;
-   border-left: 1px solid rgba(255, 255, 255, 0.1);
-   text-align: center;
-}
-
-.sidebar-nav {
-   top: 0;
-   margin: 0;
-   padding: 0;
-   list-style: none;
-}
-
-.sidebar-nav li.sidebar-nav-item a {
-   display: block;
-   text-decoration: none;
-   color: #fff;
-   padding: 15px;
-}
-
-.sidebar-nav li a:hover {
-   text-decoration: none;
-   color: #fff;
-   background: rgba(255, 255, 255, 0.2);
-}
-
-.sidebar-nav li a:active, .sidebar-nav li a:focus {
-   text-decoration: none;
-}
-
-.sidebar-nav>.sidebar-brand {
-   font-size: 1.2rem;
-   background: rgba(52, 58, 64, 0.1);
-   height: 80px;
-   line-height: 50px;
-   padding-top: 15px;
-   padding-bottom: 15px;
-   padding-left: 15px;
-}
-
-.sidebar-nav>.sidebar-brand a {
-   color: #fff;
-   text-decoration: none;
-}
-
-.sidebar-nav>.sidebar-brand a:hover {
-   color: #fff;
-   background: none;
-}
-
 </style>
 <article>
 <div style="display: block;">
@@ -140,37 +148,32 @@ article {
 			</c:forEach>
 		</ul>
 	</nav>
-	<br><br><br>
-	
-	<div class="untree_co-section product-section before-footer-section"
-		style="width: 1200px; display: inline-block">
+	<c:choose>
+		<c:when test="${id !=null }">
+			<div class="terms-conditions product-page">
+			<c:if test="${grade=='s'}">
+			<ul style="padding-left: 50px; padding-top: 50px; list-style:none">
+			<li><h2 style="font-weight:bold">내일의 집 상품입니다.</h2></li>
+			<li>
+				<a href="addProductForm.do">>판매자 상품등록</a></li>
+				<li><a href="addBoardForm.do?cno=${companyNo}">>상품 판매등록</a></li>
+				</ul>
+			</c:if>
+			</div>
+		</c:when>
+	</c:choose>
+	<div class="untree_co-section product-section before-footer-section" style="width: 1200px; display: inline-block">
 		<div class="container">
+		<div class="search-by-price" style="text-align: left; padding-top: 0">
+			<p>
+				<div class="kind-of-selector"><a href="highPriceList.do">높은 가격순</a> <a href="lowPriceList.do">낮은
+					가격순</a> <a href="topCountList.do">매출순</a></div>
+			</p>
+		</div>
+			<br><br>
 			<div class="row">
-				<c:choose>
-					<c:when test="${id !=null }">
-						<div class="terms-conditions product-page">
-							${id } ${grade }
-							<c:if test="${grade=='s'}">
-								<p>
-									<a href="addProductForm.do">상품 등록 </a>
-								</p>
-								<p>
-									<a href="productList.do">상품 리스트 </a>
-								</p>
-								<p>
-									<a href="addBoardForm.do?cno=${companyNo}">판매 등록</a>
-								</p>
-							</c:if>
-						</div>
-					</c:when>
-				</c:choose>
 			<table>
-				<!-- Start Column 1 -->
-				<div class="kind-of-selector">
-					<a href="highPriceList.do">높은가격순</a>
-					<a href="lowPriceList.do">낮은가격순</a>
-					<a href="topCountList.do">매출순</a>
-				</div>
+				<tr>
 				<c:forEach var="board" items="${topCountList }">
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
 						<a class="product-item"
@@ -184,7 +187,8 @@ article {
 								class="img-fluid">
 						</span> </a>
 					</div>
-				</c:forEach>
+					</c:forEach>
+				</tr>
 			</table>
 				<!-- End Column 1 -->
 

@@ -383,12 +383,12 @@ article {
                         <div class="fs-5 mb-5" style="width: 600px; height: 230px;">
                            
                         <div class="col-md-6-content">${boardInfo.boardContent}</div>
-                        <table>
-                           <tr>
-                              <td class="board-option"><button class="board-modify" type="submit">수정</button>
-                                 <button class="board-remove" type="button" onclick="deleteBoard()">삭제</button></td>
-                           </tr>
-                        </table>
+                          <c:choose>
+		                     <c:when test="${boardInfo.memberNo eq mno}">
+		                        <button class="board-modify" type="submit">수정</button>
+		                        <button class="board-remove" type="button" onclick="deleteBoard()">삭제</button>
+		                     </c:when>
+		                  </c:choose>
                         <div class="getBoard-order-add">
                            <select style="width: 300px; margin-left: 15px;text-align: center; padding: 5px;">
                               <option value="${boardInfo.productNo }">${boardInfo.productName}</option>
@@ -409,10 +409,6 @@ article {
                               
                         </div>
                      </div>
-                     <c:choose><c:when test="${boardInfo.memberNo}==${mno}">
-                        
-                     </c:when></c:choose>
-                     
                      <img class="card-img-top" src="images/${boardInfo.boardAttach }"
                         alt="..." />
                   </div>
