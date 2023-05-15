@@ -96,6 +96,8 @@ public interface ProductService {
 	boolean addOrder(BoardVO vo);
 
 	boolean addOrderDetail(BoardVO vo);
+	
+	boolean completeOrder(int orderNo);
 
 	BoardVO searchMyorder(int memberNo);
 

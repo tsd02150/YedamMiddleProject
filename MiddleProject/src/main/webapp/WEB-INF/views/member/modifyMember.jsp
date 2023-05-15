@@ -68,7 +68,7 @@ height:
 }
 .myform {
 	display:flex;
-	width:100%;
+	padding-left: 300px;
 
 }
 .myform button{
@@ -77,14 +77,19 @@ height:
     margin-left: 450px;
 	
 }
+.MDbtn {
+border-radius: 17px;
+
+}
 .myform table{
     margin-left: 150px;
 	
 }
 .mycontainer{
-        margin-left: 600px;
     margin-top: 20px;
     margin-bottom: 100px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .mycontainer tr {
 }
@@ -230,8 +235,8 @@ height:
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<button type="submit" onClick="location.href='myPage.do'">저장</button>
-				<button type="button" onClick="location.href='myPage.do'">취소</button>
+				<button class="MDbtn" type="submit" onClick="location.href='myPage.do'">저장</button>
+				<button class="MDbtn" type="button" onClick="location.href='myPage.do'">취소</button>
 		</tr>
 	</table>
 </form>

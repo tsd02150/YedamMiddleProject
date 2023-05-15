@@ -13,6 +13,19 @@ width
 height:
 100%
 }
+
+article {
+	caption-side: bottom;
+	border-collapse: collapse;
+	position: revert;
+	padding-left: 250px;
+	padding-right: 50px;
+	padding-top: 10px;
+	width: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
 #sidebar-wrapper {
 	position: absolute;
     top: 90px;
@@ -22,6 +35,7 @@ height:
     background: #3b5d50;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
+
 }
 
 .sidebar-nav {
@@ -67,8 +81,11 @@ height:
 	color: #fff;
 	background: none;
 }
+
+
 .center {
 	text-align: center;
+	font-weight: bold;
 }
 
 .pagination {
@@ -78,7 +95,7 @@ height:
 .pagination a {
 	color: black;
 	float: left;
-	padding: 8px 16px;
+	padding: 8px 12px;
 	text-decoration: none;
 	transition: background-color .3s;
 	border: 1px solid #ddd;
@@ -86,19 +103,14 @@ height:
 }
 
 .pagination a.active {
-	background-color: #4CAF50;
+	background-color: #3b5d50;
 	color: white;
-	border: 1px solid #4CAF50;
+	border: 1px solid #3b5d50;
 }
 
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
-
-
-
-
-
 </style>
 <table class="mycontainer">
 <tr>

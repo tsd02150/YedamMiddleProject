@@ -233,7 +233,7 @@
 	</select>
 	<select id="searchMyorder" resultType="board">
 		select * from orders where
-		member_no=#{memberNo}
+		member_no=#{memberNo} and complete='r'
 	</select>
 	<insert id="insertOrder" parameterType="board">
 		<selectKey keyProperty="orderNo" resultType="int"
@@ -249,6 +249,9 @@
 		order_detail(order_detail_no, order_count, order_no, product_no)
 		values(orderdetail.nextval, #{orderCount}, #{orderNo}, #{productNo})
 	</insert>
+	<update id="completeOrder" parameterType="int">
+		update orders set complete='c' where order_no=#{orderNo}
+	</update>
 
 
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->

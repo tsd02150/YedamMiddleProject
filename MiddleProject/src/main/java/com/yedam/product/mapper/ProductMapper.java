@@ -62,6 +62,8 @@ public interface ProductMapper {
 	public List<BoardVO> getOrderList(int memberNo);
 
 	public BoardVO searchMyorder(int memberNo);
+	
+	public int completeOrder(int orderNo);
 
 	// 카테고리별
 	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page);

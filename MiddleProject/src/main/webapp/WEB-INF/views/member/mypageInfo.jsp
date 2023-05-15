@@ -69,21 +69,20 @@ height:
 
 .myform {
 	display:flex;
-	padding-left: 300px;
 }
 .myform button{
 	margin-left: 110px;
     margin-top: 15px;
-	
+	border-radius: 17px;
 }
 .myform table{
 	width:300px !important;
 }
 .mycontainer{
-	width: 100%;
     margin-top: 120px;
     margin-bottom: 100px;
-    
+    margin-left: auto;
+    margin-right: auto;
 }
 .mycontainer tr {
 }
