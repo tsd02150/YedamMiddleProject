@@ -98,14 +98,13 @@ height:
 .mycontainer{
 	width: 100%;
     margin-top: 10px;
-    margin-bottom: 100px;
     
 }
 .table2 {
     width: 70%;
     margin-left: AUTO;
     margin-right: auto;
-
+	border-bottom:1px solid lightgray;
 }
 .thead2 {
 
@@ -116,6 +115,15 @@ height:
 .thead2 tr td {
 
 }
+.table3 {
+	border-top: 1px solid lightgray;
+	
+}
+.toto {
+	margin-left: 72%;
+}
+
+
 </style>
 <table class="mycontainer">
 <tr>
@@ -163,7 +171,7 @@ height:
 	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="sales" items="${sales}">
 	<c:if test="${sales.deliveryState =='s'}">
-		<tr class="table">
+		<tr class="table3">
 			<td>${sales.orderNo}</td>
 			<td><fmt:formatDate value="${sales.orderDate}" pattern="yyyy-MM-dd"/></td>
 			<td><img width="70px" src="images/${sales.boardThumbnail}"></td>
@@ -180,14 +188,14 @@ height:
 		</tr>
 	</c:if>
 	</c:forEach>
-	<tr><td>월 매출 : ${totalPrice}</td></tr>
-	
+
 	
 </table>
+
 </td>
 </tr>
 </table>
-
+<span class="toto">월 매출 : ${totalPrice}</span>
 <script>
 
 </script>

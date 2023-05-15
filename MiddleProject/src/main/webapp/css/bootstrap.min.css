@@ -350,27 +350,12 @@ th {
   text-align: -webkit-match-parent
 }
 
-tbody{
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0
-}
-td{
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0
-}
-tfoot{
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0
-}
-th{
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0
-}
-thead{
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
   border-color: inherit;
   border-style: solid;
   border-width: 0
@@ -689,6 +674,7 @@ progress {
   padding-right: var(--bs-gutter-x, .75rem);
   padding-left: var(--bs-gutter-x, .75rem);
   margin-right: auto;
+  margin-left: auto
 }
 
 @media (min-width:576px) {
@@ -737,7 +723,7 @@ progress {
   .container-sm,
   .container-xl,
   .container-xxl {
-    max-width: 1320px
+    max-width: 95%
   }
 }
 
@@ -2069,8 +2055,8 @@ progress {
   vertical-align: bottom
 }
 
-.table>* {
-  border-top: 0.5px solid lightgray
+.table>:not {
+  border-bottom: 1px solid lightgray
 }
 
 .caption-top {

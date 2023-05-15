@@ -79,7 +79,7 @@ height:
 }
 .MDbtn {
 border-radius: 17px;
-
+border-color:lightgray;
 }
 .myform table{
     margin-left: 150px;

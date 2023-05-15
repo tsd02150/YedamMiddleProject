@@ -74,6 +74,7 @@ height:
 	margin-left: 110px;
     margin-top: 15px;
 	border-radius: 17px;
+	border-color:lightgray;
 }
 .myform table{
 	width:300px !important;

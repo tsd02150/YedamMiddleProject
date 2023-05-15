@@ -111,6 +111,23 @@ article {
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
+
+.mycontainer{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+.vid {
+	vertical-align:middle;
+    text-align: left;
+    border-bottom: 1px solid lightgray;
+}
+.tdid{
+	border-bottom: 1px solid lightgray;
+}
+
 </style>
 <table class="mycontainer">
 <tr>
@@ -124,7 +141,7 @@ article {
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:when>
@@ -143,17 +160,25 @@ article {
 </td>
 <td>
 <table class="table">
+	<tr class="tdid">
+	<td>제품번호</td>
+	<td></td>
+	<td>제품명</td>
+	<td>주문 수량</td>
+	<td>주문 날짜</td>
+	<td>배송 상태</td>
+	
+	</tr>
 	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="delivery" items="${list}">
 		<c:if test ="${delivery.deliveryState == 'r' || delivery.deliveryState == 'd' || delivery.deliveryState == 's'}">
-		<tr>
-			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td><!-- <a href="getNotice.do?page=${pageInfo.pageNum }&nNo=${notice.noticeNo}">--><a>품번 : ${delivery.productNo}</a></td>
-			<td><img width="70px" src="images/${delivery.boardThumbnail}"></td>
-			<td>제품명 : ${delivery.productName}</td>
-			<td>주문 수량 : ${delivery.orderCount}</td>
-			<td>주문 날짜 : <fmt:formatDate value="${delivery.orderDate}" pattern="yyyy-MM-dd"/></td>
-			<td>배송상태 : <c:choose>
+		<tr class="vid">
+			<td>${delivery.productNo}</td>
+			<td><a href="getBoard.do?bno=${delivery.boardNo}"><img width="70px"  src="images/${delivery.boardThumbnail}"></a></td>
+			<td>${delivery.productName}</td>
+			<td>${delivery.orderCount}</td>
+			<td><fmt:formatDate value="${delivery.orderDate}" pattern="yyyy-MM-dd"/></td>
+			<td><c:choose>
 				<c:when test ="${delivery.deliveryState == 'r'}">
 					상품 준비중
 				</c:when>

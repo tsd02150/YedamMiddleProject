@@ -94,7 +94,12 @@ height:
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
-
+.mycontainer{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-left: 250px;
+    margin-right: auto;
+}
 
 
 

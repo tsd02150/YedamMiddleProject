@@ -95,7 +95,12 @@ height:
 	background-color: #ddd;
 }
 
-
+.mycontainer{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-left: 250px;
+    margin-right: auto;
+}
 
 
 
@@ -112,7 +117,7 @@ height:
 		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
 		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
 	</ul>
 </nav>
 </c:when>

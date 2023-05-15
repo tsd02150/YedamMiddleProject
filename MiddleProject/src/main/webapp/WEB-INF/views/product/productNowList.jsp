@@ -116,6 +116,15 @@ table{
 .table2 tr td{
 	padding:10px;
 }
+#delbtn {
+	    border-radius: 13px;
+	    border-color:lightgray;
+}
+.table2 tr{
+	border-bottom : 1px solid lightgray;
+}
+
+
 </style>
 <table class="mycontainer">
 <tr>
