@@ -203,6 +203,15 @@
 	<select id="getCount" resultType="int">
 		select count(*) from product
 	</select>
+	
+	<select id="getHotDealCount" resultType="int">
+	<![CDATA[
+		select count(*) from board join product
+		using(product_no)
+        where product_count<4
+		order by 1
+	]]>
+	</select>
 
 
 	<insert id="insertBoard" parameterType="board">
@@ -251,6 +260,9 @@
 	</insert>
 	<update id="completeOrder" parameterType="int">
 		update orders set complete='c' where order_no=#{orderNo}
+	</update>
+	<update id="downProductCount" parameterType="product">
+		update product set product_count=product_count-#{productCount} where product_no=#{productNo}
 	</update>
 
 
@@ -380,5 +392,16 @@
 		GROUP BY gender
 	</select>
 
-
+	<select id="hotDealList" resultType="board" parameterType="int">
+	<![CDATA[ 
+		select b.*
+    	from (select rownum rn, a.*
+        		from (select * from board join product
+					using(product_no)
+        			where product_count<4
+					order by 1) a
+        		where rownum <= #{page} * 12 ) b
+   		 where b.rn > (#{page} - 1) * 12	
+	]]>
+	</select>
 </mapper>

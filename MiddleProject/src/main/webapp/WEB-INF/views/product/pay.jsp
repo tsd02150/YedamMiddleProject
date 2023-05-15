@@ -20,6 +20,7 @@
 					<td>${myCart.productName }</td>
 					<td>${myCart.price } <span>원</span></td>
 					<td>${myCart.orderCount } <span>개</span></td>
+					<td style="display:none;">${myCart.productNo }</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -58,11 +59,24 @@
     		alert("약관에 동의해 주십시오.");
     		return;
     	}
+    	let myCartList = document.querySelectorAll('.myCart');
     	fetch("completeOrder.do?orderNo=${myCartList[0].orderNo }")
     	.then(resolve=>resolve.json())
     	.then(result=>{
     		if(result.retcode=='Success'){
-    			console.log("주문 성공");
+    			myCartList.forEach(myCart=>{
+    				fetch("downProductCount.do?productNo="+myCart.children[4].innerText+"&productCount="+myCart.children[3].innerText)
+    				.then(resolve=>resolve.json())
+    				.then(result=>{
+    					if(result.retcode=="Success"){
+			    			console.log("제품 개수 조절 성공");
+    					}else{
+			    			console.log("제품 개수 조절 실패");    						
+    					}
+    				})
+    				.catch(err=>console.log(err));
+    				
+    			})
     		}else{
     			console.log("주문 실패");    			
     		}
