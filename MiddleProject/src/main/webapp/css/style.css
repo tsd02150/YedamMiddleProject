@@ -44,6 +44,8 @@ a.more {
 	background: #3b5d50 !important;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	position: absolute;
+    width: 100%;
 }
 
 .custom-navbar .navbar-brand {
@@ -771,13 +773,11 @@ a.more {
 }
 
 .footer-section {
-	padding: 80px 0;
 	background: #eff2f1;
+    position: absolute;
+    width: 100%;
 }
 
-.footer-section .relative {
-	position: relative;
-}
 
 .footer-section a {
 	text-decoration: none;
