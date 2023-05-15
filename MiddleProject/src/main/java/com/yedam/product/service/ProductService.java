@@ -98,7 +98,9 @@ public interface ProductService {
 	boolean addOrderDetail(BoardVO vo);
 	
 	boolean completeOrder(int orderNo);
-
+	
+	boolean downProductCount(ProductVO vo);
+	
 	BoardVO searchMyorder(int memberNo);
 
 	List<ProductVO> productInfo2(String id);
@@ -107,5 +109,8 @@ public interface ProductService {
 
 	public List<BoardVO> searchPrice(@Param("minPrice") int minPrice, @Param("maxPrice") int maxPrice,
 			@Param("page") int page);
+	
+	public List<BoardVO> hotDealList(int page);
+	public int getHotDealCount();
 
 }
