@@ -63,6 +63,7 @@ import com.yedam.member.control.SearchIdControl;
 import com.yedam.member.control.SearchPwControl;
 import com.yedam.product.control.AddBoardControl;
 import com.yedam.product.control.AddBoardFormControl;
+import com.yedam.product.control.AddPayControl;
 import com.yedam.product.control.AddProductControl;
 import com.yedam.product.control.AddProductFormControl;
 import com.yedam.product.control.AddQnaControl;
@@ -71,6 +72,7 @@ import com.yedam.product.control.AddReviewControl;
 import com.yedam.product.control.AddReviewFormControl;
 import com.yedam.product.control.BoardListControl;
 import com.yedam.product.control.CategoryBoardControl;
+import com.yedam.product.control.CompleteOrderControl;
 import com.yedam.product.control.CtgJoin;
 import com.yedam.product.control.CtgMain;
 import com.yedam.product.control.CtgProd;
@@ -96,8 +98,11 @@ import com.yedam.product.control.SearchProductNameControl;
 import com.yedam.product.control.ThemeControl;
 import com.yedam.product.control.ThemeListControl;
 import com.yedam.product.control.TopCountList;
+import com.yedam.product.control.addOrderControl;
+import com.yedam.product.control.addOrderDetilControl;
 import com.yedam.product.control.chartDataControl;
 import com.yedam.product.control.getBoardControl;
+import com.yedam.product.control.myOrderListControl;
 import com.yedam.product.control.SearchBoardFromNameControl;
 
 public class FrontControl extends HttpServlet {
@@ -252,6 +257,12 @@ public class FrontControl extends HttpServlet {
 		//장바구니
 		map.put("/myCart.do", new MyCartControl());
 		map.put("/updateCart.do", new UpdateCartControl());
+		// 장바구니 담기
+		map.put("/addOrderDetail.do", new addOrderDetilControl());
+		map.put("/addOrder.do", new addOrderControl());
+		map.put("/addPay.do", new AddPayControl());
+		map.put("/myOrderList.do", new myOrderListControl());		
+		map.put("/completeOrder.do", new CompleteOrderControl());
 		
 		//qna수정
 		map.put("/updateQna.do", new UpdateQnaControl());

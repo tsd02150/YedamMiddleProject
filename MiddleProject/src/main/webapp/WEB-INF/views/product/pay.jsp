@@ -58,6 +58,16 @@
     		alert("약관에 동의해 주십시오.");
     		return;
     	}
+    	fetch("completeOrder.do?orderNo=${myCartList[0].orderNo }")
+    	.then(resolve=>resolve.json())
+    	.then(result=>{
+    		if(result.retcode=='Success'){
+    			console.log("주문 성공");
+    		}else{
+    			console.log("주문 실패");    			
+    		}
+    	})
+    	.catch(err=>console.log(err));
       paymentWidget.requestPayment({
         orderId: "u0XHU8mFoZkItvhSh697l",            // 주문 ID(직접 만들어주세요)
         orderName: '${productName}',                 // 주문명

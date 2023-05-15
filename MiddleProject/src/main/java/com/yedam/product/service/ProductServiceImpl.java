@@ -195,6 +195,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public boolean completeOrder(int orderNo) {
+		return mapper.completeOrder(orderNo)>0;
+	}
+
+	@Override
 	public List<BoardVO> getOrderList(int memberNo) {
 		return mapper.getOrderList(memberNo);
 	}
