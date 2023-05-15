@@ -55,7 +55,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="3">
+		<td colspan="3" style="padding-top:250px;">
 			<tiles:insertAttribute name="footer" />
 		</td>
 	</tr>
