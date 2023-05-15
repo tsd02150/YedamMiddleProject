@@ -14,14 +14,14 @@ public class PageDTO {
 
 	public PageDTO(int pageNum, int total) {
 		this.pageNum = pageNum;
-		this.endPage = (int) Math.ceil(this.pageNum / 10.0) * 10;
+		this.endPage = (int) Math.ceil(this.pageNum / 12.0) * 10;
 		this.startPage = this.endPage - 9;
 
-		int realEnd = (int) (Math.ceil(total / 10.0));
+		int realEnd = (int) (Math.ceil(total / 12.0));
 		this.endPage = realEnd < this.endPage ? realEnd : this.endPage;
 
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
-		
+
 	}
 }

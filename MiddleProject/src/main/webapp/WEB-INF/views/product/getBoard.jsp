@@ -629,7 +629,7 @@ function fetchData() {
          alert('구매하기 성공');
       })
    })
-   
-	
+
+}
 
 </script>
