@@ -4,7 +4,14 @@
  #container{
   text-align: center;
   justify-content: center;
+	width: 1600px;
+  margin: 20px;
  }
+
+ #container tr{
+	margin: 20px;
+ }
+
  .button {
   border: none;
   color: white;
@@ -23,81 +30,81 @@
 
 <div id="container">
 
-<form action="addProduct.do" method="post" name="addform">
-	 <!-- Add Product -->
-    <div class="w3-row-padding">
-      <div class="w3-col s4">
-        <h4>상품 등록</h4>
-     	 <table style="margin-left:auto;margin-right:auto;">
-	      	<tr>
-	      	<th>상품 이름</th>
-	      	<td><input class="w3-input w3-border" type="text" placeholder="제품이름" name="pname" required></td>
-	      	</tr>
-	      	<tr>
-	      	<th>가격</th>
-	      	<td><input class="w3-input w3-border" type="text" placeholder="가격" name="price" required></td>
-	      	</tr>
-	      	<tr>
-	      	<th>수량</th>
-	      	<td><input class="w3-input w3-border" type="text" placeholder="수량" name="pcount" required></td>
-	      	</tr>
-	      	<tr>
-	      	<th>subcategory</th>
-	      	<td><input type="radio" id="bed" checked name="subNo" value="1">
-			  <label for="bed">침대</label>
-			  <input type="radio" id="sofa" name="subNo" value="2">
-			  <label for="sofa">소파</label>
-			  <input type="radio" id="chair" name="subNo" value="3">
-			  <label for="chair">의자</label>
-			  <input type="radio" id="chair" name="subNo" value="4">
-			  <label for="desk">책상</label><br>
-			  <input type="radio" id="chair" name="subNo" value="5">
-			  <label for="closet">옷장</label>
-			  <input type="radio" id="chair" name="subNo" value="6">
-			  <label for="storage">수납장</label>
-			  <input type="radio" id="chair" name="subNo" value="7">
-			  <label for="dressing">화장대</label>
-			  <input type="radio" id="chair" name="subNo" value="8">
-			  <label for="table">식탁</label><br>
-			  <input type="radio" id="chair" name="subNo" value="9">
-			  <label for="light">조명</label>
-			  <input type="radio" id="chair" name="subNo" value="10">
-			  <label for="curtain">커튼</label>
-			  <input type="radio" id="chair" name="subNo" value="11">
-			  <label for="clock">시계</label>
-			  <input type="radio" id="chair" name="subNo" value="12">
-			  <label for="etc">소품</label>
-			</td>
-	      	</tr>
-	      	<tr>
-	      	<th>theme</th>
-	      	<td>
-			  <input type="radio" id="chair" checked name="tno" value="1">
-			  <label for="modern">modern</label>
-			  <input type="radio" id="chair" name="tno" value="2">
-			  <label for="natural">natural</label>
-			  <input type="radio" id="chair" name="tno" value="3">
-			  <label for="noreurope">noreurope</label><br>
-			  <input type="radio" id="chair" name="tno" value="4">
-			  <label for="classic">classic</label>
-			  <input type="radio" id="chair" name="tno" value="5">
-			  <label for="romantic">romantic</label>
-			  <input type="radio" id="chair" name="tno" value="6">
-			  <label for="vintage">vintage</label>
-			</td>
-			</tr>
-	        <tr><td>${id}</td></tr>
-	        <tr><td><input name="companyNo" value="${companyNo}"></td></tr>
-	      	<tr>
-	        	<td>
-		          <button type="submit" class="button button1">등록</button>
-		          <button type="reset" class="button button2">취소</button>
-	         	</td>
-	        </tr>
-   		 </table>
-   	  </div>
-    </div>
-</form>
+	<form action="addProduct.do" method="post" name="addform">
+		<!-- Add Product -->
+			<div class="w3-row-padding">
+				<div class="w3-col s4">
+					<h4>상품 등록</h4>
+				<table style="margin-left:auto;margin-right:auto;">
+						<tr>
+						<th>상품 이름</th>
+						<td><input class="w3-input w3-border" type="text" placeholder="제품이름" name="pname" required></td>
+						</tr>
+						<tr>
+						<th>가격</th>
+						<td><input class="w3-input w3-border" type="text" placeholder="가격" name="price" required></td>
+						</tr>
+						<tr>
+						<th>수량</th>
+						<td><input class="w3-input w3-border" type="text" placeholder="수량" name="pcount" required></td>
+						</tr>
+						<tr>
+						<th>subcategory</th>
+						<td><input type="radio" id="bed" checked name="subNo" value="1">
+				  <label for="bed">침대</label>
+				  <input type="radio" id="sofa" name="subNo" value="2">
+				  <label for="sofa">소파</label>
+				  <input type="radio" id="chair" name="subNo" value="3">
+				  <label for="chair">의자</label>
+				  <input type="radio" id="chair" name="subNo" value="4">
+				  <label for="desk">책상</label><br>
+				  <input type="radio" id="chair" name="subNo" value="5">
+				  <label for="closet">옷장</label>
+				  <input type="radio" id="chair" name="subNo" value="6">
+				  <label for="storage">수납장</label>
+				  <input type="radio" id="chair" name="subNo" value="7">
+				  <label for="dressing">화장대</label>
+				  <input type="radio" id="chair" name="subNo" value="8">
+				  <label for="table">식탁</label><br>
+				  <input type="radio" id="chair" name="subNo" value="9">
+				  <label for="light">조명</label>
+				  <input type="radio" id="chair" name="subNo" value="10">
+				  <label for="curtain">커튼</label>
+				  <input type="radio" id="chair" name="subNo" value="11">
+				  <label for="clock">시계</label>
+				  <input type="radio" id="chair" name="subNo" value="12">
+				  <label for="etc">소품</label>
+				</td>
+						</tr>
+						<tr>
+						<th>theme</th>
+						<td>
+				  <input type="radio" id="chair" checked name="tno" value="1">
+				  <label for="modern">modern</label>
+				  <input type="radio" id="chair" name="tno" value="2">
+				  <label for="natural">natural</label>
+				  <input type="radio" id="chair" name="tno" value="3">
+				  <label for="noreurope">noreurope</label><br>
+				  <input type="radio" id="chair" name="tno" value="4">
+				  <label for="classic">classic</label>
+				  <input type="radio" id="chair" name="tno" value="5">
+				  <label for="romantic">romantic</label>
+				  <input type="radio" id="chair" name="tno" value="6">
+				  <label for="vintage">vintage</label>
+				</td>
+				</tr>
+						<tr><td>${id}</td></tr>
+						<tr><td><input name="companyNo" value="${companyNo}"></td></tr>
+						<tr>
+							<td>
+								<button type="submit" class="button button1">등록</button>
+								<button type="reset" class="button button2">취소</button>
+							</td>
+						</tr>
+				</table>
+				</div>
+			</div>
+	</form>
 </div>
 
 <script>
