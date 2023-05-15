@@ -292,7 +292,7 @@ notice-li{
 </head>
 <body id="mainBody">
 	<div class="modal animate">
-		<img src="images/hotdeal.png" alt="#" />
+		<a href="hotDeal.do"><img src="images/hotdeal.png" alt="#" /></a>
 		<div id="check">
 			<input type="checkbox" id=xCheck>
 			<p>다시 열지 않겠습니다.&nbsp &nbsp</p>
