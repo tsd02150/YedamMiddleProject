@@ -21,7 +21,6 @@
 <link href="css/tiny-slider.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 </head>
-
 <style>
 @import
 url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic")
@@ -33,64 +32,83 @@ width
 height:
 100%
 }
+
+article {
+   caption-side: bottom;
+   border-collapse: collapse;
+   position: revert;
+   padding-left: 250px;
+   padding-right: 50px;
+   padding-top: 10px;
+   width: 100%;
+   display: inline-block;
+   margin: 0 auto;
+}
+
+
 #sidebar-wrapper {
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	right: 0;
-	width: 150px;
-	height: 100%;
-	background: #3b5d50;
-	border-left: 1px solid rgba(255, 255, 255, 0.1);
-	text-align: center;
+   position: absolute;
+   top: 90px;
+   left: 0;
+   height: 97%;
+   width: 200px;
+   background: #3b5d50;
+   border-left: 1px solid rgba(255, 255, 255, 0.1);
+   text-align: center;
 }
 
 .sidebar-nav {
-	top: 0;
-	width: 150px;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+   top: 0;
+   margin: 0;
+   padding: 0;
+   list-style: none;
 }
 
 .sidebar-nav li.sidebar-nav-item a {
-	display: block;
-	text-decoration: none;
-	color: #fff;
-	padding: 15px;
+   display: block;
+   text-decoration: none;
+   color: #fff;
+   padding: 15px;
 }
 
 .sidebar-nav li a:hover {
-	text-decoration: none;
-	color: #fff;
-	background: rgba(255, 255, 255, 0.2);
+   text-decoration: none;
+   color: #fff;
+   background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 .sidebar-nav>.sidebar-brand {
-	font-size: 1.2rem;
-	background: rgba(52, 58, 64, 0.1);
-	height: 80px;
-	line-height: 50px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 15px;
+   font-size: 1.2rem;
+   background: rgba(52, 58, 64, 0.1);
+   height: 80px;
+   line-height: 50px;
+   padding-top: 15px;
+   padding-bottom: 15px;
+   padding-left: 15px;
 }
 
 .sidebar-nav>.sidebar-brand a {
-	color: #fff;
-	text-decoration: none;
+   color: #fff;
+   text-decoration: none;
 }
 
 .sidebar-nav>.sidebar-brand a:hover {
-	color: #fff;
-	background: none;
+   color: #fff;
+   background: none;
+}
+
+.kind-of-selector a{
+	text-decoration: none;
+	padding: 20px;
+	font-size: large;
+	margin-bottom: 10px;
 }
 </style>
-
+<article>
 <div style="display: block;">
 	<nav id="sidebar-wrapper" class="active" style="display: inline-block;">
 		<ul id="ul" class="sidebar-nav">
@@ -101,12 +119,7 @@ height:
 		</ul>
 	</nav>
 	<br><br><br>
-	<div class="search-by-price">
-		<p>가격 검색</p>
-		<input class="min-price" type="number" defaultValue="10000" placeholder="10,000원" style="width: 100px;"> ~ 
-		<br><input class="max-price" defaultValue="999999999" placeholder="999,999,999원"  style="width: 100px;">
-		<button type="submit" class="search-price-btn" onclick="searchPrice()"> 제출 </button>
-	</div>
+	
 	<div class="untree_co-section product-section before-footer-section"
 		style="width: 1200px; display: inline-block">
 		<div class="container">
@@ -129,12 +142,20 @@ height:
 						</div>
 					</c:when>
 				</c:choose>
-
+	<table class="nav-price"><tr><td>
+		<div class="search-by-price" style="width: 150px;">
+			<p>가격 검색</p>
+			<input class="min-price" type="number" defaultValue="10000" placeholder="10,000원" style="width: 100px;"> ~ 	
+			<input class="max-price" defaultValue="999999999" placeholder="999,999,999원"  style="width: 100px;">
+			<button type="submit" class="search-price-btn" onclick="searchPrice()"> 제출 </button>
+		</div>
+	</td></tr></table>
+			<table>
 				<!-- Start Column 1 -->
 				<div class="kind-of-selector">
 					<a href="highPriceList.do">높은가격순</a>
-					<a href="lowPriceList.do">높은가격순</a>
-					<a href="topCountList">매출순</a>
+					<a href="lowPriceList.do">낮은가격순</a>
+					<a href="topCountList.do">매출순</a>
 				</div>
 				<c:forEach var="board" items="${boardList }">
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
@@ -150,12 +171,15 @@ height:
 						</span> </a>
 					</div>
 				</c:forEach>
+			</table>
 				<!-- End Column 1 -->
 
 			</div>
 		</div>
 	</div>
+	
 </div>
+</article>
 
 <script>
 	function searchPrice() {

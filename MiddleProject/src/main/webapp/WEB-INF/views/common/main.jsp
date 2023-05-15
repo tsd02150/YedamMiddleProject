@@ -115,13 +115,13 @@ to {
 	position: absolute;
 	z-index: 1000;
 	background-color: #f5f5f5;
-	width: 550px;
+	width: 590px;
 	height: 500px;
 	margin: 0 auto;
-	left: 20%;
+	left: 12%;
 	display: none;
 	align-items: center;
-	border: solid 1px black;
+
 }
 
 #categoryList ul {
@@ -133,15 +133,22 @@ to {
 }
 
 #mainCategory {
+    top: 100px;
+    padding-top: 90px;
+    padding-right: 35px;
+    
 	border-right: solid 1px black;
-	width: 200px;
+	width: 135px;
+	letter-spacing: 5px;
+	font-size: x-large;
 }
 
 #mainCategory li{
 	height: 225px;
-	padding : 100px 0px;
+	
 	font-weight: bold;
-	font-size: large;
+	font-size: x-large;
+	letter-spacing: 5px;
 }
 #subCategory {
 	display: none;
@@ -153,11 +160,21 @@ to {
 	font-weight: bold;
 	font-size: larger;
 	vertical-align: middle;
+	letter-spacing: 5px;
+	width: 380px;
+	padding-top: 10px
+}
+
+#mainCategory li:hover{
+	font-size: x-large;
+	color: lightgray;
+	letter-spacing: 5px;
 }
 
 #subCategory li:hover{
-	background-color: #F9BF29;
-	color: black;
+	color: #F9BF29;
+	letter-spacing: 5px;
+	font-size : xx-large;
 }
 
 .sub-name{
@@ -175,6 +192,96 @@ to {
 
 #categoryList{
 	margin-left: 200px;
+}
+
+#subCategory{
+	padding-top: 40px;
+	word-spacing:10px;
+}
+
+notice-li{
+	font-size: larger;
+}
+
+.search-by-price{
+	width: 150px;
+}
+
+
+#sidebar-wrapper {
+   position: absolute;
+   top: 90px;
+   left: 0;
+   height: 97%;
+   width: 200px;
+   background: #3b5d50;
+   border-left: 1px solid rgba(255, 255, 255, 0.1);
+   text-align: center;
+}
+
+.sidebar-nav {
+   top: 0;
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+.sidebar-nav li.sidebar-nav-item a {
+   display: block;
+   text-decoration: none;
+   color: black;
+   padding-top: 20px;
+   padding-bottom: 20px;
+}
+.sidebar-nav li.sidebar-nav-top a {
+   display: block;
+   text-decoration: none;
+   color: black;
+   padding-top: 40px;
+}
+
+.sidebar-nav li a:hover {
+   text-decoration: none;
+   color: #fff;
+   background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+   text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+   font-size: 1.2rem;
+   background: rgba(52, 58, 64, 0.1);
+   height: 80px;
+   line-height: 50px;
+   padding-top: 15px;
+   padding-bottom: 15px;
+   padding-left: 15px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+   color: #fff;
+   text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+   color: #fff;
+   background: none;
+}
+
+.quick-menu {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    z-index: 101;
+    box-sizing: border-box;
+    width: 113px;
+    padding: 34px 19px 29px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px 0 0 10px;
+    background: #fff;
+    transform: translateY(-50%);
 }
 
 </style>
@@ -235,8 +342,8 @@ to {
 			style="width: 1200px; display: inline-block">
 			<div class="container">
 				<div class="row">
-				<h1><a href="topCountList.do">Best Seller</a></h1>
-					<c:forEach var="board" items="${topCountList}" begin="0" end="3" step="1">
+				<h1><a href="topCountList.do">Best Seller + ${grade }</a></h1>
+					<c:forEach var="board" items="${topCountList}" begin="0" end="7" step="1">
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item"
 								href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}">
@@ -252,23 +359,7 @@ to {
 							</a>
 						</div>
 					</c:forEach>
-					<h1>신상품??</h1>
-					<c:forEach var="board" items="${boardList}" begin="0" end="3" step="1">
-						<div class="col-12 col-md-4 col-lg-3 mb-5">
-							<a class="product-item"
-								href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}">
-								<img src="images/${board.boardThumbnail}"
-								class="img-fluid product-thumbnail">
-								<p class="sub-name" style="text-align: left;">${board.subCategoryName}</p>
-								<h3 class="product-title">${board.boardTitle}</h3> <strong
-								class="product-price"> <fmt:formatNumber
-										value="${board.price}" pattern="#,###" />
-							</strong> <span class="icon-cross"> <img src="images/cross.svg"
-									class="img-fluid">
-							</span>
-							</a>
-						</div>
-					</c:forEach>
+					
 				</div>
 			</div>
 		</div>
@@ -296,7 +387,7 @@ to {
 					</div>
 					<ul class="list-unstyled">
 						<c:forEach var="notice" items="${noticeList }">
-							<li style="text-overflow: ellipsis;"><a href="getNoti.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></li>
+							<li class="notice-li" style="text-overflow: ellipsis;"><a href="getNoti.do?no=${notice.noticeNo}">${notice.noticeTitle }</a></li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -310,8 +401,30 @@ to {
 						</c:forEach>
 					</ul>
 				</div>
-
-
+<c:choose>
+<c:when test="${grade=='c'}">
+<nav class="quick-menu" class="active">
+	<ul class="sidebar-nav">
+		<li class="sidebar-nav-item"><a href="#">장바구니</a></li>
+		<li class="sidebar-nav-item"><a href="#">관심상품</a></li>
+		<li class="sidebar-nav-item"><a href="#">주문/배송</a></li>
+		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-top"><a href="#">TOP</a></li>
+	</ul>
+</nav>
+</c:when>
+<c:when test="${grade=='s'}">
+<nav class="quick-menu" class="active">
+	<ul class="sidebar-nav">
+		<li class="sidebar-nav-item"><a href="#">판매등록</a></li>
+		<li class="sidebar-nav-item"><a href="#">목록/관리</a></li>
+		<li class="sidebar-nav-item"><a href="#">주문/배송</a></li>
+		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+		<li class="sidebar-nav-top"><a href="#">TOP</a></li>
+	</ul>
+</nav>
+</c:when>
+</c:choose>
 			</div>
 		</div>
 	</div>

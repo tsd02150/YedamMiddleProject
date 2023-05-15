@@ -620,3 +620,5 @@ function fetchData() {
    
 
 }
+
+</script>

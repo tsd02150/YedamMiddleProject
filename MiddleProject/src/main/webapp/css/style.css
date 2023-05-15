@@ -785,6 +785,7 @@ a.more {
 	-webkit-transition: .3s all ease;
 	-o-transition: .3s all ease;
 	transition: .3s all ease;
+	font-size: larger;
 }
 
 .footer-section a:hover {
