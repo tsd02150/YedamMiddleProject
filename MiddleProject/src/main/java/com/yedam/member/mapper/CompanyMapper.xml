@@ -17,8 +17,8 @@
 		join member
 		using (company_no)
 		where grade='s') a
-               where rownum <=${page}*10 ) b
-      where b.rn >(${page}-1)*10
+               where rownum <=#{page}*10 ) b
+      where b.rn >(#{page}-1)*10
    ]]>
 	</select>
 	<select id="newCompany" resultType="company">
@@ -31,8 +31,8 @@
 		join member
 		using (company_no)
 		where grade='r') a
-               where rownum <=${page}*10 ) b
-      where b.rn >(${page}-1)*10
+               where rownum <=#{page}*10 ) b
+      where b.rn >(#{page}-1)*10
    ]]>
 	</select>
 	<update id="updateCompany" parameterType="int">
