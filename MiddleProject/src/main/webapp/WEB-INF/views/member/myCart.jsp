@@ -134,17 +134,14 @@
                </tr>
                <c:forEach var="myCart" items="${myCartList }">
                   <tr class="myCart" data-detailno=${myCart.orderDetailNo }>
-                     <td>
-                        <c:out value="${no=no+1}"></c:out>
-                     </td>
-                     <td><img src="images/${myCart.boardThumbnail }" width="200" height="100" style="overflow: hidden">
-                     </td>
+                     <td><c:out value="${no=no+1}"></c:out></td>
+                     <td><img src="images/${myCart.boardThumbnail }" width="200" height="100" style="overflow: hidden"></td>
                      <td>${myCart.productName }</td>
-                     <td>
-                        <fmt:formatNumber value="${myCart.price }" pattern="#,###" />원</td>
+                     <td>${myCart.price } <span>원</span></td>
                      <td><input type="number" value=${myCart.orderCount } class="cartCnt" min="0"></td>
                   </tr>
                </c:forEach>
+
             </table>
          </td>
       </tr>
@@ -152,23 +149,23 @@
    <table id="totalCart">
       <tr>
          <td class="totalCart-td">선택상품 가격 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">기본 배송비 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">추가 배송비 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">설치 여부 <input type="checkbox" name="setting" id="settingCheck"> (선택시 3만원 추가) : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr>
          <td class="totalCart-td">총 비용 : </td>
-         <td><fmt:formatNumber value="" pattern="#,###" />0</td>
+         <td>0</td>
       </tr>
       <tr><td><button type="button" id="payBtn">결제</button></td></tr>
    </table>
