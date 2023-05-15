@@ -24,6 +24,7 @@ article {
 	width: 100%;
 	display: inline-block;
 	margin: 0 auto;
+	padding-top: 20px;
 }
 
 #sidebar-wrapper {
@@ -110,38 +111,59 @@ article {
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
+
+.table-orderDetail {
+    --bs-table-bg: transparent;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    /* border-color: #dee2e6; */
+}
+.table-orderDetail td{
+	border-spacing: 0px;
+	border-style: none;
+	padding: 0px;
+	padding-bottom: 20px;
+}
+
 </style>
-<table class="mycontainer">
-<tr>
-<td>
+
 <c:choose>
-<c:when test="${grade=='s'}">
-<nav id="sidebar-wrapper" class="active">
-	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="sales.do">판매 내역<br>(매출현황)</a></li>
-		<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
-		<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
-		<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
-	</ul>
-</nav>
-</c:when>
-<c:otherwise>
-<nav id="sidebar-wrapper" class="active">
-	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
-		<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
-		<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
-		<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
-		<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
-	</ul>
-</nav>
-</c:otherwise>
+	<c:when test="${grade=='s'}">
+		<nav id="sidebar-wrapper" class="active">
+			<ul class="sidebar-nav">
+				<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
+				<li class="sidebar-nav-item"><a href="sales.do">판매 내역<br>(매출현황)</a></li>
+				<li class="sidebar-nav-item"><a href="prodNowList.do">상품현황</a></li>
+				<li class="sidebar-nav-item"><a href="orderProdList.do">주문현황</a></li>
+				<li class="sidebar-nav-item"><a href="orderDeliList.do">배송현황</a></li>
+				<li class="sidebar-nav-item"><a href="#">문의내역</a></li>
+			</ul>
+		</nav>
+	</c:when>
+	<c:otherwise>
+		<nav id="sidebar-wrapper" class="active">
+			<ul class="sidebar-nav">
+				<li class="sidebar-nav-item"><a href="myPage.do">기본 정보</a></li>
+				<li class="sidebar-nav-item"><a href="orderList.do">장바구니</a></li>
+				<li class="sidebar-nav-item"><a href="orderDetail.do">주문현황</a></li>
+				<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
+				<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
+			</ul>
+		</nav>
+	</c:otherwise>
 </c:choose>
-</td>
-<td>
-<table class="table">
+
+<article>
+<table class="table-orderDetail">
 	<c:set var = "totalPrice" value = "0"/>
 	<c:forEach var="delivery" items="${list}">
 		<c:if test ="${delivery.deliveryState == 'r' || delivery.deliveryState == 'd' || delivery.deliveryState == 's'}">
@@ -172,9 +194,7 @@ article {
 			<c:set var = "totalPrice" value="${totalPrice + (delivery.price * delivery.orderCount)}"/>
 	</c:forEach>
 </table>
-</td>
-</tr>
-</table>
+</article>
 
 <script>
 
