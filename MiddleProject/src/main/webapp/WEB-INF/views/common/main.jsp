@@ -516,12 +516,12 @@ notice-li{
 		}
 
 		if(e.keyCode==13){
-			let productName = itemList.children[index].innerText;
+			let productName = document.querySelector('#searchItem').value;
 			console.log(productName);
 			fetch("searchBoardFromName.do?productName="+productName)
-			.then(resolve=>resolve.json)
+			.then(resolve=>resolve.json())
 			.then(result=>{
-				console.log(result.boardNo);
+				location.href="categoryBoard.do?sno="+result.subNo;
 			})
 			.catch(err=>console.log(err));
 		}

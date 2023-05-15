@@ -170,16 +170,16 @@
 		]]>
 	</select>
 
-	<select id="searchPrice" resultType="int">
+	<select id="searchPrice" resultType="board">
 		<![CDATA[
 			select * from(
 				select rownum rn, a.* from(
-				SELECT b.*, p.price AS product_price
+				SELECT b.*, p.price
 				FROM board b
 				  JOIN product p on (p.product_no=b.product_no)
 				  JOIN subcategory s on(p.sub_category_no=s.sub_category_no)
-				WHERE p.price >= #{price}
-				  AND p.price <= #{price}
+				WHERE p.price >= #{minPrice}
+				  AND p.price <= #{maxPrice}
 				ORDER BY b.board_no) a
 		       where rownum <= #{page}*12) b 
 			where b.rn > (#{page}-1)*12
@@ -196,8 +196,8 @@
 		using(company_no)
 	</select>
 	
-	<select id="searchBoardFromName" resultType="board">
-		select * from board join product using(product_no) where product_name=#{productName}
+	<select id="searchBoardFromName" resultType="product">
+		select * from product where product_name=#{productName}
 	</select>
 	
 	<select id="getCount" resultType="int">

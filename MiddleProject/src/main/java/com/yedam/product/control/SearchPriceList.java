@@ -22,12 +22,13 @@ public class SearchPriceList implements Control {
 		int page = Integer.parseInt(pageStr);
 		String minPrice = req.getParameter("minPrice");
 		String maxPrice = req.getParameter("maxPrice");
-
+		System.out.println(minPrice);
+		System.out.println(maxPrice);
 		ProductService ps = new ProductServiceImpl();
 		int total = ps.totalCount();
 		List<BoardVO> searchPrice = ps.searchPrice(Integer.parseInt(minPrice), Integer.parseInt(minPrice), page);
 		List<BoardVO> ctgList = ps.ctgJoin();
-
+		System.out.println(searchPrice);
 		PageDTO dto = new PageDTO(page, total);
 		req.setAttribute("pageInfo", dto);
 		req.setAttribute("ctgList", ctgList);

@@ -90,9 +90,7 @@ height:
 		<div class="row">
 <c:choose><c:when test="${id !=null }">
 <div class="terms-conditions product-page">
-	${id }
-	${grade }
-	  <c:if test="${grade == S }">
+	  <c:if test="${grade == 's' }">
 		 <p><a href="addProductForm.do">상품 등록 </a></p>
 		 <p><a href="productList.do">상품 리스트 </a></p>
 		 <p><a href="addBoardForm.do?cno=${companyNo}">판매 등록</a></p>
@@ -116,13 +114,6 @@ height:
 </c:forEach>
 </table>
 <!-- End Column 1 -->
-
-		</div>
-	</div>
-</div>
-</td></tr>
-</table>
-<hr>
 <div class="center">
 		<div class="pagination">
 			<c:if test="${pageInfo.prev}">
@@ -138,6 +129,13 @@ height:
 			</c:if>
 		</div>
 	</div>
+
+		</div>
+	</div>
+</div>
+</td></tr>
+</table>
+<hr>
 <hr>
 <script>
 </script>

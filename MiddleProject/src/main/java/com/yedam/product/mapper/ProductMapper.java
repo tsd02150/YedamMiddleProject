@@ -52,7 +52,7 @@ public interface ProductMapper {
 
 	// 게시판 상세보기
 	public BoardVO searchboard(int boardNo);
-	public BoardVO searchBoardFromName(String productName);
+	public ProductVO searchBoardFromName(String productName);
 
 	// 장바구니
 	public int insertOrder(BoardVO vo);

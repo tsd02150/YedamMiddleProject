@@ -42,7 +42,7 @@ public interface ProductService {
 	public List<BoardVO> boardList(int page);
 
 	public BoardVO getBoard(int boardNo);
-	public BoardVO searchBoardFromName(String productName);
+	public ProductVO searchBoardFromName(String productName);
 
 	public List<BoardVO> categoryList(@Param("subCategoryNo") int subCategoryNo, @Param("page") int page);
 

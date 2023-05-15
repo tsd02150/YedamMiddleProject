@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public BoardVO searchBoardFromName(String productName) {
+	public ProductVO searchBoardFromName(String productName) {
 		return mapper.searchBoardFromName(productName);
 	}
 

@@ -310,6 +310,7 @@ function fetchData() {
 
 
    review.addEventListener('click', function () {
+	   console.log('aaaa');
       fetch('reviewList.do?bno=${boardInfo.boardNo}', {
             method: "GET",
          })
@@ -629,7 +630,4 @@ function fetchData() {
          alert('구매하기 성공');
       })
    })
-
-}
-
 </script>
