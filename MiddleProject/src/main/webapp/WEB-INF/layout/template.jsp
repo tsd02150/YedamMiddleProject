@@ -37,10 +37,7 @@
 </style>
 </head>
 <body>
-<%-- <tiles:insertAttribute name="header" />
-<tiles:insertAttribute name="body" />
-<tiles:insertAttribute name="footer" /> --%>
-
+<tiles:insertAttribute name="quickmenu" />
 <table id="tilesTable">
 	<tr>
 		<td colspan="3">

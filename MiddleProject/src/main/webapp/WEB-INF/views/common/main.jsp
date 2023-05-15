@@ -273,20 +273,6 @@ notice-li {
 	color: #fff;
 	background: none;
 }
-
-.quick-menu {
-	position: fixed;
-	top: 50%;
-	right: 0;
-	z-index: 101;
-	box-sizing: border-box;
-	width: 113px;
-	padding: 34px 19px 29px;
-	border: 1px solid #e2e2e2;
-	border-radius: 10px 0 0 10px;
-	background: #fff;
-	transform: translateY(-50%);
-}
 </style>
 
 </head>
@@ -412,32 +398,7 @@ notice-li {
 						</c:forEach>
 					</ul>
 				</div>
-				<div id="quick">
-					<c:choose>
-						<c:when test="${grade=='c'}">
-							<nav class="quick-menu" class="active">
-								<ul class="sidebar-nav">
-									<li class="sidebar-nav-item"><a href="myCart.do">장바구니</a></li>
-									<li class="sidebar-nav-item"><a href="wishList.do">관심상품</a></li>
-									<li class="sidebar-nav-item"><a href="orderDetail.do">주문/배송</a></li>
-									<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
-									<li class="sidebar-nav-top"><a href="#">TOP</a></li>
-								</ul>
-							</nav>
-						</c:when>
-						<c:when test="${grade=='s'}">
-							<nav class="quick-menu" class="active">
-								<ul class="sidebar-nav">
-									<li class="sidebar-nav-item"><a href="addBoardForm.do">판매등록</a></li>
-									<li class="sidebar-nav-item"><a href="addBoard.do">목록/관리</a></li>
-									<li class="sidebar-nav-item"><a href="orderDetail.do">주문/배송</a></li>
-									<li class="sidebar-nav-item"><a href="myQnaList.do">문의내역</a></li>
-									<li class="sidebar-nav-top"><a href="#">TOP</a></li>
-								</ul>
-							</nav>
-						</c:when>
-					</c:choose>
-				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -14,6 +14,6 @@ public class WishVO {
 	private String subCategoryName;
 	private String boardThumbnail;
 	private String boardContent;
-	
+	private int boardNo;
 	
 }
