@@ -287,7 +287,8 @@ notice-li{
 </style>
 
 </head>
-<body id="mainBody">
+<body id="mainBody" style="text-align:center">
+
 	<div class="modal animate">
 		<img src="" alt="#" />
 		<div id="check">
@@ -340,7 +341,7 @@ notice-li{
 	<div style="width: 1200px; margin: 0 auto;">
 		<div class="untree_co-section product-section before-footer-section"
 			style="width: 1200px; display: inline-block">
-			<div class="container" style="max-width:1140px">
+			<div class="container">
 				<div class="row">
 				<h1><a href="topCountList.do">Best Seller</a></h1>
 					<c:forEach var="board" items="${topCountList}" begin="0" end="7" step="1">
@@ -363,15 +364,16 @@ notice-li{
 				</div>
 			</div>
 		</div>
-		<div class="footer-section" style="background-color: #eff2f1">
+		<div class="footer-section" style="background-color: #eff2f1; margin:0 auto;">
 			<div class="row g-5 mb-5" style="width:1200px">
 				<div class="col-lg-4">
 					<div class="mb-4 footer-logo-wrap">
 						<a href="customerCenter.do" class="footer-logo">고객센터</a>
 					</div>
-					<h4 class="mb-4" style="font-weight: bold;">
-						전화상담 : 0000-0000<br>온라인 상담 : 1:1 문의
-					</h4>
+					<p class="mb-4" style="font-weight: bold; font-size: large">
+						전화상담 053-123-0123<br>
+						온라인상담 1:1문의
+					</p>
 
 					<ul class="list-unstyled custom-social">
 						<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>

@@ -56,9 +56,7 @@ width
 height:
 100%
 }
-
-
-article {
+#container {
 	caption-side: bottom;
 	border-collapse: collapse;
 	position: revert;
@@ -79,6 +77,7 @@ article {
 	background: #3b5d50;
 	border-left: 1px solid rgba(255, 255, 255, 0.1);
 	text-align: center;
+	margin: 0 auto;
 }
 
 .sidebar-nav {
@@ -153,21 +152,20 @@ article {
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
-
 </style>
 
-<nav id="sidebar-wrapper" class="active">
-	<ul class="sidebar-nav">
-		<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터</a></li>
-		<li class="sidebar-nav-item"><a href="noti.do">공지사항</a></li>
-		<li class="sidebar-nav-item"><a href="faq.do">자주하는 질문</a></li>
-	</ul>
-</nav>
+<div id="container">
+	<nav id="sidebar-wrapper" class="active">
+		<ul class="sidebar-nav">
+			<li class="sidebar-nav-item"><a href="customerCenter.do">고객센터</a></li>
+			<li class="sidebar-nav-item"><a href="noti.do">공지사항</a></li>
+			<li class="sidebar-nav-item"><a href="faq.do">자주하는 질문</a></li>
+		</ul>
+	</nav>
 
-<article>
 	<br>
 	<h3>고객센터 문의 게시판</h3>
-	 <br>
+	<br>
 	<c:set var="no" value="0"></c:set>
 	<form id="all" action="getCustomer.do" method="post">
 		<table class="table">
@@ -226,4 +224,4 @@ article {
 			</c:if>
 		</div>
 	</div>
-</article>
+</div>

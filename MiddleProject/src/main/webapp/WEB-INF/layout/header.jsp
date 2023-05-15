@@ -6,7 +6,7 @@
 	class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark"
 	arial-label="Furni navigation bar">
 
-	<div class="container">
+	<div class="container" style="margin-left:1px; margin-right:0;">
 		<a class="navbar-brand" href="main.do"><img src="images/houseIcon.png" width=40px height=40px>내일의 집<span>.</span></a>
 		<c:choose>
 		<c:when test="${id!=null }">
