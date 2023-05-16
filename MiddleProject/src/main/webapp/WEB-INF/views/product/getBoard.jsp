@@ -362,8 +362,8 @@ article {
          <div class="page-preview">
             <div class="preview">
 
-               <div class="container px-4 px-lg-5 my-5">
-                  <div class="row gx-4 gx-lg-5 align-items-center">
+               <div>
+                  <div class="row">
                      <div class="col-md-6">
 
                         <div id="top-position"></div>
@@ -409,8 +409,7 @@ article {
                               
                         </div>
                      </div>
-                     <img class="card-img-top" src="images/${boardInfo.boardAttach }"
-                        alt="..." />
+                     <img src="images/${boardInfo.boardAttach }" style="width:1250px"/>
                   </div>
                </div>
             </div>
@@ -450,7 +449,7 @@ article {
 </div>
 <!-- 차트 -->
 <div id="chart_div"></div>
-   <div id="comapny-div" style="display: block;width: 800px;padding-left: 50px;">
+   <div id="comapny-div" style="display: block;width: 1200px;">
       <h4>판매자 정보</h4>
       <table>
          <tr>
@@ -510,7 +509,7 @@ article {
          	<td></td>
          	<td></td>
          	<td class="review-button1"><button>수정</button></td>
-            <tdclass="review-button2"><button>삭제</button></td>
+            <td class="review-button2"><button>삭제</button></td>
             </tr>
          </c:if>
          <tr class="qnaAnswer" style="display: none;">
