@@ -504,7 +504,7 @@ notice-li {
 	console.log(date);
 	console.log(date.getHours());
 	
-	if('${checked}'=="false" && (date.getHours()==14||date.getHours()==15||date.getHours()==16||date.getHours()==17)){
+	if('${checked}'=="false" && date.getHours()==19){
 		document.querySelector('.modal').style.display="block";	
 	}
 	if('${checked}'=="true" || '${close}'=="close"){
