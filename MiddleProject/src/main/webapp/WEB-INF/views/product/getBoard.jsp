@@ -226,19 +226,6 @@ article {
    margin-bottom: 80px;
 }
 
-.quick-menu {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    z-index: 101;
-    box-sizing: border-box;
-    width: 140px;
-    padding: 34px 19px 29px;
-    border: 1px solid #e2e2e2;
-    border-radius: 10px 0 0 10px;
-    background: #fff;
-    transform: translateY(-50%);
-}
 
 #sidebar-wrapper {
    position: absolute;
@@ -419,33 +406,7 @@ article {
    </div>
 </form>
 <br>
-<div>
-   <c:choose>
-      <c:when test="${grade=='c'}">
-      <nav class="quick-menu" class="active">
-         <ul class="sidebar-nav">
-            <li class="sidebar-nav-item"><a href="#">장바구니</a></li>
-            <li class="sidebar-nav-item"><a href="#">관심상품</a></li>
-            <li class="sidebar-nav-item"><a href="#">주문/배송</a></li>
-            <li class="sidebar-nav-item"><a href="#">문의내역</a></li>
-            <li class="sidebar-nav-top"><a href="#">TOP</a></li>
-         </ul>
-      </nav>
-      </c:when>
-      <c:when test="${grade=='s'}">
-      <nav class="quick-menu" class="active">
-         <ul class="sidebar-nav">
-            <li class="sidebar-nav-item"><a href="addBoardForm.do?cno=${companyNo }">판매등록</a></li>
-            <li class="sidebar-nav-item"><a href="#">목록/관리</a></li>
-            <li class="sidebar-nav-item"><a href="#">주문/배송</a></li>
-            <li class="sidebar-nav-item"><a href="#">문의내역</a></li>
-            <li class="sidebar-nav-top"><a href="#top-position">TOP</a></li>
-         </ul>
-      </nav>
-      </c:when>
-   </c:choose>
 
-</div>
 </div>
 <!-- 차트 -->
 <div id="chart_div"></div>
