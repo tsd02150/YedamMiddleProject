@@ -137,29 +137,29 @@ height:
 <td>
 <table class="table">
 	<c:set var = "totalPrice" value = "0"/>
-	<c:forEach var="orderProdList" items="${orderProdList}">
-	<c:if test="${orderProdList.deliveryState =='r' || orderProdList.deliveryState =='q'}">
+	<c:forEach var="orderProd" items="${orderProdList}">
+	<c:if test="${orderProd.deliveryState =='r' || orderProd.deliveryState =='q'}">
 		<tr class="table">
 			<td><c:out value="${no=no+1 }"></c:out></td>
-			<td>주문 번호 : ${orderProdList.orderNo}</td>
-			<td><a href="getBoard.do?bno=${orderProdList.boardNo}"><img width="70px"  src="images/${orderProdList.boardThumbnail}"></a></td>
-			<td>제품명 : ${orderProdList.productName}</td>
-			<td>주문 수량 : ${orderProdList.orderCount}</td>
+			<td>주문 번호 : ${orderProd.orderNo}</td>
+			<td><a href="getBoard.do?bno=${orderProd.boardNo}"><img width="70px"  src="images/${orderProd.boardThumbnail}"></a></td>
+			<td>제품명 : ${orderProd.productName}</td>
+			<td>주문 수량 : ${orderProd.orderCount}</td>
 			<td>배송상태 : <c:choose>
-				<c:when test ="${orderProdList.deliveryState == 'r'}">
-					<select name="deliveryState" id="deliveryState" onchange="changeDeli(${orderProdList.orderNo})">
+				<c:when test ="${orderProd.deliveryState == 'r'}">
+					<select name="deliveryState" class="deliveryState" onchange="changeDeli(${orderProd.orderNo})">
 	          			<option value='r'>상품 준비중</option>
 	         			<option value='d'>배송중</option>
 	          			<option value='q'>주문취소</option>
         			</select>
 				</c:when>
-				<c:when test ="${orderProdList.deliveryState == 'd'}">
+				<c:when test ="${orderProd.deliveryState == 'd'}">
 					배송중
 				</c:when>
-				<c:when test ="${orderProdList.deliveryState == 's'}">
+				<c:when test ="${orderProd.deliveryState == 's'}">
 					배송완료 
 				</c:when>
-				<c:when test ="${orderProdList.deliveryState == 'q'}">
+				<c:when test ="${orderProd.deliveryState == 'q'}">
 					주문 취소  
 				</c:when>
 				<c:otherwise>
@@ -189,24 +189,23 @@ height:
 
 <script>
 	function changeDeli(a){
-		var nowDeli = document.getElementById("deliveryState");
-		var changeDeli = nowDeli.options[nowDeli.selectedIndex].value;
-		setTimeout(function(){
-			if(changeDeli == 'd'){
-				if (confirm("정말 변경하시겠습니까?")) {
-	 	 			alert("변경 되었습니다.");
-	 	 			return (location.href='updateDeli.do?ono='+a);
-	 	        } else {
-	 	        	alert("취소 되었습니다.");
-	 	        	return (location.href='orderProdList.do');
-			}
-			
-		}	else{
-			return (location.href='orderProdList.do');
-		}
-		
-		})
-		}
+		document.querySelectorAll(".deliveryState").forEach(nowDeli=>{
+			var changeDeli = nowDeli.options[nowDeli.selectedIndex].value;
+			setTimeout(function(){
+				if(changeDeli == 'd'){
+					if (confirm("정말 변경하시겠습니까?")) {
+	 	 				alert("변경 되었습니다.");
+	 	 				return (location.href='updateDeli.do?ono='+a);
+	 	        	} else {
+	 	        		alert("취소 되었습니다.");
+	 	        		return;
+					}
+				}else{
+					return;
+				}
+			})
+		})	
+	}
 		
 </script>
 

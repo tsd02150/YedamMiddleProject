@@ -137,18 +137,16 @@
 	</select>
 	<select id="topCountList" resultType="board">
  		<![CDATA[
-				select * from(
-				select rownum rn, a.* from(
-				select * from order_detail r 
-				join orders o on (r.order_no = o.order_no)
-				join delivery d on (d.order_no=r.order_no)
-				join product p on (p.product_no=r.product_no)
-				join board b on p.product_no=b.board_no
-				join subcategory s on(s.sub_category_no=p.sub_category_no)
-				where delivery_state='s'
-				ORDER BY order_count desc) a
-		       where rownum <= #{page}*12) b 
-			where b.rn > (#{page}-1)*12
+			select rownum rn ,a.* 
+			from (
+				select * 
+				from board 
+				join
+				(select * from product where product_no in
+					(select product_no from order_detail where order_no in 
+						(select order_no from orders where complete='c')))
+				using(product_no)) a
+			where rownum<12
     	]]>
 	</select>
 	<select id="lowPriceList" resultType="board">
