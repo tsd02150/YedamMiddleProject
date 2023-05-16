@@ -124,7 +124,7 @@ article {
 	</ul>
 </nav>
 
-<article>
+<article style="margin-left: 150px; width:1400px">
 <br>
 	<h3>자주하는 질문</h3>
 	<br>

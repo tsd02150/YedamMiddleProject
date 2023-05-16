@@ -139,7 +139,7 @@ article {
 				</c:forEach>
 			</ul>
 		</nav>
-
+		<div style="margin-left: 150px">
 		<h2 style="font-weight: bold; margin: 30px">${ctgrlist[0].subCategoryName }</h2>
 
 
@@ -200,6 +200,7 @@ article {
 						</c:if>
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 </article>
