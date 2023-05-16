@@ -154,14 +154,14 @@ article {
 			<c:choose>
 				<c:when test="${id !=null }">
 					<div class="terms-conditions product-page">
-					<c:if test="${grade=='s'}">
 					<ul style="padding-left: 50px; padding-top: 50px; list-style:none">
 					<li><h2 style="font-weight:bold">내일의 집 상품입니다.</h2></li>
+					<c:if test="${grade=='s'}">
 					<li>
 						<a href="addProductForm.do">>판매자 상품등록</a></li>
 						<li><a href="addBoardForm.do?cno=${companyNo}">>상품 판매등록</a></li>
-						</ul>
 					</c:if>
+						</ul>
 					</div>
 				</c:when>
 			</c:choose>
