@@ -27,7 +27,6 @@ public class OtherLoginControl implements Control {
 			String name = req.getParameter("name");
 			String email = req.getParameter("email");
 			String gender = req.getParameter("gender");
-			String memberNo = req.getParameter("memberNo");
 			if(gender.equals("male")||gender.equals("M")) {
 				gender="m";
 			}else {
@@ -38,7 +37,6 @@ public class OtherLoginControl implements Control {
 			vo.setName(name);
 			vo.setEmail(email);
 			vo.setGender(gender);
-			vo.setMemberNo(Integer.parseInt(memberNo));
 			
 			HttpSession session = req.getSession();
 			session.setAttribute("memberInfo", vo);

@@ -42,7 +42,6 @@
 						naverLogin.reprompt();
 						return;
 					}
-            		alert(naverLogin.user.id);
                     //location.href="otherLogin.do?name="+naverLogin.user.name+"&id="+naverLogin.user.id+"&email="+naverLogin.user.email+"&gender="+naverLogin.user.gender;
 					window.location.replace("otherLogin.do?name="+naverLogin.user.name+"&id="+naverLogin.user.id+"&email="+naverLogin.user.email+"&gender="+naverLogin.user.gender);
 				} else {

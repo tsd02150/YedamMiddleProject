@@ -198,7 +198,11 @@
 		set delivery_state = 'd' 
 		where order_no = #{orderNo}
 	</update>
-	
+	<update id="changeDeli2" parameterType="int">
+		update delivery
+		set delivery_state = 'q' 
+		where order_no = #{orderNo}
+	</update>
 
 
 	<!-- 관리자페이지 -->

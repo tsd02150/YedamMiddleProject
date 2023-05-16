@@ -31,6 +31,7 @@ import com.yedam.member.control.SignUpControl;
 import com.yedam.member.control.UpdateQnaControl;
 import com.yedam.member.control.UpdateCartControl;
 import com.yedam.member.control.UpdateDeliControl;
+import com.yedam.member.control.UpdateDeliControl2;
 import com.yedam.member.control.WishListControl;
 import com.yedam.notice.control.AddNotiControl;
 import com.yedam.notice.control.AddNotiFormControl;
@@ -156,6 +157,7 @@ public class FrontControl extends HttpServlet {
 		map.put("/orderProdList.do", new OrderProdListControl());
 		map.put("/orderDeliList.do", new OrderDeliListControl());
 		map.put("/updateDeli.do", new UpdateDeliControl());
+		map.put("/updateDeli2.do", new UpdateDeliControl2());
 		map.put("/sales.do", new SalesControl());
 		
 		// 상품 전체 리스트

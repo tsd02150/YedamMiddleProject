@@ -200,7 +200,16 @@ height:
 	 	        		alert("취소 되었습니다.");
 	 	        		return;
 					}
-				}else{
+				}else if(changeDeli == 'q'){
+					if (confirm("정말 변경하시겠습니까?")) {
+	 	 				alert("변경 되었습니다.");
+	 	 				return (location.href='updateDeli2.do?ono='+a);
+	 	        	} else {
+	 	        		alert("취소 되었습니다.");
+	 	        		return;
+					}
+				}
+				else{
 					return;
 				}
 			})

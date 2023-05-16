@@ -131,6 +131,10 @@ public class MemberServiceImpl implements MemberService{
 	public boolean changeDeli(int orderNo) {
 		return mapper.changeDeli(orderNo)>0;
 	}
+	@Override
+	public boolean changeDeli2(int orderNo) {
+		return mapper.changeDeli2(orderNo)>0;
+	}
 	
 	
 }

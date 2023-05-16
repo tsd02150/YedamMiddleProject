@@ -38,6 +38,7 @@ public interface MemberMapper {
 	public int deleteMember(int memberNo);
 	public int updateQna(QnaVO vo);
 	public int changeDeli(int orderNo);
+	public int changeDeli2(int orderNo);
 	public List<MemberVO> memberList();
 	public List<MemberVO> memberList(int page);
 	public int memberCount();

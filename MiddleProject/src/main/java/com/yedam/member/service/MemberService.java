@@ -41,4 +41,5 @@ public interface MemberService {
 	public boolean delMember(int memberNo);
 	public boolean updateQna(QnaVO vo);
 	public boolean changeDeli(int orderNo);
+	public boolean changeDeli2(int orderNo);
 }
