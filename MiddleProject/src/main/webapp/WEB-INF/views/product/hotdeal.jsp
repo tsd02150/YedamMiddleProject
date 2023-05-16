@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <style>
+#container {
+	width: 1020px;
+	margin: 0 auto;
+}
 .kind-of-selector a{
 	text-decoration: none;
 	padding: 20px;
@@ -15,32 +19,32 @@
 </style>
 </head>
 <body>
-	<table class="nav-price">
-		<tr>
-			<td>
-				<div class="search-by-price" style="width: 150px;">
-					<p>가격 검색</p>
-					<input class="min-price" type="number" defaultValue="10000"
-						placeholder="10,000원" style="width: 100px;"> ~ <input
-						class="max-price" defaultValue="999999999"
-						placeholder="999,999,999원" style="width: 100px;">
-					<button type="submit" class="search-price-btn"
-						onclick="searchPrice()">제출</button>
-				</div>
-			</td>
-		</tr>
-	</table>
+<div id="container">
+	<br>
+	<img src="images/hotdeal.gif" width=1020px height=400px>
+	<br> <br>
+	<div class="search-by-price"
+						style="text-align: left; padding-top: 0">
+						<p>
+							가격 검색 <input class="min-price" type="number" defaultValue="10000"
+								placeholder="10,000원" style="width: 130px;"> ~ <input
+								class="max-price" defaultValue="999999999"
+								placeholder="99,999,999원" style="width: 130px;">
+							<button type="submit" class="search-price-btn"
+								onclick="searchPrice()">검색</button>
+							<!-- Start Column 1 -->
+						<div class="kind-of-selector">
+							<a href="highPriceList.do">높은 가격순</a> <a href="lowPriceList.do">낮은
+								가격순</a> <a href="topCountList.do">매출순</a>
+						</div>
+						</p>
+					</div>
+					<br> <br>
 	<table>
-		<!-- Start Column 1 -->
-		<div class="kind-of-selector">
-			<a href="highPriceList.do">높은가격순</a> <a href="lowPriceList.do">낮은가격순</a>
-			<a href="topCountList.do">매출순</a>
-		</div>
 		<div class="untree_co-section product-section before-footer-section"
 			style="width: 1200px; display: inline-block">
 			<div class="container" style="max-width:1140px">
 				<div class="row">
-				<h1>특가 핫딜!</h1>
 					<c:forEach var="board" items="${boardList}" begin="0" end="7" step="1">
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item"
@@ -62,6 +66,7 @@
 			</div>
 		</div>
 	</table>
+	</div>
 </body>
 <script>
 	function searchPrice() {

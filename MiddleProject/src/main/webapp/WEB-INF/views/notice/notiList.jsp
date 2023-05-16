@@ -120,7 +120,7 @@ article {
 	</ul>
 </nav>
 
-<article>
+<article style="margin-left: 150px; width:1400px">
 	<br>
 	<h3>공지사항</h3>
 	<br>

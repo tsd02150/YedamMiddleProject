@@ -3,8 +3,8 @@
 
 <style>
 #container {
-	margin-left: 50px;
 	width: 800px;
+	margin: 0 auto;
 }
 
 </style>

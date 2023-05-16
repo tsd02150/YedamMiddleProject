@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
+#container {
+	width: 800px;
+	margin: 0 auto;
+}
 
-<p>고객센터 문의하기</p>
+</style>
+
+<div id="container">
+<h3>고객센터 문의하기</h3>
 
 <form action="customerAdd.do" method="post"
 	enctype="multipart/form-data">
@@ -38,3 +46,4 @@
 	</table>
 
 </form>
+</div>

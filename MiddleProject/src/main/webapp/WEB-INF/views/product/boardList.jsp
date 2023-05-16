@@ -150,83 +150,81 @@ article {
 				</c:forEach>
 			</ul>
 		</nav>
+		<div style="margin-left: 150px">
 
-			<c:choose>
-				<c:when test="${id !=null }">
-					<div class="terms-conditions product-page">
-					<ul style="padding-left: 50px; padding-top: 50px; list-style:none">
-					<li><h2 style="font-weight:bold">내일의 집 상품입니다.</h2></li>
+			<div class="terms-conditions product-page">
+				<ul style="padding-left: 50px; padding-top: 50px; list-style: none">
+					<li><h2 style="font-weight: bold">내일의 집 상품입니다.</h2></li>
 					<c:if test="${grade=='s'}">
-					<li>
-						<a href="addProductForm.do">>판매자 상품등록</a></li>
+						<li><a href="addProductForm.do">>판매자 상품등록</a></li>
 						<li><a href="addBoardForm.do?cno=${companyNo}">>상품 판매등록</a></li>
 					</c:if>
-						</ul>
-					</div>
-				</c:when>
-			</c:choose>
-
-		<div class="untree_co-section product-section before-footer-section"
-			style="width: 1200px; display: inline-block">
-			<div class="container">
-
-				<div class="search-by-price"
-					style="text-align: left; padding-top: 0">
-					<p>
-						가격 검색 <input class="min-price" type="number" defaultValue="10000"
-							placeholder="10,000원" style="width: 130px;"> ~ <input
-							class="max-price" defaultValue="999999999"
-							placeholder="99,999,999원" style="width: 130px;">
-						<button type="submit" class="search-price-btn"
-							onclick="searchPrice()">검색</button>
-						<!-- Start Column 1 -->
-
-						<div class="kind-of-selector"><a href="highPriceList.do">높은 가격순</a> <a href="lowPriceList.do">낮은
-							가격순</a> <a href="topCountList.do">매출순</a></div>
-					</p>
-				</div>
-				<br> <br>
-
-				<div class="row">
-					<table>
-						<tr>
-							<c:forEach var="board" items="${boardList }">
-								<div class="col-12 col-md-4 col-lg-3 mb-5">
-									<a class="product-item"
-										href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}"><img
-										src="images/${board.boardThumbnail}"
-										class="img-fluid product-thumbnail">
-										<h3 class="product-title">${board.boardTitle}</h3> <strong
-										class="product-price"> <fmt:formatNumber
-												value="${board.price}" pattern="#,###" /></strong> <span
-										class="icon-cross"> <img src="images/cross.svg"
-											class="img-fluid">
-									</span> </a>
-								</div>
-							</c:forEach>
-						</tr>
-					</table>
-					<!-- End Column 1 -->
-
-				</div>
+				</ul>
 			</div>
-			<div class="center">
-				<div class="pagination">
-					<c:if test="${pageInfo.prev}">
-						<a href="boardList.do?page=${pageInfo.startPage-1 }">Prev</a>
-					</c:if>
-					<c:forEach var="i" begin="${pageInfo.startPage }"
-						end="${pageInfo.endPage }">
-						<a href="boardList.do?page=${i }"
-							class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
-					</c:forEach>
-					<c:if test="${pageInfo.next}">
-						<a href="boardList.do?page=${pageInfo.endPage+1 }">Next</a>
-					</c:if>
+
+
+			<div class="untree_co-section product-section before-footer-section"
+				style="width: 1200px; display: inline-block">
+				<div class="container">
+
+					<div class="search-by-price"
+						style="text-align: left; padding-top: 0">
+						<p>
+							가격 검색 <input class="min-price" type="number" defaultValue="10000"
+								placeholder="10,000원" style="width: 130px;"> ~ <input
+								class="max-price" defaultValue="999999999"
+								placeholder="99,999,999원" style="width: 130px;">
+							<button type="submit" class="search-price-btn"
+								onclick="searchPrice()">검색</button>
+							<!-- Start Column 1 -->
+						<div class="kind-of-selector">
+							<a href="highPriceList.do">높은 가격순</a> <a href="lowPriceList.do">낮은
+								가격순</a> <a href="topCountList.do">매출순</a>
+						</div>
+						</p>
+					</div>
+					<br> <br>
+
+					<div class="row">
+						<table>
+							<tr>
+								<c:forEach var="board" items="${boardList }">
+									<div class="col-12 col-md-4 col-lg-3 mb-5">
+										<a class="product-item"
+											href="getBoard.do?page=${pageInfo.pageNum}&bno=${board.boardNo}"><img
+											src="images/${board.boardThumbnail}"
+											class="img-fluid product-thumbnail">
+											<h3 class="product-title">${board.boardTitle}</h3> <strong
+											class="product-price"> <fmt:formatNumber
+													value="${board.price}" pattern="#,###" /></strong> <span
+											class="icon-cross"> <img src="images/cross.svg"
+												class="img-fluid">
+										</span> </a>
+									</div>
+								</c:forEach>
+							</tr>
+						</table>
+						<!-- End Column 1 -->
+
+					</div>
+				</div>
+				<div class="center">
+					<div class="pagination">
+						<c:if test="${pageInfo.prev}">
+							<a href="boardList.do?page=${pageInfo.startPage-1 }">Prev</a>
+						</c:if>
+						<c:forEach var="i" begin="${pageInfo.startPage }"
+							end="${pageInfo.endPage }">
+							<a href="boardList.do?page=${i }"
+								class=${i==pageInfo.pageNum?'active':'' }>${i }</a>
+						</c:forEach>
+						<c:if test="${pageInfo.next}">
+							<a href="boardList.do?page=${pageInfo.endPage+1 }">Next</a>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 </article>
 

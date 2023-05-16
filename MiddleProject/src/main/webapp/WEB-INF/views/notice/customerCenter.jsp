@@ -162,7 +162,7 @@ height:
 			<li class="sidebar-nav-item"><a href="faq.do">자주하는 질문</a></li>
 		</ul>
 	</nav>
-
+	<article style="margin-left: 150px; width:1100px">
 	<br>
 	<h3>고객센터 문의 게시판</h3>
 	<br>
@@ -224,4 +224,5 @@ height:
 			</c:if>
 		</div>
 	</div>
+	</article>
 </div>
