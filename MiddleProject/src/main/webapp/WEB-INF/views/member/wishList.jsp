@@ -264,9 +264,8 @@ article {
 					<td>NO</td>
 					<td></td>
 					<td>Name</td>
-					<td></td>
 					<td>가격</td>
-					<td>수량</td>
+					<td>재고 수량</td>
 					<td>분류</td>
 					<td></td>
 			<c:forEach var="wish" items="${list}">
@@ -274,7 +273,6 @@ article {
 					<td><c:out value="${no=no+1 }"></c:out></td>
 					<td><a href="getBoard.do?bno=${wish.boardNo}"><img width="70px"  src="images/${wish.boardThumbnail}"></a></td>
 					<td>${wish.productName}</td>
-					<td><img style="width:70px;" src="images/${wish.boardThumbnail}"></td>
 					<td>${wish.price}</td>
 					<td>${wish.productCount}</td>
 					<td>${wish.subCategoryName}</td>
@@ -282,32 +280,7 @@ article {
 				</tr>
 			</c:forEach>
 		</table>
-		<div class="right-sidebar">
-			<c:choose>
-				<c:when test="${grade=='c'}">
-				<nav class="quick-menu" class="active">
-					<ul class="sidebar-right-nav">
-						<li class="sidebar-right-item"><a href="#">장바구니</a></li>
-						<li class="sidebar-right-item"><a href="#">관심상품</a></li>
-						<li class="sidebar-right-item"><a href="#">주문/배송</a></li>
-						<li class="sidebar-right-item"><a href="#">문의내역</a></li>
-						<li class="sidebar-nav-top"><a href="#">TOP</a></li>
-					</ul>
-				</nav>
-				</c:when>
-				<c:when test="${grade=='s'}">
-				<nav class="quick-menu" class="active">
-					<ul class="sidebar-right-nav">
-						<li class="sidebar-right-item"><a href="#">판매등록</a></li>
-						<li class="sidebar-right-item"><a href="#">목록/관리</a></li>
-						<li class="sidebar-right-item"><a href="#">주문/배송</a></li>
-						<li class="sidebar-right-item"><a href="#">문의내역</a></li>
-						<li class="sidebar-right-top"><a href="#">TOP</a></li>
-					</ul>
-				</nav>
-			</c:when>
-			</c:choose>
-		</div>
+		
 	</form>
 	
 </td>

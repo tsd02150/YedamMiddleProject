@@ -161,7 +161,7 @@
 		member using(member_no))
 		join board using(product_no))
 		full outer join delivery using(delivery_no)
-		where id = #{id}
+		where id = #{id} order by DECODE(delivery_state, 'r',1),order_date
 	</select>
 	
  	
